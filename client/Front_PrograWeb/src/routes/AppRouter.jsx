@@ -1,5 +1,5 @@
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import {Home} from '../pages/Home.jsx'
+import {BrowserRouter, Routes, Route, PrivateRoute} from 'react-router-dom';
+import {Home} from '../pages/PublicPages/Home.jsx'
 
 export const AppRouter = () => {
 
@@ -7,7 +7,17 @@ export const AppRouter = () => {
         <BrowserRouter>
             <Routes>
                 <Route path = '/' element = {<Home/>}/>
-
+                <Route path = '/results' element = {<Results/>}/>
+                <Route path = '/product:id' element = {<Product/>}/>
+                <Route path = '/carrito' element = {<Carrito/>}/>
+                <Route path = '/checkout' element = {<Checkout/>}/>
+                <Route path = '/greeting' element = {<Greeting/>}/>
+                <Route path = '/login' element = {<Login/>}/>
+                <Route path = '/register' element = {<Register/>}/>
+                <Route path = '/user:id' 
+                element = {<PrivateRoute>
+                            <User />
+                        </PrivateRoute>}/>
             </Routes>
 
         </BrowserRouter>
