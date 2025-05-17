@@ -1,5 +1,5 @@
 .container {
-  height: 110vh;
+  height: 100vh;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -14,16 +14,68 @@
   font-style:normal;
 }
 
-.gracias {
+.gracias, .productos {
   font-family: 'Pokemon Solid', sans-serif;
   text-align: center;
-  height : 30%;
+  height : 40%;
   color: #FFDE00;
+  font-size: 500%;
+  -webkit-text-stroke: 4px #3B4CCA;
+  letter-spacing: 2.5px;
+}
+
+.principal {
+    margin-top: 3.5%;
+    backdrop-filter: blur(3px);     /* Aplica el desenfoque */
+    -webkit-backdrop-filter: blur(3px); /* Soporte Safari */
+    background-color: rgba(255, 255, 255, 0.2); /* Transparencia */
+    border-radius: 100px;
+    display: block;
+    margin : auto;
+    height: 40%;
+}
+
+.productos {
   font-size: 300%;
-  -webkit-text-stroke: 2px #3B4CCA;
-  letter-spacing: 1.5px
+  height: 30%;
+  -webkit-text-stroke: 3px #3B4CCA;
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    filter: drop-shadow(0 0 10px white);
+  }
+  50% {
+    filter: drop-shadow(0 0 10px gray);
+  }
+}
+
+.listaProductos {
+  padding-top: 10%;
+  display: flex;
+  flex-direction: row;
+  gap: 20%; 
+  justify-content: center;
+  align-items: center;
+}
+
+.productoImg {
+  width: 150px;
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.visible {
+  opacity: 1;
+  transform: scale(1);
+  animation: glowPulse 2s infinite; 
 }
 
 .pokebola {
-  height: 75%;
+  height: auto;
+  width: 30%;
+  display: block;
+  margin : auto;
+  cursor: pointer;
 }
