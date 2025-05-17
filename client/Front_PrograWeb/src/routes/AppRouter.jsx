@@ -1,5 +1,10 @@
-import {BrowserRouter, Routes, Route, PrivateRoute} from 'react-router-dom';
-import {Home} from '../pages/PublicPages/Home.jsx'
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import { Home } from '../pages/PublicPages/Home';
+import { Results } from '../pages/PublicPages/Results';
+import { Product } from '../pages/PublicPages/Product';
+import { Carrito } from '../pages/PublicPages/Carrito';
+import { Checkout } from '../pages/PublicPages/Checkout';
+import { Greeting } from '../pages/PublicPages/Greeting';
 
 export const AppRouter = () => {
 
@@ -12,14 +17,7 @@ export const AppRouter = () => {
                 <Route path = '/carrito' element = {<Carrito/>}/>
                 <Route path = '/checkout' element = {<Checkout/>}/>
                 <Route path = '/greeting' element = {<Greeting/>}/>
-                <Route path = '/login' element = {<Login/>}/>
-                <Route path = '/register' element = {<Register/>}/>
-                <Route path = '/user:id' 
-                element = {<PrivateRoute>
-                            <User />
-                        </PrivateRoute>}/>
             </Routes>
-
         </BrowserRouter>
     )
 }
