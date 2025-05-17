@@ -1,5 +1,29 @@
 .container {
-  height: 100vh;
+  height: 110vh;
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background-image: url('../assets/fondoPoke.jpg');
+  background-repeat: repeat;
+}
+
+@font-face {
+  font-family: 'Pokemon Solid';
+  src: url('../assets/fonts/Pokemon Solid.ttf') format('truetype');
+  font-weight: normal;
+  font-style:normal;
+}
+
+.gracias {
+  font-family: 'Pokemon Solid', sans-serif;
   text-align: center;
+  height : 30%;
+  color: #FFDE00;
+  font-size: 300%;
+  -webkit-text-stroke: 2px #3B4CCA;
+  letter-spacing: 1.5px
+}
+
+.pokebola {
+  height: 75%;
 }
