@@ -1,12 +1,23 @@
-import {useState, useEffect, useContext} from 'react'
+import {useState, useEffect, useContext, useLayoutEffect} from 'react'
 import styles from  '../../styles/Greeting.module.css'
-
-
-
 
 export const Greeting = () => {
 
-    const [visibleCount, setVisibleCount] = useState(0)
+    const [visibleCount, setVisibleCount] = useState(0);
+
+    useEffect(() => {
+        const handleClick = () => {
+        const audio = new Audio('/pikachu.mp3');
+        audio.play();
+        document.removeEventListener('click', handleClick);
+    };
+
+        document.addEventListener('click', handleClick);
+
+    return () => {
+        document.removeEventListener('click', handleClick);
+    };
+    }, []);
 
     const productos = [
         {id: 1, src : '/src/assets/eter.png', alt : 'Eter'},
