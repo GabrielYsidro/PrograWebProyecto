@@ -1,5 +1,11 @@
-import React from 'react';
 
-export function Results() {
-  return <div>Results page</div>;
+export const Results = () => {
+    return (
+        <div>
+            Estos son los resultados
+        </div>
+    )
+
 }
+
+export default Results;

@@ -1,5 +1,11 @@
-import React from 'react';
 
-export function Product() {
-  return <div>Product page</div>;
+export const Product = () => {
+    return (
+        <div>
+            Este es el carrito
+        </div>
+    )
+
 }
+
+export default Product;

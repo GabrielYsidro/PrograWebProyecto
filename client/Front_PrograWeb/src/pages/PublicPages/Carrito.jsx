@@ -1,5 +1,11 @@
-import React from 'react';
 
-export function Carrito() {
-  return <div>Carrito</div>;
+export const Carrito = () => {
+    return (
+        <div>
+            Este es el carrito
+        </div>
+    )
+
 }
+
+export default Carrito;

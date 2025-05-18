@@ -1,13 +1,10 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
-import Home from '../pages/PublicPages/Home.jsx'
-import { Results } from '../pages/PublicPages/Results.jsx';
-import { Product } from '../pages/PublicPages/Product.jsx';
-import { Carrito } from '../pages/PublicPages/Carrito.jsx';
-import { Checkout } from '../pages/PublicPages/Checkout.jsx';
-import { Greeting } from '../pages/PublicPages/Greeting.jsx';
-import { Login } from '../pages/PrivatePages/Login.jsx';
-import { Register } from '../pages/PrivatePages/Register.jsx';
-import { User } from '../pages/PrivatePages/User.jsx';
+import { Home } from '../pages/PublicPages/Home';
+import { Results } from '../pages/PublicPages/Results';
+import { Product } from '../pages/PublicPages/Product';
+import { Carrito } from '../pages/PublicPages/Carrito';
+import { Checkout } from '../pages/PublicPages/Checkout';
+import { Greeting } from '../pages/PublicPages/Greeting';
 
 export const AppRouter = () => {
 
@@ -20,11 +17,7 @@ export const AppRouter = () => {
                 <Route path = '/carrito' element = {<Carrito/>}/>
                 <Route path = '/checkout' element = {<Checkout/>}/>
                 <Route path = '/greeting' element = {<Greeting/>}/>
-                <Route path = '/login' element = {<Login/>}/>
-                <Route path = '/register' element = {<Register/>}/>
-                <Route path='/user/:id' element={<User />} />
             </Routes>
-
         </BrowserRouter>
     )
 }
