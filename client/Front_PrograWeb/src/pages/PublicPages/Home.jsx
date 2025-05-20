@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { productos } from '../../constants/Consts.tsx';
-import TopBar from '../../extends/TopBar';
-import Footer from '../../extends/Footer';
+import TopBar from '../../components/TopBar/TopBar.jsx';
+import Footer from '../../components/Footer/Footer.jsx'
 import '../../styles/Home.css';
 
 export const Home = () => {
