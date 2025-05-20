@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { productos } from '../../constants/Consts.tsx';
+import { productos } from '../../constants/Consts.jsx';
 import TopBar from '../../components/TopBar/TopBar.jsx';
 import Footer from '../../components/Footer/Footer.jsx'
-import '../../styles/Home.css';
+import '../../styles/Home.module..css';
 
 export const Home = () => {
     const [busqueda, setBusqueda] = useState('');
