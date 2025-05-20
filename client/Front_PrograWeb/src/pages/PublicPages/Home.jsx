@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { productos } from '../../constants/Consts.jsx';
-import TopBar from '../../components/TopBar/TopBar.jsx';
-import Footer from '../../components/Footer/Footer.jsx'
+import { productos } from '../../constants/Consts.tsx';
+import TopBar from '../../extends/TopBar';
+import Footer from '../../extends/Footer';
+import '../../styles/Home.css';
 
 export const Home = () => {
     const [busqueda, setBusqueda] = useState('');
@@ -13,7 +14,9 @@ export const Home = () => {
     };
 
     return (
-        <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+    <>
+        <div className="home-background"></div>
+        <div className="home-content" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
             <TopBar handleSearch={handleSearch} busqueda={busqueda} setBusqueda={setBusqueda} />
             {/* Main Content */}
             <main style={{ flex: 1, padding: '2rem' }}>
@@ -31,9 +34,9 @@ export const Home = () => {
                     ))}
                 </div>
             </main>
-
             <Footer />
-         </div>
+        </div>
+    </>
     );
 };
 
