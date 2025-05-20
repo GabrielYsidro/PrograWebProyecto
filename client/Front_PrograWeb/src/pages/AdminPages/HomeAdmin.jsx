@@ -1,33 +1,41 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { productos } from '../../constants/Consts.jsx';
 import TopBar from '../../components/TopBar/TopBar.jsx';
-import Footer from '../../components/Footer/Footer.jsx'
+import Footer from '../../components/Footer/Footer.jsx';
 
 export const HomeAdmin = () => {
+    const [busqueda, setBusqueda] = useState('');
+
+    const handleSearch = (e) => {
+        e.preventDefault();
+        alert(`Buscando: ${busqueda}`);
+    };
+
     return (
-    <>
-        <div className="home-background"></div>
-        <div className="home-content" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+        <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
             <TopBar handleSearch={handleSearch} busqueda={busqueda} setBusqueda={setBusqueda} />
             {/* Main Content */}
             <main style={{ flex: 1, padding: '2rem' }}>
-                <h1>Bienvenido a la tienda</h1>
+                <h1>Resumen del día (poner día del resumen)</h1>
+                <form action="">
+                    <input type="date" name="DiaA" id="DiaA" />
+                    <input type="date" name="DiaD" id="DiaD" />
+                </form>
+                <div>
+                    <h2>Sumarizados</h2>
+                    <p>Suma de ordenes del dia (poner día del resumen): (poner total de ordenes del dia)</p>
+                    <p>Suma de nuevos usuarios del día(poner día del resumen): (poner total de nuevos usuarios del dia)</p>
+                    <p>Ingreso totales del día (poner dia del resumen): (poner el ingreso total del dia)</p>
+                </div>
                 {/* Lista de productos */}
                 <h2>Productos</h2>
-                <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap' }}>
-                    {productos.map(producto => (
-                        <div key={producto.id} style={{ border: '1px solid #ccc', borderRadius: '8px', padding: '1rem', minWidth: '180px' }}>
-                            <h3>{producto.nombre}</h3>
-                            <p>Color: {producto.color}</p>
-                            <p>Precio: S/ {producto.precio.toFixed(2)}</p>
-                            <Link to={`/product/${producto.id}`}>Ver detalle</Link>
-                        </div>
-                    ))}
-                </div>
+                
             </main>
+
             <Footer />
         </div>
-    </>
     );
-};
+}
 export default HomeAdmin;
+

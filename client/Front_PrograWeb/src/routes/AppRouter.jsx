@@ -18,7 +18,7 @@ export const AppRouter = () => {
                 <Route path = '/carrito' element = {<Carrito/>}/>
                 <Route path = '/checkout' element = {<Checkout/>}/>
                 <Route path = '/greeting' element = {<Greeting/>}/>
-                <Route path = 'homeadmin' element = {<HomeAdmin/>}/>
+                <Route path = '/homeadmin' element = {<HomeAdmin/>}/>
             </Routes>
         </BrowserRouter>
     )
