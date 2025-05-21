@@ -41,21 +41,17 @@ export const DetailProduct = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Encuentra el índice del producto que se está editando
         const productIndex = productos.findIndex(p => p.id === product.id);
 
         if (productIndex !== -1) {
-            // Actualiza el producto en el array de productos
             const updatedProductos = [...productos];
             updatedProductos[productIndex] = product;
-
-            // Actualiza el estado con el nuevo array de productos
+            
             setProductos(updatedProductos);
 
-            // Opcional: Actualiza también el array original si es necesario
             // productosData = updatedProductos; // Esto no funcionará porque productosData es una constante
 
-            alert(`Producto actualizado: ${JSON.stringify(product)}`);
+            alert(`Producto actualizado`);
             setIsEditing(false);
         } else {
             alert('Producto no encontrado');

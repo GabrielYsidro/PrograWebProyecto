@@ -18,10 +18,15 @@ export const ListProduct = () => {
 
     const navigate = useNavigate();
 
-    const filteredProducts = allProducts.filter(product =>
-        product.nombre.toLowerCase().includes(busqueda.toLowerCase())
-    );
+    const filterProducts = (product) => {
+          const searchTerm = busqueda.toLowerCase();
+          return (
+                product.nombre.toLowerCase().includes(searchTerm) ||
+                String(product.id).includes(searchTerm)
+          );
+     };
 
+    const filteredProducts = allProducts.filter(filterProducts);
     const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
     const startIdx = (currentPage - 1) * ITEMS_PER_PAGE;
     const paginatedProducts = filteredProducts.slice(startIdx, startIdx + ITEMS_PER_PAGE);
@@ -51,8 +56,17 @@ export const ListProduct = () => {
         <>
             <div className="home-background"></div>
             <div className="home-content" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-                <TopBarAdmin handleSearch={handleSearch} busqueda={busqueda} setBusqueda={setBusqueda} />
+                <TopBarAdmin handleSearch={() => { }} busqueda={busqueda} setBusqueda={setBusqueda} />
                 <main style={{ flex: 1, padding: '2rem' }}>
+                    <form onSubmit={(e) => e.preventDefault()} style={{ marginBottom: '1rem' }}>
+                        <input
+                            type="text"
+                            placeholder="Filtrar por nombre o ID"
+                            value={busqueda}
+                            onChange={(e) => setBusqueda(e.target.value)}
+                            style={{ padding: '0.5rem', marginRight: '0.5rem' }}
+                        />
+                    </form>
                     <h1>Lista de productos</h1>
                     <div>
                         <table style={{ width: '100%', borderCollapse: 'collapse', marginBottom: '1rem' }}>
