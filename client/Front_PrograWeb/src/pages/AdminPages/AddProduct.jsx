@@ -13,6 +13,26 @@ export const AddProduct = () => {
         alert(`Buscando: ${busqueda}`);
     };
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const nombre = e.target.nombre.value;
+        const color = e.target.color.value;
+        const precio = parseFloat(e.target.precio.value);
+        const imagen = e.target.imagen.value;
+
+        const newProduct = {
+            id: productos.length + 1,
+            nombre,
+            color,
+            precio,
+            imagen,
+        };
+
+        productos.push(newProduct);
+        alert(`Producto "${nombre}" agregado con éxito.`);
+        e.target.reset();
+    };
+
     return (
     <>
         <div className="home-background"></div>
@@ -21,7 +41,7 @@ export const AddProduct = () => {
             {/* Main Content */}
             <main style={{ flex: 1, padding: '2rem' }}>
                 
-                <form style={{ maxWidth: '400px', margin: '2rem auto', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <form onSubmit={handleSubmit} style={{ maxWidth: '400px', margin: '2rem auto', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                     <h1>Agregar Producto</h1>
                     <label>
                         Nombre del producto:
