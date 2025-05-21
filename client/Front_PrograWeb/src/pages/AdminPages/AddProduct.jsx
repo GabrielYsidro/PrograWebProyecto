@@ -20,19 +20,27 @@ export const AddProduct = () => {
             <TopBarAdmin handleSearch={handleSearch} busqueda={busqueda} setBusqueda={setBusqueda} />
             {/* Main Content */}
             <main style={{ flex: 1, padding: '2rem' }}>
-                <h1>Agregar Producto</h1>
-                {/* Lista de productos */}
-                <h2>Productos</h2>
-                <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap' }}>
-                    {productos.map(producto => (
-                        <div key={producto.id} style={{ border: '1px solid #ccc', borderRadius: '8px', padding: '1rem', minWidth: '180px' }}>
-                            <h3>{producto.nombre}</h3>
-                            <p>Color: {producto.color}</p>
-                            <p>Precio: S/ {producto.precio.toFixed(2)}</p>
-                            <Link to={`/product/${producto.id}`}>Ver detalle</Link>
-                        </div>
-                    ))}
-                </div>
+                
+                <form style={{ maxWidth: '400px', margin: '2rem auto', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                    <h1>Agregar Producto</h1>
+                    <label>
+                        Nombre del producto:
+                        <input type="text" name="nombre" required />
+                    </label>
+                    <label>
+                        Color:
+                        <input type="text" name="color" required />
+                    </label>
+                    <label>
+                        Precio:
+                        <input type="number" name="precio" min="0" step="0.01" required />
+                    </label>
+                    <label>
+                        Imagen (URL):
+                        <input type="url" name="imagen" required />
+                    </label>
+                    <button type="submit">Agregar Producto</button>
+                </form>
             </main>
             <Footer />
         </div>
