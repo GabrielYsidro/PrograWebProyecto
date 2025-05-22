@@ -1,5 +1,5 @@
 export const productos = [
-<<<<<<< HEAD
+
     // Tipo Fuego
     { id: 1, nombre: 'Charmander', tipo: 'Fuego', region: 'Kanto', precio: 120.00, imagen: 'https://play.pokemonshowdown.com/sprites/ani/charmander.gif' },
     { id: 2, nombre: 'Vulpix', tipo: 'Fuego', region: 'Kanto', precio: 110.00, imagen: 'https://play.pokemonshowdown.com/sprites/ani/vulpix.gif' },
@@ -24,15 +24,15 @@ export const productos = [
     { id: 17, nombre: 'Treecko', tipo: 'Planta', region: 'Hoenn', precio: 129.00, imagen: 'https://play.pokemonshowdown.com/sprites/ani/treecko.gif' },
     { id: 18, nombre: 'Turtwig', tipo: 'Planta', region: 'Sinnoh', precio: 123.00, imagen: 'https://play.pokemonshowdown.com/sprites/ani/turtwig.gif' },
 ];
-=======
-    { id: 1, nombre: 'Camiseta', color: 'Rojo', precio: 49.99 },
-    { id: 2, nombre: 'Pantalón', color: 'Azul', precio: 89.99 },
-    { id: 3, nombre: 'Zapatillas', color: 'Negro', precio: 129.99 },
-];
 
 export const mockData = {
     totalOrders: 124,
     newUsers: 37,
     totalRevenue: 9542.75,
 };
->>>>>>> main
+export const categorias = [
+    { id: 1, nombre: 'Pokeballs'},
+    { id: 2, nombre: 'Pociones'},
+    { id: 3, nombre: 'Ropa'},
+];
+

@@ -14,15 +14,20 @@ const gifLinks = [
 ];
 
 const TopBar = ({ handleSearch, busqueda, setBusqueda }) => (
-  <nav className={styles.topbar}>
-    <div className={styles.linksContainer}>
-      {gifLinks.map(link => (
-        <Link key={link.to} to={link.to} className={styles.link}>
-          <img src={link.gif} alt={link.label} className={styles.linkGif} />
-          <span>{link.label}</span>
-        </Link>
-      ))}
-      <form onSubmit={handleSearch} className={styles.searchForm}>
+  <nav style={{ background: '#222', padding: '1rem' }}>
+    <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
+      <Link to="/" style={{ color: '#fff', textDecoration: 'none' }}>Inicio</Link>
+      <Link to="/categorias" style={{ color: '#fff', textDecoration: 'none' }}>Categorias</Link>
+      <Link to="/results" style={{ color: '#fff', textDecoration: 'none' }}>Resultados</Link>
+      <Link to="/product/1" style={{ color: '#fff', textDecoration: 'none' }}>Producto</Link>
+      <Link to="/carrito" style={{ color: '#fff', textDecoration: 'none' }}>Carrito</Link>
+      <Link to="/checkout" style={{ color: '#fff', textDecoration: 'none' }}>Checkout</Link>
+      <Link to="/greeting" style={{ color: '#fff', textDecoration: 'none' }}>Greeting</Link>
+      <Link to="/login" style={{ color: '#fff', textDecoration: 'none' }}>Login</Link>
+      <Link to="/register" style={{ color: '#fff', textDecoration: 'none' }}>Registro</Link>
+      <Link to="/user/1" style={{ color: '#fff', textDecoration: 'none' }}>Usuario</Link>
+      {/* Barra de búsqueda */}
+      <form onSubmit={handleSearch} style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center' }}>
         <input
           type="text"
           placeholder="Buscar productos..."
