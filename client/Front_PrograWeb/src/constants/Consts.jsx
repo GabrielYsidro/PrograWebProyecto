@@ -31,8 +31,8 @@ export const mockData = {
     totalRevenue: 9542.75,
 };
 export const categorias = [
-    { id: 1, nombre: 'Pokeballs'},
-    { id: 2, nombre: 'Pociones'},
-    { id: 3, nombre: 'Ropa'},
+    { id: 1, nombre: 'Fuego'},
+    { id: 2, nombre: 'Agua'},
+    { id: 3, nombre: 'Planta'},
 ];
 
