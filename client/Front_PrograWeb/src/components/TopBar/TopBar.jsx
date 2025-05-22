@@ -14,7 +14,6 @@ const gifLinks = [
 ];
 
 const TopBar = ({ handleSearch, busqueda, setBusqueda }) => (
-<<<<<<< HEAD
   <nav style={{ background: '#222', padding: '1rem' }}>
     <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
       <Link to="/" style={{ color: '#fff', textDecoration: 'none' }}>Inicio</Link>
@@ -29,17 +28,6 @@ const TopBar = ({ handleSearch, busqueda, setBusqueda }) => (
       <Link to="/user/1" style={{ color: '#fff', textDecoration: 'none' }}>Usuario</Link>
       {/* Barra de búsqueda */}
       <form onSubmit={handleSearch} style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center' }}>
-=======
-  <nav className={styles.topbar}>
-    <div className={styles.linksContainer}>
-      {gifLinks.map(link => (
-        <Link key={link.to} to={link.to} className={styles.link}>
-          <img src={link.gif} alt={link.label} className={styles.linkGif} />
-          <span>{link.label}</span>
-        </Link>
-      ))}
-      <form onSubmit={handleSearch} className={styles.searchForm}>
->>>>>>> origin
         <input
           type="text"
           placeholder="Buscar productos..."
