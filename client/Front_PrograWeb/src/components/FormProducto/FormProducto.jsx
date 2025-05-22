@@ -1,8 +1,10 @@
 
 import { use } from 'react';
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { productos } from '../../constants/Consts.jsx';
 
-const FormProduct = ({initialValues,onSubmit,onCancel,submitButtonText,cancelButtonText, isEditMode =false}) => {
+const FormProducto = ({initialValues,onSubmit,onCancel,submitButtonText,cancelButtonText, isEditMode =false}) => {
     const [formData, setFormData] = useState(initialValues || {
         nombre: '',
         color: '',
@@ -67,5 +69,5 @@ const FormProduct = ({initialValues,onSubmit,onCancel,submitButtonText,cancelBut
     );
 };
 
-export default FormProduct;
+export default FormProducto;
 
