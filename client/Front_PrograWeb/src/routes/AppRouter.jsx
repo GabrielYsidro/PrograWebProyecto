@@ -5,6 +5,11 @@ import { Product } from '../pages/PublicPages/Product';
 import { Carrito } from '../pages/PublicPages/Carrito';
 import { Checkout } from '../pages/PublicPages/Checkout';
 import { Greeting } from '../pages/PublicPages/Greeting';
+import { ListaUsuarios } from '../pages/AdminPages/ListUsers';
+import { DetalleUsuario } from '../pages/AdminPages/DetailsUser';
+import { ListaOrdenes } from '../pages/AdminPages/ListOrders';
+import { OrdenDetalle } from '../pages/AdminPages/DetailsOrders';
+
 
 export const AppRouter = () => {
 
@@ -17,6 +22,10 @@ export const AppRouter = () => {
                 <Route path = '/carrito' element = {<Carrito/>}/>
                 <Route path = '/checkout' element = {<Checkout/>}/>
                 <Route path = '/greeting' element = {<Greeting/>}/>
+                <Route path = '/listusersadmin' element = {<ListaUsuarios/>}/>
+                <Route path = '/usuarios/:id' element = {<DetalleUsuario/>}/>
+                <Route path = '/listordersadmin' element = {<ListaOrdenes/>}/>
+                <Route path = '/ordenes/:id' element = {<OrdenDetalle/>}/>
             </Routes>
         </BrowserRouter>
     )
