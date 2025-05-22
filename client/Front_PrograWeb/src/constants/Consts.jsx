@@ -9,3 +9,9 @@ export const mockData = {
     newUsers: 37,
     totalRevenue: 9542.75,
 };
+
+export const categorias = [
+    { id: 1, nombre: 'Pokeballs'},
+    { id: 2, nombre: 'Pociones'},
+    { id: 3, nombre: 'Ropa'},
+];

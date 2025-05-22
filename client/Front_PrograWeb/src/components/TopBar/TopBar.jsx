@@ -4,6 +4,7 @@ const TopBar = ({ handleSearch, busqueda, setBusqueda }) => (
   <nav style={{ background: '#222', padding: '1rem' }}>
     <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
       <Link to="/" style={{ color: '#fff', textDecoration: 'none' }}>Inicio</Link>
+      <Link to="/categorias" style={{ color: '#fff', textDecoration: 'none' }}>Categorias</Link>
       <Link to="/results" style={{ color: '#fff', textDecoration: 'none' }}>Resultados</Link>
       <Link to="/product/1" style={{ color: '#fff', textDecoration: 'none' }}>Producto</Link>
       <Link to="/carrito" style={{ color: '#fff', textDecoration: 'none' }}>Carrito</Link>
