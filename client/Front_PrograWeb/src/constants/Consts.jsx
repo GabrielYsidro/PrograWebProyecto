@@ -31,8 +31,8 @@ export const mockData = {
     totalRevenue: 9542.75,
 };
 export const categorias = [
-    { id: 1, nombre: 'Fuego'},
-    { id: 2, nombre: 'Agua'},
-    { id: 3, nombre: 'Planta'},
+    { id: 1, nombre: 'Fuego', color: '#ffb3b3', emoji: '🔥'},
+    { id: 2, nombre: 'Agua', color: '#b3d1ff', emoji: '💧'},
+    { id: 3, nombre: 'Planta', color: '#43a047', emoji: '🌱'},
 ];
 
