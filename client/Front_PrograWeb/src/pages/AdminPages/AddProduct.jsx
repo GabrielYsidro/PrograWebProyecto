@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { productos } from '../../constants/Consts.jsx';
 import TopBarAdmin from '../../components/TopBarAdmin/TopBarAdmin.jsx';
 import Footer from '../../components/Footer/Footer.jsx'
+import FormProducto from '../../components/FormProducto/FormProducto.jsx';
 import styles from '../../styles/AddProduct.module.css';
 
 
@@ -36,32 +37,14 @@ export const AddProduct = () => {
 
     return (
     <>
-        <div className={styles[home-background]}></div>
-        <div className={styles[home-content]}>
+        <div className={styles['home-background']}></div>
+        <div className={styles['home-content']}>
             <TopBarAdmin handleSearch={handleSearch} busqueda={busqueda} setBusqueda={setBusqueda} />
             {/* Main Content */}
             <main className={styles['main-content']}>
-                
-                <form onSubmit={handleSubmit}>
-                    <h1>Agregar Producto</h1>
-                    <label>
-                        Nombre del producto:
-                        <input type="text" name="nombre" required />
-                    </label>
-                    <label>
-                        Color:
-                        <input type="text" name="color" required />
-                    </label>
-                    <label>
-                        Precio:
-                        <input type="number" name="precio" min="0" step="0.01" required />
-                    </label>
-                    <label>
-                        Imagen (URL):
-                        <input type="url" name="imagen" required />
-                    </label>
-                    <button type="submit">Agregar Producto</button>
-                </form>
+                <h1>Agregar Producto</h1>
+                <FormProducto />
+                <button type="submit" onClick={handleSubmit}>Agregar Producto</button>
             </main>
             <Footer />
         </div>

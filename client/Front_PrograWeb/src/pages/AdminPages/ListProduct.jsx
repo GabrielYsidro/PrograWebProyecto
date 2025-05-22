@@ -54,10 +54,10 @@ export const ListProduct = () => {
 
     return (
         <>
-            <div className={styles[home-background]}></div>
-            <div className={styles[home-content]} style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+            <div className={styles['home-background']}></div>
+            <div className={styles['home-content']} style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
                 <TopBarAdmin handleSearch={() => { }} busqueda={busqueda} setBusqueda={setBusqueda} />
-                <main style={styles[main-content]}>
+                <main className={styles['main-content']}>
                     <form onSubmit={(e) => e.preventDefault()} style={{ marginBottom: '1rem' }}>
                         <input
                             type="text"
@@ -69,14 +69,14 @@ export const ListProduct = () => {
                     </form>
                     <h1>Lista de productos</h1>
                     <div>
-                        <table className={styles[tableProduct]}>
+                        <table className={styles['tableProduct']}>
                             <thead>
                                 <tr>
-                                    <th className={styles[tituloTabla]}>ID</th>
-                                    <th className={styles[tituloTabla]}>Nombre</th>
-                                    <th className={styles[tituloTabla]}>Precio</th>
-                                    <th className={styles[tituloTabla]}>Stock</th>
-                                    <th className={styles[tituloTabla]}>Acciones</th>
+                                    <th className={styles['tituloTabla']}>ID</th>
+                                    <th className={styles['tituloTabla']}>Nombre</th>
+                                    <th className={styles['tituloTabla']}>Precio</th>
+                                    <th className={styles['tituloTabla']}>Stock</th>
+                                    <th className={styles['tituloTabla']}>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -87,11 +87,11 @@ export const ListProduct = () => {
                                 ) : (
                                     paginatedProducts.map(product => (
                                         <tr key={product.id}>
-                                            <td className={styles[ValorTabla]}>{product.id}</td>
-                                            <td className={styles[ValorTabla]}>{product.nombre}</td>
-                                            <td className={styles[ValorTabla]}>${product.precio}</td>
-                                            <td className={styles[ValorTabla]}>{product.stock}</td>
-                                            <td className={styles[ValorTabla]}>
+                                            <td className={styles['ValorTabla']}>{product.id}</td>
+                                            <td className={styles['ValorTabla']}>{product.nombre}</td>
+                                            <td className={styles['ValorTabla']}>${product.precio}</td>
+                                            <td className={styles['ValorTabla']}>{product.stock}</td>
+                                            <td className={styles['ValorTabla']}>
                                                 <button onClick={() => handleDetail(product.id)}>
                                                     Ver Detalle
                                                 </button>
@@ -104,7 +104,7 @@ export const ListProduct = () => {
                                 )}
                             </tbody>
                         </table>
-                        <div className={styles[pagination]}>
+                        <div className={styles['pagination']}>
                             <button
                                 onClick={() => handlePageChange(currentPage - 1)}
                                 disabled={currentPage === 1}
