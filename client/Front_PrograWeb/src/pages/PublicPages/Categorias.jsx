@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import styles from '../../styles/Categorias.module.css';
 import TopBar from '../../components/TopBar/TopBar.jsx';
 import Footer from '../../components/Footer/Footer.jsx';
@@ -24,27 +25,28 @@ export const Categorias = () => {
       <h1 className={styles.titulo}>Categorías</h1>
 
       <ul className={styles.listaCategorias}>
-        {categorias.map((item) => (
+        {categorias.map((categoria) => (
           <li
-            key={item.nombre}
-            onClick={() => setCategoriaSeleccionada(item.nombre)}
+            key={categoria.nombre} onClick={() => setCategoriaSeleccionada(categoria.nombre)}
             className={
-              categoriaSeleccionada === item.nombre
+              categoriaSeleccionada === categoria.nombre
                 ? styles.categoriaSeleccionada
                 : styles.categoria
             }
           >
-            {item.nombre}
+            {categoria.nombre}
           </li>
         ))}
       </ul>
 
-      <div className={styles.productos}>
+      <div style={{ display: 'flex', gap: '2rem', flexWrap: 'wrap' }}>
         {categoriaSeleccionada && productosFiltrados.map((producto) => (
+          // o style={{ border: '1px solid #ccc', borderRadius: '8px', padding: '1rem', minWidth: '180px' }}
           <div key={producto.id} className={styles.producto}>
-            <h2>{producto.nombre}</h2>
+            <h3>{producto.nombre}</h3>
             <p>Color: {producto.color}</p>
-            <p>Precio: {producto.precio}</p>
+            <p>Precio: S/ {producto.precio.toFixed(2)}</p>
+            <Link to={`/product/${producto.id}`}>Ver detalle</Link>
           </div>
         ))}
       </div>
