@@ -1,0 +1,37 @@
+.footer {
+  background: linear-gradient(90deg, #ffe066 0%, #b3d1ff 100%);
+  padding: 1.2rem 0;
+  text-align: center;
+  border-top: 3px solid #ff5252;
+  font-family: 'Pokemon Solid', 'Arial', sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+}
+
+.footerLink {
+  margin: 0 1rem;
+  color: #222;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: color 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.footerLink:hover {
+  color: #ff5252;
+  text-shadow: 0 2px 8px #fff2e0;
+}
+
+.footerCopy {
+  margin: 0 1rem;
+  color: #555;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+}
