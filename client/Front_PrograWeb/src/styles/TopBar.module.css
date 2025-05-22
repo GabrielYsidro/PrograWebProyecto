@@ -1,0 +1,63 @@
+.topbar {
+  background: #222;
+  padding: 1rem;
+  box-shadow: 0 2px 8px #0003;
+}
+
+.linksContainer {
+  display: flex;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.link {
+  color: #fff;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: bold;
+  font-size: 1.1rem;
+  transition: color 0.2s;
+}
+
+.link:hover {
+  color: #ffe066;
+}
+
+.linkGif {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  vertical-align: middle;
+}
+
+.searchForm {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.searchInput {
+  padding: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.searchButton {
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  border: none;
+  background: #fff;
+  color: #222;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s, color 0.2s;
+}
+
+.searchButton:hover {
+  background: #ffe066;
+  color: #222;
+}

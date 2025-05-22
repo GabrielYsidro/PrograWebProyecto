@@ -1,0 +1,179 @@
+
+body, #root {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.home-background {
+  min-height: 100vh;
+  width: 100vw;
+  background: 
+    linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)),
+    url('../assets/fondoPoke.jpg') center center / cover no-repeat;
+  filter: brightness(1.1);
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+/* Para el contenido principal, para que no se vea difuminado */
+.home-content {
+  position: relative;
+  z-index: 1;
+}
+
+.elige{
+  font-family: 'Pokemon Solid', sans-serif;
+  text-align: left;
+  height : 10%;
+  color: #FFCC00;
+  font-size: 400%;
+  -webkit-text-stroke: 3px #3B4CCA;
+  letter-spacing: 10px;
+}
+
+/* ...código existente... */
+
+.tipoFuego {
+  color: #fff;
+  background: linear-gradient(90deg, #ff9800 40%, #ff5252 100%);
+  border: 2px solid #ff9800;
+  box-shadow: 0 0 16px 2px #ff9800aa;
+  text-align: left;
+  margin-left: 1rem;
+  font-size: 2.2rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.3em 0.7em;
+  border-radius: 12px;
+}
+
+.tipoAgua {
+  color: #fff;
+  background: linear-gradient(90deg, #00bcd4 40%, #2196f3 100%);
+  border: 2px solid #2196f3;
+  box-shadow: 0 0 16px 2px #2196f3aa;
+  text-align: left;
+  margin-left: 1rem;
+  font-size: 2.2rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.3em 0.7em;
+  border-radius: 12px;
+}
+
+.tipoPlanta {
+  color: #fff;
+  background: linear-gradient(90deg, #aee571 40%, #43a047 100%);
+  border: 2px solid #43a047;
+  box-shadow: 0 0 16px 2px #43a047aa;
+  text-align: left;
+  margin-left: 1rem;
+  font-size: 2.2rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.3em 0.7em;
+  border-radius: 12px;
+}
+
+.cardFuego {
+  border: 2.5px solid #ff5252;
+  border-radius: 8px;
+  padding: 1rem;
+  background: #ffb3b3;
+  min-width: 180px;
+}
+
+.cardAgua {
+  border: 2.5px solid #2979ff;
+  border-radius: 8px;
+  padding: 1rem;
+  background: #b3d1ff;
+  min-width: 180px;
+}
+
+.cardPlanta {
+  border: 2.5px solid #43a047;
+  border-radius: 8px;
+  padding: 1rem;
+  background: #b3ffb3;
+  min-width: 180px;
+}
+
+.nombreFuego {
+  color: #ff5722;
+  text-shadow: 0 2px 8px #fff2e0, 0 0 2px #ff9800;
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: 1px;
+}
+
+.nombreAgua {
+  color: #2196f3;
+  text-shadow: 0 2px 8px #e0f7fa, 0 0 2px #00bcd4;
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: 1px;
+}
+
+.nombrePlanta {
+  color: #388e3c;
+  text-shadow: 0 2px 8px #e8f5e9, 0 0 2px #aee571;
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: 1px;
+}
+
+.regionPoke {
+  color: #333;
+  border-radius: 10px;
+  padding: 6px 12px;
+  font-weight: bold;
+  margin-bottom: 0.7rem;
+  text-align: center;
+  border-width: 2.5px;
+  border-style: solid;
+}
+
+.precioPoke {
+  color: #fff;
+  border-radius: 10px;
+  padding: 6px 12px;
+  font-weight: bold;
+  margin-bottom: 0.7rem;
+  text-align: center;
+  border-width: 2.5px;
+  border-style: solid;
+}
+
+.botonDetalle {
+  display: inline-block;
+  padding: 8px 18px;
+  margin-top: 0.5rem;
+  border-radius: 20px;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.2s;
+  background: #fff;
+  box-shadow: 0 2px 8px 0 #0002;
+  border-width: 2px;
+  border-style: solid;
+}
