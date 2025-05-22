@@ -15,25 +15,11 @@ export const AddProduct = () => {
         alert(`Buscando: ${busqueda}`);
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const nombre = e.target.nombre.value;
-        const color = e.target.color.value;
-        const precio = parseFloat(e.target.precio.value);
-        const imagen = e.target.imagen.value;
-
-        const newProduct = {
-            id: productos.length + 1,
-            nombre,
-            color,
-            precio,
-            imagen,
-        };
-
-        productos.push(newProduct);
-        alert(`Producto "${nombre}" agregado con éxito.`);
-        e.target.reset();
+    const handleAgregarProducto = (data) => {
+        console.log('Datos a agregar:', data);
+        alert('Producto agregado con éxito!');
     };
+
 
     return (
     <>
@@ -43,10 +29,12 @@ export const AddProduct = () => {
             {/* Main Content */}
             <main className={styles['main-content']}>
                 <h1>Agregar Producto</h1>
-                <FormProducto />
-                <button type="submit" onClick={handleSubmit}>Agregar Producto</button>
+                <FormProducto 
+                    onSubmit={handleAgregarProducto}
+                    submitButtonText="Agregar Producto"
+                />
             </main>
-            <Footer />
+            <Footer/>
         </div>
     </>
     );
