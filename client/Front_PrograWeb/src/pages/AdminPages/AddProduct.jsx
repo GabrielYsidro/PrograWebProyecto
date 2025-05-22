@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { productos } from '../../constants/Consts.jsx';
 import TopBarAdmin from '../../components/TopBarAdmin/TopBarAdmin.jsx';
 import Footer from '../../components/Footer/Footer.jsx'
-import '../../styles/Home.module..css';
+import styles from '../../styles/AddProduct.module.css';
+
 
 export const AddProduct = () => {
     const [busqueda, setBusqueda] = useState('');
@@ -35,13 +36,13 @@ export const AddProduct = () => {
 
     return (
     <>
-        <div className="home-background"></div>
-        <div className="home-content" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+        <div className={styles[home-background]}></div>
+        <div className={styles[home-content]}>
             <TopBarAdmin handleSearch={handleSearch} busqueda={busqueda} setBusqueda={setBusqueda} />
             {/* Main Content */}
-            <main style={{ flex: 1, padding: '2rem' }}>
+            <main className={styles['main-content']}>
                 
-                <form onSubmit={handleSubmit} style={{ maxWidth: '400px', margin: '2rem auto', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                <form onSubmit={handleSubmit}>
                     <h1>Agregar Producto</h1>
                     <label>
                         Nombre del producto:

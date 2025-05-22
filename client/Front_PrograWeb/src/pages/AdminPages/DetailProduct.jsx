@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom';
 import { productos as productosData } from '../../constants/Consts.jsx';
 import TopBarAdmin from '../../components/TopBarAdmin/TopBarAdmin.jsx';
 import Footer from '../../components/Footer/Footer.jsx'
-import '../../styles/Home.module..css';
 import { useParams } from 'react-router-dom';
 import { useEffect } from 'react';
+import styles from '../../styles/DetailProduct.module.css';
 
 export const DetailProduct = () => {
     const [busqueda, setBusqueda] = useState('');

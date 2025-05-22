@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { mockData } from '../../constants/Consts.jsx';
 import TopBarAdmin from '../../components/TopBarAdmin/TopBarAdmin.jsx';
 import Footer from '../../components/Footer/Footer.jsx';
-import '../../styles/Home.module..css';
+import styles from '../../styles/Homeadmin.module.css';
 
 
 
@@ -42,11 +42,11 @@ export const HomeAdmin = () => {
     
     return (
         <>
-            <div className="home-background"></div>
-            <div className="home-content" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+            <div className={styles['home-background']}></div>
+            <div className={styles['home-content']}>
                 <TopBarAdmin handleSearch={handleSearch} busqueda={busqueda} setBusqueda={setBusqueda} />
                 {/* Main Content */}
-                <main style={{ flex: 1, padding: '2rem' }}>
+                <main className={styles['main-content']}>
                     <h1>Resumen del día {diaAnalizado || diaActual}</h1>
                     <form action="submit">
                         <label htmlFor="DiaA">Fecha de inicio:</label>
@@ -59,9 +59,9 @@ export const HomeAdmin = () => {
                         <br />
                         <button type="button" onClick={analizarFechas}>Analizar</button>
                     </form>
-                    <div style={{ marginTop: '2rem' }}>
+                    <div className={styles['resumen']}>
                         <h3>Suma de ordenes del {diaAnalizado || diaActual}: </h3>
-                        <p>{mockData.totalOrders}</p>
+                        <p>{mockData.totalOrders}</p> 
                         <h3>Suma de nuevos usuarios del {diaAnalizado || diaActual}: </h3>
                         <p>{mockData.newUsers}</p>
                         <h3>Ingreso totales del {diaAnalizado || diaActual}: </h3>
@@ -69,7 +69,7 @@ export const HomeAdmin = () => {
                     </div>
                 </main>
 
-                <Footer />
+                <Footer className={styles.Footer} />    
             </div>
         </>
     );

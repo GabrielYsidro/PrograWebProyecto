@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom';
 import { productos } from '../../constants/Consts.jsx';
 import TopBarAdmin from '../../components/TopBarAdmin/TopBarAdmin.jsx';
 import Footer from '../../components/Footer/Footer.jsx'
-import '../../styles/Home.module..css';
 import { useNavigate } from 'react-router-dom';
 import { useSearch } from '../../hooks/useSearch.js';
 import { usePagination } from '../../hooks/usePagination.js';
 import React from 'react';
+import styles from '../../styles/ListProduct.module.css';
 
 
 export const ListProduct = () => {
@@ -54,10 +54,10 @@ export const ListProduct = () => {
 
     return (
         <>
-            <div className="home-background"></div>
-            <div className="home-content" style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+            <div className={styles[home-background]}></div>
+            <div className={styles[home-content]} style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
                 <TopBarAdmin handleSearch={() => { }} busqueda={busqueda} setBusqueda={setBusqueda} />
-                <main style={{ flex: 1, padding: '2rem' }}>
+                <main style={styles[main-content]}>
                     <form onSubmit={(e) => e.preventDefault()} style={{ marginBottom: '1rem' }}>
                         <input
                             type="text"
@@ -69,14 +69,14 @@ export const ListProduct = () => {
                     </form>
                     <h1>Lista de productos</h1>
                     <div>
-                        <table style={{ width: '100%', borderCollapse: 'collapse', marginBottom: '1rem' }}>
+                        <table className={styles[tableProduct]}>
                             <thead>
                                 <tr>
-                                    <th style={{ border: '1px solid #ccc', padding: '8px' }}>ID</th>
-                                    <th style={{ border: '1px solid #ccc', padding: '8px' }}>Nombre</th>
-                                    <th style={{ border: '1px solid #ccc', padding: '8px' }}>Precio</th>
-                                    <th style={{ border: '1px solid #ccc', padding: '8px' }}>Stock</th>
-                                    <th style={{ border: '1px solid #ccc', padding: '8px' }}>Acciones</th>
+                                    <th className={styles[tituloTabla]}>ID</th>
+                                    <th className={styles[tituloTabla]}>Nombre</th>
+                                    <th className={styles[tituloTabla]}>Precio</th>
+                                    <th className={styles[tituloTabla]}>Stock</th>
+                                    <th className={styles[tituloTabla]}>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -87,11 +87,11 @@ export const ListProduct = () => {
                                 ) : (
                                     paginatedProducts.map(product => (
                                         <tr key={product.id}>
-                                            <td style={{ border: '1px solid #ccc', padding: '8px' }}>{product.id}</td>
-                                            <td style={{ border: '1px solid #ccc', padding: '8px' }}>{product.nombre}</td>
-                                            <td style={{ border: '1px solid #ccc', padding: '8px' }}>${product.precio}</td>
-                                            <td style={{ border: '1px solid #ccc', padding: '8px' }}>{product.stock}</td>
-                                            <td style={{ border: '1px solid #ccc', padding: '8px' }}>
+                                            <td className={styles[ValorTabla]}>{product.id}</td>
+                                            <td className={styles[ValorTabla]}>{product.nombre}</td>
+                                            <td className={styles[ValorTabla]}>${product.precio}</td>
+                                            <td className={styles[ValorTabla]}>{product.stock}</td>
+                                            <td className={styles[ValorTabla]}>
                                                 <button onClick={() => handleDetail(product.id)}>
                                                     Ver Detalle
                                                 </button>
@@ -104,7 +104,7 @@ export const ListProduct = () => {
                                 )}
                             </tbody>
                         </table>
-                        <div style={{ display: 'flex', justifyContent: 'center', gap: '0.5rem' }}>
+                        <div className={styles[pagination]}>
                             <button
                                 onClick={() => handlePageChange(currentPage - 1)}
                                 disabled={currentPage === 1}
