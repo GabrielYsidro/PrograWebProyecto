@@ -24,7 +24,7 @@
   flex-direction: column;
   min-height: 100vh;
   position: relative;
-  padding-bottom: 100px; /* espacio para el footer */
+  padding-bottom: 0;
 }
 
 .listaCategorias {
@@ -33,6 +33,15 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+}
+
+.listaCategoriasMargin {
+  list-style: none;
+  padding: 0 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-left: 60px;
 }
 
 .categoria {
@@ -58,15 +67,99 @@
 }
 
 .productos {
-  padding: 20px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 2rem;
 }
 
 .producto {
-  background-color: white;
-  padding: 15px;
+  border-radius: 8px;
+  padding: 1rem;
+  min-width: 180px;
+  background: #eee;
+  box-shadow: 0px 2px 5px rgba(0,0,0,0.07);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.elige{
+  font-family: 'Pokemon Solid', sans-serif;
+  text-align: left;
+  height : 10%;
+  color: #FFCC00;
+  font-size: 400%;
+  -webkit-text-stroke: 3px #3B4CCA;
+  letter-spacing: 10px;
+}
+
+.eligeMargin {
+  font-family: 'Pokemon Solid', sans-serif;
+  text-align: left;
+  height: 10%;
+  color: #FFCC00;
+  font-size: 400%;
+  -webkit-text-stroke: 3px #3B4CCA;
+  letter-spacing: 10px;
+  margin-left: 60px;
+}
+
+.noProductos {
+  font-size: 1.2rem;
+  color: #888;
+}
+
+.nombreProducto {
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: 1px;
+}
+
+.imagenProducto {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 1rem auto;
+}
+
+.regionProducto {
+  color: #333;
   border-radius: 10px;
-  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 6px 12px;
+  font-weight: bold;
+  margin-bottom: 0.7rem;
+  text-align: center;
+  border-width: 2.5px;
+  border-style: solid;
+}
+
+.precioProducto {
+  color: #fff;
+  border-radius: 10px;
+  padding: 6px 12px;
+  font-weight: bold;
+  margin-bottom: 0.7rem;
+  text-align: center;
+  border-width: 2.5px;
+  border-style: solid;
+}
+
+.botonDetalle {
+  display: inline-block;
+  padding: 8px 18px;
+  margin-top: 0.5rem;
+  border-radius: 20px;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.2s;
+  background: #fff;
+  box-shadow: 0 2px 8px 0 #0002;
+  border-width: 2px;
+  border-style: solid;
 }

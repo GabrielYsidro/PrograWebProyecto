@@ -1,10 +1,21 @@
-
 import { use } from 'react';
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import AgregarCategoria from '../../pages/AdminPages/AddCategory.jsx';
+import { categorias as categoriasConst } from '../../constants/Consts.jsx';
+import modalStyles from '../../styles/AddCategory.module.css';
 import { useState, useEffect } from 'react';
 import { productos } from '../../constants/Consts.jsx';
 
 const FormProducto = ({initialValues,onSubmit,onCancel,submitButtonText,cancelButtonText, isEditMode =false}) => {
+    const [showModal, setShowModal] = useState(false);
+    const [categorias, setCategorias] = useState([...categoriasConst]);
+
+    // Recibe la nueva categoría desde el modal y actualiza el estado
+    const handleAddCategoria = (nuevaCategoria) => {
+        setCategorias(prev => [...prev, nuevaCategoria]);
+    };
+
     const [formData, setFormData] = useState(initialValues || {
         nombre: '',
         color: '',
@@ -33,38 +44,22 @@ const FormProducto = ({initialValues,onSubmit,onCancel,submitButtonText,cancelBu
 
     return (
         <form onSubmit={handleSubmit}>
-            <div>
-                <label>
-                    Nombre del producto:
-                    <input type="text" id='nombre' name="nombre" value={formData.nombre} onChange={handleChange} required readOnly={isEditMode && !onCancel}/>
-                </label>
-            </div>
-            <div>
-                <label>
-                    Color:
-                    <input type="text" id='color' name="color" value={formData.color} onChange={handleChange} required readOnly={isEditMode && !onCancel}/>
-                </label>
-            </div>
-            <div>
-                <label>
-                    Precio:
-                    <input type="number" id='precio' name="precio" min="0" step="0.01" value={formData.precio} onChange={handleChange} required readOnly={isEditMode && !onCancel}/>
-                </label>
-            </div>
-            <div>
-                <label>
-                    Imagen (URL):
-                    <input type="url" id='imagen' name="imagen" value={formData.imagen} onChange={handleChange} required readOnly={isEditMode && !onCancel}/>
-                </label>
-            </div>
-            <div>
-                <button type="submit" className="btn btn-primary">{submitButtonText || 'Guardar'}</button>
-                {onCancel && (
-                    <Link to="/admin">
-                        <button type="button" className="btn btn-secondary" onClick={onCancel}>{cancelButtonText}</button>
-                    </Link>
-                )}
-            </div>
+            <label>
+                Nombre del producto:
+                <input type="text" name="nombre" required />
+            </label>
+            <label>
+                Color:
+                <input type="text" name="color" required />
+            </label>
+            <label>
+                Precio:
+                <input type="number" name="precio" min="0" step="0.01" required />
+            </label>
+            <label>
+                Imagen (URL):
+                <input type="url" name="imagen" required />
+            </label>
         </form>
     );
 };
