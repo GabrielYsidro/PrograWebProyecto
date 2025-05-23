@@ -74,8 +74,10 @@ export const ListProduct = () => {
                                 <tr>
                                     <th className={styles['tituloTabla']}>ID</th>
                                     <th className={styles['tituloTabla']}>Nombre</th>
+                                    <th className={styles['tituloTabla']}>Tipo</th>
+                                    <th className={styles['tituloTabla']}>Región</th>
                                     <th className={styles['tituloTabla']}>Precio</th>
-                                    <th className={styles['tituloTabla']}>Stock</th>
+                                    <th className={styles['tituloTabla']}>Imagen</th>
                                     <th className={styles['tituloTabla']}>Acciones</th>
                                 </tr>
                             </thead>
@@ -89,8 +91,10 @@ export const ListProduct = () => {
                                         <tr key={product.id}>
                                             <td className={styles['ValorTabla']}>{product.id}</td>
                                             <td className={styles['ValorTabla']}>{product.nombre}</td>
+                                            <td className={styles['ValorTabla']}>{product.tipo}</td>
+                                            <td className={styles['ValorTabla']}>{product.region}</td>
                                             <td className={styles['ValorTabla']}>${product.precio}</td>
-                                            <td className={styles['ValorTabla']}>{product.stock}</td>
+                                            <td className={styles['ValorTabla']}><img src={product.imagen} alt={product.nombre}/></td>
                                             <td className={styles['ValorTabla']}>
                                                 <button onClick={() => handleDetail(product.id)}>
                                                     Ver Detalle
