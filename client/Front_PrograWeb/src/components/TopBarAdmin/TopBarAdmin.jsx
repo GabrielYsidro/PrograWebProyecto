@@ -6,6 +6,7 @@ const TopBar = ({ handleSearch, busqueda, setBusqueda }) => (
       <Link to="/homeadmin" style={{ color: '#fff', textDecoration: 'none' }}>Inicio</Link>
       <Link to="/addproduct" style={{ color: '#fff', textDecoration: 'none' }}>Agregar Producto</Link>
       <Link to="/listproduct" style={{ color: '#fff', textDecoration: 'none' }}>Lista de Productos</Link>
+      <Link to="/listcategories" style={{ color: '#fff', textDecoration: 'none' }}>Lista de Categorías</Link>
     </div>
   </nav>
 );

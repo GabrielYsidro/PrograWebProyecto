@@ -10,7 +10,7 @@ import {HomeAdmin} from '../pages/AdminPages/HomeAdmin';
 import {AddProduct} from '../pages/AdminPages/AddProduct';
 import { DetailProduct } from '../pages/AdminPages/DetailProduct';
 import { ListProduct } from '../pages/AdminPages/ListProduct';
-
+import ListCategories from '../pages/AdminPages/ListCategories';
 
 export const AppRouter = () => {
 
@@ -28,6 +28,8 @@ export const AppRouter = () => {
                 <Route path = '/addproduct' element = {<AddProduct/>}/>
                 <Route path = '/detailproduct/:id' element = {<DetailProduct/>}/>
                 <Route path = '/listproduct' element = {<ListProduct/>}/>
+                <Route path = '/listcategories' element = {<ListCategories/>}/>
+
             </Routes>
         </BrowserRouter>
     )

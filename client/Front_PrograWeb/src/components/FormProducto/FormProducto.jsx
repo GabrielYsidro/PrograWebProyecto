@@ -1,7 +1,18 @@
-
 import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import AgregarCategoria from '../../pages/AdminPages/AddCategory.jsx';
+import { categorias as categoriasConst } from '../../constants/Consts.jsx';
+import modalStyles from '../../styles/AddCategory.module.css';
 
 const FormProduct = () => {
+    const [showModal, setShowModal] = useState(false);
+    const [categorias, setCategorias] = useState([...categoriasConst]);
+
+    // Recibe la nueva categoría desde el modal y actualiza el estado
+    const handleAddCategoria = (nuevaCategoria) => {
+        setCategorias(prev => [...prev, nuevaCategoria]);
+    };
+
     const handleSubmit = (event) => {
         event.preventDefault();
         // Aquí puedes agregar la lógica para manejar el envío del formulario
@@ -26,6 +37,39 @@ const FormProduct = () => {
                 Imagen (URL):
                 <input type="url" name="imagen" required />
             </label>
+            <label htmlFor="categoria">Categoría:</label>
+            <select id="categoria" name="categoria" required>
+                <option value="">Selecciona una categoría</option>
+                {categorias.map((categoria) => (
+                    <option key={categoria.id} value={categoria.nombre}>
+                        {categoria.emoji} {categoria.nombre}
+                    </option>
+                ))}
+            </select>
+            <button
+                type="button"
+                className={modalStyles.addCategoryBtn}
+                onClick={() => setShowModal(true)}
+            >
+                + Agregar categoría
+            </button>
+
+            {showModal && (
+                <div className={modalStyles.modalOverlay}>
+                    <div className={modalStyles.modalContent}>
+                        <button
+                            className={modalStyles.closeBtn}
+                            onClick={() => setShowModal(false)}
+                        >
+                            ×
+                        </button>
+                        <AgregarCategoria
+                            onClose={() => setShowModal(false)}
+                            onAddCategoria={handleAddCategoria}
+                        />
+                    </div>
+                </div>
+            )}
         </form>
     );
 };
