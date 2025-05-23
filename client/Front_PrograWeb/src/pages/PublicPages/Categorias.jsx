@@ -22,9 +22,9 @@ export const Categorias = () => {
     <div className={styles.page}>
       <div className={styles.background}></div>
       <TopBar handleSearch={e => { e.preventDefault(); }} busqueda={busqueda} setBusqueda={setBusqueda} />
-      <h2 className={styles.elige + ' ' + styles.marginLeft}>Categorías</h2>
+      <h2 className={styles.eligeMargin}>Categorías</h2>
 
-      <ul className={styles.listaCategorias + ' ' + styles.marginLeft}>
+      <ul className={styles.listaCategoriasMargin}>
         <li
           onClick={() => setCategoriaSeleccionada(null)}
           className={!categoriaSeleccionada ? styles.categoriaSeleccionada : styles.categoria}

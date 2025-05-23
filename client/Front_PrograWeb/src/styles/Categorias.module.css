@@ -35,6 +35,15 @@
   gap: 10px;
 }
 
+.listaCategoriasMargin {
+  list-style: none;
+  padding: 0 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-left: 60px;
+}
+
 .categoria {
   padding: 10px 20px;
   background-color: white;
@@ -61,7 +70,7 @@
   display: flex;
   gap: 2rem;
   flex-wrap: wrap;
-  justify-content: flex-start;
+  justify-content: center;
   margin-bottom: 2rem;
 }
 
@@ -86,7 +95,14 @@
   letter-spacing: 10px;
 }
 
-.marginLeft {
+.eligeMargin {
+  font-family: 'Pokemon Solid', sans-serif;
+  text-align: left;
+  height: 10%;
+  color: #FFCC00;
+  font-size: 400%;
+  -webkit-text-stroke: 3px #3B4CCA;
+  letter-spacing: 10px;
   margin-left: 60px;
 }
 
