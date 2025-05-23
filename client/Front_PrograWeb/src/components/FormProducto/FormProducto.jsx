@@ -1,10 +1,13 @@
+import { use } from 'react';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import AgregarCategoria from '../../pages/AdminPages/AddCategory.jsx';
 import { categorias as categoriasConst } from '../../constants/Consts.jsx';
 import modalStyles from '../../styles/AddCategory.module.css';
+import { useState, useEffect } from 'react';
+import { productos } from '../../constants/Consts.jsx';
 
-const FormProduct = () => {
+const FormProducto = ({initialValues,onSubmit,onCancel,submitButtonText,cancelButtonText, isEditMode =false}) => {
     const [showModal, setShowModal] = useState(false);
     const [categorias, setCategorias] = useState([...categoriasConst]);
 
@@ -13,11 +16,31 @@ const FormProduct = () => {
         setCategorias(prev => [...prev, nuevaCategoria]);
     };
 
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        // Aquí puedes agregar la lógica para manejar el envío del formulario
-        console.log('Formulario enviado');
-    };
+    const [formData, setFormData] = useState(initialValues || {
+        nombre: '',
+        color: '',
+        precio: 0,
+        imagen: '',
+    });
+
+    useEffect(() => {
+        if (initialValues) {
+            setFormData(initialValues);
+        }
+    }, [initialValues]);
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData({
+            ...formData,
+            [name]: value,
+        });
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        onSubmit(formData);
+    }
 
     return (
         <form onSubmit={handleSubmit}>
@@ -37,42 +60,9 @@ const FormProduct = () => {
                 Imagen (URL):
                 <input type="url" name="imagen" required />
             </label>
-            <label htmlFor="categoria">Categoría:</label>
-            <select id="categoria" name="categoria" required>
-                <option value="">Selecciona una categoría</option>
-                {categorias.map((categoria) => (
-                    <option key={categoria.id} value={categoria.nombre}>
-                        {categoria.emoji} {categoria.nombre}
-                    </option>
-                ))}
-            </select>
-            <button
-                type="button"
-                className={modalStyles.addCategoryBtn}
-                onClick={() => setShowModal(true)}
-            >
-                + Agregar categoría
-            </button>
-
-            {showModal && (
-                <div className={modalStyles.modalOverlay}>
-                    <div className={modalStyles.modalContent}>
-                        <button
-                            className={modalStyles.closeBtn}
-                            onClick={() => setShowModal(false)}
-                        >
-                            ×
-                        </button>
-                        <AgregarCategoria
-                            onClose={() => setShowModal(false)}
-                            onAddCategoria={handleAddCategoria}
-                        />
-                    </div>
-                </div>
-            )}
         </form>
     );
 };
 
-export default FormProduct;
+export default FormProducto;
 

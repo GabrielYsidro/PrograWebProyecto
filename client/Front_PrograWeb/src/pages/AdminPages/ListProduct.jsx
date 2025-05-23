@@ -4,8 +4,8 @@ import { productos } from '../../constants/Consts.jsx';
 import TopBarAdmin from '../../components/TopBarAdmin/TopBarAdmin.jsx';
 import Footer from '../../components/Footer/Footer.jsx'
 import { useNavigate } from 'react-router-dom';
-import { useSearch } from '../../hooks/useSearch.js';
-import { usePagination } from '../../hooks/usePagination.js';
+import { useSearch } from '../../hooks/useSearch.jsx';
+import { usePagination } from '../../hooks/usePagination.jsx';
 import React from 'react';
 import styles from '../../styles/ListProduct.module.css';
 
