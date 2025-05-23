@@ -1,102 +1,113 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { productos as productosData } from '../../constants/Consts.jsx';
+import React, { useState, useEffect } from 'react'; // Corregido: una sola importación de hooks
+import { useParams, useNavigate, Link } from 'react-router-dom';
 import TopBarAdmin from '../../components/TopBarAdmin/TopBarAdmin.jsx';
-import Footer from '../../components/Footer/Footer.jsx'
-import { useParams } from 'react-router-dom';
-import { useEffect } from 'react';
+import Footer from '../../components/Footer/Footer.jsx';
+import FormProducto from '../../components/FormProducto/FormProducto.jsx';
+import { productos as allProductsConst, categorias as categoriasConst } from '../../constants/Consts.jsx'; // Renombrado para evitar conflictos
 import styles from '../../styles/DetailProduct.module.css';
 
 export const DetailProduct = () => {
+    const { id } = useParams();
+    const navigate = useNavigate();
+
     const [busqueda, setBusqueda] = useState('');
-    const [productos, setProductos] = useState(productosData);
+    const [isLoading, setIsLoading] = useState(true);
+    const [isEditing, setIsEditing] = useState(false);
+    
+    // Estado para el producto individual que se está viendo/editando
+    const [currentProduct, setCurrentProduct] = useState(null); 
+    
+    // Estado para las categorías, pasado al FormProducto
+    const [categorias, setCategorias] = useState([...categoriasConst]); 
+
+    // Simula la carga del producto específico.
+    // Este useEffect ahora solo se encarga de cargar el 'currentProduct'.
+    useEffect(() => {
+        setIsLoading(true);
+        // Encuentra el producto de la constante importada
+        const productFinded = allProductsConst.find(p => p.id === parseInt(id));
+        
+        // Simula un delay de carga
+        setTimeout(() => {
+            if (productFinded) {
+                setCurrentProduct({
+                    ...productFinded,
+                });
+            } else {
+                console.warn(`Producto con ID ${id} no encontrado.`);
+                setCurrentProduct(null); // O redirigir a una página 404
+            }
+            setIsLoading(false);
+        }, 500);
+    }, [id]); // Dependencia del ID para recargar si cambia la URL
 
     const handleSearch = (e) => {
         e.preventDefault();
         alert(`Buscando: ${busqueda}`);
+        // Aquí podrías redirigir a una página de resultados de búsqueda
     };
 
-    const { id } = useParams();
-    const [product, setProduct] = useState({
-        nombre: '',
-        color: '',
-        precio: 0,
-        imagen: ''
-    });
-
-    useEffect(() => {
-        const productFinded = productos.find(producto => producto.id === parseInt(id));
-        if (productFinded) {
-            setProduct(productFinded);
-        }
-    }, [id, productos]);
-
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setProduct(prevProduct => ({
-            ...prevProduct,
-            [name]: value
-        }));
+    const handleUpdateProduct = (updatedData) => {
+        console.log('Datos a actualizar:', updatedData);
+        setCurrentProduct(updatedData); 
+        alert('Producto actualizado con éxito (simulado)!');
+        setIsEditing(false); // Volver al modo de vista
     };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        const productIndex = productos.findIndex(p => p.id === product.id);
-
-        if (productIndex !== -1) {
-            const updatedProductos = [...productos];
-            updatedProductos[productIndex] = product;
-            
-            setProductos(updatedProductos);
-
-            // productosData = updatedProductos; // Esto no funcionará porque productosData es una constante
-
-            alert(`Producto actualizado`);
-            setIsEditing(false);
-        } else {
-            alert('Producto no encontrado');
-        }
+    const handleCancelEdit = () => {
+        console.log('Edición cancelada');
+        setIsEditing(false);
     };
 
-    const [isEditing, setIsEditing] = useState(false);
+    if (isLoading) {
+        return <div>Cargando detalle del producto...</div>;
+    }
 
-    const handleEdit = () => {
-        setIsEditing(true);
-    };
+    if (!currentProduct) {
+        return (
+            <div>
+                <TopBarAdmin handleSearch={handleSearch} busqueda={busqueda} setBusqueda={setBusqueda} />
+                <main className={styles['main-content']}>
+                    <h1>Producto no encontrado</h1>
+                    <Link to="/admin/productos">Volver a la lista de productos</Link>
+                </main>
+                <Footer />
+            </div>
+        );
+    }
 
     return (
         <>
             <div className={styles['home-background']}></div>
             <div className={styles['home-content']}>
                 <TopBarAdmin handleSearch={handleSearch} busqueda={busqueda} setBusqueda={setBusqueda} />
-                {/* Main Content */}
                 <main className={styles['main-content']}>
-
-                    <form onSubmit={handleSubmit} >
-                        <h1>Detalle del producto</h1>
-                        <label>
-                            Nombre del producto:
-                            <input type="text" name="nombre" value={product.nombre} onChange={handleChange} required disabled={!isEditing} />
-                        </label>
-                        <label>
-                            Color:
-                            <input type="text" name="color" value={product.color} onChange={handleChange} required disabled={!isEditing} />
-                        </label>
-                        <label>
-                            Precio:
-                            <input type="number" name="precio" value={product.precio} onChange={handleChange} min="0" step="0.01" required disabled={!isEditing} />
-                        </label>
-                        <label>
-                            Imagen (URL):
-                            <input type="url" name="imagen" value={product.imagen} onChange={handleChange} required disabled={!isEditing} />
-                        </label>
-
-                        {!isEditing ? (
-                            <button type="button" onClick={handleEdit}>Modificar</button>
-                        ) : (
-                            <button type="submit">Guardar Cambios</button>
-                        )}
-                    </form>
+                    <h1>Detalle del producto: {currentProduct.nombre}</h1>
+                    
+                    {isEditing ? (
+                        <FormProducto
+                            initialValues={currentProduct} 
+                            onSubmit={handleUpdateProduct} 
+                            onCancel={handleCancelEdit} 
+                            submitButtonText="Guardar Cambios"
+                            cancelButtonText="Cancelar Edición"
+                            isEditMode={true}
+                        />
+                    ) : (
+                        // Vista del producto
+                        <div className={styles['product-details-view']}>
+                            <p><strong>Nombre:</strong> {currentProduct.nombre}</p>
+                            <p><strong>Tipo:</strong> {currentProduct.tipo}</p>
+                            <p><strong>Región:</strong> {currentProduct.region}</p>
+                            <p><strong>Precio:</strong> ${currentProduct.precio}</p>
+                            <p><strong>Imagen:</strong> <img src={currentProduct.imagen} alt={currentProduct.nombre} style={{ maxWidth: '200px' }} /></p>
+                            
+                            <div className={styles['button-group']}>
+                                <button type="button" onClick={() => setIsEditing(true)}>Modificar Producto</button>
+                            </div>
+                        </div>
+                    )}
+                    <Link to="/listproduct">Volver a la lista de productos</Link>
                 </main>
                 <Footer />
             </div>

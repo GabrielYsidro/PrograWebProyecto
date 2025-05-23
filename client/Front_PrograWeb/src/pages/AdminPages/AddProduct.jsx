@@ -17,9 +17,12 @@ export const AddProduct = () => {
 
     const handleAgregarProducto = (data) => {
         console.log('Datos a agregar:', data);
+        const lastId = productos.length > 0 ? productos[productos.length - 1].id : 0;
+        data.id = lastId + 1;
+        productos.push(data);
         alert('Producto agregado con éxito!');
+        document.getElementById('FormProducto').reset();
     };
-
 
     return (
     <>

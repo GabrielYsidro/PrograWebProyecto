@@ -1,11 +1,11 @@
 import { use } from 'react';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
 import AgregarCategoria from '../../pages/AdminPages/AddCategory.jsx';
 import { categorias as categoriasConst } from '../../constants/Consts.jsx';
 import modalStyles from '../../styles/AddCategory.module.css';
 import { useState, useEffect } from 'react';
 import { productos } from '../../constants/Consts.jsx';
+
 
 const FormProducto = ({initialValues,onSubmit,onCancel,submitButtonText,cancelButtonText, isEditMode =false}) => {
     const [showModal, setShowModal] = useState(false);
@@ -18,7 +18,8 @@ const FormProducto = ({initialValues,onSubmit,onCancel,submitButtonText,cancelBu
 
     const [formData, setFormData] = useState(initialValues || {
         nombre: '',
-        color: '',
+        tipo: '',
+        region: '',
         precio: 0,
         imagen: '',
     });
@@ -44,22 +45,44 @@ const FormProducto = ({initialValues,onSubmit,onCancel,submitButtonText,cancelBu
 
     return (
         <form onSubmit={handleSubmit}>
-            <label>
-                Nombre del producto:
-                <input type="text" name="nombre" required />
-            </label>
-            <label>
-                Color:
-                <input type="text" name="color" required />
-            </label>
-            <label>
+            <div>
+                <label>
+                    Nombre:
+                    <input type="text" id='nombre' name="nombre" value={formData['nombre']} onChange={handleChange} required readOnly={isEditMode && !onCancel}/>
+                </label>
+            </div>
+            <div>
+                <label>
+                    Tipo:
+                    <input type="text" id='tipo' name="tipo" value={formData['tipo']} onChange={handleChange} required readOnly={isEditMode && !onCancel}/>
+                </label>
+            </div>
+            <div>
+                <label>
+                    Region:
+                    <input type="text" id='region' name="region" value={formData['region']} onChange={handleChange} required readOnly={isEditMode && !onCancel}/>
+                </label>
+            </div>
+            <div>
+                <label>
                 Precio:
-                <input type="number" name="precio" min="0" step="0.01" required />
+                <input type="number" id='precio' name="precio" min="0" step="0.01" value={formData['precio']} onChange={handleChange} required readOnly={isEditMode && !onCancel}/>
             </label>
-            <label>
-                Imagen (URL):
-                <input type="url" name="imagen" required />
-            </label>
+            </div>
+            <div>
+                <label>
+                    Imagen:
+                    <input type="text" id='imagen' name="imagen" value={formData['imagen']} onChange={handleChange} required readOnly={isEditMode && !onCancel}/>
+                </label>
+            </div>
+            <div>
+                <button type="submit">{submitButtonText || 'Guardar'}</button>
+                    {onCancel && ( // Mostrar el botón de cancelar solo si se pasa la prop onCancel
+                    <button type="button" onClick={onCancel}>
+                        {cancelButtonText || 'Cancelar'}
+                    </button>
+                    )}
+            </div>
         </form>
     );
 };
