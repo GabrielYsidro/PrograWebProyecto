@@ -11,7 +11,11 @@ import {AddProduct} from '../pages/AdminPages/AddProduct';
 import { DetailProduct } from '../pages/AdminPages/DetailProduct';
 import { ListProduct } from '../pages/AdminPages/ListProduct';
 import ListCategories from '../pages/AdminPages/ListCategories';
-import ScrollToTop from '../components/ScrollTop/ScrollTop.jsx'; // importa donde lo hayas creado
+import ScrollToTop from '../components/ScrollTop/ScrollTop.jsx';
+import ListaUsuarios from '../pages/AdminPages/ListUsers.jsx';
+import DetalleUsuario from '../pages/AdminPages/DetailsUser.jsx';
+import ListaOrdenes from '../pages/AdminPages/ListOrders.jsx'
+import OrdenDetalle from '../pages/AdminPages/DetailsOrders.jsx';
 
 export const AppRouter = () => {
 
@@ -31,6 +35,10 @@ export const AppRouter = () => {
                 <Route path = '/detailproduct/:id' element = {<DetailProduct/>}/>
                 <Route path = '/listproduct' element = {<ListProduct/>}/>
                 <Route path = '/listcategories' element = {<ListCategories/>}/>
+                <Route path = '/listusers' element = {<ListaUsuarios/>} />
+                <Route path = '/usuarios/:id' element = { <DetalleUsuario />} />
+                <Route path = '/ordenes/' element = { <ListaOrdenes />} />
+                <Route path = '/ordenes/:id' element = { <OrdenDetalle />} />
 
             </Routes>
         </BrowserRouter>

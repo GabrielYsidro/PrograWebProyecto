@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { usuarios } from "../../data/usuarios";
+import { usuarios } from '../../constants/Consts.jsx';
 
 export const DetalleUsuario = () => {
     const { id } = useParams();
@@ -25,4 +25,5 @@ export const DetalleUsuario = () => {
         </div>
     );
 }
-   
+
+export default DetalleUsuario;
