@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { usuarios } from "../../data/usuarios";
+import { usuarios } from '../../constants/Consts.jsx';
 
 export const OrdenDetalle = () => {
   const { id } = useParams();
@@ -24,3 +24,5 @@ export const OrdenDetalle = () => {
     </div>
   );
 };
+
+export default OrdenDetalle;

@@ -32,3 +32,5 @@ export const ListaOrdenes = () =>{
         </div>
     );
 }
+
+export default ListaOrdenes;

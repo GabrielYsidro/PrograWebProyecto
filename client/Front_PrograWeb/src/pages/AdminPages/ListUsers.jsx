@@ -1,8 +1,9 @@
 import { useState } from "react";
-import { usuarios as data } from "../../data/usuarios";
+import {usuarios as data} from '../../constants/Consts.jsx'
 import { Link } from "react-router-dom";
 
 export const ListaUsuarios = () => {
+    
     const [usuarios, setUsuarios] = useState(data);
     const [filtro, setFiltro] = useState("");
 
@@ -49,3 +50,5 @@ export const ListaUsuarios = () => {
         </div>
     );
 }
+
+export default ListaUsuarios;   
