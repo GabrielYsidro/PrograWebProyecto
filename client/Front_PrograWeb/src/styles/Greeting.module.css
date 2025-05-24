@@ -3,7 +3,10 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  background-image: url('../assets/fondoPoke.jpg');
+  background: 
+    linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)),
+    url('../assets/fondoPoke.jpg') center center / cover no-repeat;
+  filter: brightness(1.1);
   background-repeat: repeat;
 }
 

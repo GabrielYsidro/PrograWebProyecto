@@ -14,7 +14,7 @@ const gifLinks = [
 ];
 
 const TopBar = ({ handleSearch, busqueda, setBusqueda }) => (
-  <nav style={{ background: '#222', padding: '1rem' }}>
+  <nav style={{ background: '#222', padding: '1rem', margin:'0.5%', borderRadius:'10px' }}>
     <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
       <Link to="/" style={{ color: '#fff', textDecoration: 'none' }}>Inicio</Link>
       <Link to="/categorias" style={{ color: '#fff', textDecoration: 'none' }}>Categorias</Link>

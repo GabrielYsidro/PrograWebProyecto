@@ -1,7 +1,5 @@
-
-
 .container {
-  height: 100vh;
+  height: 200vh;
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -12,7 +10,6 @@
   background-repeat: repeat;
 }
 
-
 .titulo {
   font-family: 'Pokemon Solid', sans-serif;
   text-align: left;
@@ -21,18 +18,6 @@
   font-size: 400%;
   -webkit-text-stroke: 3px #3B4CCA;
   letter-spacing: 10px;
-  text-align :center;
-  padding-bottom:5%;
+  text-align :left;
+  padding-left: 3%
 }
-
-
-.listas {
-  width: 80%;
-  text-align: center;
-  flex-direction: row;
-}
-
-.listaActual {
-  background-color: green;
-}
-
