@@ -1,4 +1,4 @@
-import { usuarios } from "../../data/usuarios";
+import { usuarios } from '../../constants/Consts.jsx';
 import { useState } from "react";
 
 export const ListaOrdenes = () =>{
