@@ -1,0 +1,11 @@
+.cartItem {
+  background: #eaeaea;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+}
+
+.cartItem input {
+  width: 50px;
+  margin-left: 5px;
+}

@@ -36,3 +36,8 @@ export const categorias = [
     { id: 3, nombre: 'Planta', color: '#43a047', emoji: '🌱'},
 ];
 
+export const initialWishlist = [
+  { id: 1, name: 'Bulbasaur', price: 100,  image : 'https://play.pokemonshowdown.com/sprites/ani/bulbasaur.gif' },
+  { id: 2, name: 'Piplup', price: 25, image: 'https://play.pokemonshowdown.com/sprites/ani/piplup.gif' },
+  { id: 3, name: 'Growlithe', price: 15, image: 'https://play.pokemonshowdown.com/sprites/ani/growlithe.gif' },
+];

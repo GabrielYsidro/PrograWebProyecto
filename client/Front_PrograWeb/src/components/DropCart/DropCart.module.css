@@ -1,0 +1,14 @@
+.cart {
+  padding: 20px;
+  background-color: #fff;
+  border-right: 1px solid #ccc;
+  overflow-y: auto;
+  margin-top:5%;
+  left: 0;
+  top: 0;
+  height: 80%;
+}
+
+.hover {
+  border: 3px dashed green;
+}
