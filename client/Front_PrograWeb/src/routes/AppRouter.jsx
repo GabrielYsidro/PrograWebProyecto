@@ -11,11 +11,13 @@ import {AddProduct} from '../pages/AdminPages/AddProduct';
 import { DetailProduct } from '../pages/AdminPages/DetailProduct';
 import { ListProduct } from '../pages/AdminPages/ListProduct';
 import ListCategories from '../pages/AdminPages/ListCategories';
+import ScrollToTop from '../components/ScrollTop/ScrollTop.jsx'; // importa donde lo hayas creado
 
 export const AppRouter = () => {
 
     return (
         <BrowserRouter>
+        <ScrollToTop />
             <Routes>
                 <Route path = '/' element = {<Home/>}/>
                 <Route path = '/categorias' element = {<Categorias/>}/>

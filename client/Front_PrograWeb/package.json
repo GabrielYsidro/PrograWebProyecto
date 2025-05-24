@@ -12,6 +12,8 @@
   "dependencies": {
     "react": "^19.1.0",
     "react-datepicker": "^8.3.0",
+    "react-dnd": "^16.0.1",
+    "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.6.0",
     "recharts": "^2.15.3"
