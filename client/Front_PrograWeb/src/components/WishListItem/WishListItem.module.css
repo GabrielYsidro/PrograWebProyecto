@@ -1,0 +1,22 @@
+.wishlistItem {
+  background: #ecc78e;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  transition: 0.2s;
+  display: flex;
+}
+
+img {
+    margin: 5%;
+}
+
+strong {
+    margin-right: 8%;
+    margin-top: 7%;
+}
+
+p {
+    margin-right: 8%;
+    margin-top: 7%;
+}

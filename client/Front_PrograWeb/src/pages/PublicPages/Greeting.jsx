@@ -1,5 +1,7 @@
 import {useState, useEffect, useContext, useLayoutEffect} from 'react'
 import styles from  '../../styles/Greeting.module.css'
+import TopBar from '../../components/TopBar/TopBar.jsx';
+import Footer from '../../components/Footer/Footer.jsx'
 
 export const Greeting = () => {
 
@@ -33,6 +35,7 @@ export const Greeting = () => {
     
     return (
         <div className={styles.container}>
+            <TopBar/>
             <div className={styles.principal}>
                 <div className={styles.gracias} >
                     ¡Gracias por tu compra!
@@ -53,6 +56,7 @@ export const Greeting = () => {
                 </div>
             </div>
         <img className={styles.pokebola} src='/src/assets/pokebola.gif' alt='Pokebola' onClick={handleClick}></img>
+        <Footer/>
         </div>
     )
 

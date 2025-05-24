@@ -1,0 +1,23 @@
+.container {
+  height: 200vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  background: 
+    linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)),
+    url('../assets/fondoPoke.jpg') center center / cover no-repeat;
+  filter: brightness(1.1);
+  background-repeat: repeat;
+}
+
+.titulo {
+  font-family: 'Pokemon Solid', sans-serif;
+  text-align: left;
+  height : 10%;
+  color: #FFCC00;
+  font-size: 400%;
+  -webkit-text-stroke: 3px #3B4CCA;
+  letter-spacing: 10px;
+  text-align :left;
+  padding-left: 3%
+}

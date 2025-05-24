@@ -1,0 +1,90 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #f7f7fa;
+  font-family: 'Montserrat', Arial, sans-serif;
+}
+
+.titulo {
+  font-size: 2.5rem;
+  color: #FFCC00;
+  margin: 2.5rem 0 2rem 60px;
+  font-weight: bold;
+  letter-spacing: 4px;
+  -webkit-text-stroke: 2px #3B4CCA;
+  text-shadow: 1px 2px 8px #3B4CCA33;
+}
+
+.categoriasTable {
+  width: 90%;
+  margin: 0 auto 2.5rem auto;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px #3B4CCA22;
+  overflow: hidden;
+}
+
+.categoriasTable th,
+.categoriasTable td {
+  padding: 1.1rem 1.2rem;
+  text-align: left;
+  border-bottom: 1.5px solid #e0e7ff;
+  font-size: 1.08rem;
+}
+
+.categoriasTable th {
+  background: #3B4CCA;
+  color: #fff;
+  font-size: 1.15rem;
+  letter-spacing: 1px;
+  border-bottom: 3px solid #FFCC00;
+}
+
+.categoriasTable tr:last-child td {
+  border-bottom: none;
+}
+
+.categoriasTable tr:hover {
+  background: #f0f4ff;
+  transition: background 0.2s;
+}
+
+.emoji {
+  font-size: 1.7rem;
+  text-align: center;
+}
+
+.colorBox {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 2.5px solid #3B4CCA;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 10px;
+  box-shadow: 0 2px 8px #3B4CCA22;
+}
+
+button {
+  margin-left: 60px;
+  margin-bottom: 1.5rem;
+  padding: 0.5em 1.3em;
+  background: #3B4CCA;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.08rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px #3B4CCA22;
+}
+
+button:hover {
+  background: #2a3287;
+  color: #FFCC00;
+  box-shadow: 0 4px 16px #3B4CCA33;
+}

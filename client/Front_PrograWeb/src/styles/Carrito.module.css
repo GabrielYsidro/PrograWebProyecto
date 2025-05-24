@@ -1,7 +1,84 @@
+
+
 .container {
-  height: 200vh;
+  height: 120vh;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  background-image: url('../assets/fondoPoke.jpg');
+  background: 
+    linear-gradient(rgba(255,255,255,0.3), rgba(255,255,255,0.3)),
+    url('../assets/fondoPoke.jpg') center center / cover no-repeat;
+  filter: brightness(1.1);
   background-repeat: repeat;
+}
+
+
+.titulo{
+  font-family: 'Pokemon Solid', sans-serif;
+  text-align: left;
+  height : 20%;
+  color: #FFCC00;
+  font-size: 400%;
+  -webkit-text-stroke: 3px #3B4CCA;
+  letter-spacing: 10px;
+  text-align :center;
+}
+
+
+.listas {
+  text-align: center;
+  display:flex;
+  overflow: hidden;
+  height: 50%;
+  justify-content: space-between;
+}
+
+.listaActual {
+  background-color: green;
+  width:55%;
+  margin-left: 3%;
+}
+
+.listaDeseos {
+  width:34%;
+  margin-right: 3%;
+}
+
+.titDeseo{
+  font-family: 'Pokemon Solid', sans-serif;
+  color: #FFCC00;
+  -webkit-text-stroke: 2px #3B4CCA;
+  font-size: 200%;
+}
+
+.botonComprar {
+  font-family: 'Pokemon Solid', sans-serif;
+  color: #FFCC00;
+  -webkit-text-stroke: 4px #3B4CCA;
+  font-size: 500%;
+  text-align: center;
+  letter-spacing: 10px;
+  margin-top: 2%;
+  animation: pulseColor 2s infinite ease-in-out;
+  cursor: pointer; /* Para mostrar que es clickeable */
+  transition: transform 0.2s ease-in-out;
+}
+
+@keyframes pulseColor {
+  0% {
+    color: #FFCC00;
+    -webkit-text-stroke: 4px #3B4CCA;
+  }
+  50% {
+    color: #3B4CCA;
+    -webkit-text-stroke: 4px #e0ca6f;
+  }
+  100% {
+    color: #FFCC00;
+    -webkit-text-stroke: 4px #3B4CCA;
+  }
+}
+
+.botonComprar:hover {
+  transform: scale(1.05); /* Opcional: leve agrandamiento */
 }
