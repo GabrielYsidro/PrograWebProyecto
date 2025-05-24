@@ -1,0 +1,35 @@
+.orderSummary {
+  flex: 1 1 45%;
+  border: 1px solid #ccc;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.itemList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.totals {
+  margin-top: 10px;
+}
+
+.total {
+  font-weight: bold;
+}
+
+.payButton {
+  margin-top: 20px;
+  padding: 10px;
+  width: 100%;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.payButton:hover {
+  background-color: #218838;
+}
