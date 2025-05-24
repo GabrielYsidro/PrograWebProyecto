@@ -2,10 +2,18 @@ import {useState, useEffect, useContext, useLayoutEffect} from 'react'
 import styles from  '../../styles/Greeting.module.css'
 import TopBar from '../../components/TopBar/TopBar.jsx';
 import Footer from '../../components/Footer/Footer.jsx'
-
+import { productosGreeting } from '../../constants/Consts.jsx';
 export const Greeting = () => {
 
+    
+
     const [visibleCount, setVisibleCount] = useState(0);
+
+    const handleClick = () => {
+        if (visibleCount < productosGreeting.length) {
+            setVisibleCount(visibleCount + 1)
+        }
+    }
 
     useEffect(() => {
         const handleClick = () => {
@@ -21,17 +29,8 @@ export const Greeting = () => {
     };
     }, []);
 
-    const productos = [
-        {id: 1, src : '/src/assets/eter.png', alt : 'Eter'},
-        {id: 2, src : '/src/assets/MT.png', alt : 'MT'},
-        {id: 3, src : '/src/assets/master-ball.png', alt: 'MasterBall'}
-    ]
-
-    const handleClick = () => {
-        if (visibleCount < productos.length) {
-            setVisibleCount(visibleCount + 1)
-        }
-    }
+   
+    
     
     return (
         <div className={styles.container}>
@@ -44,7 +43,7 @@ export const Greeting = () => {
                     Otros productos que pueden interesarte: 
                 </div>
                 <div className={styles.listaProductos}>
-                    {productos.map((prod, index) => (
+                    {productosGreeting.map((prod, index) => (
                         <img
                             key ={prod.id}
                             src={prod.src}

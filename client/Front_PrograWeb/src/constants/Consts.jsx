@@ -116,3 +116,10 @@ export const initialWishlist = [
   { id: 2, name: 'Piplup', price: 25, image: 'https://play.pokemonshowdown.com/sprites/ani/piplup.gif' },
   { id: 3, name: 'Growlithe', price: 15, image: 'https://play.pokemonshowdown.com/sprites/ani/growlithe.gif' }
 ];
+
+
+export const productosGreeting = [
+        {id: 1, src : '/src/assets/eter.png', alt : 'Eter'},
+        {id: 2, src : '/src/assets/MT.png', alt : 'MT'},
+        {id: 3, src : '/src/assets/master-ball.png', alt: 'MasterBall'}
+    ];
