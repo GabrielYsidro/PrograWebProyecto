@@ -15,7 +15,6 @@ export const DropCart =({ items, onDrop }) => {
 
   return (
     <div ref={drop} className={`${styles.cart} ${isOver ? styles.hover : ''}`}>
-      <h2>Carrito de compras</h2>
       {items.length === 0 && <p>Arrastra productos aquí</p>}
       {items.map(item => (
         <CartItem key={item.id} item={item} />

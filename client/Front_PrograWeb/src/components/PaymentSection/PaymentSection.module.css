@@ -13,10 +13,24 @@
   background-color: white;
 }
 
+.tabButton {
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  background-color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.tabButton:hover {
+  background-color: #f0f0f0;
+}
+
 .active {
   background-color: #007bff;
   color: white;
-  border: none;
+  border-color: #007bff;
 }
 
 .formGroup {
@@ -35,4 +49,9 @@
   padding: 8px;
   width: 100%;
   box-sizing: border-box;
+}
+
+img {
+  width: 10%;
+  height: auto; /* mantiene proporción */
 }

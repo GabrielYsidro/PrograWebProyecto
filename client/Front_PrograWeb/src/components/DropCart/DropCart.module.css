@@ -1,12 +1,12 @@
 .cart {
-  padding: 20px;
-  background-color: #fff;
-  border-right: 1px solid #ccc;
-  overflow-y: auto;
-  margin-top:5%;
-  left: 0;
-  top: 0;
-  height: 80%;
+  font-family: 'Pokemon Solid', sans-serif;
+  text-align: left;
+  height : 90%;
+  color: #FFCC00;
+  font-size: 200%;
+  -webkit-text-stroke: 1.5px #3B4CCA;
+  letter-spacing: 10px;
+  text-align :center;
 }
 
 .hover {
