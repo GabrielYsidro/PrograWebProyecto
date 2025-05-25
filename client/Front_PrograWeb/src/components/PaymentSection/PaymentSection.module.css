@@ -3,35 +3,32 @@
   border: 1px solid #ccc;
   padding: 20px;
   border-radius: 8px;
-}
-
-.tabs button {
-  margin-right: 10px;
-  padding: 8px 12px;
-  cursor: pointer;
-  border: 1px solid #ccc;
-  background-color: white;
+  font-family: 'Pokemon Solid', sans-serif;
+  letter-spacing: 10px;
+  text-align :center;
 }
 
 .tabButton {
   padding: 10px 20px;
-  border: 1px solid #ccc;
-  background-color: white;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  border: 2px solid #007bff;
+  color: #007bff;
   font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
   margin-right: 10px;
 }
 
 .tabButton:hover {
-  background-color: #f0f0f0;
+  background-color: #007bff;
+  color: yellow;
 }
 
+/* Estilo del botón seleccionado (activo) */
 .active {
   background-color: #007bff;
-  color: white;
-  border-color: #007bff;
+  color: yellow;
 }
+
 
 .formGroup {
   margin-top: 10px;

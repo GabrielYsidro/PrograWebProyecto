@@ -9,7 +9,7 @@ import { useCartContext } from '../../contexts/cartContext.jsx';
 
 export const Checkout = () => {
 
-    const { cartItems } = useCartContext();
+    const {cartItems} = useCartContext();
 
     return (
         <div className={styles.container}>
