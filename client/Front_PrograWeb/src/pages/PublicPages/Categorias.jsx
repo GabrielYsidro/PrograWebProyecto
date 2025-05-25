@@ -2,12 +2,14 @@ import { useState } from 'react';
 import styles from '../../styles/Categorias.module.css';
 import TopBar from '../../components/TopBar/TopBar.jsx';
 import Footer from '../../components/Footer/Footer.jsx';
-import { categorias, productos } from '../../constants/Consts.jsx';
 import Producto from '../../components/Producto/Producto.jsx';
+import { productos } from '../../constants/Consts.jsx';
+import { useCategoriaContext } from '../../hooks/CategoriaContext.jsx';
 
 export const Categorias = () => {
   const [busqueda, setBusqueda] = useState('');
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(null);
+  const { categoriasItems } = useCategoriaContext();
 
   const productosFiltrados = productos.filter(
     (producto) =>
@@ -28,7 +30,7 @@ export const Categorias = () => {
         >
           Todas
         </li>
-        {categorias.map((categoria) => (
+        {categoriasItems.map((categoria) => (
           <li
             key={categoria.nombre}
             onClick={() => setCategoriaSeleccionada(categoria.nombre)}
