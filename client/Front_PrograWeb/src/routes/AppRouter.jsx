@@ -2,7 +2,6 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import { Home } from '../pages/PublicPages/Home';
 import { Categorias } from '../pages/PublicPages/Categorias';
 import { Results } from '../pages/PublicPages/Results';
-import { Product } from '../pages/PublicPages/Product'; 
 import { Carrito } from '../pages/PublicPages/Carrito';
 import { Checkout } from '../pages/PublicPages/Checkout';
 import { Greeting } from '../pages/PublicPages/Greeting';
