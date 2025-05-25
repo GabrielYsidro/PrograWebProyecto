@@ -9,16 +9,17 @@
 
 .loginForm {
   width: 100%;
-  max-width: 700px;     /* Aumenta esto si quieres que sea más ancha */
-  height: 400px;         /* Reduce esto si quieres que sea menos alta */
+  max-width: 700px;
+  height: 400px;
   background: linear-gradient(to bottom, #cc0000 49%, #000 49%, #000 51%, #ffffff 51%);
   border: 4px solid #000;
-  border-radius: 50%;    /* Mantiene la forma de Pokébola */
+  border-radius: 50%; /* Pokébola */
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center; /* Centra vertical y horizontal */
   padding: 2rem;
   position: relative;
 }
@@ -53,10 +54,6 @@
 }
 
 .centerButton {
-  position: absolute;
-  top: 60%;
-  left: 32%;
-  transform: translate(-50%, -50%);
   background-color: #000;
   color: #fff;
   width: 80px;
@@ -67,8 +64,9 @@
   cursor: pointer;
   font-size: 0.8rem;
   text-align: center;
-  z-index: 2;
   box-shadow: 0 0 6px #222;
+
+  margin: 1rem 0;
 }
 
 .centerButton:hover {
@@ -76,21 +74,18 @@
 }
 
 .actions {
-  position: absolute;
-  bottom: 1.5rem;
-  left: 45%;
-  transform: translateX(-50%);
-  width: 80%; /* O puedes usar una medida fija como 300px */
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.8rem;
+  width: 100%;
+  max-width: 280px;
+  margin-top: 1rem;
 }
 
 .registerButton,
 .forgotButton {
   width: 100%;
-  max-width: 280px;
   background-color: #cc0000;
   color: #fff;
   border: 2px solid #000;

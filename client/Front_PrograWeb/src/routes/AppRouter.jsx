@@ -18,6 +18,8 @@ import ListaOrdenes from '../pages/AdminPages/ListOrders.jsx'
 import OrdenDetalle from '../pages/AdminPages/DetailsOrders.jsx';
 import { Login } from '../pages/PublicPages/Login.jsx';
 import DetalleProducto from '../components/DetalleProducto/DetalleProducto.jsx';
+import Register from '../pages/PublicPages/Register.jsx';
+import ChangePassword from '../pages/PublicPages/ChangePassword.jsx';
 
 export const AppRouter = () => {
 
@@ -42,6 +44,8 @@ export const AppRouter = () => {
                 <Route path = '/ordenes/' element = { <ListaOrdenes />} />
                 <Route path = '/ordenes/:id' element = { <OrdenDetalle />} />
                 <Route path = '/login' element = { <Login />} />
+                <Route path = '/register' element = { <Register />} />
+                <Route path = '/recover-password' element = { <ChangePassword />} />
 
             </Routes>
         </BrowserRouter>
