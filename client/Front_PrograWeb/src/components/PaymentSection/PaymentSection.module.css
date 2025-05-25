@@ -3,8 +3,10 @@
   border: 1px solid #ccc;
   padding: 20px;
   border-radius: 8px;
+  font-family: 'Pokemon Solid', sans-serif;
+  letter-spacing: 10px;
+  text-align :center;
 }
-
 
 .tabButton {
   padding: 10px 20px;

@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from '../../components/OrderSummary/OrderSummary.module.css';
+import { Link } from 'react-router-dom';
 
 export const OrderSummary = ({ items }) => {
   const subtotal = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
@@ -21,7 +22,9 @@ export const OrderSummary = ({ items }) => {
         <p>Delivery: S/. {deliveryFee.toFixed(2)}</p>
         <p className={styles.total}>Total: S/. {total.toFixed(2)}</p>
       </div>
-      <button className={styles.payButton}>Pagar ahora</button>
+      <Link to="/greeting" className={styles.payButton}>
+                    ¡Vamo' a Pagar!
+        </Link>
     </div>
   );
 }

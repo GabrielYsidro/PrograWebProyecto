@@ -55,7 +55,7 @@ export const Carrito = () => {
                     </div>
                 </div>
                 <Link to="/checkout" className={styles.botonComprar}>
-                    ¡Vamos a Pagar!
+                    ¡Vamo' a Pagar!
                 </Link>
             </div>
             <Footer />
