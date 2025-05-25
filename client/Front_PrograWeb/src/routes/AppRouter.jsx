@@ -2,7 +2,7 @@ import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import { Home } from '../pages/PublicPages/Home';
 import { Categorias } from '../pages/PublicPages/Categorias';
 import { Results } from '../pages/PublicPages/Results';
-import { Product } from '../pages/PublicPages/Product';
+import { Product } from '../pages/PublicPages/Product'; 
 import { Carrito } from '../pages/PublicPages/Carrito';
 import { Checkout } from '../pages/PublicPages/Checkout';
 import { Greeting } from '../pages/PublicPages/Greeting';
@@ -16,6 +16,7 @@ import ListaUsuarios from '../pages/AdminPages/ListUsers.jsx';
 import DetalleUsuario from '../pages/AdminPages/DetailsUser.jsx';
 import ListaOrdenes from '../pages/AdminPages/ListOrders.jsx'
 import OrdenDetalle from '../pages/AdminPages/DetailsOrders.jsx';
+import DetalleProducto from '../components/DetalleProducto/DetalleProducto.jsx';
 
 export const AppRouter = () => {
 
@@ -26,7 +27,7 @@ export const AppRouter = () => {
                 <Route path = '/' element = {<Home/>}/>
                 <Route path = '/categorias' element = {<Categorias/>}/>
                 <Route path = '/results' element = {<Results/>}/>
-                <Route path = '/product/:id' element = {<Product/>}/>
+                <Route path = '/product/:id' element = {<DetalleProducto/>}/>
                 <Route path = '/carrito' element = {<Carrito/>}/>
                 <Route path = '/checkout' element = {<Checkout/>}/>
                 <Route path = '/greeting' element = {<Greeting/>}/>
