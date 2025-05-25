@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from '../../components/PaymentSection/PaymentSection.module.css';
 import { usePaymentForm } from '../../hooks/usePaymentForm.jsx';
 import FormularioTarjeta from '../../components/FormularioTarjeta/FormularioTarjeta.jsx';
-import {useState} from 'react'
+
 export const PaymentSection = () => {
   const {
     paymentMethod,
@@ -49,12 +49,12 @@ export const PaymentSection = () => {
 
       {paymentMethod === 'card' ? (
         <div className={styles.formGroup}>
-          <FormularioTarjeta formData={formData} onChange={handleInputChange}/>
+          <FormularioTarjeta formData={formData} onChange={handleInputChange} />
         </div>
       ) : (
         <div className={styles.formGroup}>
           <p>Escanea este código QR para pagar</p>
-          <img className={styles.yape} src='/src/assets/QR.png'></img>
+          <img className={styles.yape} src='/src/assets/QR.png' alt="Código QR" />
         </div>
       )}
 
@@ -93,6 +93,6 @@ export const PaymentSection = () => {
       )}
     </div>
   );
-} 
+};
 
 export default PaymentSection;
