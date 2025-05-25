@@ -1,12 +1,12 @@
 import React, { createContext, useContext, useState } from 'react';
-import { categorias } from '../constants/Consts.jsx'; // Asegúrate de tener esto
+import { categorias } from '../constants/Consts.jsx';
 
 const CategoriaContext = createContext();
 
 export const useCategoriaContext = () => useContext(CategoriaContext);
 
 export function CategoriaProvider({ children }) {
-  const [categoriasItems, setCategoriasItems] = useState(categorias); // Usa tus categorías iniciales
+  const [categoriasItems, setCategoriasItems] = useState(categorias);
 
   const addItem = (item) => {
     setCategoriasItems((prev) => [...prev, item]);

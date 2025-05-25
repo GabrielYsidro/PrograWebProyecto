@@ -5,24 +5,35 @@ import Footer from '../../components/Footer/Footer.jsx';
 import Producto from '../../components/Producto/Producto.jsx';
 import { productos } from '../../constants/Consts.jsx';
 import { useCategoriaContext } from '../../hooks/CategoriaContext.jsx';
+import BotonOrd from '../../components/BotonOrd/BotonOrd.jsx';
 
 export const Categorias = () => {
   const [busqueda, setBusqueda] = useState('');
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(null);
+  const [orden, setOrden] = useState('nombreA');
   const { categoriasItems } = useCategoriaContext();
 
-  const productosFiltrados = productos.filter(
-    (producto) =>
-      (!categoriaSeleccionada || producto.tipo === categoriaSeleccionada) &&
-      (!busqueda.trim() || producto.nombre.toLowerCase().includes(busqueda.trim().toLowerCase()))
-  );
+  const productosFiltrados = productos
+    .filter(
+      (producto) =>
+        (!categoriaSeleccionada || producto.tipo === categoriaSeleccionada) &&
+        (!busqueda.trim() || producto.nombre.toLowerCase().includes(busqueda.trim().toLowerCase()))
+    )
+    .slice() // para no mutar el array original
+    .sort((a, b) => {
+      if (orden === 'nombreA') return a.nombre.localeCompare(b.nombre);
+      if (orden === 'nombreZ') return b.nombre.localeCompare(a.nombre);
+      if (orden === 'des') return b.precio - a.precio;
+      if (orden === 'asc') return a.precio - b.precio;
+      return 0;
+    });
 
   return (
     <div className={styles.page}>
       <div className={styles.background}></div>
       <TopBar handleSearch={e => { e.preventDefault(); }} busqueda={busqueda} setBusqueda={setBusqueda} />
       <h2 className={styles.eligeMargin}>Categorías</h2>
-
+      <BotonOrd productosFiltrados={productosFiltrados} orden={orden} setOrden={setOrden} />
       <ul className={styles.listaCategoriasMargin}>
         <li
           onClick={() => setCategoriaSeleccionada(null)}
