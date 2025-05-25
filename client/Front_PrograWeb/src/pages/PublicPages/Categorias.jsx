@@ -1,16 +1,13 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
 import styles from '../../styles/Categorias.module.css';
 import TopBar from '../../components/TopBar/TopBar.jsx';
 import Footer from '../../components/Footer/Footer.jsx';
 import { categorias, productos } from '../../constants/Consts.jsx';
+import Producto from '../../components/Producto/Producto.jsx';
 
 export const Categorias = () => {
   const [busqueda, setBusqueda] = useState('');
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(null);
-
-  // Busca el color y emoji según el tipo usando categorias
-  const getCategoria = (tipo) => categorias.find(c => c.nombre === tipo) || {};
 
   const productosFiltrados = productos.filter(
     (producto) =>
@@ -47,77 +44,13 @@ export const Categorias = () => {
         ))}
       </ul>
 
-      {/* Productos dinámicos */}
       <div className={styles.productos + ' ' + styles.marginLeft}>
         {productosFiltrados.length === 0 && (
           <p className={styles.noProductos}>No se encontraron productos.</p>
         )}
-        {productosFiltrados.map((producto) => {
-          const cat = getCategoria(producto.tipo);
-          return (
-            <div
-              key={producto.id}
-              className={styles.producto}
-              style={{
-                border: `2.5px solid ${cat.color || '#888'}`,
-                background: cat.color || '#eee'
-              }}
-            >
-              <h4
-                className={styles.nombreProducto}
-                style={{
-                  color: '#222'
-                }}
-              >
-                {(cat.emoji || '✨') + ' '}
-                {producto.nombre}
-                {' ' + (cat.emoji || '')}
-              </h4>
-              <img
-                src={producto.imagen}
-                alt={producto.nombre}
-                className={styles.imagenProducto}
-              />
-              <p
-                className={styles.regionProducto}
-                style={{
-                  background: cat.color || '#ccc',
-                  borderColor: cat.color || '#ccc'
-                }}
-              >
-                Región: {producto.region}
-              </p>
-              <p
-                className={styles.precioProducto}
-                style={{
-                  background: cat.color || '#ccc',
-                  borderColor: cat.color || '#ccc'
-                }}
-              >
-                Precio: S/ {producto.precio.toFixed(2)}
-              </p>
-              <Link
-                to={`/product/${producto.id}`}
-                className={styles.botonDetalle}
-                style={{
-                  borderColor: cat.color || '#888',
-                  color: cat.color || '#888',
-                  boxShadow: `0 2px 8px 0 ${(cat.color || '#888')}22`
-                }}
-                onMouseOver={e => {
-                  e.target.style.background = cat.color || '#888';
-                  e.target.style.color = '#fff';
-                }}
-                onMouseOut={e => {
-                  e.target.style.background = '#fff';
-                  e.target.style.color = cat.color || '#888';
-                }}
-              >
-                Ver detalle
-              </Link>
-            </div>
-          );
-        })}
+        {productosFiltrados.map((producto) => (
+          <Producto key={producto.id} producto={producto} />
+        ))}
       </div>
       <Footer />
     </div>

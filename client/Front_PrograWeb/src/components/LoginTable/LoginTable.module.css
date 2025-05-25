@@ -1,0 +1,116 @@
+.loginContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: url('/pokefondo.png') center center / cover no-repeat;
+  padding: 1rem;
+}
+
+.loginForm {
+  width: 100%;
+  max-width: 700px;     /* Aumenta esto si quieres que sea más ancha */
+  height: 400px;         /* Reduce esto si quieres que sea menos alta */
+  background: linear-gradient(to bottom, #cc0000 49%, #000 49%, #000 51%, #ffffff 51%);
+  border: 4px solid #000;
+  border-radius: 50%;    /* Mantiene la forma de Pokébola */
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 2rem;
+  position: relative;
+}
+
+.loginForm h2 {
+  color: #fff;
+  margin-bottom: 1.2rem;
+  font-size: 1.6rem;
+  font-weight: bold;
+  text-align: center;
+}
+
+.inputGroup {
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0 1rem;
+}
+
+.inputGroup label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+  color: #000;
+}
+
+.inputGroup input {
+  width: 100%;
+  padding: 0.5rem;
+  border: 2px solid #000;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+}
+
+.centerButton {
+  position: absolute;
+  top: 60%;
+  left: 32%;
+  transform: translate(-50%, -50%);
+  background-color: #000;
+  color: #fff;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 4px solid white;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 0.8rem;
+  text-align: center;
+  z-index: 2;
+  box-shadow: 0 0 6px #222;
+}
+
+.centerButton:hover {
+  background-color: #222;
+}
+
+.actions {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 45%;
+  transform: translateX(-50%);
+  width: 80%; /* O puedes usar una medida fija como 300px */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.registerButton,
+.forgotButton {
+  width: 100%;
+  max-width: 280px;
+  background-color: #cc0000;
+  color: #fff;
+  border: 2px solid #000;
+  padding: 0.6rem 0.8rem;
+  border-radius: 0.6rem;
+  cursor: pointer;
+  font-weight: bold;
+  text-align: center;
+  transition: background-color 0.3s ease;
+}
+
+.registerButton:hover,
+.forgotButton:hover {
+  background-color: #a00000;
+}
+
+.error {
+  color: #ff3333;
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
