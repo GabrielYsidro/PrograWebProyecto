@@ -1,0 +1,155 @@
+.detalleFondo {
+  min-height: 100vh;
+  width: 100vw;
+  background:
+    url('../../assets/fondoPoke.jpg') center center / cover no-repeat;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 0;
+}
+
+.detalleProductoWrapper {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  overflow-y: auto;
+  height: 100vh;
+  padding-top: 3.5rem;
+  padding-bottom: 8rem; /* Más espacio inferior */
+}
+
+.detalleProducto {
+  max-width: 500px;
+  margin: 3.5rem auto 8rem auto; /* Más margen abajo */
+  background: #fff;
+  border-radius: 22px;
+  box-shadow: 0 8px 32px #3B4CCA22;
+  padding: 2.5rem 2.5rem 2rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Montserrat', Arial, sans-serif;
+}
+
+.nombre {
+  font-size: 2.2rem;
+  color: #FFCC00;
+  margin-bottom: 1.2rem;
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 2px;
+  -webkit-text-stroke: 2px #3B4CCA;
+  text-shadow: 0 2px 8px #3B4CCA22;
+}
+
+.imagen {
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+  margin-bottom: 1.5rem;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px #3B4CCA22;
+  background: #f7f7fa;
+  border: 2.5px solid #FFCC00;
+}
+
+.tipo, .region, .precio, .stock, .rareza, .descripcion {
+  margin-bottom: 0.7rem;
+  font-size: 1.13rem;
+  width: 100%;
+  background: #f7f7fa;
+  border-radius: 8px;
+  padding: 0.5em 1em;
+  box-sizing: border-box;
+  box-shadow: 0 1px 4px #3B4CCA11;
+}
+
+.tipo strong, .region strong, .precio strong, .stock strong, .rareza strong, .descripcion strong {
+  color: #3B4CCA;
+}
+
+.descripcion {
+  margin-bottom: 1.3rem;
+  min-height: 2.2em;
+}
+
+.evoluciones {
+  margin-bottom: 1.5rem;
+  width: 100%;
+  background: #e7f0ff;
+  border-radius: 10px;
+  padding: 1em 1.2em;
+  box-shadow: 0 1px 6px #3B4CCA11;
+}
+
+.evoluciones strong {
+  color: #3B4CCA;
+  font-size: 1.1rem;
+}
+
+.evolucionItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.5rem;
+  font-size: 1.08rem;
+}
+
+.evoImagen {
+  width: 44px;
+  height: 44px;
+  margin-right: 0.8rem;
+  border-radius: 8px;
+  background: #fff;
+  border: 1.5px solid #3B4CCA33;
+  box-shadow: 0 1px 4px #3B4CCA11;
+}
+
+.evoNombre {
+  font-weight: bold;
+  color: #3B4CCA;
+  margin-right: 0.5rem;
+}
+
+.evoNivel, .evoMetodo {
+  color: #555;
+  margin-right: 0.5rem;
+  font-size: 0.98em;
+}
+
+.volverBtn {
+  margin-top: 1.8rem;
+  padding: 0.6em 1.5em;
+  background: linear-gradient(90deg, #3B4CCA 60%, #FFCC00 100%);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.13rem;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0 2px 8px #3B4CCA22;
+  transition: background 0.2s, color 0.2s;
+  letter-spacing: 1px;
+}
+
+.volverBtn:hover {
+  background: linear-gradient(90deg, #FFCC00 0%, #3B4CCA 100%);
+  color: #3B4CCA;
+}
+
+.noEncontrado {
+  text-align: center;
+  color: #c00;
+  margin-top: 3rem;
+  font-size: 1.3rem;
+  background: #fff0f0;
+  border-radius: 10px;
+  padding: 1.5rem 2rem;
+  box-shadow: 0 2px 8px #c003;
+}

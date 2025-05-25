@@ -1,28 +1,148 @@
 export const productos = [
-
-    // Tipo Fuego
-    { id: 1, nombre: 'Charmander', tipo: 'Fuego', region: 'Kanto', precio: 120.00, imagen: 'https://play.pokemonshowdown.com/sprites/ani/charmander.gif' },
-    { id: 2, nombre: 'Vulpix', tipo: 'Fuego', region: 'Kanto', precio: 110.00, imagen: 'https://play.pokemonshowdown.com/sprites/ani/vulpix.gif' },
-    { id: 3, nombre: 'Growlithe', tipo: 'Fuego', region: 'Kanto', precio: 130.00, imagen: 'https://play.pokemonshowdown.com/sprites/ani/growlithe.gif' },
-    { id: 4, nombre: 'Ponyta', tipo: 'Fuego', region: 'Kanto', precio: 125.00, imagen: 'https://play.pokemonshowdown.com/sprites/ani/ponyta.gif' },
-    { id: 5, nombre: 'Cyndaquil', tipo: 'Fuego', region: 'Johto', precio: 115.00, imagen: 'https://play.pokemonshowdown.com/sprites/ani/cyndaquil.gif' },
-    { id: 6, nombre: 'Torchic', tipo: 'Fuego', region: 'Hoenn', precio: 118.00, imagen: 'https://play.pokemonshowdown.com/sprites/ani/torchic.gif' },
-
-    // Tipo Agua
-    { id: 7, nombre: 'Squirtle', tipo: 'Agua', region: 'Kanto', precio: 122.00, imagen: 'https://play.pokemonshowdown.com/sprites/ani/squirtle.gif' },
-    { id: 8, nombre: 'Psyduck', tipo: 'Agua', region: 'Kanto', precio: 112.00, imagen: 'https://play.pokemonshowdown.com/sprites/ani/psyduck.gif' },
-    { id: 9, nombre: 'Totodile', tipo: 'Agua', region: 'Johto', precio: 135.00, imagen: 'https://play.pokemonshowdown.com/sprites/ani/totodile.gif' },
-    { id: 10, nombre: 'Mudkip', tipo: 'Agua', region: 'Hoenn', precio: 128.00, imagen: 'https://play.pokemonshowdown.com/sprites/ani/mudkip.gif' },
-    { id: 11, nombre: 'Piplup', tipo: 'Agua', region: 'Sinnoh', precio: 119.00, imagen: 'https://play.pokemonshowdown.com/sprites/ani/piplup.gif' },
-    { id: 12, nombre: 'Froakie', tipo: 'Agua', region: 'Kalos', precio: 121.00, imagen: 'https://play.pokemonshowdown.com/sprites/ani/froakie.gif' },
-
-    // Tipo Planta
-    { id: 13, nombre: 'Bulbasaur', tipo: 'Planta', region: 'Kanto', precio: 124.00, imagen: 'https://play.pokemonshowdown.com/sprites/ani/bulbasaur.gif' },
-    { id: 14, nombre: 'Oddish', tipo: 'Planta', region: 'Kanto', precio: 113.00, imagen: 'https://play.pokemonshowdown.com/sprites/ani/oddish.gif' },
-    { id: 15, nombre: 'Bellsprout', tipo: 'Planta', region: 'Kanto', precio: 117.00, imagen: 'https://play.pokemonshowdown.com/sprites/ani/bellsprout.gif' },
-    { id: 16, nombre: 'Chikorita', tipo: 'Planta', region: 'Johto', precio: 126.00, imagen: 'https://play.pokemonshowdown.com/sprites/ani/chikorita.gif' },
-    { id: 17, nombre: 'Treecko', tipo: 'Planta', region: 'Hoenn', precio: 129.00, imagen: 'https://play.pokemonshowdown.com/sprites/ani/treecko.gif' },
-    { id: 18, nombre: 'Turtwig', tipo: 'Planta', region: 'Sinnoh', precio: 123.00, imagen: 'https://play.pokemonshowdown.com/sprites/ani/turtwig.gif' },
+    // Fuego
+    {
+        id: 1, nombre: 'Charmander', tipo: 'Fuego', region: 'Kanto', precio: 120, imagen: 'https://play.pokemonshowdown.com/sprites/ani/charmander.gif',
+        descripcion: 'Un Pokémon lagarto de tipo fuego. Su cola siempre arde.', stock: 10, rareza: 'Común',
+        evoluciones: [
+            { nombre: 'Charmeleon', imagen: 'https://play.pokemonshowdown.com/sprites/ani/charmeleon.gif', nivel: 16 },
+            { nombre: 'Charizard', imagen: 'https://play.pokemonshowdown.com/sprites/ani/charizard.gif', nivel: 36 }
+        ]
+    },
+    {
+        id: 2, nombre: 'Vulpix', tipo: 'Fuego', region: 'Kanto', precio: 110, imagen: 'https://play.pokemonshowdown.com/sprites/ani/vulpix.gif',
+        descripcion: 'Un zorro de seis colas con poderes ígneos.', stock: 7, rareza: 'Raro',
+        evoluciones: [
+            { nombre: 'Ninetales', imagen: 'https://play.pokemonshowdown.com/sprites/ani/ninetales.gif', metodo: 'Piedra Fuego' }
+        ]
+    },
+    {
+        id: 3, nombre: 'Growlithe', tipo: 'Fuego', region: 'Kanto', precio: 130, imagen: 'https://play.pokemonshowdown.com/sprites/ani/growlithe.gif',
+        descripcion: 'Un cachorro leal y valiente.', stock: 5, rareza: 'Raro',
+        evoluciones: [
+            { nombre: 'Arcanine', imagen: 'https://play.pokemonshowdown.com/sprites/ani/arcanine.gif', metodo: 'Piedra Fuego' }
+        ]
+    },
+    {
+        id: 4, nombre: 'Ponyta', tipo: 'Fuego', region: 'Kanto', precio: 125, imagen: 'https://play.pokemonshowdown.com/sprites/ani/ponyta.gif',
+        descripcion: 'Un caballo con crines de fuego.', stock: 8, rareza: 'Común',
+        evoluciones: [
+            { nombre: 'Rapidash', imagen: 'https://play.pokemonshowdown.com/sprites/ani/rapidash.gif', nivel: 40 }
+        ]
+    },
+    {
+        id: 5, nombre: 'Cyndaquil', tipo: 'Fuego', region: 'Johto', precio: 115, imagen: 'https://play.pokemonshowdown.com/sprites/ani/cyndaquil.gif',
+        descripcion: 'Un pequeño Pokémon tímido que expulsa fuego por su espalda.', stock: 6, rareza: 'Común',
+        evoluciones: [
+            { nombre: 'Quilava', imagen: 'https://play.pokemonshowdown.com/sprites/ani/quilava.gif', nivel: 14 },
+            { nombre: 'Typhlosion', imagen: 'https://play.pokemonshowdown.com/sprites/ani/typhlosion.gif', nivel: 36 }
+        ]
+    },
+    {
+        id: 6, nombre: 'Torchic', tipo: 'Fuego', region: 'Hoenn', precio: 118, imagen: 'https://play.pokemonshowdown.com/sprites/ani/torchic.gif',
+        descripcion: 'Un pollito ardiente que escupe fuego.', stock: 9, rareza: 'Común',
+        evoluciones: [
+            { nombre: 'Combusken', imagen: 'https://play.pokemonshowdown.com/sprites/ani/combusken.gif', nivel: 16 },
+            { nombre: 'Blaziken', imagen: 'https://play.pokemonshowdown.com/sprites/ani/blaziken.gif', nivel: 36 }
+        ]
+    },
+    // Agua
+    {
+        id: 7, nombre: 'Squirtle', tipo: 'Agua', region: 'Kanto', precio: 122, imagen: 'https://play.pokemonshowdown.com/sprites/ani/squirtle.gif',
+        descripcion: 'Una tortuga que dispara agua a presión.', stock: 10, rareza: 'Común',
+        evoluciones: [
+            { nombre: 'Wartortle', imagen: 'https://play.pokemonshowdown.com/sprites/ani/wartortle.gif', nivel: 16 },
+            { nombre: 'Blastoise', imagen: 'https://play.pokemonshowdown.com/sprites/ani/blastoise.gif', nivel: 36 }
+        ]
+    },
+    {
+        id: 8, nombre: 'Psyduck', tipo: 'Agua', region: 'Kanto', precio: 112, imagen: 'https://play.pokemonshowdown.com/sprites/ani/psyduck.gif',
+        descripcion: 'Un pato confundido con poderes psíquicos.', stock: 8, rareza: 'Común',
+        evoluciones: [
+            { nombre: 'Golduck', imagen: 'https://play.pokemonshowdown.com/sprites/ani/golduck.gif', nivel: 33 }
+        ]
+    },
+    {
+        id: 9, nombre: 'Totodile', tipo: 'Agua', region: 'Johto', precio: 135, imagen: 'https://play.pokemonshowdown.com/sprites/ani/totodile.gif',
+        descripcion: 'Un pequeño cocodrilo juguetón.', stock: 7, rareza: 'Raro',
+        evoluciones: [
+            { nombre: 'Croconaw', imagen: 'https://play.pokemonshowdown.com/sprites/ani/croconaw.gif', nivel: 18 },
+            { nombre: 'Feraligatr', imagen: 'https://play.pokemonshowdown.com/sprites/ani/feraligatr.gif', nivel: 30 }
+        ]
+    },
+    {
+        id: 10, nombre: 'Mudkip', tipo: 'Agua', region: 'Hoenn', precio: 128, imagen: 'https://play.pokemonshowdown.com/sprites/ani/mudkip.gif',
+        descripcion: 'Un Pokémon anfibio con gran fuerza.', stock: 6, rareza: 'Común',
+        evoluciones: [
+            { nombre: 'Marshtomp', imagen: 'https://play.pokemonshowdown.com/sprites/ani/marshtomp.gif', nivel: 16 },
+            { nombre: 'Swampert', imagen: 'https://play.pokemonshowdown.com/sprites/ani/swampert.gif', nivel: 36 }
+        ]
+    },
+    {
+        id: 11, nombre: 'Piplup', tipo: 'Agua', region: 'Sinnoh', precio: 119, imagen: 'https://play.pokemonshowdown.com/sprites/ani/piplup.gif',
+        descripcion: 'Un pingüino orgulloso y valiente.', stock: 9, rareza: 'Común',
+        evoluciones: [
+            { nombre: 'Prinplup', imagen: 'https://play.pokemonshowdown.com/sprites/ani/prinplup.gif', nivel: 16 },
+            { nombre: 'Empoleon', imagen: 'https://play.pokemonshowdown.com/sprites/ani/empoleon.gif', nivel: 36 }
+        ]
+    },
+    {
+        id: 12, nombre: 'Froakie', tipo: 'Agua', region: 'Kalos', precio: 121, imagen: 'https://play.pokemonshowdown.com/sprites/ani/froakie.gif',
+        descripcion: 'Una rana ágil y escurridiza.', stock: 8, rareza: 'Raro',
+        evoluciones: [
+            { nombre: 'Frogadier', imagen: 'https://play.pokemonshowdown.com/sprites/ani/frogadier.gif', nivel: 16 },
+            { nombre: 'Greninja', imagen: 'https://play.pokemonshowdown.com/sprites/ani/greninja.gif', nivel: 36 }
+        ]
+    },
+    // Planta
+    {
+        id: 13, nombre: 'Bulbasaur', tipo: 'Planta', region: 'Kanto', precio: 124, imagen: 'https://play.pokemonshowdown.com/sprites/ani/bulbasaur.gif',
+        descripcion: 'Un Pokémon semilla con una planta en su lomo.', stock: 10, rareza: 'Común',
+        evoluciones: [
+            { nombre: 'Ivysaur', imagen: 'https://play.pokemonshowdown.com/sprites/ani/ivysaur.gif', nivel: 16 },
+            { nombre: 'Venusaur', imagen: 'https://play.pokemonshowdown.com/sprites/ani/venusaur.gif', nivel: 32 }
+        ]
+    },
+    {
+        id: 14, nombre: 'Oddish', tipo: 'Planta', region: 'Kanto', precio: 113, imagen: 'https://play.pokemonshowdown.com/sprites/ani/oddish.gif',
+        descripcion: 'Una raíz nocturna que adora la luna.', stock: 7, rareza: 'Común',
+        evoluciones: [
+            { nombre: 'Gloom', imagen: 'https://play.pokemonshowdown.com/sprites/ani/gloom.gif', nivel: 21 },
+            { nombre: 'Vileplume', imagen: 'https://play.pokemonshowdown.com/sprites/ani/vileplume.gif', metodo: 'Piedra Hoja' },
+            { nombre: 'Bellossom', imagen: 'https://play.pokemonshowdown.com/sprites/ani/bellossom.gif', metodo: 'Piedra Solar' }
+        ]
+    },
+    {
+        id: 15, nombre: 'Bellsprout', tipo: 'Planta', region: 'Kanto', precio: 117, imagen: 'https://play.pokemonshowdown.com/sprites/ani/bellsprout.gif',
+        descripcion: 'Una planta carnívora flexible.', stock: 8, rareza: 'Común',
+        evoluciones: [
+            { nombre: 'Weepinbell', imagen: 'https://play.pokemonshowdown.com/sprites/ani/weepinbell.gif', nivel: 21 },
+            { nombre: 'Victreebel', imagen: 'https://play.pokemonshowdown.com/sprites/ani/victreebel.gif', metodo: 'Piedra Hoja' }
+        ]
+    },
+    {
+        id: 16, nombre: 'Chikorita', tipo: 'Planta', region: 'Johto', precio: 126, imagen: 'https://play.pokemonshowdown.com/sprites/ani/chikorita.gif',
+        descripcion: 'Un Pokémon de aroma calmante.', stock: 6, rareza: 'Común',
+        evoluciones: [
+            { nombre: 'Bayleef', imagen: 'https://play.pokemonshowdown.com/sprites/ani/bayleef.gif', nivel: 16 },
+            { nombre: 'Meganium', imagen: 'https://play.pokemonshowdown.com/sprites/ani/meganium.gif', nivel: 32 }
+        ]
+    },
+    {
+        id: 17, nombre: 'Treecko', tipo: 'Planta', region: 'Hoenn', precio: 129, imagen: 'https://play.pokemonshowdown.com/sprites/ani/treecko.gif',
+        descripcion: 'Un gecko veloz y ágil.', stock: 9, rareza: 'Raro',
+        evoluciones: [
+            { nombre: 'Grovyle', imagen: 'https://play.pokemonshowdown.com/sprites/ani/grovyle.gif', nivel: 16 },
+            { nombre: 'Sceptile', imagen: 'https://play.pokemonshowdown.com/sprites/ani/sceptile.gif', nivel: 36 }
+        ]
+    },
+    {
+        id: 18, nombre: 'Turtwig', tipo: 'Planta', region: 'Sinnoh', precio: 123, imagen: 'https://play.pokemonshowdown.com/sprites/ani/turtwig.gif',
+        descripcion: 'Una tortuga con una ramita en su cabeza.', stock: 8, rareza: 'Común',
+        evoluciones: [
+            { nombre: 'Grotle', imagen: 'https://play.pokemonshowdown.com/sprites/ani/grotle.gif', nivel: 18 },
+            { nombre: 'Torterra', imagen: 'https://play.pokemonshowdown.com/sprites/ani/torterra.gif', nivel: 32 }
+        ]
+    }
 ];
 
 export const categorias = [
