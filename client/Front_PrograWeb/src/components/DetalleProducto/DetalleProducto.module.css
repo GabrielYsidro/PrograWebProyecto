@@ -153,3 +153,64 @@
   padding: 1.5rem 2rem;
   box-shadow: 0 2px 8px #c003;
 }
+
+.botonDetalle {
+  display: block;
+  margin: 1.2rem auto 0 auto;
+  padding: 10px 28px;
+  border-radius: 20px;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.2s;
+  color: #3B4CCA;
+  background: #fff;
+  border-color: #3B4CCA;
+  box-shadow: 0 2px 8px 0 #0002;
+  border-width: 2px;
+  border-style: solid;
+  cursor: pointer;
+  font-size: 1.08rem;
+  min-width: 180px;
+  position: relative;
+}
+
+.botonDetalle:hover:not(:disabled) {
+  background: #FFCC00;
+  color: #3B4CCA;
+  transform: translateY(-2px) scale(1.04);
+}
+
+.botonDetalle:disabled,
+.botonDetalle[disabled] {
+  color: #fff !important;
+  background: #4caf50 !important;
+  opacity: 1;
+  cursor: default;
+}
+
+.botonAgregado {
+  background: #4caf50 !important;
+  color: #fff !important;
+  transition: background 0.3s, color 0.3s;
+  animation: botonAgregadoAnim 1s;
+}
+
+@keyframes botonAgregadoAnim {
+  0% { transform: scale(1);}
+  20% { transform: scale(1.08);}
+  60% { transform: scale(1);}
+  100% { transform: scale(1);}
+}
+
+.checkAnimado {
+  display: inline-block;
+  animation: checkFade 1.2s;
+}
+
+@keyframes checkFade {
+  0% { opacity: 0; transform: scale(0.7);}
+  20% { opacity: 1; transform: scale(1.1);}
+  60% { opacity: 1; transform: scale(1);}
+  100% { opacity: 0.8; }
+}
