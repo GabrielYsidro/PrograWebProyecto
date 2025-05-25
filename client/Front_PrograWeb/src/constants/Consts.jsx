@@ -6,28 +6,28 @@ export const productos = [
         evoluciones: [
             { nombre: 'Charmeleon', imagen: 'https://play.pokemonshowdown.com/sprites/ani/charmeleon.gif', nivel: 16 },
             { nombre: 'Charizard', imagen: 'https://play.pokemonshowdown.com/sprites/ani/charizard.gif', nivel: 36 }
-        ]
+        ], quantity : 1
     },
     {
         id: 2, nombre: 'Vulpix', tipo: 'Fuego', region: 'Kanto', precio: 110, imagen: 'https://play.pokemonshowdown.com/sprites/ani/vulpix.gif',
         descripcion: 'Un zorro de seis colas con poderes ígneos.', stock: 7, rareza: 'Raro',
         evoluciones: [
             { nombre: 'Ninetales', imagen: 'https://play.pokemonshowdown.com/sprites/ani/ninetales.gif', metodo: 'Piedra Fuego' }
-        ]
+        ], quantity : 1
     },
     {
         id: 3, nombre: 'Growlithe', tipo: 'Fuego', region: 'Kanto', precio: 130, imagen: 'https://play.pokemonshowdown.com/sprites/ani/growlithe.gif',
         descripcion: 'Un cachorro leal y valiente.', stock: 5, rareza: 'Raro',
         evoluciones: [
             { nombre: 'Arcanine', imagen: 'https://play.pokemonshowdown.com/sprites/ani/arcanine.gif', metodo: 'Piedra Fuego' }
-        ]
+        ], quantity : 1
     },
     {
         id: 4, nombre: 'Ponyta', tipo: 'Fuego', region: 'Kanto', precio: 125, imagen: 'https://play.pokemonshowdown.com/sprites/ani/ponyta.gif',
         descripcion: 'Un caballo con crines de fuego.', stock: 8, rareza: 'Común',
         evoluciones: [
             { nombre: 'Rapidash', imagen: 'https://play.pokemonshowdown.com/sprites/ani/rapidash.gif', nivel: 40 }
-        ]
+        ], quantity : 1
     },
     {
         id: 5, nombre: 'Cyndaquil', tipo: 'Fuego', region: 'Johto', precio: 115, imagen: 'https://play.pokemonshowdown.com/sprites/ani/cyndaquil.gif',
@@ -35,7 +35,7 @@ export const productos = [
         evoluciones: [
             { nombre: 'Quilava', imagen: 'https://play.pokemonshowdown.com/sprites/ani/quilava.gif', nivel: 14 },
             { nombre: 'Typhlosion', imagen: 'https://play.pokemonshowdown.com/sprites/ani/typhlosion.gif', nivel: 36 }
-        ]
+        ], quantity : 1
     },
     {
         id: 6, nombre: 'Torchic', tipo: 'Fuego', region: 'Hoenn', precio: 118, imagen: 'https://play.pokemonshowdown.com/sprites/ani/torchic.gif',
@@ -43,7 +43,7 @@ export const productos = [
         evoluciones: [
             { nombre: 'Combusken', imagen: 'https://play.pokemonshowdown.com/sprites/ani/combusken.gif', nivel: 16 },
             { nombre: 'Blaziken', imagen: 'https://play.pokemonshowdown.com/sprites/ani/blaziken.gif', nivel: 36 }
-        ]
+        ], quantity : 1
     },
     // Agua
     {
@@ -52,14 +52,14 @@ export const productos = [
         evoluciones: [
             { nombre: 'Wartortle', imagen: 'https://play.pokemonshowdown.com/sprites/ani/wartortle.gif', nivel: 16 },
             { nombre: 'Blastoise', imagen: 'https://play.pokemonshowdown.com/sprites/ani/blastoise.gif', nivel: 36 }
-        ]
+        ], quantity : 1
     },
     {
         id: 8, nombre: 'Psyduck', tipo: 'Agua', region: 'Kanto', precio: 112, imagen: 'https://play.pokemonshowdown.com/sprites/ani/psyduck.gif',
         descripcion: 'Un pato confundido con poderes psíquicos.', stock: 8, rareza: 'Común',
         evoluciones: [
             { nombre: 'Golduck', imagen: 'https://play.pokemonshowdown.com/sprites/ani/golduck.gif', nivel: 33 }
-        ]
+        ], quantity : 1
     },
     {
         id: 9, nombre: 'Totodile', tipo: 'Agua', region: 'Johto', precio: 135, imagen: 'https://play.pokemonshowdown.com/sprites/ani/totodile.gif',
@@ -67,7 +67,7 @@ export const productos = [
         evoluciones: [
             { nombre: 'Croconaw', imagen: 'https://play.pokemonshowdown.com/sprites/ani/croconaw.gif', nivel: 18 },
             { nombre: 'Feraligatr', imagen: 'https://play.pokemonshowdown.com/sprites/ani/feraligatr.gif', nivel: 30 }
-        ]
+        ], quantity : 1
     },
     {
         id: 10, nombre: 'Mudkip', tipo: 'Agua', region: 'Hoenn', precio: 128, imagen: 'https://play.pokemonshowdown.com/sprites/ani/mudkip.gif',
@@ -75,7 +75,7 @@ export const productos = [
         evoluciones: [
             { nombre: 'Marshtomp', imagen: 'https://play.pokemonshowdown.com/sprites/ani/marshtomp.gif', nivel: 16 },
             { nombre: 'Swampert', imagen: 'https://play.pokemonshowdown.com/sprites/ani/swampert.gif', nivel: 36 }
-        ]
+        ], quantity : 1
     },
     {
         id: 11, nombre: 'Piplup', tipo: 'Agua', region: 'Sinnoh', precio: 119, imagen: 'https://play.pokemonshowdown.com/sprites/ani/piplup.gif',
@@ -83,7 +83,7 @@ export const productos = [
         evoluciones: [
             { nombre: 'Prinplup', imagen: 'https://play.pokemonshowdown.com/sprites/ani/prinplup.gif', nivel: 16 },
             { nombre: 'Empoleon', imagen: 'https://play.pokemonshowdown.com/sprites/ani/empoleon.gif', nivel: 36 }
-        ]
+        ], quantity : 1
     },
     {
         id: 12, nombre: 'Froakie', tipo: 'Agua', region: 'Kalos', precio: 121, imagen: 'https://play.pokemonshowdown.com/sprites/ani/froakie.gif',
@@ -91,7 +91,7 @@ export const productos = [
         evoluciones: [
             { nombre: 'Frogadier', imagen: 'https://play.pokemonshowdown.com/sprites/ani/frogadier.gif', nivel: 16 },
             { nombre: 'Greninja', imagen: 'https://play.pokemonshowdown.com/sprites/ani/greninja.gif', nivel: 36 }
-        ]
+        ], quantity : 1
     },
     // Planta
     {
@@ -100,7 +100,7 @@ export const productos = [
         evoluciones: [
             { nombre: 'Ivysaur', imagen: 'https://play.pokemonshowdown.com/sprites/ani/ivysaur.gif', nivel: 16 },
             { nombre: 'Venusaur', imagen: 'https://play.pokemonshowdown.com/sprites/ani/venusaur.gif', nivel: 32 }
-        ]
+        ], quantity : 1
     },
     {
         id: 14, nombre: 'Oddish', tipo: 'Planta', region: 'Kanto', precio: 113, imagen: 'https://play.pokemonshowdown.com/sprites/ani/oddish.gif',
@@ -109,7 +109,7 @@ export const productos = [
             { nombre: 'Gloom', imagen: 'https://play.pokemonshowdown.com/sprites/ani/gloom.gif', nivel: 21 },
             { nombre: 'Vileplume', imagen: 'https://play.pokemonshowdown.com/sprites/ani/vileplume.gif', metodo: 'Piedra Hoja' },
             { nombre: 'Bellossom', imagen: 'https://play.pokemonshowdown.com/sprites/ani/bellossom.gif', metodo: 'Piedra Solar' }
-        ]
+        ], quantity : 1
     },
     {
         id: 15, nombre: 'Bellsprout', tipo: 'Planta', region: 'Kanto', precio: 117, imagen: 'https://play.pokemonshowdown.com/sprites/ani/bellsprout.gif',
@@ -117,7 +117,7 @@ export const productos = [
         evoluciones: [
             { nombre: 'Weepinbell', imagen: 'https://play.pokemonshowdown.com/sprites/ani/weepinbell.gif', nivel: 21 },
             { nombre: 'Victreebel', imagen: 'https://play.pokemonshowdown.com/sprites/ani/victreebel.gif', metodo: 'Piedra Hoja' }
-        ]
+        ], quantity : 1
     },
     {
         id: 16, nombre: 'Chikorita', tipo: 'Planta', region: 'Johto', precio: 126, imagen: 'https://play.pokemonshowdown.com/sprites/ani/chikorita.gif',
@@ -125,7 +125,7 @@ export const productos = [
         evoluciones: [
             { nombre: 'Bayleef', imagen: 'https://play.pokemonshowdown.com/sprites/ani/bayleef.gif', nivel: 16 },
             { nombre: 'Meganium', imagen: 'https://play.pokemonshowdown.com/sprites/ani/meganium.gif', nivel: 32 }
-        ]
+        ], quantity : 1
     },
     {
         id: 17, nombre: 'Treecko', tipo: 'Planta', region: 'Hoenn', precio: 129, imagen: 'https://play.pokemonshowdown.com/sprites/ani/treecko.gif',
@@ -133,7 +133,7 @@ export const productos = [
         evoluciones: [
             { nombre: 'Grovyle', imagen: 'https://play.pokemonshowdown.com/sprites/ani/grovyle.gif', nivel: 16 },
             { nombre: 'Sceptile', imagen: 'https://play.pokemonshowdown.com/sprites/ani/sceptile.gif', nivel: 36 }
-        ]
+        ], quantity : 1
     },
     {
         id: 18, nombre: 'Turtwig', tipo: 'Planta', region: 'Sinnoh', precio: 123, imagen: 'https://play.pokemonshowdown.com/sprites/ani/turtwig.gif',
@@ -141,7 +141,7 @@ export const productos = [
         evoluciones: [
             { nombre: 'Grotle', imagen: 'https://play.pokemonshowdown.com/sprites/ani/grotle.gif', nivel: 18 },
             { nombre: 'Torterra', imagen: 'https://play.pokemonshowdown.com/sprites/ani/torterra.gif', nivel: 32 }
-        ]
+        ], quantity : 1
     }
 ];
 
@@ -232,9 +232,9 @@ export const mockData = [
     { id: 75, customer: 'UsuarioAntiguo25', date: '2025-05-23', total: 12.86, status: 'Pending', isNewUser: false, registrationDate: '2024-01-01' },
 ]
 export const initialWishlist = [
-  { id: 1, nombre: 'Bulbasaur', precio: 100,  imagen : 'https://play.pokemonshowdown.com/sprites/ani/bulbasaur.gif' },
-  { id: 2, nombre: 'Piplup', precio: 25, imagen: 'https://play.pokemonshowdown.com/sprites/ani/piplup.gif' },
-  { id: 3, nombre: 'Growlithe', precio: 15, imagen: 'https://play.pokemonshowdown.com/sprites/ani/growlithe.gif' }
+  { id: 1, nombre: 'Bulbasaur', precio: 100,  imagen : 'https://play.pokemonshowdown.com/sprites/ani/bulbasaur.gif', quantity: 1 },
+  { id: 2, nombre: 'Piplup', precio: 25, imagen: 'https://play.pokemonshowdown.com/sprites/ani/piplup.gif' , quantity: 1  },
+  { id: 3, nombre: 'Growlithe', precio: 15, imagen: 'https://play.pokemonshowdown.com/sprites/ani/growlithe.gif' , quantity: 1  }
 ];
 
 
