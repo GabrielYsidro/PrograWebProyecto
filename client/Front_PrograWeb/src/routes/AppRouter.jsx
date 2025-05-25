@@ -16,6 +16,7 @@ import ListaUsuarios from '../pages/AdminPages/ListUsers.jsx';
 import DetalleUsuario from '../pages/AdminPages/DetailsUser.jsx';
 import ListaOrdenes from '../pages/AdminPages/ListOrders.jsx'
 import OrdenDetalle from '../pages/AdminPages/DetailsOrders.jsx';
+import { Login } from '../pages/PublicPages/Login.jsx';
 import DetalleProducto from '../components/DetalleProducto/DetalleProducto.jsx';
 
 export const AppRouter = () => {
@@ -40,6 +41,7 @@ export const AppRouter = () => {
                 <Route path = '/usuarios/:id' element = { <DetalleUsuario />} />
                 <Route path = '/ordenes/' element = { <ListaOrdenes />} />
                 <Route path = '/ordenes/:id' element = { <OrdenDetalle />} />
+                <Route path = '/login' element = { <Login />} />
 
             </Routes>
         </BrowserRouter>
