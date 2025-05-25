@@ -3,9 +3,15 @@ import styles from './Producto.module.css';
 import { useCartContext } from '../../hooks/CartContext.jsx';
 import { useState } from 'react';
 
+
 function Producto({ producto }) {
   const { addItem } = useCartContext();
   const [showMsg, setShowMsg] = useState(false);
+
+  const tipoClase = producto.tipo
+    ? styles['borde' + producto.tipo.charAt(0).toUpperCase() + producto.tipo.slice(1).toLowerCase()]
+    : '';
+
 
   const handleAdd = () => {
     addItem(producto);
@@ -16,7 +22,7 @@ function Producto({ producto }) {
   };
 
   return (
-    <div className={styles.producto}>
+    <div className={`${styles.producto} ${tipoClase}`}>
       <h2 className={styles.nombre}>{producto.nombre}</h2>
       <img
         src={producto.imagen}

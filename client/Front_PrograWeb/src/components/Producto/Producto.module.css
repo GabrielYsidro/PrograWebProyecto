@@ -7,6 +7,29 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: 2px solid #ccc;
+}
+
+.bordeFuego {
+  border-color: #FF9800;
+  background: url('../../assets/fuego_fondo.gif') center center / cover no-repeat, #ffb347;
+  position: relative;
+  overflow: hidden;
+}
+
+.bordeAgua {
+  border-color: #2196F3;
+  background: url('../../assets/agua_fondo.gif') center center / cover no-repeat, #b3d1ff;
+  position: relative;
+  overflow: hidden;
+}
+
+.bordePlanta {
+  border-color: #4CAF50;
+  background: url('../../assets/planta_fondo.gif') center center / cover no-repeat, #bff5c2;
+  position: relative;
+  overflow: hidden;
+  
 }
 
 .nombre {
