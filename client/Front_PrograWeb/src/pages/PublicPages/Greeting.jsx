@@ -3,6 +3,7 @@ import styles from  '../../styles/Greeting.module.css'
 import TopBar from '../../components/TopBar/TopBar.jsx';
 import Footer from '../../components/Footer/Footer.jsx'
 import { productosGreeting } from '../../constants/Consts.jsx';
+
 export const Greeting = () => {
 
     
