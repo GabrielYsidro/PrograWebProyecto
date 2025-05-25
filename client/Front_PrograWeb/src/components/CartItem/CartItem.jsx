@@ -2,13 +2,14 @@ import { useState } from 'react';
 import styles from '../../components/CartItem/CartItem.module.css';
 
 export const CartItem = ({ item }) => {
-  const [quantity, setQuantity] = useState(item.quantity);
-  const total = quantity * item.price;
+  const [quantity, setQuantity] = useState(1);
+  const total = quantity * item.precio;
 
   return (
     <div className={styles.cartItem}>
-      <strong>{item.name}</strong>
-      <p>Precio: S/. {item.price}</p>
+      <strong>{item.nombre}</strong>
+      <p>Precio: S/. {item.precio}</p>
+      <img src={item.imagen}></img>
       <label>
         Cantidad:
         <input

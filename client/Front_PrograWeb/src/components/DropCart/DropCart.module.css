@@ -1,12 +1,20 @@
 .cart {
   font-family: 'Pokemon Solid', sans-serif;
-  text-align: left;
-  height : 90%;
+  text-align: center;
+  height: 90%;
   color: #FFCC00;
-  font-size: 200%;
+  font-size: 125%;
   -webkit-text-stroke: 1.5px #3B4CCA;
   letter-spacing: 10px;
-  text-align :center;
+
+  /* Nuevo: para scroll vertical */
+  max-height: 500px; /* o 90vh si quieres relativo a viewport */
+  overflow-y: auto;
+
+  /* Layout de columnas opcional */
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
 .hover {

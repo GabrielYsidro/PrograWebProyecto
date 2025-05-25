@@ -3,7 +3,7 @@ import styles from '../../components/OrderSummary/OrderSummary.module.css';
 import { Link } from 'react-router-dom';
 
 export const OrderSummary = ({ items }) => {
-  const subtotal = items.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  const subtotal = items.reduce((acc, item) => acc + item.precio * item.quantity, 0);
   const deliveryFee = 15; // fijo
   const total = subtotal + deliveryFee;
 
@@ -13,7 +13,7 @@ export const OrderSummary = ({ items }) => {
       <ul className={styles.itemList}>
         {items.map((item) => (
           <li key={item.id}>
-            {item.name} x {item.quantity} - S/. {item.price * item.quantity}
+            {item.nombre} x {item.quantity} - S/. {item.precio * item.quantity}
           </li>
         ))}
       </ul>
@@ -23,7 +23,7 @@ export const OrderSummary = ({ items }) => {
         <p className={styles.total}>Total: S/. {total.toFixed(2)}</p>
       </div>
       <Link to="/greeting" className={styles.payButton}>
-                    ¡Vamo' a Pagar!
+                    Confirmar Compra
         </Link>
     </div>
   );

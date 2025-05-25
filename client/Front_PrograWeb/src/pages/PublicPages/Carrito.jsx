@@ -8,12 +8,13 @@ import TopBar from '../../components/TopBar/TopBar.jsx'
 import Footer from '../../components/Footer/Footer.jsx'
 import {initialWishlist} from '../../constants/Consts.jsx'
 import { Link } from 'react-router-dom';
-
+import { useCartContext } from '../../hooks/CartContext.jsx';
+import WishListItem from '../../components/WishListItem/WishListItem.jsx'
 
 export const Carrito = () => {
 
     const [wishlist, setWishlist] = useState(initialWishlist);
-    const [cartItems, setCartItems] = useState([]);
+    const {cartItems, setCartItems} = useCartContext();
 
     const handleDrop = (item) => {
     setCartItems(prev => {
