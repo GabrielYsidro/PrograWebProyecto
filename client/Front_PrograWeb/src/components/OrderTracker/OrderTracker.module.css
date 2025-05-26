@@ -1,0 +1,65 @@
+.tracker-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 30px 0;
+  gap: 300px;
+  flex-wrap: wrap;
+}
+
+.step-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+.circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #ddd;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  transition: background-color 0.3s ease;
+}
+
+.circle.active {
+  background-color: #4caf50;
+}
+
+.circle.cancelled {
+  background-color: #999;
+}
+
+.step-label {
+    margin-top: 8px;
+    font-size: 14px;
+    text-align: center;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.line {
+    height: 4px;
+    width: 330px;
+    background-color: #ccc;
+    position: absolute;
+    top: 18px;
+    left: calc(100% - 15px);
+    margin-left: 0;
+    z-index: 0;
+}
+
+.line.active {
+  background-color: #4caf50;
+}
+
+.line.cancelled {
+  background-color: #999;
+}
