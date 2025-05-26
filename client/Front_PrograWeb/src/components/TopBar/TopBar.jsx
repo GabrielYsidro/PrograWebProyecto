@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useNavigate} from 'react-router-dom';
 import styles from '../../styles/TopBar.module.css';
 
 const gifLinks = [
@@ -13,30 +14,57 @@ const gifLinks = [
   { to: '/user/1', label: 'Usuario', gif: 'https://media.giphy.com/media/DRfu7BT8ZK1uo/giphy.gif' } 
 ];
 
-const TopBar = ({ handleSearch, busqueda, setBusqueda }) => (
+const TopBar = ({ handleInicio }) => {
+  const [busqueda, setBusqueda] = useState('');
+  const navigate = useNavigate();
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const query = busqueda.trim().toLowerCase();
+    if (query) {
+      navigate(`/results?search=${encodeURIComponent(query)}`);
+      setBusqueda('');
+    }
+  };
+
+
+  return (
   <nav className={styles.topbar}>
     <div className={styles.linksContainer}>
-      {gifLinks.map(({ to, label, gif }) => (
-        <Link key={to} to={to} className={styles.link}>
-          <img src={gif} alt={label} className={styles.linkGif}/>
-          {label}
-        </Link>
-      ))}
+        {gifLinks.map(({ to, label, gif }) =>
+          label === 'Inicio' ? (
+            <Link
+              key={to}
+              to={to}
+              className={styles.link}
+              onClick={handleInicio} // <-- Aquí ejecuta la función
+            >
+              <img src={gif} alt={label} className={styles.linkGif} />
+              {label}
+            </Link>
+          ) : (
+            <Link key={to} to={to} className={styles.link}>
+              <img src={gif} alt={label} className={styles.linkGif} />
+              {label}
+            </Link>
+          )
+        )}
       {/* Barra de búsqueda */}
       <form onSubmit={handleSearch} className={styles.searchForm}>
-        <input
-          type="text"
-          placeholder="Buscar productos..."
-          value={busqueda}
-          onChange={e => setBusqueda(e.target.value)}
-          className={styles.searchInput}
-        />
-        <button type="submit" className={styles.searchButton}>
-          Buscar
-        </button>
-      </form>
-    </div>
-  </nav>
-);
+          <input
+            type="text"
+            placeholder="Buscar productos..."
+            value={busqueda}
+            onChange={e => setBusqueda(e.target.value)}
+            className={styles.searchInput}
+          />
+          <button type="submit" className={styles.searchButton}>
+            Buscar
+          </button>
+        </form>
+      </div>
+    </nav>
+  );
+}
 
 export default TopBar;
