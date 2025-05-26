@@ -141,8 +141,57 @@ export const productos = [
         evoluciones: [
             { nombre: 'Grotle', imagen: 'https://play.pokemonshowdown.com/sprites/ani/grotle.gif', nivel: 18 },
             { nombre: 'Torterra', imagen: 'https://play.pokemonshowdown.com/sprites/ani/torterra.gif', nivel: 32 }
-        ], quantity : 1
-    }
+        ]
+    },
+    {
+        id: 19, nombre: 'Chespin', tipo: 'Planta', region: 'Kalos', precio: 120, imagen: 'https://play.pokemonshowdown.com/sprites/ani/chespin.gif',
+        descripcion: 'Un Pokémon espinoso y juguetón.', stock: 7, rareza: 'Raro',
+        evoluciones: [
+            { nombre: 'Quilladin', imagen: 'https://play.pokemonshowdown.com/sprites/ani/quilladin.gif', nivel: 16 },
+            { nombre: 'Chesnaught', imagen: 'https://play.pokemonshowdown.com/sprites/ani/chesnaught.gif', nivel: 36 }
+        ]
+    },
+    {
+        id: 20, nombre: 'Rowlet', tipo: 'Planta', region: 'Alola', precio: 127, imagen: 'https://play.pokemonshowdown.com/sprites/ani/rowlet.gif',
+        descripcion: 'Un búho que puede volar silenciosamente.', stock: 6, rareza: 'Común',
+        evoluciones: [
+            { nombre: 'Dartrix', imagen: 'https://play.pokemonshowdown.com/sprites/ani/dartrix.gif', nivel: 17 },
+            { nombre: 'Decidueye', imagen: 'https://play.pokemonshowdown.com/sprites/ani/decidueye.gif', nivel: 34 }
+        ]
+    },
+    {
+        id: 21, nombre: 'Grookey', tipo: 'Planta', region: 'Galar', precio: 131, imagen: 'https://play.pokemonshowdown.com/sprites/ani/grookey.gif',
+        descripcion: 'Un Pokémon mono que toca un tambor.', stock: 8, rareza: 'Raro',
+        evoluciones: [
+            { nombre: 'Thwackey', imagen: 'https://play.pokemonshowdown.com/sprites/ani/thwackey.gif', nivel: 16 },
+            { nombre: 'Rillaboom', imagen: 'https://play.pokemonshowdown.com/sprites/ani/rillaboom.gif', nivel: 35 }
+        ]
+    },
+    {
+        id: 22, nombre: 'Sprigatito', tipo: 'Planta', region: 'Paldea', precio: 132, imagen: 'https://play.pokemonshowdown.com/sprites/ani/sprigatito.gif',
+        descripcion: 'Un Pokémon gato elegante y ágil.', stock: 9, rareza: 'Raro',
+        evoluciones: [
+            { nombre: 'Floragato', imagen: 'https://play.pokemonshowdown.com/sprites/ani/floragato.gif', nivel: 16 },
+            { nombre: 'Meowscarada', imagen: 'https://play.pokemonshowdown.com/sprites/ani/meowscarada.gif', nivel: 35 }
+        ]
+    },
+    {
+        id: 23, nombre: 'Fuecoco', tipo: 'Fuego', region: 'Paldea', precio: 134, imagen: 'https://play.pokemonshowdown.com/sprites/ani/fuecoco.gif',
+        descripcion: 'Un Pokémon cocodrilo que escupe fuego.', stock: 10, rareza: 'Raro',
+        evoluciones: [
+            { nombre: 'Crocalor', imagen: 'https://play.pokemonshowdown.com/sprites/ani/crocalor.gif', nivel: 16 },
+            { nombre: 'Skeledirge', imagen: 'https://play.pokemonshowdown.com/sprites/ani/skeledirge.gif', nivel: 35 }
+        ]
+    },
+    {
+        id: 24, nombre: 'Quaxly', tipo: 'Agua', region: 'Paldea', precio: 136, imagen: 'https://play.pokemonshowdown.com/sprites/ani/quaxly.gif',
+        descripcion: 'Un pato elegante con un peinado distintivo.', stock: 8, rareza: 'Raro',
+        evoluciones: [
+            { nombre: 'Quaxwell', imagen: 'https://play.pokemonshowdown.com/sprites/ani/quaxwell.gif', nivel: 16 },
+            { nombre: 'Quaquaval', imagen: 'https://play.pokemonshowdown.com/sprites/ani/quaquaval.gif', nivel: 35 }
+        ]
+    },
+    
 ];
 
 export const categorias = [
@@ -254,6 +303,7 @@ export const usuarios = [
         telefono: "123456789",
         rol: "cliente",
         activo: true,
+        fotoPerfil: "/src/assets/icon-park-solid--people.png",
         ordenes: [
             { id: 101, fecha: "2024-06-01", total: 150.00, estado: "entregada" },
             { id: 102, fecha: "2024-06-05", total: 200.00, estado: "pendiente" },
@@ -269,6 +319,7 @@ export const usuarios = [
         telefono: "987654321",
         rol: "cliente",
         activo: true,
+        fotoPerfil: "/src/assets/icon-park-solid--people.png",
         ordenes: [
             { id: 105, fecha: "2024-06-02", total: 90.00, estado: "entregada" },
             { id: 106, fecha: "2024-06-06", total: 210.00, estado: "pendiente" },
@@ -284,11 +335,12 @@ export const usuarios = [
         telefono: "555123456",
         rol: "admin",
         activo: true,
+        fotoPerfil: "/src/assets/icon-park-solid--people.png",
         ordenes: [
             { id: 109, fecha: "2024-06-03", total: 160.00, estado: "entregada" },
             { id: 110, fecha: "2024-06-07", total: 220.00, estado: "pendiente" },
             { id: 111, fecha: "2024-06-12", total: 140.00, estado: "en camino" },
-            { id: 112, fecha: "2024-06-17", total: 190.00, estado: "cancelada" }
+            { id: 112, fecha: "2024-06-17", total: 190.00, estado: "cancelada" } 
         ]
     },
     {
@@ -299,6 +351,7 @@ export const usuarios = [
         telefono: "321654987",
         rol: "cliente",
         activo: true,
+        fotoPerfil: "/src/assets/icon-park-solid--people.png",
         ordenes: [
             { id: 113, fecha: "2024-06-04", total: 170.00, estado: "entregada" },
             { id: 114, fecha: "2024-06-08", total: 230.00, estado: "pendiente" },
@@ -314,6 +367,7 @@ export const usuarios = [
         telefono: "654987321",
         rol: "cliente",
         activo: true,
+        fotoPerfil: "/src/assets/icon-park-solid--people.png",
         ordenes: [
             { id: 117, fecha: "2024-06-05", total: 155.00, estado: "entregada" },
             { id: 118, fecha: "2024-06-09", total: 205.00, estado: "pendiente" },
@@ -329,6 +383,7 @@ export const usuarios = [
         telefono: "789123456",
         rol: "cliente",
         activo: true,
+        fotoPerfil: "/src/assets/icon-park-solid--people.png",
         ordenes: [
             { id: 121, fecha: "2024-06-06", total: 165.00, estado: "entregada" },
             { id: 122, fecha: "2024-06-10", total: 215.00, estado: "pendiente" },
@@ -338,12 +393,13 @@ export const usuarios = [
     },
     {
         id: 7,
-        nombre: "Sofía Herrera",
-        email: "sofia.herrera@email.com",
+        nombre: "/Sofía Herrera",
+        email: "/sofia.herrera@email.com",
         direccion: "Calle Río 67, Ciudad",
         telefono: "321789654",
         rol: "cliente",
         activo: true,
+        fotoPerfil: "/src/assets/icon-park-solid--people.png",
         ordenes: [
             { id: 125, fecha: "2024-06-07", total: 175.00, estado: "entregada" },
             { id: 126, fecha: "2024-06-11", total: 225.00, estado: "pendiente" },
@@ -359,6 +415,7 @@ export const usuarios = [
         telefono: "456321789",
         rol: "cliente",
         activo: true,
+        fotoPerfil: "/src/assets/icon-park-solid--people.png",
         ordenes: [
             { id: 129, fecha: "2024-06-08", total: 185.00, estado: "entregada" },
             { id: 130, fecha: "2024-06-12", total: 235.00, estado: "pendiente" },
@@ -374,6 +431,7 @@ export const usuarios = [
         telefono: "987321654",
         rol: "cliente",
         activo: true,
+        fotoPerfil: "/src/assets/icon-park-solid--people.png",
         ordenes: [
             { id: 133, fecha: "2024-06-09", total: 195.00, estado: "entregada" },
             { id: 134, fecha: "2024-06-13", total: 245.00, estado: "pendiente" },
@@ -389,6 +447,7 @@ export const usuarios = [
         telefono: "654123987",
         rol: "cliente",
         activo: true,
+        fotoPerfil: "/src/assets/icon-park-solid--people.png",
         ordenes: [
             { id: 137, fecha: "2024-06-10", total: 205.00, estado: "entregada" },
             { id: 138, fecha: "2024-06-14", total: 255.00, estado: "pendiente" },
@@ -404,6 +463,7 @@ export const usuarios = [
         telefono: "321456987",
         rol: "cliente",
         activo: true,
+        fotoPerfil: "/src/assets/icon-park-solid--people.png",
         ordenes: [
             { id: 141, fecha: "2024-06-11", total: 215.00, estado: "entregada" },
             { id: 142, fecha: "2024-06-15", total: 265.00, estado: "pendiente" },
@@ -419,6 +479,7 @@ export const usuarios = [
         telefono: "789654123",
         rol: "cliente",
         activo: true,
+        fotoPerfil: "/src/assets/icon-park-solid--people.png",
         ordenes: [
             { id: 145, fecha: "2024-06-12", total: 225.00, estado: "entregada" },
             { id: 146, fecha: "2024-06-16", total: 275.00, estado: "pendiente" },
@@ -434,6 +495,7 @@ export const usuarios = [
         telefono: "456987321",
         rol: "cliente",
         activo: true,
+        fotoPerfil: "/src/assets/icon-park-solid--people.png",
         ordenes: [
             { id: 149, fecha: "2024-06-13", total: 235.00, estado: "entregada" },
             { id: 150, fecha: "2024-06-17", total: 285.00, estado: "pendiente" },
@@ -449,6 +511,7 @@ export const usuarios = [
         telefono: "987654123",
         rol: "cliente",
         activo: true,
+        fotoPerfil: "/src/assets/icon-park-solid--people.png",
         ordenes: [
             { id: 153, fecha: "2024-06-14", total: 245.00, estado: "entregada" },
             { id: 154, fecha: "2024-06-18", total: 295.00, estado: "pendiente" },
@@ -464,6 +527,7 @@ export const usuarios = [
         telefono: "654789321",
         rol: "cliente",
         activo: true,
+        fotoPerfil: "/src/assets/icon-park-solid--people.png",
         ordenes: [
             { id: 157, fecha: "2024-06-15", total: 255.00, estado: "entregada" },
             { id: 158, fecha: "2024-06-19", total: 305.00, estado: "pendiente" },
@@ -479,6 +543,7 @@ export const usuarios = [
         telefono: "321987654",
         rol: "cliente",
         activo: true,
+        fotoPerfil: "/src/assets/icon-park-solid--people.png",
         ordenes: [
             { id: 161, fecha: "2024-06-16", total: 265.00, estado: "entregada" },
             { id: 162, fecha: "2024-06-20", total: 315.00, estado: "pendiente" },
@@ -494,6 +559,7 @@ export const usuarios = [
         telefono: "789321654",
         rol: "cliente",
         activo: true,
+        fotoPerfil: "/src/assets/icon-park-solid--people.png",
         ordenes: [
             { id: 165, fecha: "2024-06-17", total: 275.00, estado: "entregada" },
             { id: 166, fecha: "2024-06-21", total: 325.00, estado: "pendiente" },
@@ -509,6 +575,7 @@ export const usuarios = [
         telefono: "456123789",
         rol: "cliente",
         activo: true,
+        fotoPerfil: "/src/assets/icon-park-solid--people.png",
         ordenes: [
             { id: 169, fecha: "2024-06-18", total: 285.00, estado: "entregada" },
             { id: 170, fecha: "2024-06-22", total: 335.00, estado: "pendiente" },
@@ -524,6 +591,7 @@ export const usuarios = [
         telefono: "987456321",
         rol: "cliente",
         activo: true,
+        fotoPerfil: "/src/assets/icon-park-solid--people.png",
         ordenes: [
             { id: 173, fecha: "2024-06-19", total: 295.00, estado: "entregada" },
             { id: 174, fecha: "2024-06-23", total: 345.00, estado: "pendiente" },
@@ -539,6 +607,7 @@ export const usuarios = [
         telefono: "654321987",
         rol: "cliente",
         activo: true,
+        fotoPerfil: "/src/assets/icon-park-solid--people.png",
         ordenes: [
             { id: 177, fecha: "2024-06-20", total: 305.00, estado: "entregada" },
             { id: 178, fecha: "2024-06-24", total: 355.00, estado: "pendiente" },

@@ -1,0 +1,43 @@
+.ciudadesSection {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.titulo{
+  font-family: 'Pokemon Solid', sans-serif;
+  text-align: center;
+  height : 10%;
+  color: #FFCC00;
+  font-size: 400%;
+  -webkit-text-stroke: 3px #3B4CCA;
+  letter-spacing: 10px;
+}
+
+.ciudadesFila {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+}
+
+.ciudadBloque {
+  width: 600px;
+  height: 600px;
+  background: rgba(220,220,220,0.7);
+  border-radius: 16px;
+  box-shadow: 0 2px 12px #0001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  color: #888;
+  font-weight: 600;
+}
+
+.ciudadImg {
+  width: 90%;
+  height: 90%;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 1px 8px #0002;
+  background: #fff;
+}
