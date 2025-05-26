@@ -22,3 +22,5 @@ export function OrdenProvider({ children }) {
     </OrdenContext.Provider>
   );
 }
+
+export default OrdenProvider;
