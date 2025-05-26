@@ -10,11 +10,6 @@ import styles from '../../styles/AddProduct.module.css';
 export const AddProduct = () => {
     const [busqueda, setBusqueda] = useState('');
 
-    const handleSearch = (e) => {
-        e.preventDefault();
-        alert(`Buscando: ${busqueda}`);
-    };
-
     const handleAgregarProducto = (data) => {
         console.log('Datos a agregar:', data);
         const lastId = productos.length > 0 ? productos[productos.length - 1].id : 0;
@@ -23,12 +18,12 @@ export const AddProduct = () => {
         alert('Producto agregado con éxito!');
         document.getElementById('FormProducto').reset();
     };
-
+    
     return (
     <>
         <div className={styles['home-background']}></div>
         <div className={styles['home-content']}>
-            <TopBarAdmin handleSearch={handleSearch} busqueda={busqueda} setBusqueda={setBusqueda} />
+            <TopBarAdmin/>
             {/* Main Content */}
             <main className={styles['main-content']}>
                 <h1>Agregar Producto</h1>
