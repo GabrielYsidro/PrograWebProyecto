@@ -14,7 +14,7 @@ const gifLinks = [
   { to: '/user/1', label: 'Usuario', gif: 'https://media.giphy.com/media/DRfu7BT8ZK1uo/giphy.gif' } 
 ];
 
-const TopBar = ({ handleInicio }) => {
+const TopBar = ({ handleInicio, showSearch}) => {
   const [busqueda, setBusqueda] = useState('');
   const navigate = useNavigate();
 
@@ -50,6 +50,7 @@ const TopBar = ({ handleInicio }) => {
           )
         )}
       {/* Barra de búsqueda */}
+      {showSearch && (
       <form onSubmit={handleSearch} className={styles.searchForm}>
           <input
             type="text"
@@ -62,6 +63,7 @@ const TopBar = ({ handleInicio }) => {
             Buscar
           </button>
         </form>
+        )}
       </div>
     </nav>
   );
