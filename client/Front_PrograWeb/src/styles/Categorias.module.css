@@ -1,11 +1,18 @@
-.titulo {
-  font-size: 2rem;
-  color: #000;
-  text-align: left;
-  margin-left: 20px;
-  margin-top: 20px;
+.tituloFuego {
+  background: url('../assets/fuego_titulo.gif') center center / 350px 120px no-repeat;
+  min-width: 350px;   /* Asegura que el área muestre el gif completo */
+  min-height: 120px;
 }
-
+.tituloAgua {
+  background: url('../assets/agua_titulo.gif') center center / 350px 120px no-repeat;
+  min-width: 350px;   /* Asegura que el área muestre el gif completo */
+  min-height: 120px;
+}
+.tituloPlanta {
+  background: url('../assets/planta_titulo.png') center center / 350px 120px no-repeat;
+  min-width: 350px;   /* Asegura que el área muestre el gif completo */
+  min-height: 120px;
+}
 .background {
   min-height: 100vh;
   width: 100vw;
@@ -27,30 +34,76 @@
   padding-bottom: 0;
 }
 
-.listaCategorias {
-  list-style: none;
-  padding: 0 20px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+.fondoFuego {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  background: linear-gradient(90deg, #ff9800 0%, #ffb347 100%);
+  padding: 2.5rem 0 2rem 0;
+  box-shadow: 0 4px 24px #ff980044;
+  overflow: hidden;
+  z-index: 1;
 }
 
-.listaCategoriasMargin {
-  list-style: none;
-  padding: 0 20px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-left: 60px;
+.fondoFuego::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url('../assets/borde_llamas.png') center center / cover no-repeat;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.23; /* Ajusta la opacidad */
 }
 
-.categoria {
-  padding: 10px 20px;
-  background-color: white;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.2s;
+.fondoAgua {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  background: linear-gradient(90deg, #2196f3 0%, #b3d1ff 100%);
+  padding: 2.5rem 0 2rem 0;
+  box-shadow: 0 4px 24px #2196f344;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.fondoAgua::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url('../assets/borde_agua.png') center center / cover no-repeat;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.23; /* Ajusta la opacidad */
+}
+
+.fondoPlanta {
+  position: relative;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+  background: linear-gradient(270deg, #4caf50, #bff5c2, #4caf50);
+  background-size: 400% 400%;
+  animation: plantaMove 8s ease-in-out infinite;
+  padding: 2.5rem 0 2rem 0;
+  box-shadow: 0 4px 24px #4caf5044;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.fondoPlanta::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: url('../assets/borde_planta.png') center center / cover no-repeat;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.20; /* Ajusta la opacidad si lo deseas */
+}
+
+.categoriaFila {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 2.5rem;
 }
 
 .categoria:hover {

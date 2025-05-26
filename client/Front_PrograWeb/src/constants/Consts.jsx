@@ -142,7 +142,56 @@ export const productos = [
             { nombre: 'Grotle', imagen: 'https://play.pokemonshowdown.com/sprites/ani/grotle.gif', nivel: 18 },
             { nombre: 'Torterra', imagen: 'https://play.pokemonshowdown.com/sprites/ani/torterra.gif', nivel: 32 }
         ]
-    }
+    },
+    {
+        id: 19, nombre: 'Chespin', tipo: 'Planta', region: 'Kalos', precio: 120, imagen: 'https://play.pokemonshowdown.com/sprites/ani/chespin.gif',
+        descripcion: 'Un Pokémon espinoso y juguetón.', stock: 7, rareza: 'Raro',
+        evoluciones: [
+            { nombre: 'Quilladin', imagen: 'https://play.pokemonshowdown.com/sprites/ani/quilladin.gif', nivel: 16 },
+            { nombre: 'Chesnaught', imagen: 'https://play.pokemonshowdown.com/sprites/ani/chesnaught.gif', nivel: 36 }
+        ]
+    },
+    {
+        id: 20, nombre: 'Rowlet', tipo: 'Planta', region: 'Alola', precio: 127, imagen: 'https://play.pokemonshowdown.com/sprites/ani/rowlet.gif',
+        descripcion: 'Un búho que puede volar silenciosamente.', stock: 6, rareza: 'Común',
+        evoluciones: [
+            { nombre: 'Dartrix', imagen: 'https://play.pokemonshowdown.com/sprites/ani/dartrix.gif', nivel: 17 },
+            { nombre: 'Decidueye', imagen: 'https://play.pokemonshowdown.com/sprites/ani/decidueye.gif', nivel: 34 }
+        ]
+    },
+    {
+        id: 21, nombre: 'Grookey', tipo: 'Planta', region: 'Galar', precio: 131, imagen: 'https://play.pokemonshowdown.com/sprites/ani/grookey.gif',
+        descripcion: 'Un Pokémon mono que toca un tambor.', stock: 8, rareza: 'Raro',
+        evoluciones: [
+            { nombre: 'Thwackey', imagen: 'https://play.pokemonshowdown.com/sprites/ani/thwackey.gif', nivel: 16 },
+            { nombre: 'Rillaboom', imagen: 'https://play.pokemonshowdown.com/sprites/ani/rillaboom.gif', nivel: 35 }
+        ]
+    },
+    {
+        id: 22, nombre: 'Sprigatito', tipo: 'Planta', region: 'Paldea', precio: 132, imagen: 'https://play.pokemonshowdown.com/sprites/ani/sprigatito.gif',
+        descripcion: 'Un Pokémon gato elegante y ágil.', stock: 9, rareza: 'Raro',
+        evoluciones: [
+            { nombre: 'Floragato', imagen: 'https://play.pokemonshowdown.com/sprites/ani/floragato.gif', nivel: 16 },
+            { nombre: 'Meowscarada', imagen: 'https://play.pokemonshowdown.com/sprites/ani/meowscarada.gif', nivel: 35 }
+        ]
+    },
+    {
+        id: 23, nombre: 'Fuecoco', tipo: 'Fuego', region: 'Paldea', precio: 134, imagen: 'https://play.pokemonshowdown.com/sprites/ani/fuecoco.gif',
+        descripcion: 'Un Pokémon cocodrilo que escupe fuego.', stock: 10, rareza: 'Raro',
+        evoluciones: [
+            { nombre: 'Crocalor', imagen: 'https://play.pokemonshowdown.com/sprites/ani/crocalor.gif', nivel: 16 },
+            { nombre: 'Skeledirge', imagen: 'https://play.pokemonshowdown.com/sprites/ani/skeledirge.gif', nivel: 35 }
+        ]
+    },
+    {
+        id: 24, nombre: 'Quaxly', tipo: 'Agua', region: 'Paldea', precio: 136, imagen: 'https://play.pokemonshowdown.com/sprites/ani/quaxly.gif',
+        descripcion: 'Un pato elegante con un peinado distintivo.', stock: 8, rareza: 'Raro',
+        evoluciones: [
+            { nombre: 'Quaxwell', imagen: 'https://play.pokemonshowdown.com/sprites/ani/quaxwell.gif', nivel: 16 },
+            { nombre: 'Quaquaval', imagen: 'https://play.pokemonshowdown.com/sprites/ani/quaquaval.gif', nivel: 35 }
+        ]
+    },
+    
 ];
 
 export const categorias = [
