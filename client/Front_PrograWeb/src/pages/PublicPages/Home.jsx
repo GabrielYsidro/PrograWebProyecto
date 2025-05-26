@@ -26,7 +26,7 @@ export const Home = () => {
         <>
             <div className={styles['home-background']}></div>
             <div className={styles['home-content']}>
-                <TopBar handleInicio={handleInicio}/>
+                <TopBar handleInicio={handleInicio} showSearch={true}/>
                 <Banner productos={productos} />
                 <NewPokemons />
                 <main style={{ flex: 1, padding: '2rem' }}>

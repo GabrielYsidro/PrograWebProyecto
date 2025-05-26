@@ -11,6 +11,8 @@ export const Results = () => {
     const params = new URLSearchParams(location.search);
     const search = params.get('search') || '';
 
+    const handleInicio = () => {};
+    
     // orden: '', 'precio-asc', 'precio-desc', 'nombre-asc', 'nombre-desc'
     const [orden, setOrden] = useState('');
 
@@ -34,7 +36,7 @@ export const Results = () => {
     return (
         <>
             <div className={styles.background}></div>
-            <TopBar />
+            <TopBar handleInicio={handleInicio} showSearch={true}/>
             <div className={styles.content}>
                 <h2 className={styles.title}>Resultados para: "{search}"</h2>
                 <div style={{ marginBottom: '1rem', display: 'flex', gap: '1rem' }}>
