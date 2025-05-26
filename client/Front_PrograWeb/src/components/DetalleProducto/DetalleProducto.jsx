@@ -2,10 +2,22 @@ import { useParams, Link } from 'react-router-dom';
 import styles from './DetalleProducto.module.css';
 import { productos } from '../../constants/Consts.jsx';
 import ScrollToTop from '../ScrollTop/ScrollTop.jsx';
+import { useCartContext } from '../../hooks/CartContext.jsx';
+import { useState } from 'react';
 
 function DetalleProducto() {
   const { id } = useParams();
   const producto = productos.find(p => String(p.id) === id);
+  const { addItem } = useCartContext();
+  const [showMsg, setShowMsg] = useState(false);
+
+  const handleAdd = () => {
+    addItem(producto);
+    setShowMsg(true);
+    setTimeout(() => {
+      setShowMsg(false);
+    }, 1000);
+  };
 
   return (
     <>
@@ -55,6 +67,18 @@ function DetalleProducto() {
                   )}
                 </div>
               )}
+              <button
+                className={`${styles.botonDetalle} ${showMsg ? styles.botonAgregado : ''}`}
+                type="button"
+                onClick={handleAdd}
+                disabled={showMsg}
+              >
+                {showMsg ? (
+                  <span className={styles.checkAnimado}>✔ Agregado</span>
+                ) : (
+                  'Agregar al carrito'
+                )}
+              </button>
               <Link to="/" className={styles.volverBtn}>Volver al inicio</Link>
             </div>
           )}

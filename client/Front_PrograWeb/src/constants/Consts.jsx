@@ -232,9 +232,9 @@ export const mockData = [
     { id: 75, customer: 'UsuarioAntiguo25', date: '2025-05-23', total: 12.86, status: 'Pending', isNewUser: false, registrationDate: '2024-01-01' },
 ]
 export const initialWishlist = [
-  { id: 1, name: 'Bulbasaur', price: 100,  image : 'https://play.pokemonshowdown.com/sprites/ani/bulbasaur.gif' },
-  { id: 2, name: 'Piplup', price: 25, image: 'https://play.pokemonshowdown.com/sprites/ani/piplup.gif' },
-  { id: 3, name: 'Growlithe', price: 15, image: 'https://play.pokemonshowdown.com/sprites/ani/growlithe.gif' }
+  { id: 1, nombre: 'Bulbasaur', precio: 100,  imagen : 'https://play.pokemonshowdown.com/sprites/ani/bulbasaur.gif' },
+  { id: 2, nombre: 'Piplup', precio: 25, imagen: 'https://play.pokemonshowdown.com/sprites/ani/piplup.gif' },
+  { id: 3, nombre: 'Growlithe', precio: 15, imagen: 'https://play.pokemonshowdown.com/sprites/ani/growlithe.gif' }
 ];
 
 

@@ -1,11 +1,9 @@
 .cartItem {
-  background: #704545;
+  background: #ecc78e;
   padding: 10px;
   margin-bottom: 10px;
   border-radius: 6px;
-}
-
-.cartItem input {
-  width: 50px;
-  margin-left: 5px;
+  display:flex;
+  width: 100%;
+  box-sizing: border-box;
 }

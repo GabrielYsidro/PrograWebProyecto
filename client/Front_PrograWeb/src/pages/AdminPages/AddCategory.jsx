@@ -1,7 +1,9 @@
 import styles from '../../styles/AddCategory.module.css';
-import { categorias } from '../../constants/Consts.jsx';
+import { useCategoriaContext } from '../../hooks/CategoriaContext.jsx';
 
 function AgregarCategoria({ onClose, onAddCategoria }) {
+    const { categoriasItems, addItem } = useCategoriaContext();
+
     const handleSubmit = (event) => {
         event.preventDefault();
         const formData = new FormData(event.target);
@@ -9,11 +11,11 @@ function AgregarCategoria({ onClose, onAddCategoria }) {
         const color = formData.get('color');
         const emoji = formData.get('emoji');
 
-        const nuevaCategoria = { id: categorias.length + 1, nombre, color, emoji };
-        categorias.push(nuevaCategoria);
-        if (onAddCategoria) onAddCategoria(nuevaCategoria); // Notifica al padre
+        const nuevaCategoria = { id: categoriasItems.length + 1, nombre, color, emoji };
+        addItem(nuevaCategoria); // Usa el contexto para agregar
+        if (onAddCategoria) onAddCategoria(nuevaCategoria); // Notifica al padre si es necesario
         alert(`Categoría "${nombre}" agregada con éxito.`);
-        event.target.reset(); //Funciona como un clear
+        event.target.reset();
         if (onClose) onClose();
     };
 
