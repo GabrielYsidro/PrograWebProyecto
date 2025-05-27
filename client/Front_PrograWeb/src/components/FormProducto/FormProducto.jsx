@@ -1,12 +1,11 @@
-import { use } from 'react';
 import { Link } from 'react-router-dom';
-import { categorias as categoriasConst } from '../../constants/Consts.jsx';
 import { useState, useEffect } from 'react';
+import { useCategoriaContext } from '../../hooks/CategoriaContext.jsx';
 import styles from './FormProducto.module.css';
 
 
 const FormProducto = ({initialValues,onSubmit,onCancel,submitButtonText,cancelButtonText, isEditMode =false}) => {
-    const [categorias, setCategorias] = useState([...categoriasConst]);
+    const { categoriasItems } = useCategoriaContext();
 
     const [formData, setFormData] = useState(initialValues || {
         nombre: '',
@@ -52,7 +51,7 @@ const FormProducto = ({initialValues,onSubmit,onCancel,submitButtonText,cancelBu
                     Categoria:
                     <select name="categoria" id="categoria" value={formData['categoria']} onChange={handleChange} required readOnly={isEditMode && !onCancel}>
                         <option value="">Seleccione una categoría</option>
-                        {categorias.map((categoria) => (
+                        {categoriasItems.map((categoria) => (
                             <option key={categoria.id} value={categoria.nombre}>{categoria.nombre}</option>
                         ))}
                     </select>
@@ -91,19 +90,14 @@ const FormProducto = ({initialValues,onSubmit,onCancel,submitButtonText,cancelBu
             <div>
                 <label>
                     Rareza:
-                    <select name="rareza" id="rareza" value={formData['rareza']} onChange={handleChange} required readOnly={isEditMode && !onCancel}>
-                        <option value="">Seleccione una rareza</option>
-                        <option value="común">Común</option>
-                        <option value="raro">Raro</option>
-                        <option value="épico">Épico</option>
-                        <option value="legendario">Legendario</option>
-                    </select>
+                    <input name="rareza" id="rareza" value={formData['rareza']} onChange={handleChange} required readOnly={isEditMode && !onCancel}>
+                    </input>
                 </label>
             </div>
             <div>
                 <label>
                     Evolución:
-                    <input type="text" id='imagen' name="imagen" value={formData['imagen']} onChange={handleChange} required readOnly={isEditMode && !onCancel}/>
+                    <input type="text" id='imagen' name="imagen" value={formData['evolucion']} onChange={handleChange} required readOnly={isEditMode && !onCancel}/>
                 </label>
             </div>
             <div>
