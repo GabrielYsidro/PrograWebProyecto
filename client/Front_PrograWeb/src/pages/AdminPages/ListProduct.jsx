@@ -27,12 +27,11 @@ export const ListProduct = () => {
             String(product.id).includes(searchTerm)
         );
         setFilteredProducts(filtrados);
-        setCurrentPage(1); // Reinicia a la primera página al buscar
+        setCurrentPage(1);
     };
 
     React.useEffect(() => {
         handleBusqueda(busqueda, productos);
-        // eslint-disable-next-line
     }, [productos]);
 
     const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);

@@ -10,8 +10,7 @@ import DetalleProducto from '../../components/DetalleProducto/DetalleProducto.js
 export const DetailProduct = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-
-    const [busqueda, setBusqueda] = useState('');
+    
     const [isLoading, setIsLoading] = useState(true);
     const [isEditing, setIsEditing] = useState(false);
     

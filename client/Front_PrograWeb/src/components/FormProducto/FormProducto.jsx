@@ -2,18 +2,11 @@ import { use } from 'react';
 import { Link } from 'react-router-dom';
 import { categorias as categoriasConst } from '../../constants/Consts.jsx';
 import { useState, useEffect } from 'react';
-import { productos } from '../../constants/Consts.jsx';
 import styles from './FormProducto.module.css';
 
 
 const FormProducto = ({initialValues,onSubmit,onCancel,submitButtonText,cancelButtonText, isEditMode =false}) => {
-    const [showModal, setShowModal] = useState(false);
     const [categorias, setCategorias] = useState([...categoriasConst]);
-
-    // Recibe la nueva categoría desde el modal y actualiza el estado
-    const handleAddCategoria = (nuevaCategoria) => {
-        setCategorias(prev => [...prev, nuevaCategoria]);
-    };
 
     const [formData, setFormData] = useState(initialValues || {
         nombre: '',
@@ -24,7 +17,7 @@ const FormProducto = ({initialValues,onSubmit,onCancel,submitButtonText,cancelBu
         descripcion: '',
         stock: 0,
         rareza: '',
-        evolucion: {},
+        evolucion: '',
     });
 
     useEffect(() => {
@@ -110,7 +103,7 @@ const FormProducto = ({initialValues,onSubmit,onCancel,submitButtonText,cancelBu
             <div>
                 <label>
                     Evolución:
-                    <input type="text" id='evolucion' name="evolucion" value={formData['evolucion']} onChange={handleChange} readOnly={isEditMode && !onCancel}/>
+                    <input type="text" id='imagen' name="imagen" value={formData['imagen']} onChange={handleChange} required readOnly={isEditMode && !onCancel}/>
                 </label>
             </div>
             <div>
