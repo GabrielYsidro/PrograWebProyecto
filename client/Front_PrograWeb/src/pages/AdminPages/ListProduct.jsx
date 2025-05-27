@@ -1,138 +1,82 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { productos } from '../../constants/Consts.jsx';
 import TopBarAdmin from '../../components/TopBarAdmin/TopBarAdmin.jsx';
 import Footer from '../../components/Footer/Footer.jsx'
 import { useNavigate } from 'react-router-dom';
-import { useSearch } from '../../hooks/useSearch.jsx';
-import { usePagination } from '../../hooks/usePagination.jsx';
 import React from 'react';
 import styles from '../../styles/ListProduct.module.css';
-
+import { useProductos } from '../../hooks/ProductosContext.jsx';
+import TablaProductos from '../../components/TableAdmin/TableAdmin.jsx';
+import Pagination from '../../components/Pagination/Pagination.jsx';
+import SearchProducto from '../../components/SearchProduct/SearchProduct.jsx';
 
 export const ListProduct = () => {
-    const [busqueda, setBusqueda] = useState('');
     const ITEMS_PER_PAGE = 5;
     const [currentPage, setCurrentPage] = useState(1);
-    const [allProducts, setAllProducts] = useState(productos);
-
+    const { productos, setProductos } = useProductos();
     const navigate = useNavigate();
 
-    const filterProducts = (product) => {
-          const searchTerm = busqueda.toLowerCase();
-          return (
-                product.nombre.toLowerCase().includes(searchTerm) ||
-                String(product.id).includes(searchTerm)
-          );
-     };
+    const [busqueda, setBusqueda] = useState('');
+    const [filteredProducts, setFilteredProducts] = useState(productos);
+    
+    const handleBusqueda = (valorBusqueda, productosContext) => {
+        setBusqueda(valorBusqueda);
+        const searchTerm = valorBusqueda.toLowerCase();
+        const filtrados = productosContext.filter(product =>
+            product.nombre.toLowerCase().includes(searchTerm) ||
+            String(product.id).includes(searchTerm)
+        );
+        setFilteredProducts(filtrados);
+        setCurrentPage(1); // Reinicia a la primera página al buscar
+    };
 
-    const filteredProducts = allProducts.filter(filterProducts);
+    React.useEffect(() => {
+        handleBusqueda(busqueda, productos);
+        // eslint-disable-next-line
+    }, [productos]);
+
     const totalPages = Math.ceil(filteredProducts.length / ITEMS_PER_PAGE);
     const startIdx = (currentPage - 1) * ITEMS_PER_PAGE;
     const paginatedProducts = filteredProducts.slice(startIdx, startIdx + ITEMS_PER_PAGE);
-
-    const handleSearch = (e) => {
-        e.preventDefault();
-        alert(`Buscando: ${busqueda}`);
-    };
-
+    
     const handlePageChange = (page) => {
         setCurrentPage(page);
     };
 
     const handleDetail = (id) => {
-    navigate(`/detailproduct/${id}`);
+        navigate(`/detailproduct/${id}`);
     };
 
     const handleToggleActivo = (id) => {
-        setAllProducts(prev =>
-            prev.map(p =>
-                p.id === id ? { ...p, activo: !p.activo } : p
-            )
-        );
+        if (setProductos) {
+            setProductos(prev =>
+                prev.map(p =>
+                    p.id === id ? { ...p, activo: !p.activo } : p
+                )
+            );
+        }
     };
 
     return (
         <>
             <div className={styles['home-background']}></div>
-            <div className={styles['home-content']} style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
-                <TopBarAdmin handleSearch={() => { }} busqueda={busqueda} setBusqueda={setBusqueda} />
+            <div className={styles['home-content']} >
+                <TopBarAdmin />
                 <main className={styles['main-content']}>
-                    <form onSubmit={(e) => e.preventDefault()} style={{ marginBottom: '1rem' }}>
-                        <input
-                            type="text"
-                            placeholder="Filtrar por nombre o ID"
-                            value={busqueda}
-                            onChange={(e) => setBusqueda(e.target.value)}
-                            style={{ padding: '0.5rem', marginRight: '0.5rem' }}
-                        />
-                    </form>
+                    <SearchProducto onBusqueda={handleBusqueda} />
                     <h1>Lista de productos</h1>
                     <div>
-                        <table className={styles['tableProduct']}>
-                            <thead>
-                                <tr>
-                                    <th className={styles['tituloTabla']}>ID</th>
-                                    <th className={styles['tituloTabla']}>Nombre</th>
-                                    <th className={styles['tituloTabla']}>Tipo</th>
-                                    <th className={styles['tituloTabla']}>Región</th>
-                                    <th className={styles['tituloTabla']}>Precio</th>
-                                    <th className={styles['tituloTabla']}>Imagen</th>
-                                    <th className={styles['tituloTabla']}>Acciones</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {paginatedProducts.length === 0 ? (
-                                    <tr>
-                                        <td colSpan="5" style={{ textAlign: 'center', padding: '1rem' }}>No hay productos</td>
-                                    </tr>
-                                ) : (
-                                    paginatedProducts.map(product => (
-                                        <tr key={product.id}>
-                                            <td className={styles['ValorTabla']}>{product.id}</td>
-                                            <td className={styles['ValorTabla']}>{product.nombre}</td>
-                                            <td className={styles['ValorTabla']}>{product.tipo}</td>
-                                            <td className={styles['ValorTabla']}>{product.region}</td>
-                                            <td className={styles['ValorTabla']}>${product.precio}</td>
-                                            <td className={styles['ValorTabla']}><img src={product.imagen} alt={product.nombre}/></td>
-                                            <td className={styles['ValorTabla']}>
-                                                <button onClick={() => handleDetail(product.id)}>
-                                                    Ver Detalle
-                                                </button>
-                                                <button onClick={() => handleToggleActivo(product.id)}>
-                                                    {product.activo ? 'Activar' : 'Desactivar'}
-                                                </button>
-                                            </td>
-                                        </tr>
-                                    ))
-                                )}
-                            </tbody>
-                        </table>
-                        <div className={styles['pagination']}>
-                            <button
-                                onClick={() => handlePageChange(currentPage - 1)}
-                                disabled={currentPage === 1}
-                            >
-                                Anterior
-                            </button>
-                            {[...Array(totalPages)].map((_, idx) => (
-                                <button
-                                    key={idx + 1}
-                                    onClick={() => handlePageChange(idx + 1)}
-                                    style={{
-                                        fontWeight: currentPage === idx + 1 ? 'bold' : 'normal'
-                                    }}
-                                >
-                                    {idx + 1}
-                                </button>
-                            ))}
-                            <button
-                                onClick={() => handlePageChange(currentPage + 1)}
-                                disabled={currentPage === totalPages}
-                            >
-                                Siguiente
-                            </button>
-                        </div>
+                        <TablaProductos 
+                            productos={paginatedProducts}
+                            onDetalle={handleDetail}
+                            onToggleActivo={handleToggleActivo}
+                            styles={styles}
+                        />
+                        <Pagination
+                            currentPage={currentPage}
+                            totalPages={totalPages}
+                            onPageChange={handlePageChange}
+                        />
                     </div>
                 </main>
                 <Footer />
