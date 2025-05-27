@@ -88,3 +88,20 @@ button:hover {
   color: #FFCC00;
   box-shadow: 0 4px 16px #3B4CCA33;
 }
+
+.home-background {
+  background:url('../assets/fondoPoke.jpg') center center / cover no-repeat;
+  filter: brightness(1.3) blur(3px);;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.home-content {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}

@@ -1,0 +1,43 @@
+.background {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image: url('../assets/fondoPoke.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.7; /* Opcional: para dar un efecto suave */
+}
+
+.content {
+  padding: 2rem;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  font-family: 'Pokemon Solid', sans-serif;
+  text-align: center;
+  height : 10%;
+  color: #FFCC00;
+  font-size: 400%;
+  -webkit-text-stroke: 3px #3B4CCA;
+  letter-spacing: 10px;
+}
+
+.noResults {
+  color: #888;
+  font-style: italic;
+  margin-top: 2rem;
+}
+
+.productosGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  width: 100%;
+  margin-top: 1rem;
+}

@@ -1,4 +1,5 @@
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useNavigate} from 'react-router-dom';
 import styles from '../../styles/TopBar.module.css';
 
 const gifLinks = [
@@ -13,34 +14,59 @@ const gifLinks = [
   { to: '/user/1', label: 'Usuario', gif: 'https://media.giphy.com/media/DRfu7BT8ZK1uo/giphy.gif' } 
 ];
 
-const TopBar = ({ handleSearch, busqueda, setBusqueda }) => (
-  <nav style={{ background: '#222', padding: '1rem', margin:'0.5%', borderRadius:'10px' }}>
-    <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap', alignItems: 'center' }}>
-      <Link to="/" style={{ color: '#fff', textDecoration: 'none' }}>Inicio</Link>
-      <Link to="/categorias" style={{ color: '#fff', textDecoration: 'none' }}>Categorias</Link>
-      <Link to="/results" style={{ color: '#fff', textDecoration: 'none' }}>Resultados</Link>
-      <Link to="/product/1" style={{ color: '#fff', textDecoration: 'none' }}>Producto</Link>
-      <Link to="/carrito" style={{ color: '#fff', textDecoration: 'none' }}>Carrito</Link>
-      <Link to="/checkout" style={{ color: '#fff', textDecoration: 'none' }}>Checkout</Link>
-      <Link to="/greeting" style={{ color: '#fff', textDecoration: 'none' }}>Greeting</Link>
-      <Link to="/login" style={{ color: '#fff', textDecoration: 'none' }}>Login</Link>
-      <Link to="/register" style={{ color: '#fff', textDecoration: 'none' }}>Registro</Link>
-      <Link to="/user/1" style={{ color: '#fff', textDecoration: 'none' }}>Usuario</Link>
+const TopBar = ({ handleInicio, showSearch}) => {
+  const [busqueda, setBusqueda] = useState('');
+  const navigate = useNavigate();
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const query = busqueda.trim().toLowerCase();
+    if (query) {
+      navigate(`/results?search=${encodeURIComponent(query)}`);
+      setBusqueda('');
+    }
+  };
+
+
+  return (
+  <nav className={styles.topbar}>
+    <div className={styles.linksContainer}>
+        {gifLinks.map(({ to, label, gif }) =>
+          label === 'Inicio' ? (
+            <Link
+              key={to}
+              to={to}
+              className={styles.link}
+              onClick={handleInicio} // <-- Aquí ejecuta la función
+            >
+              <img src={gif} alt={label} className={styles.linkGif} />
+              {label}
+            </Link>
+          ) : (
+            <Link key={to} to={to} className={styles.link}>
+              <img src={gif} alt={label} className={styles.linkGif} />
+              {label}
+            </Link>
+          )
+        )}
       {/* Barra de búsqueda */}
-      <form onSubmit={handleSearch} style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center' }}>
-        <input
-          type="text"
-          placeholder="Buscar productos..."
-          value={busqueda}
-          onChange={e => setBusqueda(e.target.value)}
-          className={styles.searchInput}
-        />
-        <button type="submit" className={styles.searchButton}>
-          Buscar
-        </button>
-      </form>
-    </div>
-  </nav>
-);
+      {showSearch && (
+      <form onSubmit={handleSearch} className={styles.searchForm}>
+          <input
+            type="text"
+            placeholder="Buscar productos..."
+            value={busqueda}
+            onChange={e => setBusqueda(e.target.value)}
+            className={styles.searchInput}
+          />
+          <button type="submit" className={styles.searchButton}>
+            Buscar
+          </button>
+        </form>
+        )}
+      </div>
+    </nav>
+  );
+}
 
 export default TopBar;

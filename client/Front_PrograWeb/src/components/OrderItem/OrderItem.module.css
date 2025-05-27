@@ -1,0 +1,32 @@
+.userRow td {
+  vertical-align: middle;
+  padding: 10px;
+  text-align: center;
+}
+
+
+a{
+
+    margin-top: 0px;
+
+}
+
+.btnDetalle {
+  padding: 6px 14px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  cursor: pointer;
+  margin-top: 24px;
+  margin-right: 60px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  background-color: #a83f3f;
+  color: white;
+
+}
+
+
+.btnDetalle:hover {
+  background-color: #d35c5c;
+}
