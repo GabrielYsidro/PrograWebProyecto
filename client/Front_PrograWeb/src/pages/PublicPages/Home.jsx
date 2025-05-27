@@ -12,11 +12,11 @@ import Promo from '../../components/Promo/Promo.jsx';
 
 
 export const Home = () => {
-    // Agrupa productos por tipo
-    const tiposUnicos = [...new Set(productos.map(p => p.tipo))];
-    const productosPorTipo = tiposUnicos.map(tipo => ({
-        tipo,
-        productos: productos.filter(p => p.tipo === tipo)
+    // Agrupa productos por categoria
+    const tiposUnicos = [...new Set(productos.map(p => p.categoria))];
+    const productosPorTipo = tiposUnicos.map(categoria => ({
+        categoria,
+        productos: productos.filter(p => p.categoria === categoria)
     }));
 
     const handleInicio = () => {
@@ -35,12 +35,12 @@ export const Home = () => {
                          {productos.length === 0 ? (
                             <span style={{ color: '#888', fontStyle: 'italic' }}>No hay productos encontrados.</span>
                             ) : (
-                            productosPorTipo.map(({ tipo, productos }) => (
+                            productosPorTipo.map(({ categoria, productos }) => (
                                 <section
-                                    key={tipo}
-                                    className={`${categoriasStyles.categoriaFila} ${categoriasStyles['fondo' + tipo.charAt(0).toUpperCase() + tipo.slice(1).toLowerCase()]}`}
+                                    key={categoria}
+                                    className={`${categoriasStyles.categoriaFila} ${categoriasStyles['fondo' + categoria.charAt(0).toUpperCase() + categoria.slice(1).toLowerCase()]}`}
                                 >
-                                    <h3 className={`${categoriasStyles.titulo} ${categoriasStyles['titulo' + tipo.charAt(0).toUpperCase() + tipo.slice(1).toLowerCase()]}`}></h3>
+                                    <h3 className={`${categoriasStyles.titulo} ${categoriasStyles['titulo' + categoria.charAt(0).toUpperCase() + categoria.slice(1).toLowerCase()]}`}></h3>
                                     <div className={categoriasStyles.productos}>
                                         {productos.map(producto => (
                                         <Producto key={producto.id} producto={producto} />
