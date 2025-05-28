@@ -2,11 +2,20 @@
   flex: 1 1 45%;
   border: 1px solid #ccc;
   padding: 20px;
-  border-radius: 8px;
   font-family: 'Pokemon Solid', sans-serif;
   letter-spacing: 10px;
   text-align :center;
 }
+
+.paymentSection h2, .formGroup p {
+  font-family: 'Pokemon Solid', sans-serif;
+  color: #ffcb05; /* Amarillo Pokémon */
+  -webkit-text-stroke: 1px #3B4CCA; /* Azul Pokémon */
+  font-size: 28px;
+  letter-spacing: 5px;
+  margin-bottom: 10px;
+}
+
 
 .tabButton {
   padding: 10px 20px;
@@ -32,13 +41,63 @@
 
 .formGroup {
   margin-top: 10px;
+  height: 420px; /* Establece una altura fija según el contenido más alto */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.3s ease;
+  overflow: hidden; /* evita que contenido extra desborde */
+}
+
+.p {
+  text-align: center;
+}
+
+.yape {
+  width: 150px;
+  height: auto;
 }
 
 .shippingOptions {
-  margin: 10px 0;
+  margin: 20px 0;
   display: flex;
-  flex-direction: column;
-  gap: 6px;
+  flex-direction: row;
+  gap: 30px; /* Aumenta el espacio entre botones */
+  justify-content: center;
+  align-items: center;
+}
+
+.shippingOptions label {
+  font-family: 'Pokemon Solid', sans-serif;
+  font-size: 18px;
+  color: #ffcb05;
+  text-shadow: 1px 1px #3b4cca;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 10px 16px;
+  border: 2px solid #3b4cca;
+  border-radius: 8px;
+  background-color: #fff;
+  transition: background-color 0.3s, color 0.3s;
+  -webkit-text-stroke: 1px #3B4CCA;
+}
+
+
+.shippingOptions label:hover {
+  background-color: #3b4cca;
+  color: yellow;
+}
+
+.shippingOptions input[type='radio'] {
+  display: none;
+}
+
+.shippingOptions input[type='radio']:checked + span {
+  background-color: #3b4cca;
+  color: yellow;
 }
 
 .addressInput {
