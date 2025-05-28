@@ -7,7 +7,7 @@
   text-align :center;
 }
 
-.paymentSection h2, p {
+.paymentSection h2, .formGroup p {
   font-family: 'Pokemon Solid', sans-serif;
   color: #ffcb05; /* Amarillo Pokémon */
   -webkit-text-stroke: 1px #3B4CCA; /* Azul Pokémon */
