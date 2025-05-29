@@ -17,8 +17,10 @@ export const Results = () => {
     // orden: '', 'precio-asc', 'precio-desc', 'nombre-asc', 'nombre-desc'
     const [orden, setOrden] = useState('');
 
-    let productosFiltrados = productos.filter(
-    (p) =>
+    let productosFiltrados = productos
+    .filter(p => p.activo !== true) // Solo productos activos
+    .filter(
+        (p) =>
         (p.nombre && p.nombre.toLowerCase().includes(search)) ||
         (p.region && p.region.toLowerCase().includes(search)) ||
         (p.categoria && p.categoria.toLowerCase().includes(search))

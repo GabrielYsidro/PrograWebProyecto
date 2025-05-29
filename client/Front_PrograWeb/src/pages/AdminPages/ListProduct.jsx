@@ -13,7 +13,7 @@ import SearchProducto from '../../components/SearchProduct/SearchProduct.jsx';
 export const ListProduct = () => {
     const ITEMS_PER_PAGE = 5;
     const [currentPage, setCurrentPage] = useState(1);
-    const { productos, setProductos } = useProductos();
+    const { productos, updateProduct } = useProductos();
     const navigate = useNavigate();
 
     const [busqueda, setBusqueda] = useState('');
@@ -47,12 +47,9 @@ export const ListProduct = () => {
     };
 
     const handleToggleActivo = (id) => {
-        if (setProductos) {
-            setProductos(prev =>
-                prev.map(p =>
-                    p.id === id ? { ...p, activo: !p.activo } : p
-                )
-            );
+        const producto = productos.find(p => p.id === id);
+        if (producto) {
+            updateProduct(id, { ...producto, activo: !producto.activo });
         }
     };
 
