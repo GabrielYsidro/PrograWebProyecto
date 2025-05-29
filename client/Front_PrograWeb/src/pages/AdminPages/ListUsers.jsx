@@ -4,28 +4,19 @@ import { UserItem } from "../../components/UserItem/UserItem.jsx";
 import TopBar from "../../components/TopBarAdmin/TopBarAdmin.jsx";
 import styles from '../../styles/ListUsers.module.css'
 import Footer from "../../components/Footer/Footer.jsx";
+import { TablaAdmin } from "../../components/Tabla/TablaAdmin.jsx";
+import { useUserContext } from "../../contexts/userContext.jsx";
 
 export const ListUsers = () => {
-    
-    const [usuarios, setUsuarios] = useState(data);
+
+    const { users , desactivarUsuario , activarUsuario } = useUserContext();
+
     const [filtro, setFiltro] = useState("");
     const [paginaActual, setPaginaActual] = useState(1);
     const porPagina = 6;
-    const desactivarUsuario = (id) => {
-        const actualizados = usuarios.map(u =>
-            u.id === id ? { ...u, activo: false } : u
-        );
-        setUsuarios(actualizados);
-    };
+    
 
-    const activarUsuario = (id) => {
-    const actualizados = usuarios.map(u =>
-        u.id === id ? { ...u, activo: true } : u
-    );
-    setUsuarios(actualizados);
-    };
-
-    const filtrados = usuarios.filter(u =>
+    const filtrados = users.filter(u =>
         u.nombre.toLowerCase().includes(filtro.toLowerCase()) ||
         u.id.toString().includes(filtro)
     );
@@ -41,32 +32,14 @@ export const ListUsers = () => {
                 <TopBar />
                 <div className={styles['main-container']}>
                     
-                    <input
-                        className={styles["filterbox"]}
-                        placeholder="Filtrar por ID o nombre"
-                        value={filtro}
-                        onChange={(e) => {
-                            setFiltro(e.target.value);
-                            setPaginaActual(1);
-                        }}
-                    />
-                    <h1 className={styles["titulo"]}>Usuarios Registrados</h1>
-                    <table className={styles["userTable"]}>
-                        <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Nombre</th>
-                                <th>Email</th>
-                                <th>Estado</th>
-                                <th>Acciones</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {paginados.map(u => (
-                                <UserItem key={u.id} u={u} desactivarUsuario={desactivarUsuario} activarUsuario={activarUsuario} />
-                            ))}
-                        </tbody>
-                    </table>
+                    <TablaAdmin setFiltro={setFiltro}
+                        filtro={filtro}
+                        item="usuarios registrados"
+                        Card={UserItem}
+                        headers={["ID", "Nombre", "Email", "Estado", "Acciones"]} 
+                        paginados = {paginados} 
+                        desactivarUsuario ={desactivarUsuario} 
+                        activarUsuario={activarUsuario} />
 
                     <div className={styles["pagination"]}>
                         {Array.from({ length: totalPaginas }, (_, i) => (

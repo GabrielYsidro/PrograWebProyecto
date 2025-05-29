@@ -256,6 +256,7 @@ export const mockData = [
     { id: 38, customer: 'ricardo.molina@email.com', date: '2025-05-20', total: 12.5, status: 'Delivered', isNewUser: false, registrationDate: '2024-01-01' },
     { id: 39, customer: 'natalia.rios@email.com', date: '2025-05-20', total: 12.5, status: 'Pending', isNewUser: false, registrationDate: '2024-01-01' },
     { id: 40, customer: 'esteban.gil@email.com', date: '2025-05-20', total: 12.5, status: 'Shipped', isNewUser: false, registrationDate: '2024-01-01' },
+
     // 23 de mayo de 2025: 20 usuarios nuevos, 35 órdenes, ingresos totales 450
     { id: 41, customer: 'juan.perez@email.com', date: '2025-05-23', total: 12.86, status: 'Delivered', isNewUser: true, registrationDate: '2025-05-23' },
     { id: 42, customer: 'maria.gomez@email.com', date: '2025-05-23', total: 12.86, status: 'Pending', isNewUser: true, registrationDate: '2025-05-23' },

@@ -1,17 +1,29 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { usuarios } from '../../constants/Consts.jsx';
 import TopBar from "../../components/TopBarAdmin/TopBarAdmin.jsx";
 import Footer from "../../components/Footer/Footer.jsx";
 import styles from '../../styles/DetailsOrders.module.css';
 import OrderStatusTracker from "../../components/OrderTracker/OrderTracker.jsx";
+import { useOrdenContext } from "../../hooks/OrdenContext.jsx";
+import { useNavigate } from "react-router-dom";
+
 
 const DetailsOrders = () => {
-  const { id } = useParams();
-  const orden = usuarios
-    .flatMap((u) => u.ordenes.map((o) => ({ ...o, usuario: u })))
-    .find((o) => o.id === parseInt(id));
 
+  const { ordenItems, removeItem } = useOrdenContext();
+
+  
+  const { id } = useParams();
+  const orden = ordenItems.find((o) => o.id === parseInt(id));
+  
+  const navigate = useNavigate();
+
+
+  const handleCancel = () => {
+    removeItem(orden.id);
+    navigate("/listOrders");
+  };
+  
   if (!orden) return <p>Orden no encontrada.</p>;
 
   return (
@@ -25,19 +37,18 @@ const DetailsOrders = () => {
           <div className={styles["order-info"]}>
             <div>
               <p><strong>ID:</strong> #{orden.id}</p>
-              <p><strong>Descripción:</strong> {orden.descripcion}</p>
-              <p><strong>Fecha:</strong> {orden.fecha}</p>
+              <p><strong>Fecha de registro:</strong> {orden.registrationDate}</p>
+              <p><strong>Fecha de cambio de estado:</strong> {orden.date}</p>
             </div>
             <div>
-              <p><strong>Estado:</strong> {orden.estado}</p>
-              <p><strong>Usuario:</strong> {orden.usuario.nombre}</p>
-              <p><strong>Email:</strong> {orden.usuario.email}</p>
+              <p><strong>Estado:</strong> {orden.status}</p>
+              <p><strong>Usuario:</strong> {orden.customer}</p>
             </div>
           </div>
 
-          <OrderStatusTracker estado={orden.estado} />
+          <OrderStatusTracker estado={orden.status} />
 
-          <button className={styles["cancelar-button"]}>
+          <button className={styles["cancelar-button"]} onClick={handleCancel}>
             Cancelar Orden
           </button>
         </div>
