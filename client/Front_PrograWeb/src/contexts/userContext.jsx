@@ -1,36 +1,47 @@
-import React, { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { usuarios } from '../constants/Consts';
 
 const UserContext = createContext();
-
-function useUserContext() {
+export function useUserContext() {
   return useContext(UserContext);
 }
 
-function UserProvider({ children }) {
+export function UserProvider({ children }) {
   const navigate = useNavigate();
+  const [users, setUsers] = useState(usuarios);
+  const [currentUser, setCurrentUser] = useState(null);
 
-  const [usuario, setUsuario] = useState(() => {
-    const storedUser = localStorage.getItem('usuario');
-    return storedUser ? JSON.parse(storedUser) : null;
-  });
+  const addUser = (user) => {
+    if (user && user.email && user.password) {
+      const userExists = users.some((u) => u.email === user.email);
+      if (!userExists) {
+        setUsers((prev) => [...prev, user]);
+      } else {
+        console.error('User already exists:', user.email);
+      }
+    } else {
+      console.error('Invalid user object:', user);
+    }
+  };
 
-  const login = (userData) => {
-    setUsuario(userData);
-    localStorage.setItem('usuario', JSON.stringify(userData));
+  const login = (email, password) => {
+    const user = users.find((u) => u.email === email && u.password === password);
+    if (user) {
+      setCurrentUser(user);
+      return true;
+    }
+    return false;
   };
 
   const logout = () => {
-    setUsuario(null);
-    localStorage.removeItem('usuario');
+    setCurrentUser(null);
     navigate('/');
   };
 
   return (
-    <UserContext.Provider value={{ usuario, login, logout }}>
+    <UserContext.Provider value={{ users, currentUser, addUser, login, logout }}>
       {children}
     </UserContext.Provider>
   );
 }
-
-export { UserProvider as default, useUserContext };

@@ -15,12 +15,12 @@ export function LoginTable({
         <h2>Iniciar Sesión</h2>
 
         <div className={styles.inputGroup}>
-          <label htmlFor="username">Nombre de usuario</label>
+          <label htmlFor="email">Correo electrónico</label>
           <input
-            type="text"
-            id="username"
-            name="username"
-            value={values.username}
+            type="email"
+            id="email"
+            name="email"
+            value={values.email}
             onChange={handleChange}
             required
           />

@@ -8,8 +8,8 @@ import Banner from '../../components/Banner/Banner.jsx';
 import NuevasCiudades from '../../components/New Cities/NuevasCiudades.jsx';    
 import NewPokemons from '../../components/NewPokemons/NewPokemons.jsx';
 import Promo from '../../components/Promo/Promo.jsx';
-
-
+import { useUserContext } from '../../contexts/userContext.jsx';
+import TopBarUser from '../../components/TopBarUser/TopBarUser.jsx';
 
 export const Home = () => {
     // Agrupa productos por categoria
@@ -18,6 +18,7 @@ export const Home = () => {
         categoria,
         productos: productos.filter(p => p.categoria === categoria)
     }));
+    const { currentUser } = useUserContext();
 
     const handleInicio = () => {
     };
@@ -26,7 +27,11 @@ export const Home = () => {
         <>
             <div className={styles['home-background']}></div>
             <div className={styles['home-content']}>
-                <TopBar handleInicio={handleInicio}/>
+                if (currentUser) {
+                    <TopBarUser handleInicio={handleInicio}/>
+                }else{
+                    <TopBar handleInicio={handleInicio}/>
+                }
                 <Banner productos={productos} />
                 <NewPokemons />
                 <main style={{ flex: 1, padding: '2rem' }}>

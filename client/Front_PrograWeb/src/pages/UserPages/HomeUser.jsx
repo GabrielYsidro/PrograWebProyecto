@@ -4,7 +4,7 @@ import TopBarUser from '../../components/TopBarUser/TopBarUser.jsx';
 import Footer from '../../components/Footer/Footer.jsx';
 import styles from '../../styles/Home.module.css';
 import Producto from '../../components/Producto/Producto.jsx';
-import { useUserContext } from '../../contexts/UserContext';
+import { useUserContext } from '../../contexts/userContext';
 
 const HomeUser = () => {
   const [busqueda, setBusqueda] = useState('');
