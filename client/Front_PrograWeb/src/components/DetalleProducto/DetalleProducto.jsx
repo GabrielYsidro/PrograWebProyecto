@@ -1,16 +1,18 @@
 import { useParams, Link } from 'react-router-dom';
 import styles from './DetalleProducto.module.css';
-import { productos as productosEstaticos } from '../../constants/Consts.jsx';
 import ScrollToTop from '../ScrollTop/ScrollTop.jsx';
 import { useCartContext } from '../../contexts/CartContext.jsx';
 import { useState } from 'react';
+import { useProductos } from '../../hooks/ProductosContext.jsx'; // <-- Importa el contexto
 
 function DetalleProducto({ producto: productoProp, modoAdmin = false, onModificar }) {
   const { id } = useParams();
+  const { productos } = useProductos(); // <-- Obtén productos del contexto
   const { addItem } = useCartContext ? useCartContext() : { addItem: () => {} };
   const [showMsg, setShowMsg] = useState(false);
-  
-  const producto = productoProp ?? productosEstaticos.find(p => String(p.id) === String(id));
+
+  // Busca primero por prop, luego en el contexto
+  const producto = productoProp ?? productos.find(p => String(p.id) === String(id));
 
   const handleAdd = () => {
     addItem(producto);
