@@ -1,4 +1,4 @@
-import {BrowserRouter, Routes, Route} from 'react-router-dom';
+import {Routes, Route} from 'react-router-dom';
 import { Home } from '../pages/PublicPages/Home';
 import { Categorias } from '../pages/PublicPages/Categorias';
 import { Results } from '../pages/PublicPages/Results';
@@ -20,40 +20,34 @@ import DetalleProducto from '../components/DetalleProducto/DetalleProducto.jsx';
 import Register from '../pages/PublicPages/Register.jsx';
 import ChangePassword from '../pages/PublicPages/ChangePassword.jsx';
 import HomeUser from '../pages/UserPages/HomeUser.jsx';
-import PrivateRoute from '../components/PrivateRoute/PrivateRoute.jsx';
 
-export const AppRouter = () => {
-
-    return (
-        <BrowserRouter>
-        <ScrollToTop />
-            <Routes>
-                <Route path = '/' element = {<Home/>}/>
-                <Route path = '/categorias' element = {<Categorias/>}/>
-                <Route path = '/results' element = {<Results/>}/>
-                <Route path = '/product/:id' element = {<DetalleProducto/>}/>
-                <Route path = '/carrito' element = {<Carrito/>}/>
-                <Route path = '/checkout' element = {<Checkout/>}/>
-                <Route path = '/greeting' element = {<Greeting/>}/>
-                <Route path = '/homeadmin' element = {<HomeAdmin/>}/>
-                <Route path = '/addproduct' element = {<AddProduct/>}/>
-                <Route path = '/detailproduct/:id' element = {<DetailProduct/>}/>
-                <Route path = '/listproduct' element = {<ListProduct/>}/>
-                <Route path = '/listcategories' element = {<ListCategories/>}/>
-                <Route path = '/listusers' element = {<ListUsers/>} />
-                <Route path = '/usuarios/:id' element = { <DetailsUser />} />
-                <Route path = '/listOrders/' element = { <ListOrders />} />
-                <Route path = '/Order/:id' element = { <DetailsOrders />} />
-                <Route path = '/login' element = { <Login />} />
-                <Route path = '/register' element = { <Register />} />
-                <Route path = '/recover-password' element = { <ChangePassword />} />
-                <Route path="/homeuser" element={<PrivateRoute><HomeUser /></PrivateRoute>}/>
-                
-
-            </Routes>
-        </BrowserRouter>
-    )
-}
+export const AppRouter = () => (
+  <>
+    <ScrollToTop />
+    <Routes>
+        <Route path = '/' element = {<Home/>}/>
+        <Route path = '/categorias' element = {<Categorias/>}/>
+        <Route path = '/results' element = {<Results/>}/>
+        <Route path = '/product/:id' element = {<DetalleProducto/>}/>
+        <Route path = '/carrito' element = {<Carrito/>}/>
+        <Route path = '/checkout' element = {<Checkout/>}/>
+        <Route path = '/greeting' element = {<Greeting/>}/>
+        <Route path = '/homeadmin' element = {<HomeAdmin/>}/>
+        <Route path = '/addproduct' element = {<AddProduct/>}/>
+        <Route path = '/detailproduct/:id' element = {<DetailProduct/>}/>
+        <Route path = '/listproduct' element = {<ListProduct/>}/>
+        <Route path = '/listcategories' element = {<ListCategories/>}/>
+        <Route path = '/listusers' element = {<ListUsers/>} />
+        <Route path = '/usuarios/:id' element = { <DetailsUser />} />
+        <Route path = '/listOrders/' element = { <ListOrders />} />
+        <Route path = '/Order/:id' element = { <DetailsOrders />} />
+        <Route path = '/login' element = { <Login />} />
+        <Route path = '/register' element = { <Register />} />
+        <Route path = '/recover-password' element = { <ChangePassword />} />
+        <Route path = '/homeuser' element = { <HomeUser />} />
+    </Routes>
+  </>
+);
 
 export default AppRouter;
 
