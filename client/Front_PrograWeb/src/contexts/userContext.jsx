@@ -39,8 +39,24 @@ export function UserProvider({ children }) {
     navigate('/');
   };
 
+  const activarUsuario = (id) => {
+    setUsers((prevUsers) =>
+      prevUsers.map((user) =>
+        user.id === id ? { ...user, activo: true } : user
+      )
+    );
+  };
+
+  const desactivarUsuario = (id) => {
+    setUsers((prevUsers) =>
+      prevUsers.map((user) =>
+        user.id === id ? { ...user, activo: false } : user
+      )
+    );
+  };
+
   return (
-    <UserContext.Provider value={{ users, currentUser, addUser, login, logout }}>
+    <UserContext.Provider value={{ users, currentUser, addUser, login, logout , activarUsuario, desactivarUsuario }}>
       {children}
     </UserContext.Provider>
   );

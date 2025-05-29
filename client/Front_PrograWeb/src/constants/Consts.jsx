@@ -215,7 +215,7 @@ export const productosGreeting = [
 // Datos mockeados para el 20 y 23 de mayo de 2025 según lo solicitado
 export const mockData = [
     // 20 de mayo de 2025: 30 usuarios nuevos, 40 órdenes, ingresos totales 500
-    { id: 1, customer: 'NuevoUsuario1', date: '2025-05-20', total: 12.5, status: 'Shipped', isNewUser: true, registrationDate: '2025-05-20' },
+    { id: 1, customer: 'Juan Pérez', date: '2025-05-20', total: 12.5, status: 'Shipped', isNewUser: true, registrationDate: '2025-05-20' },
     { id: 2, customer: 'NuevoUsuario2', date: '2025-05-20', total: 12.5, status: 'Delivered', isNewUser: true, registrationDate: '2025-05-20' },
     { id: 3, customer: 'NuevoUsuario3', date: '2025-05-20', total: 12.5, status: 'Pending', isNewUser: true, registrationDate: '2025-05-20' },
     { id: 4, customer: 'NuevoUsuario4', date: '2025-05-20', total: 12.5, status: 'Shipped', isNewUser: true, registrationDate: '2025-05-20' },

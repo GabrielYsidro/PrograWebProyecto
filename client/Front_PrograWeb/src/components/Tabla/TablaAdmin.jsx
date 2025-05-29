@@ -4,10 +4,6 @@ import styles from '../../styles/ListOrders.module.css';
 
 export const TablaAdmin = ({ setFiltro , filtro, item, Card , headers , paginados , desactivarUsuario, activarUsuario }) => {
     
- //   const { usuarios , activarUsuario , desactivarUsuario } = useUserContext();
-
-    
-
     return (
         <>
             <input

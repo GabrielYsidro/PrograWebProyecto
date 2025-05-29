@@ -1,13 +1,27 @@
 import { useParams } from "react-router-dom";
-import { usuarios } from '../../constants/Consts.jsx';
 import Footer from "../../components/Footer/Footer.jsx";
 import TopBar from "../../components/TopBarAdmin/TopBarAdmin.jsx";
 import styles from '../../styles/DetailsUser.module.css';
+import { useUserContext } from "../../contexts/userContext.jsx";
+import { useOrdenContext } from "../../hooks/OrdenContext.jsx";
+
+
 export const DetailsUser = () => {
     const { id } = useParams();
-    const usuario = usuarios.find(u => u.id === parseInt(id));
+    const { users } = useUserContext();
+
+    const usuario = users.find(u => u.id === parseInt(id));
 
     if (!usuario) return <div>Usuario no encontrado</div>;
+
+    // Importa el contexto de órdenes
+
+    // Dentro del componente
+    const { ordenItems } = useOrdenContext();
+    // Filtra las órdenes cuyo nombreCliente coincide con el usuario actual
+    const ordenesUsuario = ordenItems.filter(
+        (orden) => orden.customer === usuario.nombre
+    );
 
     return (
         <>
@@ -41,12 +55,12 @@ export const DetailsUser = () => {
                     </tr>
                     </thead>
                     <tbody>
-                    {(usuario.ordenes || []).slice(0, 10).map((orden) => (
+                    {ordenesUsuario.slice(0, 10).map((orden) => (
                         <tr key={orden.id}>
                         <td>{orden.id}</td>
                         <td>{orden.total}</td>
-                        <td>{orden.fecha}</td>
-                        <td>{orden.estado}</td>
+                        <td>{orden.date}</td>
+                        <td>{orden.status}</td>
                         </tr>
                     ))}
                     </tbody>
@@ -57,7 +71,6 @@ export const DetailsUser = () => {
                 
             </div>
         </>
-        
     );
 }
 

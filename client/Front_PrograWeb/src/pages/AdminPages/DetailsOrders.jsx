@@ -37,13 +37,12 @@ const DetailsOrders = () => {
           <div className={styles["order-info"]}>
             <div>
               <p><strong>ID:</strong> #{orden.id}</p>
-              <p><strong>Descripción:</strong> {orden.descripcion}</p>
-              <p><strong>Fecha:</strong> {orden.date}</p>
+              <p><strong>Fecha de registro:</strong> {orden.registrationDate}</p>
+              <p><strong>Fecha de cambio de estado:</strong> {orden.date}</p>
             </div>
             <div>
               <p><strong>Estado:</strong> {orden.status}</p>
               <p><strong>Usuario:</strong> {orden.customer}</p>
-              <p><strong>Email:</strong> {orden.email}</p>
             </div>
           </div>
 
