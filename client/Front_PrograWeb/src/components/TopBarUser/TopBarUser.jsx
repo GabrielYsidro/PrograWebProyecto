@@ -1,20 +1,31 @@
 import { Link, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import { useUserContext } from '../../contexts/userContext';
 import styles from '../TopBar/TopBar.module.css'; // Usa el CSS de la topbar original
 
-const TopBarUser = ({ handleSearch, busqueda, setBusqueda }) => {
+const TopBarUser = ({ handleInicio}) => {
   const { logout, currentUser } = useUserContext();
   const navigate = useNavigate();
+  const [busqueda, setBusqueda] = useState('');
 
   const handleLogout = () => {
     logout();
     navigate('/login');
   };
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    const query = busqueda.trim().toLowerCase();
+    if (query) {
+      navigate(`/results?search=${encodeURIComponent(query)}`);
+      setBusqueda('');
+    }
+  };
+
   return (
     <nav className={styles.topbar}>
       <div className={styles.linksContainer}>
-        <Link to="/" className={styles.link}>
+        <Link to="/" className={styles.link} onClick={handleInicio}>
           <img
             src="https://play.pokemonshowdown.com/sprites/ani/pikachu.gif"
             alt="Inicio"
@@ -22,9 +33,25 @@ const TopBarUser = ({ handleSearch, busqueda, setBusqueda }) => {
           />
           Inicio
         </Link>
+        <Link to="/results" className={styles.link}>
+          <img
+            src="https://play.pokemonshowdown.com/sprites/ani/alakazam.gif"
+            alt="Resultados"
+            className={styles.linkGif}
+          />
+          Resultados
+        </Link>
         <Link to="/carrito" className={styles.link}>
           <span role="img" aria-label="Carrito" style={{ fontSize: 22, marginRight: 6 }}>🛒</span>
           Carrito
+        </Link>
+        <Link to="/categorias" className={styles.link}>
+          <img
+            src="https://play.pokemonshowdown.com/sprites/ani/haunter.gif"
+            alt="Categorias"
+            className={styles.linkGif}
+          />
+          Categorias
         </Link>
         <span className={styles.link} style={{ marginLeft: '1.5rem', fontWeight: 'bold' }}>
           {currentUser?.nombre ? `Hola, ${currentUser.nombre}` : 'Usuario'}

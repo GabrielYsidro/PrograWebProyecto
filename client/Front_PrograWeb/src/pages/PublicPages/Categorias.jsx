@@ -6,6 +6,8 @@ import { useCategoriaContext } from '../../hooks/CategoriaContext.jsx';
 import BotonOrd from '../../components/BotonOrd/BotonOrd.jsx';
 import TopBar from '../../components/TopBar/TopBar.jsx';
 import Footer from '../../components/Footer/Footer.jsx';
+import { useUserContext } from '../../contexts/userContext.jsx';
+import TopBarUser from '../../components/TopBarUser/TopBarUser.jsx';
 
 export const Categorias = () => {
   const [busqueda, setBusqueda] = useState('');
@@ -13,9 +15,12 @@ export const Categorias = () => {
   const [orden, setOrden] = useState('nombreA');
   const { categoriasItems } = useCategoriaContext();
   const { productos } = useProductos();
+  const { currentUser } = useUserContext();
+  const handleInicio = () => {
+    };
 
   const productosFiltrados = productos
-    .filter(producto => producto.activo !== true) // Solo productos activos
+    .filter(producto => producto.activo === true)
     .filter(
       (producto) =>
         (!categoriaSeleccionada || producto.categoria === categoriaSeleccionada) &&
@@ -33,7 +38,11 @@ export const Categorias = () => {
   return (
     <>
       <div className={styles.background}></div>
-      <TopBar handleInicio={() => {}} />
+      {(currentUser)? 
+                    <TopBarUser handleInicio={handleInicio}/>
+                :
+                    <TopBar handleInicio={handleInicio}/>
+                }
       <div className={styles.page}>
         <div className={styles.content}>
           <h2 className={styles.eligeMargin}>¡Explora por Categoría!</h2>

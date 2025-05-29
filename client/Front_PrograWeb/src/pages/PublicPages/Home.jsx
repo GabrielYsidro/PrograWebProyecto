@@ -27,9 +27,9 @@ export const Home = () => {
         <>
             <div className={styles['home-background']}></div>
             <div className={styles['home-content']}>
-                if (currentUser) {
+                {(currentUser)? 
                     <TopBarUser handleInicio={handleInicio}/>
-                }else{
+                :
                     <TopBar handleInicio={handleInicio}/>
                 }
                 <Banner productos={productos} />
