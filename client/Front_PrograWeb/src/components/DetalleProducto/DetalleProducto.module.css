@@ -59,7 +59,7 @@
   border: 2.5px solid #FFCC00;
 }
 
-.tipo, .region, .precio, .stock, .rareza, .descripcion {
+.categoria, .region, .precio, .stock, .rareza, .descripcion {
   margin-bottom: 0.7rem;
   font-size: 1.13rem;
   width: 100%;
@@ -70,7 +70,7 @@
   box-shadow: 0 1px 4px #3B4CCA11;
 }
 
-.tipo strong, .region strong, .precio strong, .stock strong, .rareza strong, .descripcion strong {
+.categoria strong, .region strong, .precio strong, .stock strong, .rareza strong, .descripcion strong {
   color: #3B4CCA;
 }
 

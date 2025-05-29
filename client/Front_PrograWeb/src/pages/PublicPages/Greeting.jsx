@@ -1,12 +1,10 @@
 import {useState, useEffect, useContext, useLayoutEffect} from 'react'
 import styles from  '../../styles/Greeting.module.css'
-import TopBar from '../../components/TopBar/TopBar.jsx';
-import Footer from '../../components/Footer/Footer.jsx'
 import { productosGreeting } from '../../constants/Consts.jsx';
-
+import { useNavigate } from 'react-router-dom';
 export const Greeting = () => {
 
-    
+    const navigate = useNavigate();
 
     const [visibleCount, setVisibleCount] = useState(0);
 
@@ -30,12 +28,13 @@ export const Greeting = () => {
     };
     }, []);
 
-   
+    const handleVolverHome = () => {
+            navigate('/');
+    };
     
     
     return (
         <div className={styles.container}>
-            <TopBar/>
             <div className={styles.principal}>
                 <div className={styles.gracias} >
                     ¡Gracias por tu compra!
@@ -54,9 +53,12 @@ export const Greeting = () => {
                         </img>
                     ))}
                 </div>
+                <button onClick={handleVolverHome} className={styles.botonHome}>
+                    Volver a Home
+                </button>
             </div>
         <img className={styles.pokebola} src='/src/assets/pokebola.gif' alt='Pokebola' onClick={handleClick}></img>
-        <Footer/>
+        
         </div>
     )
 

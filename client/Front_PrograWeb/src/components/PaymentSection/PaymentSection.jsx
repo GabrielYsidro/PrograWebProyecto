@@ -78,7 +78,7 @@ export const PaymentSection = () => {
             checked={shippingOption === 'delivery'}
             onChange={() => setShippingOption('delivery')}
           />
-          Delivery a domicilio
+          Delivery a Domicilio
         </label>
       </div>
 

@@ -2,7 +2,7 @@ export const productos = [
     // Fuego
     {
         id: 1, nombre: 'Charmander', categoria: 'Fuego', region: 'Kanto', precio: 120, imagen: 'https://play.pokemonshowdown.com/sprites/ani/charmander.gif',
-        descripcion: 'Un Pokémon lagarto de tipo fuego. Su cola siempre arde.', stock: 10, rareza: 'Común',
+        descripcion: 'Un Pokémon lagarto de categoria fuego. Su cola siempre arde.', stock: 10, rareza: 'Común',
         evoluciones: [
             { nombre: 'Charmeleon', imagen: 'https://play.pokemonshowdown.com/sprites/ani/charmeleon.gif', nivel: 16 },
             { nombre: 'Charizard', imagen: 'https://play.pokemonshowdown.com/sprites/ani/charizard.gif', nivel: 36 }

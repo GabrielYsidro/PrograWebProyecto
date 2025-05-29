@@ -3,7 +3,6 @@ import { productos as productosMock } from '../constants/Consts.jsx';
 
 const ProductosContext = createContext();
 
-export const useProductos = () => useContext(ProductosContext);
 
 export const ProductosProvider = ({ children }) => {
   const [productos, setProductos] = useState([...productosMock]);
@@ -21,3 +20,5 @@ export const ProductosProvider = ({ children }) => {
     </ProductosContext.Provider>
   );
 };
+
+export const useProductos = () => useContext(ProductosContext);

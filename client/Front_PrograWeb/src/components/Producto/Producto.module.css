@@ -62,7 +62,7 @@
   margin: 0 auto 1rem auto;
 }
 
-.tipo {
+.categoria {
   font-weight: 500;
   margin-bottom: 0.3rem;
 }
@@ -169,20 +169,20 @@
     text-shadow: 2px 2px 8px rgba(0, 128, 0, 0.8); /* Sombra verde intensa */
 }
 
-/* Estilos para tipos */
-.tipoFuego {
+/* Estilos para categorias */
+.categoriaFuego {
     color: #FFFFFF;
     font-weight: bold;
     text-shadow: 1px 1px 5px rgba(255, 87, 34, 0.8); /* Sombra para mejor legibilidad */
 }
 
-.tipoAgua {
+.categoriaAgua {
     color: #FFFFFF;
     font-weight: bold;
     text-shadow: 1px 1px 5px rgba(0, 105, 255, 0.8);
 }
 
-.tipoPlanta {
+.categoriaPlanta {
     color: #FFFFFF;
     font-weight: bold;
     text-shadow: 1px 1px 5px rgba(0, 128, 0, 0.8);

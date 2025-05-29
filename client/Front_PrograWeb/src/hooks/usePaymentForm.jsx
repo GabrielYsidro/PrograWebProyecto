@@ -1,24 +1,30 @@
-import { useState } from 'react';
+// hooks/PaymentFormContext.jsx
+import { createContext, useContext, useState } from 'react';
 
-export function usePaymentForm() {
-  const [paymentMethod, setPaymentMethod] = useState('card'); // 'card' o 'qr'
-  const [shippingOption, setShippingOption] = useState('pickup'); // 'pickup' o 'delivery'
+const PaymentFormContext = createContext();
+
+export const PaymentFormProvider = ({ children }) => {
+  const [paymentMethod, setPaymentMethod] = useState('card');
+  const [shippingOption, setShippingOption] = useState('pickup');
   const [address, setAddress] = useState('');
 
   const isValid = () => {
-    if (shippingOption === 'delivery' && address.trim() === '') {
-      return false;
-    }
-    return true;
+    return shippingOption !== 'delivery' || address.trim() !== '';
   };
 
-  return {
-    paymentMethod,
-    setPaymentMethod,
-    shippingOption,
-    setShippingOption,
-    address,
-    setAddress,
-    isValid
-  };
-}
+  return (
+    <PaymentFormContext.Provider value={{
+      paymentMethod,
+      setPaymentMethod,
+      shippingOption,
+      setShippingOption,
+      address,
+      setAddress,
+      isValid
+    }}>
+      {children}
+    </PaymentFormContext.Provider>
+  );
+};
+
+export const usePaymentForm = () => useContext(PaymentFormContext);
