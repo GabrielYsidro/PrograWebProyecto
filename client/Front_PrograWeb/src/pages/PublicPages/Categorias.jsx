@@ -13,6 +13,7 @@ export const Categorias = () => {
   const { productos } = useProductos();
 
   const productosFiltrados = productos
+    .filter(producto => producto.activo !== true) // Solo productos activos
     .filter(
       (producto) =>
         (!categoriaSeleccionada || producto.categoria === categoriaSeleccionada) &&
