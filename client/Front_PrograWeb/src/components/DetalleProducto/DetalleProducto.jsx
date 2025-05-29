@@ -1,15 +1,16 @@
 import { useParams, Link } from 'react-router-dom';
 import styles from './DetalleProducto.module.css';
-import { productos } from '../../constants/Consts.jsx';
+import { productos as productosEstaticos } from '../../constants/Consts.jsx';
 import ScrollToTop from '../ScrollTop/ScrollTop.jsx';
 import { useCartContext } from '../../hooks/CartContext.jsx';
 import { useState } from 'react';
 
-function DetalleProducto({ modoAdmin = false, onModificar}) {
+function DetalleProducto({ producto: productoProp, modoAdmin = false, onModificar }) {
   const { id } = useParams();
-  const producto = productos.find(p => String(p.id) === id);
-  const { addItem } = useCartContext();
+  const { addItem } = useCartContext ? useCartContext() : { addItem: () => {} };
   const [showMsg, setShowMsg] = useState(false);
+  
+  const producto = productoProp ?? productosEstaticos.find(p => String(p.id) === String(id));
 
   const handleAdd = () => {
     addItem(producto);
@@ -34,7 +35,7 @@ function DetalleProducto({ modoAdmin = false, onModificar}) {
                 alt={producto.nombre}
                 className={styles.imagen}
               />
-              <p className={styles.categoria}><strong>categoria:</strong> {producto.categoria}</p>
+              <p className={styles.categoria}><strong>Categoría:</strong> {producto.categoria}</p>
               <p className={styles.region}><strong>Región:</strong> {producto.region}</p>
               <p className={styles.precio}><strong>Precio:</strong> ${producto.precio}</p>
               {producto.stock !== undefined && (
@@ -78,7 +79,6 @@ function DetalleProducto({ modoAdmin = false, onModificar}) {
                   </button>
                   <Link to="/homeadmin" className={styles.volverBtn}>Volver al inicio</Link>
                 </div>
-                
               ) : (
                 <div>
                   <button
@@ -95,8 +95,7 @@ function DetalleProducto({ modoAdmin = false, onModificar}) {
                   </button>
                   <Link to="/" className={styles.volverBtn}>Volver al inicio</Link>
                 </div>
-              )
-              }
+              )}
             </div>
           )}
         </div>

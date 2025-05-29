@@ -30,7 +30,7 @@ export const DetailProduct = () => {
             }
             setIsLoading(false);
         }, 500);
-    }, [id]); // Elimina la dependencia en productos
+    }, [id, productos]); // <-- Agrega productos como dependencia
 
     const handleEdit = () => {
         setIsEditing(true);
@@ -85,7 +85,7 @@ export const DetailProduct = () => {
                             isEditMode={true}
                         />
                     ) : (
-                        <DetalleProducto modoAdmin={true} onModificar={handleEdit} />
+                        <DetalleProducto producto={currentProduct} modoAdmin={true} onModificar={handleEdit} />
                     )}
                     <Link to="/listproduct">Volver a la lista de productos</Link>
                 </main>
