@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { usuarios } from "../constants/Consts";
+import { useUserContext } from "../contexts/UserContext.jsx";
+
 
 export function useLoginForm(initialValues = { username: "", password: "" }) {
   const [values, setValues] = useState(initialValues);
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const { login } = useUserContext();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -27,18 +31,25 @@ export function useLoginForm(initialValues = { username: "", password: "" }) {
     e.preventDefault();
     if (!validate()) return;
 
-    console.log("Login:", values.username, values.password);
-    // Aquí iría tu lógica real de login con API
-    navigate("/dashboard");
+    const usuarioEncontrado = usuarios.find(
+      (u) => u.email === values.username.toLowerCase()
+    );
+
+    if (!usuarioEncontrado || values.password !== "123456") {
+      setError("Correo o contraseña incorrectos.");
+      return;
+    }
+
+    setError("");
+    login(usuarioEncontrado); // Actualiza contexto y localStorage
+    navigate("/homeuser"); // Navega a home de usuario
   };
 
   const handleRegister = () => {
-    console.log("Ir a registro");
     navigate("/register");
   };
 
   const handleForgotPassword = () => {
-    console.log("Recuperar contraseña");
     navigate("/recover-password");
   };
 

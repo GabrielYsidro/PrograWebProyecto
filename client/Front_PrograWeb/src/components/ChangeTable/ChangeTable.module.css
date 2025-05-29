@@ -1,42 +1,47 @@
-.registerContainer {
+.changeContainer {
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  background: url('/pokefondo.png') center center / cover no-repeat;
+  height: 100vh;
 }
 
-.registerForm {
-  background-color: white;
-  border: 2px solid black;
+.changeForm {
+  background: white;
   padding: 2rem;
-  border-radius: 1rem;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   width: 100%;
   max-width: 400px;
 }
 
-.registerForm h2 {
-  margin-bottom: 1.5rem;
+.changeForm h2 {
   text-align: center;
-  color: #cc0000;
+  margin-bottom: 1.5rem;
+  color: #333;
 }
 
 .inputGroup {
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .inputGroup label {
   display: block;
-  font-weight: bold;
   margin-bottom: 0.5rem;
+  font-weight: bold;
+  color: #444;
 }
 
 .inputGroup input {
   width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #aaa;
-  border-radius: 0.5rem;
+  padding: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.inputGroup input:focus {
+  outline: none;
+  border-color: red;
 }
 
 .submitButton {
@@ -52,6 +57,15 @@
   margin: 1rem auto 0 auto; /* esto lo centra horizontalmente */
 }
 
+
+
 .submitButton:hover {
-  background-color: #a00000;
+  background-color: #e55b3e;
+}
+
+.error {
+  color: red;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  text-align: center;
 }
