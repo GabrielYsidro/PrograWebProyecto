@@ -1,12 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useUserContext } from "../contexts/userContext.jsx";
 
 export function useLoginForm(initialValues = { email: "", password: "" }) {
   const [values, setValues] = useState(initialValues);
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const { login } = useUserContext();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,19 +23,9 @@ export function useLoginForm(initialValues = { email: "", password: "" }) {
     return true;
   };
 
-  const handleLogin = (e) => {
-    e.preventDefault();
+  const handleLogin = () => {
     if (!validate()) return;
-
-    // Usa el método login del contexto
-    const ok = login(values.email.toLowerCase(), values.password);
-    if (!ok) {
-      setError("Correo o contraseña incorrectos.");
-      return;
-    }
-
-    setError("");
-    navigate("/homeuser");
+    alert("Login simulado. Implementar autenticación más tarde.");
   };
 
   const handleRegister = () => {
@@ -48,6 +36,10 @@ export function useLoginForm(initialValues = { email: "", password: "" }) {
     navigate("/recover-password");
   };
 
+  const clearError = () => {
+    setError("");
+  };
+
   return {
     values,
     handleChange,
@@ -55,6 +47,7 @@ export function useLoginForm(initialValues = { email: "", password: "" }) {
     handleRegister,
     handleForgotPassword,
     error,
+    clearError,
   };
 }
 

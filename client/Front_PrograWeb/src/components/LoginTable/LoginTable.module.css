@@ -3,45 +3,44 @@
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: url('/pokefondo.png') center center / cover no-repeat;
   padding: 1rem;
+  position: relative;
 }
 
 .loginForm {
   width: 100%;
   max-width: 700px;
-  height: 400px;
+  min-height: 500px;
   background: linear-gradient(to bottom, #cc0000 49%, #000 49%, #000 51%, #ffffff 51%);
   border: 4px solid #000;
-  border-radius: 50%; /* Pokébola */
+  border-radius: 50%;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
-
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; /* Centra vertical y horizontal */
+  justify-content: center;
   padding: 2rem;
   position: relative;
 }
 
 .loginForm h2 {
   color: #fff;
-  margin-bottom: 1.2rem;
+  margin-bottom: 0.5rem;
   font-size: 1.6rem;
   font-weight: bold;
   text-align: center;
 }
 
 .inputGroup {
-  width: 100%;
-  margin-bottom: 1rem;
+  width: 60%;
+  margin-bottom: 0.5rem;
   padding: 0 1rem;
 }
 
 .inputGroup label {
   display: block;
   font-weight: bold;
-  margin-bottom: 0.3rem;
+  margin-bottom: 0rem;
   color: #000;
 }
 
@@ -59,14 +58,13 @@
   width: 80px;
   height: 80px;
   border-radius: 50%;
-  border: 4px solid white;
+  border: 4px solid #000;
   font-weight: bold;
   cursor: pointer;
   font-size: 0.8rem;
   text-align: center;
-  box-shadow: 0 0 6px #222;
-
-  margin: 1rem 0;
+  box-shadow: 0 0 6px #000;
+  margin: 0.5rem;
 }
 
 .centerButton:hover {
@@ -85,7 +83,7 @@
 
 .registerButton,
 .forgotButton {
-  width: 100%;
+  width: 80%;
   background-color: #cc0000;
   color: #fff;
   border: 2px solid #000;
@@ -95,6 +93,7 @@
   font-weight: bold;
   text-align: center;
   transition: background-color 0.3s ease;
+  margin: 1rem auto;
 }
 
 .registerButton:hover,
@@ -102,10 +101,46 @@
   background-color: #a00000;
 }
 
-.error {
-  color: #ff3333;
-  font-size: 0.9rem;
-  font-weight: bold;
-  margin-bottom: 0.5rem;
+.errorPopup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.errorPopupContent {
+  background: #fff;
+  border: 2px solid #cc0000;
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  max-width: 400px;
   text-align: center;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.errorPopupContent p {
+  color: #cc0000;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.errorPopupContent button {
+  background-color: #cc0000;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.errorPopupContent button:hover {
+  background-color: #a00000;
 }

@@ -8,6 +8,7 @@ export function LoginTable({
   onRegister,
   onForgotPassword,
   error,
+  clearError,
 }) {
   return (
     <div className={styles.loginContainer}>
@@ -38,14 +39,12 @@ export function LoginTable({
           />
         </div>
 
-        {error && <p className={styles.error}>{error}</p>}
-
         <button
           type="button"
           className={styles.centerButton}
           onClick={handleLogin}
         >
-          Iniciar<br />sesión
+          Iniciar Sesión
         </button>
 
         <div className={styles.actions}>
@@ -57,6 +56,15 @@ export function LoginTable({
           </button>
         </div>
       </div>
+
+      {error && (
+        <div className={styles.errorPopup}>
+          <div className={styles.errorPopupContent}>
+            <p>{error}</p>
+            <button onClick={clearError}>Cerrar</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
