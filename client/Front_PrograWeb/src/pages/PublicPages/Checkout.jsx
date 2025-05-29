@@ -5,23 +5,27 @@ import Footer from '../../components/Footer/Footer.jsx'
 import PaymentSection from '../../components/PaymentSection/PaymentSection.jsx';
 import OrderSummary from '../../components/OrderSummary/OrderSummary.jsx';
 import { useCartContext } from '../../hooks/CartContext.jsx';
+import { PaymentFormProvider } from '../../hooks/usePaymentForm.jsx';
 
 
 export const Checkout = () => {
 
-    const {cartItems} = useCartContext();
+    const {cartItems, setCartItems} = useCartContext();
 
     return (
+        <PaymentFormProvider>
         <div className={styles.container}>
-            <TopBar />
+            
             <div className={styles.titulo}>
                 Completa tus datos de pago!
             </div>
+            <div className={styles.cuerpo}>
             <PaymentSection />
             <OrderSummary items = {cartItems}/>
+            </div>
             
-            <Footer />
         </div>
+        </PaymentFormProvider>
     )
 
 }

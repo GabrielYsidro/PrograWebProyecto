@@ -9,13 +9,14 @@ import Footer from '../../components/Footer/Footer.jsx'
 import {initialWishlist} from '../../constants/Consts.jsx'
 import { Link } from 'react-router-dom';
 import { useCartContext } from '../../hooks/CartContext.jsx';
-import WishListItem from '../../components/WishListItem/WishListItem.jsx'
 
 export const Carrito = () => {
 
     const [wishlist, setWishlist] = useState(initialWishlist);
     const {cartItems, setCartItems} = useCartContext();
 
+    const handleInicio = () => {};
+    
     const handleDrop = (item) => {
     setCartItems(prev => {
         const existing = prev.find(p => p.id === item.id);
@@ -37,7 +38,7 @@ export const Carrito = () => {
 
     return (
         <DndProvider backend={HTML5Backend}>
-            <TopBar />
+            <TopBar handleInicio={handleInicio}/>
             <div className={styles.container}>
                 <div className={styles.titulo}>
                     Carrito de Compras

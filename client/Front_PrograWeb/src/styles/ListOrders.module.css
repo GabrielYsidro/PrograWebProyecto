@@ -1,0 +1,95 @@
+body, #root {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+.home-background {
+  background: url('../assets/fondoPoke.jpg') center center / cover no-repeat;
+  filter: brightness(1.3) blur(3px);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.home-content {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main-container {
+  flex: 1;
+  max-width: 1000px;
+  margin: 0 auto;
+  background: linear-gradient(to bottom right, rgba(144, 149, 126, 0.8), rgba(181, 119, 119, 0.9)), url(/src/assets/fondoPoke.jpg) center center / cover no-repeat;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+}
+
+.titulo {
+  text-align: left;
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #000000;
+}
+
+.userTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.userTable th, .userTable td {
+  padding: 12px;
+  border: 1px solid #000000;
+  text-align: center;
+  border-left: none;
+  border-right: none;
+  background-color: transparent;
+}
+.userTable th {
+    background-color: transparent;
+    color: #000000;
+    border-bottom: 2px solid #000000;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    text-decoration: underline;
+    font-size: 24px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  margin: 0 5px;
+  padding: 6px 12px;
+  background-color: #a83f3f;
+  color: black;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.pagination button:hover {
+  background-color: #d56666;
+  color: white;
+}
+
+.active-page {
+  background-color: #222;
+  color: white;
+}
+
+.filterbox {
+    padding: '0.5rem';
+    margin-right: '0.5rem';
+}

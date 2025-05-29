@@ -1,9 +1,18 @@
 import { useState } from 'react';
 import styles from '../../components/CartItem/CartItem.module.css';
+import  {useCartContext} from '../../hooks/CartContext.jsx'
 
 export const CartItem = ({ item }) => {
-  const [quantity, setQuantity] = useState(1);
-  const total = quantity * item.precio;
+  const { updateCartItemQuantity } = useCartContext();
+
+  const handleChange = (e) => {
+    const newQuantity = parseInt(e.target.value);
+    if (newQuantity > 0) {
+      updateCartItemQuantity(item.id, newQuantity);
+    }
+  };
+
+  const total = item.quantity * item.precio;
 
   return (
     <div className={styles.cartItem}>
@@ -15,8 +24,8 @@ export const CartItem = ({ item }) => {
         <input
           type="number"
           min={1}
-          value={quantity}
-          onChange={e => setQuantity(parseInt(e.target.value))}
+          value={item.quantity}
+          onChange={handleChange}
         />
       </label>
       <p>Total: S/. {total}</p>

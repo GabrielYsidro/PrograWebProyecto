@@ -1,27 +1,22 @@
-import { use } from 'react';
 import { Link } from 'react-router-dom';
-import AgregarCategoria from '../../pages/AdminPages/AddCategory.jsx';
-import { categorias as categoriasConst } from '../../constants/Consts.jsx';
-import modalStyles from '../../styles/AddCategory.module.css';
 import { useState, useEffect } from 'react';
-import { productos } from '../../constants/Consts.jsx';
+import { useCategoriaContext } from '../../hooks/CategoriaContext.jsx';
+import styles from './FormProducto.module.css';
 
 
 const FormProducto = ({initialValues,onSubmit,onCancel,submitButtonText,cancelButtonText, isEditMode =false}) => {
-    const [showModal, setShowModal] = useState(false);
-    const [categorias, setCategorias] = useState([...categoriasConst]);
-
-    // Recibe la nueva categoría desde el modal y actualiza el estado
-    const handleAddCategoria = (nuevaCategoria) => {
-        setCategorias(prev => [...prev, nuevaCategoria]);
-    };
+    const { categoriasItems } = useCategoriaContext();
 
     const [formData, setFormData] = useState(initialValues || {
         nombre: '',
-        tipo: '',
+        categoria: '',
         region: '',
         precio: 0,
         imagen: '',
+        descripcion: '',
+        stock: 0,
+        rareza: '',
+        evolucion: '',
     });
 
     useEffect(() => {
@@ -44,7 +39,7 @@ const FormProducto = ({initialValues,onSubmit,onCancel,submitButtonText,cancelBu
     }
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className={styles['form-container']} onSubmit={handleSubmit}>
             <div>
                 <label>
                     Nombre:
@@ -53,8 +48,13 @@ const FormProducto = ({initialValues,onSubmit,onCancel,submitButtonText,cancelBu
             </div>
             <div>
                 <label>
-                    Tipo:
-                    <input type="text" id='tipo' name="tipo" value={formData['tipo']} onChange={handleChange} required readOnly={isEditMode && !onCancel}/>
+                    Categoria:
+                    <select name="categoria" id="categoria" value={formData['categoria']} onChange={handleChange} required readOnly={isEditMode && !onCancel}>
+                        <option value="">Seleccione una categoría</option>
+                        {categoriasItems.map((categoria) => (
+                            <option key={categoria.id} value={categoria.nombre}>{categoria.nombre}</option>
+                        ))}
+                    </select>
                 </label>
             </div>
             <div>
@@ -73,6 +73,31 @@ const FormProducto = ({initialValues,onSubmit,onCancel,submitButtonText,cancelBu
                 <label>
                     Imagen:
                     <input type="text" id='imagen' name="imagen" value={formData['imagen']} onChange={handleChange} required readOnly={isEditMode && !onCancel}/>
+                </label>
+            </div>
+            <div>
+                <label>
+                    Descripción:
+                    <textarea id='descripcion' name="descripcion" value={formData['descripcion']} onChange={handleChange} required readOnly={isEditMode && !onCancel}></textarea>
+                </label>
+            </div>
+            <div>
+                <label>
+                    Stock:
+                    <input type="number" id='stock' name="stock" min="0" value={formData['stock']} onChange={handleChange} required readOnly={isEditMode && !onCancel}/>
+                </label>
+            </div>
+            <div>
+                <label>
+                    Rareza:
+                    <input name="rareza" id="rareza" value={formData['rareza']} onChange={handleChange} required readOnly={isEditMode && !onCancel}>
+                    </input>
+                </label>
+            </div>
+            <div>
+                <label>
+                    Evolución:
+                    <input type="text" id='imagen' name="imagen" value={formData['evolucion']} onChange={handleChange} required readOnly={isEditMode && !onCancel}/>
                 </label>
             </div>
             <div>

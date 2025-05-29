@@ -1,10 +1,14 @@
 import React from 'react';
 import styles from '../../components/OrderSummary/OrderSummary.module.css';
 import { Link } from 'react-router-dom';
+import { usePaymentForm } from '../../hooks/usePaymentForm.jsx';
 
 export const OrderSummary = ({ items }) => {
+
+  const {shippingOption} = usePaymentForm();
+
   const subtotal = items.reduce((acc, item) => acc + item.precio * item.quantity, 0);
-  const deliveryFee = 15; // fijo
+  const deliveryFee = shippingOption === 'delivery' ? 15 : 0;
   const total = subtotal + deliveryFee;
 
   return (

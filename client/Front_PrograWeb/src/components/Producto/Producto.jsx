@@ -3,9 +3,19 @@ import styles from './Producto.module.css';
 import { useCartContext } from '../../hooks/CartContext.jsx';
 import { useState } from 'react';
 
+
 function Producto({ producto }) {
   const { addItem } = useCartContext();
   const [showMsg, setShowMsg] = useState(false);
+
+  const categoria = producto.categoria
+    ? producto.categoria.charAt(0).toUpperCase() + producto.categoria.slice(1).toLowerCase()
+    : '';
+
+  const cateClase = producto.categoria
+    ? styles['borde' + producto.categoria.charAt(0).toUpperCase() + producto.categoria.slice(1).toLowerCase()] //gepeto
+    : '';
+
 
   const handleAdd = () => {
     addItem(producto);
@@ -16,24 +26,24 @@ function Producto({ producto }) {
   };
 
   return (
-    <div className={styles.producto}>
-      <h2 className={styles.nombre}>{producto.nombre}</h2>
+    <div className={`${styles.producto} ${cateClase}`}>
+      <h2 className={`${styles.nombre} ${styles['categoria' + categoria]}`}>{producto.nombre}</h2>
       <img
         src={producto.imagen}
         alt={producto.nombre}
         className={styles.imagen}
       />
-      <p className={styles.tipo}>{producto.tipo}</p>
-      <p className={styles.region}>{producto.region}</p>
-      <p className={styles.precio}>Precio: ${producto.precio}</p>
+      <p className={`${styles.categoria} ${styles['categoria' + categoria]}`}>{producto.categoria}</p>
+      <p className={`${styles.region} ${styles['region' + categoria]}`}>{producto.region}</p>
+      <p className={`${styles.precio} ${styles['precio' + categoria]}`}>Precio: ${producto.precio}</p>
       <Link
         to={`/product/${producto.id}`}
-        className={styles.botonDetalle}
+        className={`${styles.botonDetalle} ${styles['boton' + categoria]}`}
       >
         Ver detalle
       </Link>
       <button
-        className={`${styles.botonDetalle} ${showMsg ? styles.botonAgregado : ''}`}
+        className={`${styles.botonDetalle} ${styles['boton' + categoria]} ${showMsg ? styles.botonAgregado : ''}`}
         type="button"
         onClick={handleAdd}
         disabled={showMsg}
