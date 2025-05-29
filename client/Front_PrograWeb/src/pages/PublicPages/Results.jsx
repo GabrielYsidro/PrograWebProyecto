@@ -5,12 +5,15 @@ import TopBar from '../../components/TopBar/TopBar.jsx';
 import Footer from '../../components/Footer/Footer.jsx';
 import styles from '../../styles/Results.module.css';
 import { useProductos } from '../../hooks/ProductosContext.jsx';
+import { useUserContext } from '../../contexts/userContext.jsx';
+import TopBarUser from '../../components/TopBarUser/TopBarUser.jsx';
 
 export const Results = () => {
     const location = useLocation();
     const params = new URLSearchParams(location.search);
     const search = (params.get('search') || '').toLowerCase();  
     const { productos } = useProductos();
+    const { currentUser } = useUserContext();
 
     const handleInicio = () => {};
     
@@ -18,7 +21,7 @@ export const Results = () => {
     const [orden, setOrden] = useState('');
 
     let productosFiltrados = productos
-    .filter(p => p.activo !== true) // Solo productos activos
+    .filter(p => p.activo == true) // Solo productos activos
     .filter(
         (p) =>
         (p.nombre && p.nombre.toLowerCase().includes(search)) ||
@@ -39,7 +42,11 @@ export const Results = () => {
     return (
         <>
             <div className={styles.background}></div>
-            <TopBar handleInicio={handleInicio}/>
+            {(currentUser)? 
+                    <TopBarUser handleInicio={handleInicio}/>
+                :
+                    <TopBar handleInicio={handleInicio}/>
+                }
             <div className={styles.content}>
                 <h2 className={styles.title}>Resultados para: "{search}"</h2>
                 <div style={{ marginBottom: '1rem', display: 'flex', gap: '1rem' }}>
