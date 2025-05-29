@@ -1,11 +1,14 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { usuarios } from "../constants/Consts";
+import { useUserContext } from "../contexts/UserContext.jsx";
+
 
 export function useLoginForm(initialValues = { username: "", password: "" }) {
   const [values, setValues] = useState(initialValues);
   const [error, setError] = useState("");
   const navigate = useNavigate();
+  const { login } = useUserContext();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,38 +28,28 @@ export function useLoginForm(initialValues = { username: "", password: "" }) {
   };
 
   const handleLogin = (e) => {
-  e.preventDefault();
-  if (!validate()) return;
+    e.preventDefault();
+    if (!validate()) return;
 
-  // Buscar usuario por email (username)
-  const usuario = usuarios.find(u => u.email === values.username);
+    const usuarioEncontrado = usuarios.find(
+      (u) => u.email === values.username.toLowerCase()
+    );
 
-  if (!usuario) {
-    setError("Correo o contraseña incorrectos.");
-    return;
-  }
+    if (!usuarioEncontrado || values.password !== "123456") {
+      setError("Correo o contraseña incorrectos.");
+      return;
+    }
 
-  // Aquí debes validar la contraseña. Como no tienes, 
-  // para ejemplo, asumamos que la contraseña es "123456" para todos.
-  if (values.password !== "123456") {
-    setError("Correo o contraseña incorrectos.");
-    return;
-  }
-
-  setError("");
-  localStorage.setItem("loggedIn", "true");
-  localStorage.setItem("usuarioLogueado", JSON.stringify(usuario)); // guardar usuario para persistencia
-
-  navigate("/dashboard");
-};
+    setError("");
+    login(usuarioEncontrado); // Actualiza contexto y localStorage
+    navigate("/homeuser"); // Navega a home de usuario
+  };
 
   const handleRegister = () => {
-    console.log("Ir a registro");
     navigate("/register");
   };
 
   const handleForgotPassword = () => {
-    console.log("Recuperar contraseña");
     navigate("/recover-password");
   };
 

@@ -4,7 +4,7 @@ import styles from '../../styles/Checkout.module.css'
 import Footer from '../../components/Footer/Footer.jsx'
 import PaymentSection from '../../components/PaymentSection/PaymentSection.jsx';
 import OrderSummary from '../../components/OrderSummary/OrderSummary.jsx';
-import { useCartContext } from '../../contexts/cartContext.jsx';
+import { useCartContext } from '../../contexts/CartContext.jsx';
 
 
 export const Checkout = () => {

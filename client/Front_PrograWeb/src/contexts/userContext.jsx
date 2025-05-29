@@ -1,18 +1,29 @@
 import React, { createContext, useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const UserContext = createContext();
 
-export const useUserContext = () => useContext(UserContext);
+function useUserContext() {
+  return useContext(UserContext);
+}
 
-export function UserProvider({ children }) {
-  const [usuario, setUsuario] = useState(null);
+function UserProvider({ children }) {
+  const navigate = useNavigate();
+
+  const [usuario, setUsuario] = useState(() => {
+    const storedUser = localStorage.getItem('usuario');
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
 
   const login = (userData) => {
     setUsuario(userData);
+    localStorage.setItem('usuario', JSON.stringify(userData));
   };
 
   const logout = () => {
     setUsuario(null);
+    localStorage.removeItem('usuario');
+    navigate('/');
   };
 
   return (
@@ -21,3 +32,5 @@ export function UserProvider({ children }) {
     </UserContext.Provider>
   );
 }
+
+export { UserProvider as default, useUserContext };

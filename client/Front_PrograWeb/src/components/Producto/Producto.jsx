@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import styles from './Producto.module.css';
-import { useCartContext } from '../../hooks/CartContext.jsx';
+import { useCartContext } from '../../contexts/CartContext.jsx';
 import { useState } from 'react';
 
 function Producto({ producto }) {
