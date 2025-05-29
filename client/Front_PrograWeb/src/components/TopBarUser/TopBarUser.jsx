@@ -53,6 +53,14 @@ const TopBarUser = ({ handleInicio}) => {
           />
           Categorias
         </Link>
+        <Link to="/change-password" className={styles.link}>
+          <img
+            src="https://play.pokemonshowdown.com/sprites/ani/haunter.gif"
+            alt="Cambiar Contraseña"
+            className={styles.linkGif}
+          />
+          Cambiar Contraseña
+        </Link>
         <span className={styles.link} style={{ marginLeft: '1.5rem', fontWeight: 'bold' }}>
           {currentUser?.nombre ? `Hola, ${currentUser.nombre}` : 'Usuario'}
         </span>

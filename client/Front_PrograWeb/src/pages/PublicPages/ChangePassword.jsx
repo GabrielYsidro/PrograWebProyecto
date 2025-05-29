@@ -1,27 +1,21 @@
 import React from "react";
-import ChangeTable from "../../components/ChangeTable/ChangeTable.jsx";
-import { useChangeForm } from "../../hooks/useChangeForm.jsx";
-import styles from "../../styles/ChangePassword.module.css";  
+import styles from "../../styles/ChangePassword.module.css";
+import CambiarContra from "../../components/CambiarContra/CambiarContra.jsx";  
+import { useNavigate } from "react-router-dom";
 
 function ChangePassword() {
-  const {
-    values,
-    handleChange,
-    handleSubmit,
-    error,
-  } = useChangeForm();
+  const navigate = useNavigate();
 
   return (
     <div className={styles["change-wrapper"]}>
-      <div className={styles["change-background"]}></div>
-      <div className={styles["change-content"]}>
-        <ChangeTable
-          values={values}
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
-          error={error}
-        />
-      </div>
+      <CambiarContra />
+      <button
+        className={styles["back-button"]}
+        style={{ marginTop: "2rem", marginLeft: "auto", marginRight: "auto", display: "block" }}
+        onClick={() => navigate("/")}
+      >
+        Regresar a inicio
+      </button>
     </div>
   );
 }
