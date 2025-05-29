@@ -68,29 +68,35 @@ function DetalleProducto({ modoAdmin = false, onModificar}) {
                 </div>
               )}
               {modoAdmin ? (
-                <button
-                  className={styles.botonDetalle}
-                  type="button"
-                  onClick={() => onModificar && onModificar(producto)}
-                >
-                  Modificar producto
-                </button>
+                <div>
+                  <button
+                    className={styles.botonDetalle}
+                    type="button"
+                    onClick={() => onModificar && onModificar(producto)}
+                  >
+                    Modificar producto
+                  </button>
+                  <Link to="/homeadmin" className={styles.volverBtn}>Volver al inicio</Link>
+                </div>
+                
               ) : (
-                <button
-                  className={`${styles.botonDetalle} ${showMsg ? styles.botonAgregado : ''}`}
-                  type="button"
-                  onClick={handleAdd}
-                  disabled={showMsg}
-                >
-                  {showMsg ? (
-                    <span className={styles.checkAnimado}>✔ Agregado</span>
-                  ) : (
-                    'Agregar al carrito'
-                  )}
-                </button>
+                <div>
+                  <button
+                    className={`${styles.botonDetalle} ${showMsg ? styles.botonAgregado : ''}`}
+                    type="button"
+                    onClick={handleAdd}
+                    disabled={showMsg}
+                  >
+                    {showMsg ? (
+                      <span className={styles.checkAnimado}>✔ Agregado</span>
+                    ) : (
+                      'Agregar al carrito'
+                    )}
+                  </button>
+                  <Link to="/" className={styles.volverBtn}>Volver al inicio</Link>
+                </div>
               )
               }
-              <Link to="/" className={styles.volverBtn}>Volver al inicio</Link>
             </div>
           )}
         </div>

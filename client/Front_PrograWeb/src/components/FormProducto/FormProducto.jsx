@@ -1,8 +1,12 @@
-import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { useCategoriaContext } from '../../hooks/CategoriaContext.jsx';
 import styles from './FormProducto.module.css';
 
+const initialEvolution = {
+    nombre: '',
+    imagen: '',
+    nivel: '',
+};
 
 const FormProducto = ({initialValues,onSubmit,onCancel,submitButtonText,cancelButtonText, isEditMode =false}) => {
     const { categoriasItems } = useCategoriaContext();
@@ -16,7 +20,7 @@ const FormProducto = ({initialValues,onSubmit,onCancel,submitButtonText,cancelBu
         descripcion: '',
         stock: 0,
         rareza: '',
-        evolucion: '',
+        evoluciones: [], // Inicializa como un array vacío
     });
 
     useEffect(() => {
@@ -27,11 +31,76 @@ const FormProducto = ({initialValues,onSubmit,onCancel,submitButtonText,cancelBu
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData({
+
+        if (name.startsWith('evoluciones')) {
+            const parts = name.split(/\[|\]|\./).filter(Boolean);
+            const index = parseInt(parts[1]);
+            const field = parts[2];
+
+            const nuevasEvoluciones = [...formData.evoluciones];
+            nuevasEvoluciones[index][field] = value;
+            setFormData({
+                ...formData,
+                evoluciones: nuevasEvoluciones,
+            });
+        }else {
+            setFormData({
             ...formData,
             [name]: value,
-        });
+            });
+        }
     }
+
+    const handleAddEvolution = () => {
+        setFormData(prevFormData => ({
+            ...prevFormData,
+            evoluciones: [...prevFormData.evoluciones, { ...initialEvolution }],
+        }));
+    };
+
+    const handleRemoveEvolucion = (index) => {
+        const nuevasEvoluciones = [...formData.evoluciones];
+        nuevasEvoluciones.splice(index, 1);
+        setFormData({ ...formData, evoluciones: nuevasEvoluciones });
+    };
+
+    const renderEvoluciones = () => {
+        return formData.evoluciones.map((evolucion, index) => (
+        <div key={index}>
+            <h3>Evolución {index + 1}</h3>
+            <label>
+            Nombre:
+            <input
+                type="text"
+                name={`evoluciones[${index}].nombre`}
+                value={evolucion.nombre}
+                onChange={handleChange}
+            />
+            </label>
+            <label>
+            Imagen:
+            <input
+                type="text"
+                name={`evoluciones[${index}].imagen`}
+                value={evolucion.imagen}
+                onChange={handleChange}
+            />
+            </label>
+            <label>
+            Nivel:
+            <input
+                type="number"
+                name={`evoluciones[${index}].nivel`}
+                value={evolucion.nivel}
+                onChange={handleChange}
+            />
+            </label>
+            <button type="button" onClick={() => handleRemoveEvolucion(index)}>
+            Eliminar Evolución
+            </button>
+        </div>
+        ));
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -97,7 +166,10 @@ const FormProducto = ({initialValues,onSubmit,onCancel,submitButtonText,cancelBu
             <div>
                 <label>
                     Evolución:
-                    <input type="text" id='imagen' name="imagen" value={formData['evolucion']} onChange={handleChange} required readOnly={isEditMode && !onCancel}/>
+                    {renderEvoluciones()}
+                    <button type="button" onClick={handleAddEvolution}>
+                        Agregar Evolución
+                    </button>
                 </label>
             </div>
             <div>
@@ -113,4 +185,3 @@ const FormProducto = ({initialValues,onSubmit,onCancel,submitButtonText,cancelBu
 };
 
 export default FormProducto;
-

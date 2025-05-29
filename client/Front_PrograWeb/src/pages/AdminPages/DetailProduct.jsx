@@ -1,53 +1,52 @@
-import React, { useState, useEffect } from 'react'; // Corregido: una sola importación de hooks
+import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import TopBarAdmin from '../../components/TopBarAdmin/TopBarAdmin.jsx';
 import Footer from '../../components/Footer/Footer.jsx';
 import FormProducto from '../../components/FormProducto/FormProducto.jsx';
-import { productos as allProductsConst, categorias as categoriasConst } from '../../constants/Consts.jsx'; // Renombrado para evitar conflictos
+import { useProductos } from '../../hooks/ProductosContext.jsx'; // Importa el contexto
 import styles from '../../styles/DetailProduct.module.css';
-import DetalleProducto from '../../components/DetalleProducto/DetalleProducto.jsx'; // Asegúrate de que este componente exista
+import DetalleProducto from '../../components/DetalleProducto/DetalleProducto.jsx';
 
 export const DetailProduct = () => {
     const { id } = useParams();
     const navigate = useNavigate();
-    
+
     const [isLoading, setIsLoading] = useState(true);
     const [isEditing, setIsEditing] = useState(false);
-    
-    const [currentProduct, setCurrentProduct] = useState(null); 
-    
-    const [categorias, setCategorias] = useState([...categoriasConst]); 
+    const [currentProduct, setCurrentProduct] = useState(null);
+    const { productos, updateProduct } = useProductos(); // Obtén la función del contexto
 
     useEffect(() => {
         setIsLoading(true);
-        const productFinded = allProductsConst.find(p => p.id === parseInt(id));
-        
+        // Encuentra el producto usando el contexto
+        const productFinded = productos.find(p => p.id === parseInt(id));
+
         setTimeout(() => {
             if (productFinded) {
-                setCurrentProduct({
-                    ...productFinded,
-                });
+                setCurrentProduct(productFinded);
             } else {
                 console.warn(`Producto con ID ${id} no encontrado.`);
-                setCurrentProduct(null); 
+                setCurrentProduct(null);
             }
             setIsLoading(false);
         }, 500);
-    }, [id]); 
+    }, [id]); // Elimina la dependencia en productos
 
     const handleEdit = () => {
         setIsEditing(true);
     }
 
     const handleUpdateProduct = (updatedData) => {
-        console.log('Datos a actualizar:', updatedData);
-        setCurrentProduct(updatedData); 
-        alert('Producto actualizado con éxito (simulado)!');
-        setIsEditing(false); 
+        updateProduct(parseInt(id), updatedData); // Llama a la función del contexto
+        // Obtén el producto actualizado del contexto
+        const updatedProduct = productos.find(p => p.id === parseInt(id));
+        setCurrentProduct(updatedProduct);
+        alert('Producto actualizado con éxito!');
+        setIsEditing(false);
+        navigate('/listproduct'); // Redirige a la lista de productos
     };
 
     const handleCancelEdit = () => {
-        console.log('Edición cancelada');
         setIsEditing(false);
     };
 
@@ -61,7 +60,7 @@ export const DetailProduct = () => {
                 <TopBarAdmin/>
                 <main className={styles['main-content']}>
                     <h1>Producto no encontrado</h1>
-                    <Link to="/admin/productos">Volver a la lista de productos</Link>
+                    <Link to="/listproduct">Volver a la lista de productos</Link>
                 </main>
                 <Footer />
             </div>
@@ -72,21 +71,20 @@ export const DetailProduct = () => {
         <>
             <div className={styles['home-background']}></div>
             <div className={styles['home-content']}>
-                <TopBarAdmin/>
+                <TopBarAdmin />
                 <main className={styles['main-content']}>
                     <h1>Detalle del producto: {currentProduct.nombre}</h1>
-                    
+
                     {isEditing ? (
                         <FormProducto
-                            initialValues={currentProduct} 
-                            onSubmit={handleUpdateProduct} 
-                            onCancel={handleCancelEdit} 
+                            initialValues={currentProduct}
+                            onSubmit={handleUpdateProduct}
+                            onCancel={handleCancelEdit}
                             submitButtonText="Guardar Cambios"
                             cancelButtonText="Cancelar Edición"
                             isEditMode={true}
                         />
                     ) : (
-                        // Vista del producto
                         <DetalleProducto modoAdmin={true} onModificar={handleEdit} />
                     )}
                     <Link to="/listproduct">Volver a la lista de productos</Link>
