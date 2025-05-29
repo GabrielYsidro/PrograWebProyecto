@@ -4,10 +4,15 @@ import { OrderItem } from "../../components/OrderItem/OrderItem.jsx";
 import TopBar from "../../components/TopBarAdmin/TopBarAdmin.jsx";
 import styles from '../../styles/ListOrders.module.css';
 import Footer from "../../components/Footer/Footer.jsx";
+import {useOrdenContext} from "../../hooks/OrdenContext.jsx";
 
 export const ListOrders = () =>{
-    const ordenesTotales = usuarios.flatMap(u =>
-        u.ordenes.map(o => ({ ...o, usuario: u.nombre }))
+
+    const { ordenItems, removeItem } = useOrdenContext();
+    // Combina las órdenes de todos los usuarios en un solo array  
+
+    const ordenesTotales = ordenItems.flatMap(u =>
+        u.map(o => ({ ...o, cliente: u.nombre }))
     );
     const [filtro, setFiltro] = useState("");
     
