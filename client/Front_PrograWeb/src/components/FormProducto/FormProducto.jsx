@@ -20,7 +20,9 @@ const FormProducto = ({initialValues,onSubmit,onCancel,submitButtonText,cancelBu
         descripcion: '',
         stock: 0,
         rareza: '',
-        evoluciones: [], // Inicializa como un array vacío
+        evoluciones: [],
+        activo: true,
+        quantity: 1,
     });
 
     useEffect(() => {
@@ -104,7 +106,14 @@ const FormProducto = ({initialValues,onSubmit,onCancel,submitButtonText,cancelBu
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        onSubmit(formData);
+        // Asegura que los campos obligatorios estén presentes y con valores por defecto
+        const productoFinal = {
+            ...formData,
+            activo: true,
+            quantity: 1,
+            evoluciones: formData.evoluciones || [],
+        };
+        onSubmit(productoFinal);
     }
 
     return (
