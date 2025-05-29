@@ -1,24 +1,12 @@
 import React from "react";
-import styles from "./RegisterTable.module.css";
+import styles from "./ChangeTable.module.css";
 
-export function RegisterTable({ values, handleChange, handleSubmit, error }) {
+export function ChangeTable({ values, handleChange, handleSubmit, error }) {
   return (
-    <div className={styles.registerContainer}>
-      <div className={styles.registerForm}>
-        <h2>Registro</h2>
+    <div className={styles.changeContainer}>
+      <div className={styles.changeForm}>
+        <h2>Recuperar Contraseña</h2>
         <form onSubmit={handleSubmit}>
-          <div className={styles.inputGroup}>
-            <label htmlFor="username">Nombre de usuario</label>
-            <input
-              type="text"
-              id="username"
-              name="username"
-              value={values.username}
-              onChange={handleChange}
-              required
-            />
-          </div>
-
           <div className={styles.inputGroup}>
             <label htmlFor="email">Correo electrónico</label>
             <input
@@ -30,19 +18,17 @@ export function RegisterTable({ values, handleChange, handleSubmit, error }) {
               required
             />
           </div>
-
           <div className={styles.inputGroup}>
-            <label htmlFor="password">Contraseña</label>
+            <label htmlFor="newPassword">Nueva contraseña</label>
             <input
               type="password"
-              id="password"
-              name="password"
-              value={values.password}
+              id="newPassword"
+              name="newPassword"
+              value={values.newPassword}
               onChange={handleChange}
               required
             />
           </div>
-
           <div className={styles.inputGroup}>
             <label htmlFor="confirmPassword">Confirmar contraseña</label>
             <input
@@ -54,11 +40,9 @@ export function RegisterTable({ values, handleChange, handleSubmit, error }) {
               required
             />
           </div>
-
           {error && <p className={styles.error}>{error}</p>}
-
           <button type="submit" className={styles.submitButton}>
-            Registrarse
+            Cambiar contraseña
           </button>
         </form>
       </div>
@@ -66,4 +50,4 @@ export function RegisterTable({ values, handleChange, handleSubmit, error }) {
   );
 }
 
-export default RegisterTable;
+export default ChangeTable;

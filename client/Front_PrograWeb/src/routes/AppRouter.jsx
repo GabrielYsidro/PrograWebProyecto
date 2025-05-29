@@ -17,6 +17,10 @@ import ListOrders from '../pages/AdminPages/ListOrders.jsx'
 import DetailsOrders from '../pages/AdminPages/DetailsOrders.jsx';
 import { Login } from '../pages/PublicPages/Login.jsx';
 import DetalleProducto from '../components/DetalleProducto/DetalleProducto.jsx';
+import Register from '../pages/PublicPages/Register.jsx';
+import ChangePassword from '../pages/PublicPages/ChangePassword.jsx';
+import HomeUser from '../pages/UserPages/HomeUser.jsx';
+import PrivateRoute from '../components/PrivateRoute/PrivateRoute.jsx';
 
 export const AppRouter = () => {
 
@@ -41,6 +45,10 @@ export const AppRouter = () => {
                 <Route path = '/listOrders/' element = { <ListOrders />} />
                 <Route path = '/Order/:id' element = { <DetailsOrders />} />
                 <Route path = '/login' element = { <Login />} />
+                <Route path = '/register' element = { <Register />} />
+                <Route path = '/recover-password' element = { <ChangePassword />} />
+                <Route path="/homeuser" element={<PrivateRoute><HomeUser /></PrivateRoute>}/>
+                
 
             </Routes>
         </BrowserRouter>
