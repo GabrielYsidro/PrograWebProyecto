@@ -34,7 +34,7 @@ function DetalleProducto({ modoAdmin = false, onModificar}) {
                 alt={producto.nombre}
                 className={styles.imagen}
               />
-              <p className={styles.tipo}><strong>Tipo:</strong> {producto.categoria}</p>
+              <p className={styles.categoria}><strong>categoria:</strong> {producto.categoria}</p>
               <p className={styles.region}><strong>Región:</strong> {producto.region}</p>
               <p className={styles.precio}><strong>Precio:</strong> ${producto.precio}</p>
               {producto.stock !== undefined && (

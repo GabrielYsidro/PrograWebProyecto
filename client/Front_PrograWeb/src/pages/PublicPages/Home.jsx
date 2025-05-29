@@ -13,8 +13,8 @@ import Promo from '../../components/Promo/Promo.jsx';
 
 export const Home = () => {
     // Agrupa productos por categoria
-    const tiposUnicos = [...new Set(productos.map(p => p.categoria))];
-    const productosPorTipo = tiposUnicos.map(categoria => ({
+    const categoriasUnicos = [...new Set(productos.map(p => p.categoria))];
+    const productosPorcategoria = categoriasUnicos.map(categoria => ({
         categoria,
         productos: productos.filter(p => p.categoria === categoria)
     }));
@@ -35,7 +35,7 @@ export const Home = () => {
                          {productos.length === 0 ? (
                             <span style={{ color: '#888', fontStyle: 'italic' }}>No hay productos encontrados.</span>
                             ) : (
-                            productosPorTipo.map(({ categoria, productos }) => (
+                            productosPorcategoria.map(({ categoria, productos }) => (
                                 <section
                                     key={categoria}
                                     className={`${categoriasStyles.categoriaFila} ${categoriasStyles['fondo' + categoria.charAt(0).toUpperCase() + categoria.slice(1).toLowerCase()]}`}

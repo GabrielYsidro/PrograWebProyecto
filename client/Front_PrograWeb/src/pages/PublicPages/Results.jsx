@@ -9,7 +9,7 @@ import { useProductos } from '../../hooks/ProductosContext.jsx';
 export const Results = () => {
     const location = useLocation();
     const params = new URLSearchParams(location.search);
-    const search = params.get('search') || '';
+    const search = (params.get('search') || '').toLowerCase();  
     const { productos } = useProductos();
 
     const handleInicio = () => {};
@@ -19,9 +19,9 @@ export const Results = () => {
 
     let productosFiltrados = productos.filter(
     (p) =>
-        p.nombre.toLowerCase().includes(search) ||
+        (p.nombre && p.nombre.toLowerCase().includes(search)) ||
         (p.region && p.region.toLowerCase().includes(search)) ||
-        (p.tipo && p.tipo.toLowerCase().includes(search))
+        (p.categoria && p.categoria.toLowerCase().includes(search))
     );
 
     if (orden === 'precio-asc') {
