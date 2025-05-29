@@ -3,7 +3,7 @@ import styles from './UserItem.module.css';
 
 
 export const UserItem = ({ u , desactivarUsuario , activarUsuario }) => {
-
+        
 
     return (
         <tr className={styles["userRow"]}>
