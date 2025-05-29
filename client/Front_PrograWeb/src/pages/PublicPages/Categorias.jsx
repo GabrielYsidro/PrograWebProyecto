@@ -16,8 +16,8 @@ export const Categorias = () => {
   const { categoriasItems } = useCategoriaContext();
   const { productos } = useProductos();
   const { currentUser } = useUserContext();
-  const handleInicio = () => {
-    };
+
+  const handleInicio = () => {};
 
   const productosFiltrados = productos
     .filter(producto => producto.activo === true)
@@ -26,7 +26,6 @@ export const Categorias = () => {
         (!categoriaSeleccionada || producto.categoria === categoriaSeleccionada) &&
         (!busqueda.trim() || producto.nombre.toLowerCase().includes(busqueda.trim().toLowerCase()))
     )
-    .slice()
     .sort((a, b) => {
       if (orden === 'nombreA') return a.nombre.localeCompare(b.nombre);
       if (orden === 'nombreZ') return b.nombre.localeCompare(a.nombre);
@@ -38,11 +37,10 @@ export const Categorias = () => {
   return (
     <>
       <div className={styles.background}></div>
-      {(currentUser)? 
-                    <TopBarUser handleInicio={handleInicio}/>
-                :
-                    <TopBar handleInicio={handleInicio}/>
-                }
+      {currentUser
+        ? <TopBarUser handleInicio={handleInicio} />
+        : <TopBar handleInicio={handleInicio} />
+      }
       <div className={styles.page}>
         <div className={styles.content}>
           <h2 className={styles.eligeMargin}>¡Explora por Categoría!</h2>
@@ -53,31 +51,26 @@ export const Categorias = () => {
             <li
               onClick={() => setCategoriaSeleccionada(null)}
               className={`${styles.categoriaBtn} ${!categoriaSeleccionada ? styles.categoriaSeleccionada : ''}`}
+              style={{ cursor: "pointer" }}
             >
               <span className={styles.categoriaIcon} role="img" aria-label="Todas">⭐</span>
               Todas
             </li>
-            <li
-              onClick={() => setCategoriaSeleccionada('Fuego')}
-              className={`${styles.categoriaBtn} ${categoriaSeleccionada === 'Fuego' ? styles.categoriaSeleccionada : ''}`}
-            >
-              <span className={styles.categoriaIcon} role="img" aria-label="Fuego">🔥</span>
-              Fuego
-            </li>
-            <li
-              onClick={() => setCategoriaSeleccionada('Agua')}
-              className={`${styles.categoriaBtn} ${categoriaSeleccionada === 'Agua' ? styles.categoriaSeleccionada : ''}`}
-            >
-              <span className={styles.categoriaIcon} role="img" aria-label="Agua">💧</span>
-              Agua
-            </li>
-            <li
-              onClick={() => setCategoriaSeleccionada('Planta')}
-              className={`${styles.categoriaBtn} ${categoriaSeleccionada === 'Planta' ? styles.categoriaSeleccionada : ''}`}
-            >
-              <span className={styles.categoriaIcon} role="img" aria-label="Planta">🌱</span>
-              Planta
-            </li>
+            {categoriasItems.map(cat => (
+              <li
+                key={cat.id}
+                onClick={() => setCategoriaSeleccionada(cat.nombre)}
+                className={`${styles.categoriaBtn} ${categoriaSeleccionada === cat.nombre ? styles.categoriaSeleccionada : ''}`}
+                style={{
+                  cursor: "pointer",
+                  background: cat.color || "#eee",
+                  color: "#222"
+                }}
+              >
+                <span className={styles.categoriaIcon} role="img" aria-label={cat.nombre}>{cat.emoji || "❓"}</span>
+                {cat.nombre}
+              </li>
+            ))}
           </ul>
           <h3 className={styles.eligeMargin}>
             {categoriaSeleccionada ? `Productos de ${categoriaSeleccionada}` : 'Todos los productos'}
