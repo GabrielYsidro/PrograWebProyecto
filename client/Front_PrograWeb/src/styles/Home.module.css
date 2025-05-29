@@ -35,7 +35,7 @@ body, #root {
 
 /* ...código existente... */
 
-.tipoFuego {
+.categoriaFuego {
   color: #fff;
   background: linear-gradient(90deg, #ff9800 40%, #ff5252 100%);
   border: 2px solid #ff9800;
@@ -52,7 +52,7 @@ body, #root {
   border-radius: 12px;
 }
 
-.tipoAgua {
+.categoriaAgua {
   color: #fff;
   background: linear-gradient(90deg, #00bcd4 40%, #2196f3 100%);
   border: 2px solid #2196f3;
@@ -69,7 +69,7 @@ body, #root {
   border-radius: 12px;
 }
 
-.tipoPlanta {
+.categoriaPlanta {
   color: #fff;
   background: linear-gradient(90deg, #aee571 40%, #43a047 100%);
   border: 2px solid #43a047;

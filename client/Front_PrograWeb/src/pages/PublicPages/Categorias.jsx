@@ -1,9 +1,7 @@
 import { useState } from 'react';
 import styles from '../../styles/Categorias.module.css';
-import TopBar from '../../components/TopBar/TopBar.jsx';
-import Footer from '../../components/Footer/Footer.jsx';
 import Producto from '../../components/Producto/Producto.jsx';
-import { productos } from '../../constants/Consts.jsx';
+import { useProductos } from '../../hooks/ProductosContext.jsx';
 import { useCategoriaContext } from '../../hooks/CategoriaContext.jsx';
 import BotonOrd from '../../components/BotonOrd/BotonOrd.jsx';
 
@@ -12,11 +10,12 @@ export const Categorias = () => {
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState(null);
   const [orden, setOrden] = useState('nombreA');
   const { categoriasItems } = useCategoriaContext();
+  const { productos } = useProductos();
 
   const productosFiltrados = productos
     .filter(
       (producto) =>
-        (!categoriaSeleccionada || producto.tipo === categoriaSeleccionada) &&
+        (!categoriaSeleccionada || producto.categoria === categoriaSeleccionada) &&
         (!busqueda.trim() || producto.nombre.toLowerCase().includes(busqueda.trim().toLowerCase()))
     )
     .slice() // para no mutar el array original
@@ -31,7 +30,7 @@ export const Categorias = () => {
   return (
     <div className={styles.page}>
       <div className={styles.background}></div>
-      <TopBar handleSearch={e => { e.preventDefault(); }} busqueda={busqueda} setBusqueda={setBusqueda} />
+      
       <h2 className={styles.eligeMargin}>Categorías</h2>
       <BotonOrd productosFiltrados={productosFiltrados} orden={orden} setOrden={setOrden} />
       <ul className={styles.listaCategoriasMargin}>
@@ -65,7 +64,7 @@ export const Categorias = () => {
           <Producto key={producto.id} producto={producto} />
         ))}
       </div>
-      <Footer />
+      
     </div>
   );
 };
