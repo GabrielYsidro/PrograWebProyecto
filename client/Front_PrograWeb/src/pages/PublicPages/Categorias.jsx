@@ -4,6 +4,8 @@ import Producto from '../../components/Producto/Producto.jsx';
 import { useProductos } from '../../hooks/ProductosContext.jsx';
 import { useCategoriaContext } from '../../hooks/CategoriaContext.jsx';
 import BotonOrd from '../../components/BotonOrd/BotonOrd.jsx';
+import TopBar from '../../components/TopBar/TopBar.jsx';
+import Footer from '../../components/Footer/Footer.jsx';
 
 export const Categorias = () => {
   const [busqueda, setBusqueda] = useState('');
@@ -18,7 +20,7 @@ export const Categorias = () => {
         (!categoriaSeleccionada || producto.categoria === categoriaSeleccionada) &&
         (!busqueda.trim() || producto.nombre.toLowerCase().includes(busqueda.trim().toLowerCase()))
     )
-    .slice() // para no mutar el array original
+    .slice()
     .sort((a, b) => {
       if (orden === 'nombreA') return a.nombre.localeCompare(b.nombre);
       if (orden === 'nombreZ') return b.nombre.localeCompare(a.nombre);
@@ -28,44 +30,61 @@ export const Categorias = () => {
     });
 
   return (
-    <div className={styles.page}>
+    <>
       <div className={styles.background}></div>
-      
-      <h2 className={styles.eligeMargin}>Categorías</h2>
-      <BotonOrd productosFiltrados={productosFiltrados} orden={orden} setOrden={setOrden} />
-      <ul className={styles.listaCategoriasMargin}>
-        <li
-          onClick={() => setCategoriaSeleccionada(null)}
-          className={!categoriaSeleccionada ? styles.categoriaSeleccionada : styles.categoria}
-        >
-          Todas
-        </li>
-        {categoriasItems.map((categoria) => (
-          <li
-            key={categoria.nombre}
-            onClick={() => setCategoriaSeleccionada(categoria.nombre)}
-            className={categoriaSeleccionada === categoria.nombre ? styles.categoriaSeleccionada : styles.categoria}
-            style={{
-              background: categoria.color,
-              borderColor: categoria.color,
-              color: categoriaSeleccionada === categoria.nombre ? '#fff' : '#222'
-            }}
-          >
-            {(categoria.emoji || '✨') + ' '}{categoria.nombre}
-          </li>
-        ))}
-      </ul>
-
-      <div className={styles.productos + ' ' + styles.marginLeft}>
-        {productosFiltrados.length === 0 && (
-          <p className={styles.noProductos}>No se encontraron productos.</p>
-        )}
-        {productosFiltrados.map((producto) => (
-          <Producto key={producto.id} producto={producto} />
-        ))}
+      <TopBar handleInicio={() => {}} />
+      <div className={styles.page}>
+        <div className={styles.content}>
+          <h2 className={styles.eligeMargin}>¡Explora por Categoría!</h2>
+          <div className={styles.filtros} style={{ marginBottom: '1.5rem', display: 'flex', gap: '1rem', justifyContent: 'center' }}>
+            <BotonOrd productosFiltrados={productosFiltrados} orden={orden} setOrden={setOrden} />
+          </div>
+          <ul className={styles.categoriasRow}>
+            <li
+              onClick={() => setCategoriaSeleccionada(null)}
+              className={`${styles.categoriaBtn} ${!categoriaSeleccionada ? styles.categoriaSeleccionada : ''}`}
+            >
+              <span className={styles.categoriaIcon} role="img" aria-label="Todas">⭐</span>
+              Todas
+            </li>
+            <li
+              onClick={() => setCategoriaSeleccionada('Fuego')}
+              className={`${styles.categoriaBtn} ${categoriaSeleccionada === 'Fuego' ? styles.categoriaSeleccionada : ''}`}
+            >
+              <span className={styles.categoriaIcon} role="img" aria-label="Fuego">🔥</span>
+              Fuego
+            </li>
+            <li
+              onClick={() => setCategoriaSeleccionada('Agua')}
+              className={`${styles.categoriaBtn} ${categoriaSeleccionada === 'Agua' ? styles.categoriaSeleccionada : ''}`}
+            >
+              <span className={styles.categoriaIcon} role="img" aria-label="Agua">💧</span>
+              Agua
+            </li>
+            <li
+              onClick={() => setCategoriaSeleccionada('Planta')}
+              className={`${styles.categoriaBtn} ${categoriaSeleccionada === 'Planta' ? styles.categoriaSeleccionada : ''}`}
+            >
+              <span className={styles.categoriaIcon} role="img" aria-label="Planta">🌱</span>
+              Planta
+            </li>
+          </ul>
+          <h3 className={styles.eligeMargin}>
+            {categoriaSeleccionada ? `Productos de ${categoriaSeleccionada}` : 'Todos los productos'}
+          </h3>
+          {productosFiltrados.length === 0 ? (
+            <span className={styles.noProductos}>No se encontraron productos.</span>
+          ) : (
+            <div className={styles.productos}>
+              {productosFiltrados.map((producto) => (
+                <Producto key={producto.id} producto={producto} />
+              ))}
+            </div>
+          )}
+        </div>
+        <Footer />
       </div>
-      
-    </div>
+    </>
   );
 };
 
