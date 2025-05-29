@@ -7,6 +7,7 @@ const gifLinks = [
   { to: '/results', label: 'Resultados', gif: 'https://play.pokemonshowdown.com/sprites/ani/alakazam.gif' },
   { to: '/carrito', label: 'Carrito', gif: 'https://play.pokemonshowdown.com/sprites/ani/snorlax.gif' },
   { to: '/login', label: 'Login', gif: 'https://play.pokemonshowdown.com/sprites/ani/gengar.gif' },
+  { to: '/categorias', label: 'Categorias', gif: 'https://play.pokemonshowdown.com/sprites/ani/haunter.gif' },
 ];
 
 const TopBar = ({ handleInicio}) => {
