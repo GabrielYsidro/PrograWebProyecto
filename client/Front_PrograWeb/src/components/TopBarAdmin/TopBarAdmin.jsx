@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import styles from '../../styles/TopBar.module.css';
+import styles from '../TopBar/TopBar.module.css';
 
 const gifLinks = [
   { to: '/homeadmin', label: 'Inicio', gif: 'https://play.pokemonshowdown.com/sprites/ani/pikachu.gif' },
