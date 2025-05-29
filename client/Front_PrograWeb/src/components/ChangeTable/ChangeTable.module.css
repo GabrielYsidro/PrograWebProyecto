@@ -7,7 +7,6 @@
 
 .changeForm {
   background: white;
-  border: 2px solid black;
   padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
@@ -16,13 +15,13 @@
 }
 
 .changeForm h2 {
-  margin-bottom: 1.5rem;
   text-align: center;
-  color: #cc0000;
+  margin-bottom: 1.5rem;
+  color: #333;
 }
 
 .inputGroup {
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 }
 
 .inputGroup label {
