@@ -1,12 +1,16 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../contexts/userContext.jsx";
 
 export function useRegisterForm(initialValues = {
-  username: "",
+  nombre: "",
   email: "",
   password: "",
   confirmPassword: "",
+  direccion: "",
+  telefono: "",
 }) {
+  const { addUser } = useUserContext();
   const [values, setValues] = useState(initialValues);
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -21,10 +25,12 @@ export function useRegisterForm(initialValues = {
 
   const validate = () => {
     if (
-      !values.username.trim() ||
+      !values.nombre.trim() ||
       !values.email.trim() ||
       !values.password.trim() ||
-      !values.confirmPassword.trim()
+      !values.confirmPassword.trim() ||
+      !values.direccion.trim() ||
+      !values.telefono.trim()
     ) {
       setError("Todos los campos son obligatorios.");
       return false;
@@ -33,7 +39,6 @@ export function useRegisterForm(initialValues = {
       setError("Las contraseñas no coinciden.");
       return false;
     }
-
     setError("");
     return true;
   };
@@ -42,8 +47,16 @@ export function useRegisterForm(initialValues = {
     e.preventDefault();
     if (!validate()) return;
 
-    console.log("Registrando:", values);
-    // Aquí iría la llamada a tu API
+    addUser({
+      nombre: values.nombre,
+      email: values.email.toLowerCase(),
+      password: values.password,
+      direccion: values.direccion,
+      telefono: values.telefono,
+      rol: "cliente", // Por defecto
+      activo: true,   // Por defecto
+      fotoPerfil: "/src/assets/icon-park-solid--people.png", // Por defecto
+    });
     navigate("/login");
   };
 
