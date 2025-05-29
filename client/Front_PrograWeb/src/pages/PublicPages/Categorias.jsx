@@ -31,7 +31,7 @@ export const Categorias = () => {
   return (
     <div className={styles.page}>
       <div className={styles.background}></div>
-      <TopBar handleSearch={e => { e.preventDefault(); }} busqueda={busqueda} setBusqueda={setBusqueda} />
+      
       <h2 className={styles.eligeMargin}>Categorías</h2>
       <BotonOrd productosFiltrados={productosFiltrados} orden={orden} setOrden={setOrden} />
       <ul className={styles.listaCategoriasMargin}>
@@ -65,7 +65,7 @@ export const Categorias = () => {
           <Producto key={producto.id} producto={producto} />
         ))}
       </div>
-      <Footer />
+      
     </div>
   );
 };

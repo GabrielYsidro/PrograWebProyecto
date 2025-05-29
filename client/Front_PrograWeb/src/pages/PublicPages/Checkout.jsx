@@ -15,7 +15,7 @@ export const Checkout = () => {
     return (
         <PaymentFormProvider>
         <div className={styles.container}>
-            <TopBar />
+            
             <div className={styles.titulo}>
                 Completa tus datos de pago!
             </div>
@@ -23,7 +23,7 @@ export const Checkout = () => {
             <PaymentSection />
             <OrderSummary items = {cartItems}/>
             </div>
-            <Footer />
+            
         </div>
         </PaymentFormProvider>
     )
