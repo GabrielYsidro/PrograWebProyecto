@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import styles from '../../components/CartItem/CartItem.module.css';
-import  {useCartContext} from '../../hooks/CartContext.jsx'
+import  {useCartContext} from '../../contexts/CartContext.jsx'
 
 export const CartItem = ({ item }) => {
   const { updateCartItemQuantity } = useCartContext();

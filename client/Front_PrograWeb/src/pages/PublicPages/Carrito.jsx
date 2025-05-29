@@ -8,7 +8,7 @@ import TopBar from '../../components/TopBar/TopBar.jsx'
 import Footer from '../../components/Footer/Footer.jsx'
 import {initialWishlist} from '../../constants/Consts.jsx'
 import { Link } from 'react-router-dom';
-import { useCartContext } from '../../hooks/CartContext.jsx';
+import { useCartContext } from '../../contexts/CartContext.jsx';
 
 export const Carrito = () => {
 

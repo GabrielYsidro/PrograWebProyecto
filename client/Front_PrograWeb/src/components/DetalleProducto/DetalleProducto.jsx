@@ -2,7 +2,7 @@ import { useParams, Link } from 'react-router-dom';
 import styles from './DetalleProducto.module.css';
 import { productos } from '../../constants/Consts.jsx';
 import ScrollToTop from '../ScrollTop/ScrollTop.jsx';
-import { useCartContext } from '../../hooks/CartContext.jsx';
+import { useCartContext } from '../../contexts/CartContext.jsx';
 import { useState } from 'react';
 
 function DetalleProducto({ modoAdmin = false, onModificar}) {
