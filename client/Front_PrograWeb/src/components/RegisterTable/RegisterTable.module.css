@@ -10,8 +10,8 @@
   background-color: white;
   border: 2px solid black;
   padding: 2rem;
-  border-radius: 1rem;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   width: 100%;
   max-width: 400px;
 }
@@ -20,6 +20,7 @@
   margin-bottom: 1.5rem;
   text-align: center;
   color: #cc0000;
+  font-weight: bold;
 }
 
 .inputGroup {
@@ -30,6 +31,7 @@
   display: block;
   font-weight: bold;
   margin-bottom: 0.5rem;
+  color: #333;
 }
 
 .inputGroup input {
@@ -37,21 +39,46 @@
   padding: 0.5rem;
   border: 1px solid #aaa;
   border-radius: 0.5rem;
+  font-size: 1rem;
+}
+
+.inputGroup input:focus {
+  outline: none;
+  border-color: #cc0000;
+}
+
+.error {
+  color: #cc0000;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+  text-align: center;
 }
 
 .submitButton {
   display: block;
-  padding: 1rem 2rem;
-  background-color: red;
+  padding: 0.8rem 2rem;
+  background-color: #cc0000;
   color: white;
   border: none;
   border-radius: 8px;
   font-weight: bold;
   cursor: pointer;
   font-size: 1rem;
-  margin: 1rem auto 0 auto; /* esto lo centra horizontalmente */
+  margin: 1rem auto 0;
+  transition: background-color 0.3s ease;
 }
 
 .submitButton:hover {
   background-color: #a00000;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .registerForm {
+    padding: 1.5rem;
+  }
+
+  .submitButton {
+    padding: 0.7rem 1.5rem;
+  }
 }

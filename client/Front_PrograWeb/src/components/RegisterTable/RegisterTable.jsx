@@ -3,7 +3,7 @@ import styles from "./RegisterTable.module.css";
 
 function RegisterTable({ values, handleChange, handleSubmit, error }) {
   return (
-    <form className={styles.form} onSubmit={handleSubmit}>
+    <form className={styles.registerForm} onSubmit={handleSubmit}>
       <h2>Registro</h2>
       <div className={styles.inputGroup}>
         <label htmlFor="nombre">Nombre</label>
@@ -14,6 +14,7 @@ function RegisterTable({ values, handleChange, handleSubmit, error }) {
           value={values.nombre}
           onChange={handleChange}
           required
+          aria-label="Nombre"
         />
       </div>
       <div className={styles.inputGroup}>
@@ -25,6 +26,7 @@ function RegisterTable({ values, handleChange, handleSubmit, error }) {
           value={values.email}
           onChange={handleChange}
           required
+          aria-label="Correo electrónico"
         />
       </div>
       <div className={styles.inputGroup}>
@@ -36,6 +38,7 @@ function RegisterTable({ values, handleChange, handleSubmit, error }) {
           value={values.password}
           onChange={handleChange}
           required
+          aria-label="Contraseña"
         />
       </div>
       <div className={styles.inputGroup}>
@@ -47,6 +50,7 @@ function RegisterTable({ values, handleChange, handleSubmit, error }) {
           value={values.confirmPassword}
           onChange={handleChange}
           required
+          aria-label="Confirmar contraseña"
         />
       </div>
       <div className={styles.inputGroup}>
@@ -58,6 +62,7 @@ function RegisterTable({ values, handleChange, handleSubmit, error }) {
           value={values.direccion}
           onChange={handleChange}
           required
+          aria-label="Dirección"
         />
       </div>
       <div className={styles.inputGroup}>
@@ -69,6 +74,7 @@ function RegisterTable({ values, handleChange, handleSubmit, error }) {
           value={values.telefono}
           onChange={handleChange}
           required
+          aria-label="Teléfono"
         />
       </div>
       {error && <p className={styles.error}>{error}</p>}

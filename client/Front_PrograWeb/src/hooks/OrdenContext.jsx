@@ -17,7 +17,7 @@ export function OrdenProvider({ children }) {
   };
 
   return (
-    <OrdenContext.Provider value={{ ordenItems, addItem, removeItem}}>
+    <OrdenContext.Provider value={{ ordenItems, addItem, removeItem }}>
       {children}
     </OrdenContext.Provider>
   );

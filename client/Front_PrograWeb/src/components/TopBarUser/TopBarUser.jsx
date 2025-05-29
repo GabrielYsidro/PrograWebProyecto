@@ -1,9 +1,9 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useUserContext } from '../../contexts/userContext';
-import styles from '../TopBar/TopBar.module.css'; // Usa el CSS de la topbar original
+import styles from '../TopBar/TopBar.module.css';
 
-const TopBarUser = ({ handleInicio}) => {
+const TopBarUser = ({ handleInicio }) => {
   const { logout, currentUser } = useUserContext();
   const navigate = useNavigate();
   const [busqueda, setBusqueda] = useState('');
@@ -53,9 +53,13 @@ const TopBarUser = ({ handleInicio}) => {
           />
           Categorias
         </Link>
-        <span className={styles.link} style={{ marginLeft: '1.5rem', fontWeight: 'bold' }}>
+        <Link
+          to="/user"
+          className={styles.link}
+          style={{ marginLeft: '1.5rem', fontWeight: 'bold' }}
+        >
           {currentUser?.nombre ? `Hola, ${currentUser.nombre}` : 'Usuario'}
-        </span>
+        </Link>
         <button
           onClick={handleLogout}
           className={styles.searchButton}
@@ -68,7 +72,7 @@ const TopBarUser = ({ handleInicio}) => {
             type="text"
             placeholder="Buscar productos..."
             value={busqueda}
-            onChange={e => setBusqueda(e.target.value)}
+            onChange={(e) => setBusqueda(e.target.value)}
             className={styles.searchInput}
           />
           <button type="submit" className={styles.searchButton}>
