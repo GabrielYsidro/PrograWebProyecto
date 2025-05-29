@@ -1,0 +1,63 @@
+/* Banner Top 12 */
+.topBanner {
+  width: 100%;
+  background: linear-gradient(90deg, #f7f7fa 60%, #e3e3e7 100%);
+  padding: 1.5rem 0 1.5rem 0;
+  margin-bottom: 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px #0001;
+  overflow: hidden;
+}
+
+.topBannerTitle {
+  text-align: center;
+  font-size: 2.2rem;
+  color: #3B4CCA;
+  font-weight: bold;
+  margin-bottom: 1.2rem;
+  letter-spacing: 2px;
+}
+
+.topBannerCarrusel {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  height: 120px;
+  display: flex;
+  align-items: center;
+}
+
+.carruselTrack {
+  display: flex;
+  width: max-content;
+  animation: carruselMove 18s linear infinite;
+  align-items: center;
+}
+
+.carruselItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 32px;
+  min-width: 90px;
+}
+
+.carruselItem img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+}
+
+.carruselItem span {
+  font-size: 1rem;
+  color: #444;
+  font-weight: 600;
+  text-align: center;
+  white-space: nowrap;
+}
+
+@keyframes carruselMove {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}

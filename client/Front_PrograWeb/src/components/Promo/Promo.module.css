@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+.banner {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  background: linear-gradient(90deg, #f5f7fa 0%, #c3cfe2 100%);
+  border-radius: 0;
+  box-shadow: 0 2px 16px #0003;
+  padding: 2.5rem 1rem;
+  text-align: center;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  animation: bannerPop 1.2s cubic-bezier(.68,-0.55,.27,1.55);
+}
+
+@keyframes bannerPop {
+  0% { transform: scale(0.8) translateY(-60px); opacity: 0; }
+  70% { transform: scale(1.05) translateY(10px); opacity: 1; }
+  100% { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.imgLeft, .imgRight {
+  width: 400px;
+  height: auto;
+  max-width: 40vw;
+  filter: drop-shadow(0 4px 16px #0002);
+  transition: transform 0.5s;
+}
+.imgLeft:hover, .imgRight:hover {
+  transform: scale(1.08) rotate(-3deg);
+}
+
+.bannerContent {
+  flex: 1;
+  min-width: 220px;
+}
+
+.titulo {
+  color: #e53935;
+  font-size: 2.5rem;
+  font-family: 'Press Start 2P', 'Arial Black', cursive, sans-serif;
+  font-weight: bold;
+  margin-bottom: 1.2rem;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 0 #fff, 4px 4px 0 #3B4CCA;
+}
+
+.texto {
+  color: #222;
+  font-size: 1.25rem;
+  font-family: 'Press Start 2P', 'Arial Black', cursive, sans-serif;
+  font-weight: 500;
+  text-shadow: 1px 1px 0 #fff;
+}
+
+.descuento {
+  color: #fff;
+  background: #e53935;
+  border-radius: 8px;
+  padding: 0.2em 0.7em;
+  margin-left: 0.5em;
+  font-size: 1.1rem;
+  font-family: 'Press Start 2P', 'Arial Black', cursive, sans-serif;
+  font-weight: bold;
+  box-shadow: 0 1px 6px #e5393533;
+  letter-spacing: 1px;
+}

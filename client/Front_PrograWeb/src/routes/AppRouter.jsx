@@ -11,10 +11,10 @@ import { DetailProduct } from '../pages/AdminPages/DetailProduct';
 import { ListProduct } from '../pages/AdminPages/ListProduct';
 import ListCategories from '../pages/AdminPages/ListCategories';
 import ScrollToTop from '../components/ScrollTop/ScrollTop.jsx';
-import ListaUsuarios from '../pages/AdminPages/ListUsers.jsx';
-import DetalleUsuario from '../pages/AdminPages/DetailsUser.jsx';
-import ListaOrdenes from '../pages/AdminPages/ListOrders.jsx'
-import OrdenDetalle from '../pages/AdminPages/DetailsOrders.jsx';
+import ListUsers from '../pages/AdminPages/ListUsers.jsx';
+import DetailsUser from '../pages/AdminPages/DetailsUser.jsx';
+import ListOrders from '../pages/AdminPages/ListOrders.jsx'
+import DetailsOrders from '../pages/AdminPages/DetailsOrders.jsx';
 import { Login } from '../pages/PublicPages/Login.jsx';
 import DetalleProducto from '../components/DetalleProducto/DetalleProducto.jsx';
 import Register from '../pages/PublicPages/Register.jsx';
@@ -40,10 +40,10 @@ export const AppRouter = () => {
                 <Route path = '/detailproduct/:id' element = {<DetailProduct/>}/>
                 <Route path = '/listproduct' element = {<ListProduct/>}/>
                 <Route path = '/listcategories' element = {<ListCategories/>}/>
-                <Route path = '/listusers' element = {<ListaUsuarios/>} />
-                <Route path = '/usuarios/:id' element = { <DetalleUsuario />} />
-                <Route path = '/ordenes/' element = { <ListaOrdenes />} />
-                <Route path = '/ordenes/:id' element = { <OrdenDetalle />} />
+                <Route path = '/listusers' element = {<ListUsers/>} />
+                <Route path = '/usuarios/:id' element = { <DetailsUser />} />
+                <Route path = '/listOrders/' element = { <ListOrders />} />
+                <Route path = '/Order/:id' element = { <DetailsOrders />} />
                 <Route path = '/login' element = { <Login />} />
                 <Route path = '/register' element = { <Register />} />
                 <Route path = '/recover-password' element = { <ChangePassword />} />

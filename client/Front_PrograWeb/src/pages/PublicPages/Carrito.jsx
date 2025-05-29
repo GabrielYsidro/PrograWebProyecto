@@ -16,6 +16,8 @@ export const Carrito = () => {
     const [wishlist, setWishlist] = useState(initialWishlist);
     const {cartItems, setCartItems} = useCartContext();
 
+    const handleInicio = () => {};
+    
     const handleDrop = (item) => {
     setCartItems(prev => {
         const existing = prev.find(p => p.id === item.id);
@@ -37,7 +39,7 @@ export const Carrito = () => {
 
     return (
         <DndProvider backend={HTML5Backend}>
-            <TopBar />
+            <TopBar handleInicio={handleInicio} showSearch={true}/>
             <div className={styles.container}>
                 <div className={styles.titulo}>
                     Carrito de Compras

@@ -72,24 +72,3 @@
   background-color: #c06872;
 }
 
-.pagination {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-}
-
-.pagination button {
-  margin: 0 5px;
-  padding: 6px 12px;
-  background-color: #a83f3f;
-  color: black;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-.pagination button:hover {
-  background-color: #d56666;
-  color: white;
-}
-

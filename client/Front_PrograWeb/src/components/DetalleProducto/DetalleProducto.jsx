@@ -2,10 +2,22 @@ import { useParams, Link } from 'react-router-dom';
 import styles from './DetalleProducto.module.css';
 import { productos } from '../../constants/Consts.jsx';
 import ScrollToTop from '../ScrollTop/ScrollTop.jsx';
+import { useCartContext } from '../../hooks/CartContext.jsx';
+import { useState } from 'react';
 
-function DetalleProducto() {
+function DetalleProducto({ modoAdmin = false, onModificar}) {
   const { id } = useParams();
   const producto = productos.find(p => String(p.id) === id);
+  const { addItem } = useCartContext();
+  const [showMsg, setShowMsg] = useState(false);
+
+  const handleAdd = () => {
+    addItem(producto);
+    setShowMsg(true);
+    setTimeout(() => {
+      setShowMsg(false);
+    }, 1000);
+  };
 
   return (
     <>
@@ -22,7 +34,7 @@ function DetalleProducto() {
                 alt={producto.nombre}
                 className={styles.imagen}
               />
-              <p className={styles.tipo}><strong>Tipo:</strong> {producto.tipo}</p>
+              <p className={styles.tipo}><strong>Tipo:</strong> {producto.categoria}</p>
               <p className={styles.region}><strong>Región:</strong> {producto.region}</p>
               <p className={styles.precio}><strong>Precio:</strong> ${producto.precio}</p>
               {producto.stock !== undefined && (
@@ -55,6 +67,29 @@ function DetalleProducto() {
                   )}
                 </div>
               )}
+              {modoAdmin ? (
+                <button
+                  className={styles.botonDetalle}
+                  type="button"
+                  onClick={() => onModificar && onModificar(producto)}
+                >
+                  Modificar producto
+                </button>
+              ) : (
+                <button
+                  className={`${styles.botonDetalle} ${showMsg ? styles.botonAgregado : ''}`}
+                  type="button"
+                  onClick={handleAdd}
+                  disabled={showMsg}
+                >
+                  {showMsg ? (
+                    <span className={styles.checkAnimado}>✔ Agregado</span>
+                  ) : (
+                    'Agregar al carrito'
+                  )}
+                </button>
+              )
+              }
               <Link to="/" className={styles.volverBtn}>Volver al inicio</Link>
             </div>
           )}
