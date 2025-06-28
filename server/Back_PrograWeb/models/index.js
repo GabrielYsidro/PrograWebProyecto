@@ -15,6 +15,7 @@ db.Category = require('./Category')(sequelize, Sequelize.DataTypes);
 db.Region = require('./Region')(sequelize, Sequelize.DataTypes);
 db.Rarity = require('./Rarity')(sequelize, Sequelize.DataTypes);
 db.OrderPokemon = require('./OrderPokemon')(sequelize, Sequelize.DataTypes);
+db.WishlistPokemon = require('./WishlistPokemon.js')(sequelize, Sequelize.DataTypes);
 
 // Relaciones USER - ROLE
 db.User.belongsTo(db.Role, {
@@ -117,5 +118,21 @@ db.OrderPokemon.belongsTo(db.Pokemon, {
   foreignKey: 'pokemon_id',
   as: 'pokemon',
 });
+
+//Relacion asociativa user y Pokemon para wishlist
+db.User.belongsToMany(db.Pokemon, {
+  through: db.WishlistPokemon,
+  foreignKey: 'user_id',
+  otherKey: 'pokemon_id',
+  as: 'wishlist',
+});
+
+db.Pokemon.belongsToMany(db.User, {
+  through: db.WishlistPokemon,
+  foreignKey: 'pokemon_id',
+  otherKey: 'user_id',
+  as: 'usuarios_que_lo_desean',
+});
+
 
 module.exports = db;
