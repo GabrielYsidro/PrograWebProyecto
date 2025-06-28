@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const pool = require('../db');
+const db = require('../models');
 
 /* GET home page. */
 router.get('/', function(req, res) {
@@ -9,12 +9,22 @@ router.get('/', function(req, res) {
 
 router.get('/db', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM users');
-    res.json(result.rows);
+    const users = await db.User.findAll(); 
+    res.json(users); 
   } catch (err) {
     console.error(err);
     res.status(500).send('Error en la base de datos');
   }
 });
+
+router.get('/role', async (req, res) => {
+  try {
+    const roles = await db.Role.findAll()
+    res.json(roles)
+  } catch (err) {
+    console.error(err)
+    res.status(500).send('Error en la DB')
+  }
+})
 
 module.exports = router;
