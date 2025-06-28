@@ -10,14 +10,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    category: {
-      type: DataTypes.TEXT,
-      allowNull: true,
-    },
-    region: {
-      type: DataTypes.TEXT,
-      allowNull: true,
-    },
     price: {
       type: DataTypes.DECIMAL(10, 2),
       allowNull: true,
@@ -34,10 +26,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: true,
       defaultValue: 0,
-    },
-    rarity: {
-      type: DataTypes.TEXT,
-      allowNull: true,
     },
     evolutions_1: {
       type: DataTypes.BIGINT,

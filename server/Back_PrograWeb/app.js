@@ -25,12 +25,12 @@ app.use(session({
   }
 }));
 
-
+//Prueba de deploy de pokemones
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const cartRouter = require('./routes/cart');
-const dashboardRouter = require('./routes/dashboard');
-const productsRouter = require('./routes/products');
+const pokeRouter = require('./routes/products')
+
 
 // view engine setup
 
@@ -43,8 +43,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/cart', cartRouter);
-app.use('/dashboard', dashboardRouter);
-app.use('/products', productsRouter);
+app.use('/pokes', pokeRouter);
 
 
 // catch 404 and forward to
