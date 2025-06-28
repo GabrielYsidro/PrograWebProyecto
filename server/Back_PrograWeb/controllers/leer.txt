@@ -1,0 +1,25 @@
+Controles:
+
+Son toda la logica de negocio:
+
+Ej: 
+Actualizar un pokemon:
+
+AQUI NO VA UN PUT (logica tecnica)
+
+
+Aqui van los pasos para actualizar:
+
+const actuPokemon = () => {
+    1. Paso:
+    2: Paso:
+    3: return
+}
+
+
+NO SE DEFINEN CONTROLADORES POR TABLA
+
+SE DEFINEN POR LOGICA DE NEGOCIO:
+
+eJ: Carrito, Autenticacion, Dashboard
+Checkout
