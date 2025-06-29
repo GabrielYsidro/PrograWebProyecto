@@ -2,38 +2,22 @@ const db = require('../models')
 
 // Mostrar Carrito
 
-const getCart = () => {
+const getCart = (req, res) => {
+  console.log('📦 Getting cart from session:', req.session.cart);
+  const cart = req.session.cart || [];
+  res.status(200).json({ cart });
+};
+
+//Sync cart
+const syncCart = (req, res) => {
+  console.log('🔄 Syncing cart:', req.body.cart);
+  req.session.cart = req.body.cart || [];
+  console.log('🧠 Session cart saved:', req.session.cart); 
+  res.status(200).json({ message: 'Carrito sincronizado con sesión' });
+};
 
 
-}
-
-//Anadir al carrito
-
-const addToCart = () => {
-
-
-}
-
-//remover del carrito
-
-const removeCart = () => {
-
-
-}
-
-
-//mover a wishlist
-
-const moveWish = () => {
-
-
-}
-
-//aumentar o bajar cantidad
-
-const updateQ = () => {
-
-    
-}
-
-export default carritoControler;
+module.exports = {
+  getCart,
+  syncCart
+};

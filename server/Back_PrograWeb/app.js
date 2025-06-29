@@ -2,14 +2,35 @@ const createError = require('http-errors');
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const session = require('express-session');
 const logger = require('morgan');
 require('dotenv').config();
+const cors = require('cors');
+
+const app = express();
+
+app.use(cors({
+  origin: 'http://127.0.0.1:3500', 
+  credentials: true, 
+}));
+
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'ultra-secreto',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    maxAge: 1000 * 60 * 60 * 24, 
+    sameSite: 'lax',
+    secure: false, 
+  }
+}));
 
 
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
+const cartRouter = require('./routes/cart');
 
-const app = express();
+
 
 // view engine setup
 
@@ -21,6 +42,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/cart', cartRouter);
+
+
 
 // catch 404 and forward to
 app.use(function(req, res, next) {
