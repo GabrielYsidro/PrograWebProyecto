@@ -1,59 +1,27 @@
 import { useState, useEffect, useMemo } from 'react';
-import { mockData } from '../../constants/Consts.jsx';
 import TopBarAdmin from '../../components/TopBarAdmin/TopBarAdmin.jsx';
 import Footer from '../../components/Footer/Footer.jsx';
 import styles from '../../styles/Homeadmin.module.css';
 import ResumenGrafico from '../../components/GraficoResumen/GraficoResumen.jsx';
 import FormDate from '../../components/FormDate/FormDate.jsx';
+import { useDashboardStats } from '../../hooks/useDashboardStats.jsx';
 
-// Esta función devuelve la fecha en formato YYYY-MM-DD (como en mockData)
-const getTodayDateString = () => new Date().toISOString().split('T')[0];
+
+
 
 export const HomeAdmin = () => {
   const [diaAnalizado, setDiaAnalizado] = useState('');
   const [fechaInicio, setFechaInicio] = useState('');
   const [fechaFin, setFechaFin] = useState('');
-  const diaActual = getTodayDateString();
 
-  const dailyStats = useMemo(() => (
-    mockData.reduce((acc, order) => {
-      const date = order.date;
-      let stat = acc.find(d => d.date === date);
-      if (!stat) {
-        stat = { date, totalOrders: 0, newUsers: 0, totalRevenue: 0 };
-        acc.push(stat);
-      }
-      stat.totalOrders += 1;
-      stat.totalRevenue += order.total || 0;
-      if (order.isNewUser && order.registrationDate === order.date) {
-        stat.newUsers += 1;
-      }
-      return acc;
-    }, [])
-  ), [mockData]);
+  const { stats, loading, error } = useDashboardStats(fechaInicio, fechaFin);
+  
+  // Esta función devuelve la fecha en formato YYYY-MM-DD
+  const getTodayDateString = () => new Date().toISOString().split('T')[0];
 
-  const handleAnalizarFechas= () => {
-    if (!fechaInicio || !fechaFin) {
-      alert('Por favor seleccionar correctamente las fechas');
-      return;
-    }
-    setDiaAnalizado(fechaInicio); // elige el primer día
-  };
-  useEffect(() => {
-    document.body.setAttribute('data-dia-analizado', diaAnalizado || diaActual);
-  }, [diaAnalizado, diaActual]);
-
-  const getStatsForDate = (date) =>
-    dailyStats.find(d => d.date === date) || { totalOrders: 0, newUsers: 0, totalRevenue: 0 };
-
-  const statsActual = getStatsForDate(diaActual);
-  const statsAnalizado = getStatsForDate(diaAnalizado);
-
-  const chartData = [
-    { name: 'Órdenes', Actual: statsActual.totalOrders, Analizado: statsAnalizado.totalOrders },
-    { name: 'Nuevos Usuarios', Actual: statsActual.newUsers, Analizado: statsAnalizado.newUsers },
-    { name: 'Ingresos', Actual: statsActual.totalRevenue, Analizado: statsAnalizado.totalRevenue },
-  ];
+  if (loading) return <div>Cargando estadísticas...</div>;
+  if (error) return <div>Error al cargar estadísticas: {error.message}</div>;
+  if (!stats) return <div>No hay estadísticas disponibles</div>;
 
   return (
     <>
@@ -62,19 +30,23 @@ export const HomeAdmin = () => {
         <TopBarAdmin/>
 
         <main className={styles['main-content']}>
-          <h1>Resumen del día {diaAnalizado || diaActual}</h1>
+          <h1>Resumen del día {diaAnalizado || getTodayDateString()}</h1>
           <FormDate
             fechaInicio={fechaInicio}
             fechaFin={fechaFin}
             onFechaInicioChange={setFechaInicio}
             onFechaFinChange={setFechaFin}
-            onAnalizar={handleAnalizarFechas}
+            onAnalizar={()=> setDiaAnalizado(fechaInicio)}
           />
 
           <div className={styles['resumen']}>
             <ResumenGrafico
-              chartData={chartData}
-              diaActual={diaActual}
+              chartData={[
+                { name: 'Órdenes', Actual: statsActual.totalOrders, Analizado: statsAnalizado.totalOrders },
+                { name: 'Nuevos Usuarios', Actual: statsActual.newUsers, Analizado: statsAnalizado.newUsers },
+                { name: 'Ingresos', Actual: statsActual.totalRevenue, Analizado: statsAnalizado.totalRevenue },
+              ]}
+              diaActual={getTodayDateString()}
               diaAnalizado={diaAnalizado}
             />
           </div>

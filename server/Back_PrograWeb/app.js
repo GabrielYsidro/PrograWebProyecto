@@ -29,7 +29,7 @@ app.use(session({
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const cartRouter = require('./routes/cart');
-
+const dashboardRouter = require('./routes/dashboard');
 
 
 // view engine setup
@@ -43,7 +43,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/cart', cartRouter);
-
+app.use('/dashboard', dashboardRouter);
 
 
 // catch 404 and forward to
