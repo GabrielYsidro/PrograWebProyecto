@@ -29,6 +29,7 @@ app.use(session({
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const cartRouter = require('./routes/cart');
+const pokeRouter = require('./routes/products');
 
 
 
@@ -43,6 +44,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/cart', cartRouter);
+app.use('/pokes', pokeRouter);
 
 
 
