@@ -8,8 +8,10 @@ on:
     types: [opened, synchronize, reopened, closed]
     branches:
       - main
+      
 
 jobs:
+  
   build_and_deploy_job:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
@@ -22,8 +24,15 @@ jobs:
         with:
           submodules: true
           lfs: false
+
+      - name: Setup Node.js 20
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      
       - name: Install OIDC Client from Core Package
         run: npm install @actions/core@1.6.0 @actions/http-client
+
       - name: Get Id Token
         uses: actions/github-script@v6
         id: idtoken
