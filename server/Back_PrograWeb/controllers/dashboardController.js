@@ -21,6 +21,7 @@ exports.getDashboardStats = async (req, res) => {
 
     res.json({ statsActual, statsAnalizado });
   } catch (err) {
+    console.error('Error en getDashboardStats:', err); // <--- AGREGA ESTE LOG
     res.status(500).json({ error: err.message });
   }
 };
