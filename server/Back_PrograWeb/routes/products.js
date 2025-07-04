@@ -3,3 +3,5 @@ const router = express.Router();
 const productController = require('../controllers/productController.js')
 
 router.get('/', productController.getPokes);
+
+module.exports = router;

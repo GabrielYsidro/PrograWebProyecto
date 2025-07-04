@@ -13,6 +13,4 @@ const getPokes = async (req, res) => {
   }
 };
 
-module.exports = {
-  getPokes
-};
+module.exports = {getPokes}
