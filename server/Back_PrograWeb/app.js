@@ -25,7 +25,7 @@ app.use(session({
   }
 }));
 
-
+//Prueba de deploy de pokemones
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const cartRouter = require('./routes/cart');
