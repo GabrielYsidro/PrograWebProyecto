@@ -1,40 +1,57 @@
-import React, { createContext, useContext, useState } from 'react';
-import { getCategorias } from '../services/categoriaService';
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import { getCategorias, postCategoria, deleteCategoria } from '../services/categoriaService';
 
 const CategoriaContext = createContext();
 
 export const useCategoriaContext = () => useContext(CategoriaContext);
 
 export function CategoriaProvider({ children }) {
-
   const [categoriasItems, setCategoriasItems] = useState([]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     async function fetchCategorias() {
-      const data = await getCategorias();
-      setCategoriasItems(data);
+      try {
+        const data = await getCategorias();
+        //Chekeo para ver que el objeto data tenga la propiedad categorias y sea un array
+        setCategoriasItems(Array.isArray(data.categorias) ? data.categorias : []);
+      } catch (err) {
+        setCategoriasItems([]);
+      }
     }
     fetchCategorias();
   }, []);
 
-  React.useEffect(() => {
-    getCategorias().then((data) => {
-      setCategoriasItems(data);
-    });
-  }, []);
-
   const addItem = (item) => {
-    setCategoriasItems((prev) => [...prev, item]);
+    postCategoria(item)
+      .then((response) => {
+        setCategoriasItems((prev) => [...prev, response]);
+        console.log('Categoria añadida:', response);
+      })
+      .catch((error) => {
+        console.error('Error al añadir categoria:', error);
+      });
   };
 
   const removeItem = (id) => {
-    setCategoriasItems((prev) => prev.filter((item) => item.id !== id));
+    deleteCategoria(id)
+      .then((response) => {
+        // Usa el id retornado por el backend si está disponible, de lo contrario usa el id original
+        const deletedId = response?.id || id;
+        setCategoriasItems((prev) => prev.filter((item) => item.id !== deletedId));
+        console.log('Categoria eliminada:', response);
+      })
+      .catch((error) => {
+        console.error('Error al eliminar categoria:', error);
+      });
   };
 
-  const clearCategoria = () => setCategoriasItems([]);
 
   return (
-    <CategoriaContext.Provider value={{ categoriasItems, addItem, removeItem, clearCategoria }}>
+    <CategoriaContext.Provider value={{
+      categoriasItems,
+      addItem,
+      removeItem,
+    }}>
       {children}
     </CategoriaContext.Provider>
   );
