@@ -9,10 +9,23 @@ const cors = require('cors');
 
 const app = express();
 
+const allowedOrigins = [
+  'http://127.0.0.1:3500',
+  'https://gray-field-0a753370f.1.azurestaticapps.net' // reemplaza si cambia
+];
+
 app.use(cors({
-  origin: 'http://127.0.0.1:3500', 
-  credentials: true, 
+  origin: function (origin, callback) {
+    // permitir requests sin origin (como desde Postman) o de orígenes permitidos
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('No permitido por CORS'));
+    }
+  },
+  credentials: true
 }));
+
 
 app.use(session({
   secret: process.env.SESSION_SECRET || 'ultra-secreto',
@@ -25,12 +38,12 @@ app.use(session({
   }
 }));
 
-
+//Prueba de deploy de pokemones
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const cartRouter = require('./routes/cart');
-
-
+const pokeRouter = require('./routes/products')
+const dashboardRouter = require('./routes/dashboard');
 
 // view engine setup
 
@@ -43,8 +56,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/cart', cartRouter);
-
-
+app.use('/pokes', pokeRouter);
+app.use('/dashboard', dashboardRouter);
 
 // catch 404 and forward to
 app.use(function(req, res, next) {
