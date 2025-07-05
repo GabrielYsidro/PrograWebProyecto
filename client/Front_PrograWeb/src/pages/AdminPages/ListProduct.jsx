@@ -19,10 +19,11 @@ export const ListProduct = () => {
     const [busqueda, setBusqueda] = useState('');
     const [filteredProducts, setFilteredProducts] = useState(productos);
     
-    const handleBusqueda = (valorBusqueda, productosContext) => {
+    const handleBusqueda = (valorBusqueda, productos) => {
         setBusqueda(valorBusqueda);
         const searchTerm = valorBusqueda.toLowerCase();
-        const filtrados = productosContext.filter(product =>
+        const productosArray = Array.isArray(productos) ? productos : [];
+        const filtrados = productosArray.filter(product =>
             product.nombre.toLowerCase().includes(searchTerm) ||
             String(product.id).includes(searchTerm)
         );
@@ -56,7 +57,7 @@ export const ListProduct = () => {
             <div className={styles['home-content']} >
                 <TopBarAdmin />
                 <main className={styles['main-content']}>
-                    <SearchProducto onBusqueda={handleBusqueda} />
+                    <SearchProducto onBusqueda={handleBusqueda} productos={productos}/>
                     <h1>Lista de productos</h1>
                     <div>
                         <TablaProductos 
