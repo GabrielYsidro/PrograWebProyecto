@@ -1,9 +1,7 @@
 import styles from './Banner.module.css';
 
 const Banner = ({ productos }) => {
-  const top12 = [...productos]
-    .sort((a, b) => b.precio - a.precio)
-    .slice(0, 12);
+  const top12 = productos.slice(0, 12); // Solo tomar los primeros 12 sin reordenar
 
   return (
     <section className={styles.topBanner}>
