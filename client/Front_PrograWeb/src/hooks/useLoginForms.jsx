@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useUserContext } from "../contexts/userContext";
+import { useUserContext } from "../contexts/userContext.jsx";
 
 export function useLoginForm(initialValues = { email: "", password: "" }) {
   const [values, setValues] = useState(initialValues);
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const { login, currentUser } = useUserContext();
+  const { login } = useUserContext();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,27 +24,19 @@ export function useLoginForm(initialValues = { email: "", password: "" }) {
     return true;
   };
 
-  const handleLogin = () => {
+  const handleLogin = (e) => {
+    e.preventDefault();
     if (!validate()) return;
 
-    const success = login(values.email, values.password);
-    if (success) {
-      const user = currentUser;
-      if (!user.activo) {
-        setError("Tu cuenta está desactivada. Contacta al administrador.");
-        return;
-      }
-      setError("");
-      // Map 'rol' to 'role' for redirection
-      const role = user.rol === "cliente" ? "user" : user.rol;
-      if (role === "admin") {
-        navigate("/homeadmin");
-      } else {
-        navigate("/homeuser");
-      }
-    } else {
-      setError("Credenciales incorrectas. Por favor, intenta de nuevo.");
+    // Usa el método login del contexto
+    const ok = login(values.email.toLowerCase(), values.password);
+    if (!ok) {
+      setError("Correo o contraseña incorrectos.");
+      return;
     }
+
+    setError("");
+    navigate("/homeuser");
   };
 
   const handleRegister = () => {
@@ -55,10 +47,6 @@ export function useLoginForm(initialValues = { email: "", password: "" }) {
     navigate("/recover-password");
   };
 
-  const clearError = () => {
-    setError("");
-  };
-
   return {
     values,
     handleChange,
@@ -66,7 +54,6 @@ export function useLoginForm(initialValues = { email: "", password: "" }) {
     handleRegister,
     handleForgotPassword,
     error,
-    clearError,
   };
 }
 

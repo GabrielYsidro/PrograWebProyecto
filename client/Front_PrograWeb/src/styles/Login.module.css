@@ -20,7 +20,7 @@
 
 .login-content {
   position: relative;
-  z-index: 1;
+  z-index: 1; /* Asegura que esté encima del background */
   display: flex;
   justify-content: center;
   align-items: center;

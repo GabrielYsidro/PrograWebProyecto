@@ -33,6 +33,9 @@
     "tailwindcss": "^4.1.7",
     "vite": "^6.3.5"
   },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "^4.9.5"
+  },
   "description": "PAGINA WEB DE VENTA DE PRODUCTOS POKEMON",
   "main": "eslint.config.js",
   "keywords": [],

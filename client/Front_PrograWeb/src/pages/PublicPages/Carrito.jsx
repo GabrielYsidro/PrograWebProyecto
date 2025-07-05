@@ -7,13 +7,17 @@ import styles from  '../../styles/Carrito.module.css'
 import TopBar from '../../components/TopBar/TopBar.jsx'
 import Footer from '../../components/Footer/Footer.jsx'
 import {initialWishlist} from '../../constants/Consts.jsx'
-import { Link } from 'react-router-dom';
 import { useCartContext } from '../../contexts/CartContext.jsx';
+import { useUserContext } from '../../contexts/userContext.jsx';
+import TopBarUser from '../../components/TopBarUser/TopBarUser.jsx';
+import { useNavigate } from 'react-router-dom';
 
 export const Carrito = () => {
 
     const [wishlist, setWishlist] = useState(initialWishlist);
     const {cartItems, setCartItems} = useCartContext();
+    const { currentUser } = useUserContext();
+    const navigate = useNavigate();
 
     const handleInicio = () => {};
     
@@ -35,10 +39,23 @@ export const Carrito = () => {
     setWishlist(prev => prev.filter(w => w.id !== item.id));
     };
 
+    const handleCheckout = () => {
+        if (cartItems.length === 0) {
+            alert('Tu carrito está vacío 🛒');
+            return;
+        }
+
+        navigate('/checkout');
+        };
+
 
     return (
         <DndProvider backend={HTML5Backend}>
-            <TopBar handleInicio={handleInicio}/>
+            {(currentUser)? 
+                    <TopBarUser handleInicio={handleInicio}/>
+                :
+                    <TopBar handleInicio={handleInicio}/>
+                }
             <div className={styles.container}>
                 <div className={styles.titulo}>
                     Carrito de Compras
@@ -56,9 +73,9 @@ export const Carrito = () => {
                         ))}
                     </div>
                 </div>
-                <Link to="/checkout" className={styles.botonComprar}>
+                <button onClick={handleCheckout} className={styles.botonComprar}>
                     ¡Vamo' a Pagar!
-                </Link>
+                </button>
             </div>
             <Footer />
         </DndProvider>

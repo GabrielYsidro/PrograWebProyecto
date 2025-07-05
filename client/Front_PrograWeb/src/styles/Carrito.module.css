@@ -51,31 +51,33 @@
 .botonComprar {
   font-family: 'Pokemon Solid', sans-serif;
   color: #FFCC00;
-  -webkit-text-stroke: 4px #3B4CCA;
-  font-size: 500%;
-  text-align: center;
-  letter-spacing: 10px;
-  margin-top: 2%;
+  -webkit-text-stroke: 2px #3B4CCA;
+  font-size: 2.5rem;
+  letter-spacing: 6px;
+  padding: 16px 32px;
+  margin: 2rem auto;
+  border: 4px solid #3B4CCA;
+  border-radius: 16px;
+  background-color: #3B4CCA;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
   animation: pulseColor 2s infinite ease-in-out;
-  cursor: pointer; /* Para mostrar que es clickeable */
-  transition: transform 0.2s ease-in-out;
-}
-
-@keyframes pulseColor {
-  0% {
-    color: #FFCC00;
-    -webkit-text-stroke: 4px #3B4CCA;
-  }
-  50% {
-    color: #3B4CCA;
-    -webkit-text-stroke: 4px #e0ca6f;
-  }
-  100% {
-    color: #FFCC00;
-    -webkit-text-stroke: 4px #3B4CCA;
-  }
+  cursor: pointer;
+  transition: all 0.25s ease-in-out;
+  display: inline-block; /* 👈 Esto evita el 100% de ancho */
+  text-align: center;
 }
 
 .botonComprar:hover {
-  transform: scale(1.05); /* Opcional: leve agrandamiento */
+  background-color: #2a32a0;
+  transform: scale(1.05);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes pulseColor {
+  0%, 100% {
+    background-color: #3B4CCA;
+  }
+  50% {
+    background-color: #2a32a0;
+  }
 }

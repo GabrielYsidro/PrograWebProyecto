@@ -51,9 +51,8 @@ export const AppRouter = () => (
         <Route path = '/Order/:id' element = { <DetailsOrders />} />
         <Route path = '/login' element = { <Login />} />
         <Route path = '/register' element = { <Register />} />
-        <Route path = '/recover-password' element = { <ChangePassword />} />
         <Route path = '/homeuser' element = { <HomeUser />} />
-        <Route path="/user" element={<PrivateRoute><User /></PrivateRoute>} />
+        <Route path = '/change-password' element = { <ChangePassword />} />
     </Routes>
   </>
 );

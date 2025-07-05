@@ -1,13 +1,49 @@
+import { useState } from 'react';
 import { useUserContext } from '../../contexts/userContext';
 import styles from "./CambiarContra.module.css";
 
 function CambiarContra() {
-    const { currentUser } = useUserContext();
+    const { currentUser, users, setUsers } = useUserContext();
+    const [mensaje, setMensaje] = useState("");
+    const [error, setError] = useState("");
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        // lógica para cambiar contraseña aquí
+        const currentPassword = event.target.currentPassword.value;
+        const newPassword = event.target.newPassword.value;
+
+        if (!currentUser) {
+            setError("No hay usuario autenticado.");
+            setMensaje("");
+            return;
+        }
+
+        if (currentPassword !== currentUser.password) {
+            setError("La contraseña actual es incorrecta.");
+            setMensaje("");
+            return;
+        }
+
+        if (newPassword.length < 4) {
+            setError("La nueva contraseña debe tener al menos 4 caracteres.");
+            setMensaje("");
+            return;
+        }
+
+        // Actualiza la contraseña en el array de usuarios
+        const updatedUsers = users.map(u =>
+            u.email === currentUser.email ? { ...u, password: newPassword } : u
+        );
+        setUsers(updatedUsers);
+
+        // Opcional: actualiza el currentUser también
+        currentUser.password = newPassword;
+
+        setMensaje("¡Contraseña cambiada exitosamente!");
+        setError("");
+        event.target.reset();
     };
+
 
     return (
         <div className={styles.container}>
@@ -23,6 +59,8 @@ function CambiarContra() {
                 </div>
                 <button type="submit" className={styles.boton}>Cambiar Contraseña</button>
             </form>
+            {error && <p className={styles.error}>{error}</p>}
+            {mensaje && <p className={styles.success}>{mensaje}</p>}
         </div>
     );
 }

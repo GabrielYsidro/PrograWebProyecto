@@ -1,0 +1,11 @@
+
+
+URL para llamar al endpoint carrito de INDEX
+
+localhost:3000/carrito
+
+URL para llamar al endpoint :id desde USERS
+
+localhost:3000/users/:id
+
+
