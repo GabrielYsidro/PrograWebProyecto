@@ -2,19 +2,20 @@ import styles from '../../styles/AddCategory.module.css';
 import { useCategoriaContext } from '../../hooks/CategoriaContext.jsx';
 
 function AgregarCategoria({ onClose, onAddCategoria }) {
-    const { categoriasItems, addItem } = useCategoriaContext();
+    const { addItem } = useCategoriaContext();
 
-    const handleSubmit = (event) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const formData = new FormData(event.target);
-        const nombre = formData.get('nombre');
+        const name = formData.get('nombre');
         const color = formData.get('color');
         const emoji = formData.get('emoji');
 
-        const nuevaCategoria = { id: categoriasItems.length + 1, nombre, color, emoji };
-        addItem(nuevaCategoria); // Usa el contexto para agregar
-        if (onAddCategoria) onAddCategoria(nuevaCategoria); // Notifica al padre si es necesario
-        alert(`Categoría "${nombre}" agregada con éxito.`);
+        // Solo envía los campos que espera el backend
+        const nuevaCategoria = { name, color, emoji };
+        await addItem(nuevaCategoria); // Usa el contexto para agregar
+        if (onAddCategoria) onAddCategoria(nuevaCategoria);
+        alert(`Categoría "${name}" agregada con éxito.`);
         event.target.reset();
         if (onClose) onClose();
     };
