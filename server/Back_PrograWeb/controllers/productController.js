@@ -179,9 +179,24 @@ const toggleActivo = async (req, res) => {
     if (!pokemon) {
       return res.status(404).json({ error: 'Pokemon no encontrado' });
     }
-    const nuevoEstado = !pokemon.activo;
-    await pokemon.update({ activo: nuevoEstado });
-    res.status(200).json({ pokemon });
+    // Cambia aquí: usa 'active' en vez de 'activo'
+    const nuevoEstado = !pokemon.active;
+    await pokemon.update({ active: nuevoEstado });
+    // Mapea la respuesta para el frontend
+    const pokemonMapeado = {
+      id: pokemon.id,
+      nombre: pokemon.name,
+      precio: parseFloat(pokemon.price) || 0,
+      imagen: pokemon.img,
+      descripcion: pokemon.description,
+      stock: pokemon.stock,
+      categoria: pokemon.categoryRef?.name || 'Sin categoría',
+      region: pokemon.regionRef?.name || 'Sin región',
+      rareza: pokemon.rarityRef?.name || 'Común',
+      activo: nuevoEstado, // Devuelve el nuevo estado como 'activo'
+      quantity: pokemon.quantity
+    };
+    res.status(200).json({ pokemon: pokemonMapeado });
   } catch (error) {
     console.error('Error al cambiar el estado del pokemon:', error);
     res.status(500).json({ error: 'Error interno del servidor' });
