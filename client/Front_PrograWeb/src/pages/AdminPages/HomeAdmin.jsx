@@ -7,8 +7,6 @@ import FormDate from '../../components/FormDate/FormDate.jsx';
 import { useDashboardStats } from '../../hooks/useDashboardStats.jsx';
 
 
-
-
 export const HomeAdmin = () => {
   const [diaAnalizado, setDiaAnalizado] = useState('');
   const [fechaInicio, setFechaInicio] = useState('');
