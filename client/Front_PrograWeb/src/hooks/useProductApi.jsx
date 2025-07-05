@@ -15,7 +15,7 @@ export function useProductosApi() {
 
   const agregarProducto = async (data) => {
     const nuevo = await createProducto(data);
-    setProductos(prev => [...prev, nuevo]);
+    setProductos(prev => [...prev, nuevo.pokemon]);
   };
 
   const actualizarProducto = async (id, data) => {
@@ -23,5 +23,13 @@ export function useProductosApi() {
     setProductos(prev => prev.map(p => p.id === id ? actualizado : p));
   };
 
-  return { productos, agregarProducto, actualizarProducto, loading, error };
+  const toggleActivo = async (id) => {
+    const { pokemon } = await toggleActivoProducto(id);
+    setProductos(prev =>
+      prev.map(p => p.id === id ? pokemon : p)
+    );
+  };
+
+
+  return { productos, agregarProducto, actualizarProducto, toggleActivo, loading, error };
 }

@@ -61,23 +61,20 @@ const updatePoke = async (req,res) => {
 }
 
 //cambiar estado(actualizar estado) de un pokemon por ID
-/*
 const toggleActivo = async (req, res) => {
   try {
     const { id } = req.params;
-    //primero con el id buscar pokemon
-    //mirar su estado actual "active"
-    //despues invertir el estado
-    const {activo}= req.body;
-    const [updated] = await db.Pokemon.update({ activo }, { where: { id } });
-    if (!updated) return res.status(404).json({ error: 'Pokemon no encontrado' });
     const pokemon = await db.Pokemon.findByPk(id);
+    if (!pokemon) {
+      return res.status(404).json({ error: 'Pokemon no encontrado' });
+    }
+    const nuevoEstado = !pokemon.activo;
+    await pokemon.update({ activo: nuevoEstado });
     res.status(200).json({ pokemon });
   } catch (error) {
     console.error('Error al cambiar el estado del pokemon:', error);
     res.status(500).json({ error: 'Error interno del servidor' });
   }
 };
-*/
 
-module.exports = {getPokes,getPokeById,createPoke,updatePoke};
+module.exports = {getPokes,getPokeById,createPoke,updatePoke,toggleActivo};

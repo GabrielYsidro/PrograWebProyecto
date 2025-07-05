@@ -28,3 +28,20 @@ export async function updateProducto(id, data) {
   if (!res.ok) throw new Error('Error al actualizar producto');
   return res.json();
 }
+
+//obtener producto por ID
+export async function fetchProductoById(id) {
+  const res = await fetch(`${api}/products/${id}`);
+  if (!res.ok) throw new Error('Error al obtener producto');
+  const data = await res.json();
+  return data.pokemon;
+}
+
+//activar/desactivar producto
+export async function toggleActivoProducto(id) {
+  const res = await fetch(`${api}/products/${id}/toggle`, {
+    method: 'PATCH'
+  });
+  if (!res.ok) throw new Error('Error al cambiar estado');
+  return res.json();
+}

@@ -13,7 +13,7 @@ import { useProductosApi } from '../../hooks/useProductApi.jsx';
 export const ListProduct = () => {
     const ITEMS_PER_PAGE = 5;
     const [currentPage, setCurrentPage] = useState(1);
-    const { productos, updateProduct } = useProductosApi();
+    const { productos, updateProduct, toggleActivo } = useProductosApi();
     const navigate = useNavigate();
 
     const [busqueda, setBusqueda] = useState('');
@@ -47,10 +47,7 @@ export const ListProduct = () => {
     };
 
     const handleToggleActivo = (id) => {
-        const producto = productos.find(p => p.id === id);
-        if (producto) {
-            updateProduct(id, { ...producto, activo: !producto.activo });
-        }
+        toggleActivo(id);
     };
 
     return (
