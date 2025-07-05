@@ -74,7 +74,6 @@ app.use('/users', usersRouter);
 app.use('/cart', cartRouter);
 app.use('/pokes', pokeRouter);
 app.use('/dashboard', dashboardRouter);
-
 // Verificación de variables de entorno
 app.get('/env', (req, res) => {
   res.json({
