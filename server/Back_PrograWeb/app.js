@@ -16,7 +16,8 @@ const allowedOrigins = [
   'https://gray-field-0a753370f.1.azurestaticapps.net'
 ];
 
-app.use(cors({
+
+const corsOptions = {
   origin: function (origin, callback) {
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
@@ -24,8 +25,14 @@ app.use(cors({
       callback(new Error('No permitido por CORS'));
     }
   },
-  credentials: true
-}));
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+};
+
+app.options('*', cors(corsOptions))
+
+app.use(cors(corsOptions))
 
 const isProd = true;
 
@@ -45,12 +52,6 @@ app.use(session({
     secure: isProd
   }
 }));
-
-app.use('/cart', (req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://gray-field-0a753370f.1.azurestaticapps.net');
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  next();
-});
 
 
 // Rutas
