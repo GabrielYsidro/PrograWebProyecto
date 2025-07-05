@@ -46,6 +46,13 @@ app.use(session({
   }
 }));
 
+app.use('/cart', (req, res, next) => {
+  res.setHeader('Access-Control-Allow-Origin', 'https://gray-field-0a753370f.1.azurestaticapps.net');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
+  next();
+});
+
+
 // Rutas
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
