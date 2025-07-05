@@ -19,6 +19,8 @@ jobs:
     permissions:
        id-token: write
        contents: read
+    env:
+      VITE_API_URL: https://backend-prograweb-akhbddfmetazfjbm.canadacentral-01.azurewebsites.net
     steps:
       - uses: actions/checkout@v3
         with:
