@@ -13,7 +13,7 @@ function ListCategories() {
 
   // Filtro por búsqueda usando el contexto
   const categoriasFiltradas = categoriasItems.filter(cat =>
-    cat.nombre.toLowerCase().includes(busqueda.toLowerCase())
+    cat.name.toLowerCase().includes(busqueda.toLowerCase())
   );
 
   return (
@@ -58,7 +58,7 @@ function ListCategories() {
             {categoriasFiltradas.map(cat => (
               <tr key={cat.id}>
                 <td>{cat.id}</td>
-                <td>{cat.nombre}</td>
+                <td>{cat.name}</td>
                 <td>
                   <span
                     className={styles.colorBox}
