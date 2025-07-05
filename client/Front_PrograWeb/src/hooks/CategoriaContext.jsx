@@ -1,12 +1,27 @@
 import React, { createContext, useContext, useState } from 'react';
-import { categorias } from '../constants/Consts.jsx';
+import { getCategorias } from '../services/categoriaService';
 
 const CategoriaContext = createContext();
 
 export const useCategoriaContext = () => useContext(CategoriaContext);
 
 export function CategoriaProvider({ children }) {
-  const [categoriasItems, setCategoriasItems] = useState(categorias);
+
+  const [categoriasItems, setCategoriasItems] = useState([]);
+
+  React.useEffect(() => {
+    async function fetchCategorias() {
+      const data = await getCategorias();
+      setCategoriasItems(data);
+    }
+    fetchCategorias();
+  }, []);
+
+  React.useEffect(() => {
+    getCategorias().then((data) => {
+      setCategoriasItems(data);
+    });
+  }, []);
 
   const addItem = (item) => {
     setCategoriasItems((prev) => [...prev, item]);

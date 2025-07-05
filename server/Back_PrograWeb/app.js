@@ -44,6 +44,7 @@ const usersRouter = require('./routes/users');
 const cartRouter = require('./routes/cart');
 const pokeRouter = require('./routes/products')
 const dashboardRouter = require('./routes/dashboard');
+const categoriesRouter = require('./routes/categories');
 
 // view engine setup
 
@@ -58,6 +59,7 @@ app.use('/users', usersRouter);
 app.use('/cart', cartRouter);
 app.use('/pokes', pokeRouter);
 app.use('/dashboard', dashboardRouter);
+app.use('/categories', categoriesRouter);
 
 // catch 404 and forward to
 app.use(function(req, res, next) {
