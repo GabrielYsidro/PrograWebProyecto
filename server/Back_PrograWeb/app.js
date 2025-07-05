@@ -16,7 +16,6 @@ const allowedOrigins = [
 
 app.use(cors({
   origin: function (origin, callback) {
-    // permitir requests sin origin (como desde Postman) o de orígenes permitidos
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
@@ -27,6 +26,12 @@ app.use(cors({
 }));
 
 const isProd = true;
+
+// Middlewares en orden correcto
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 app.use(session({
   secret: process.env.SESSION_SECRET || 'ultra-secreto',
@@ -39,28 +44,21 @@ app.use(session({
   }
 }));
 
-//Prueba de deploy de pokemones
+// Rutas
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const cartRouter = require('./routes/cart');
-const pokeRouter = require('./routes/products')
+const pokeRouter = require('./routes/products');
 const dashboardRouter = require('./routes/dashboard');
 
-// view engine setup
-
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/cart', cartRouter);
 app.use('/pokes', pokeRouter);
 app.use('/dashboard', dashboardRouter);
 
-
+// Verificación de variables de entorno
 app.get('/env', (req, res) => {
   res.json({
     NODE_ENV: process.env.NODE_ENV,
@@ -68,20 +66,17 @@ app.get('/env', (req, res) => {
   });
 });
 
-// catch 404 and forward to
+// 404 handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
 
-// error handler
-app.use(function(err, req, res) {
-  // set locals, only providing error in development
+// Error handler con 4 parámetros
+app.use(function(err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.json({ error: err.message });
 });
 
 module.exports = app;
