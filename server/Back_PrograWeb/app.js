@@ -11,6 +11,13 @@ const app = express();
 
 app.set('trust proxy', 1);
 
+app.use(function(req, res, next) {
+  if (req.headers['x-arr-ssl'] && !req.headers['x-forwarded-proto']) {
+    req.headers['x-forwarded-proto'] = 'https';
+  }
+  return next();
+});
+
 const allowedOrigins = [
   'http://127.0.0.1:3500',
   'https://gray-field-0a753370f.1.azurestaticapps.net'
