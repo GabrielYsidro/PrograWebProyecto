@@ -67,6 +67,7 @@ const usersRouter = require('./routes/users');
 const cartRouter = require('./routes/cart');
 const pokeRouter = require('./routes/products');
 const dashboardRouter = require('./routes/dashboard');
+const orderRouter = require('./routes/orders');
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
@@ -74,6 +75,7 @@ app.use('/users', usersRouter);
 app.use('/cart', cartRouter);
 app.use('/pokes', pokeRouter);
 app.use('/dashboard', dashboardRouter);
+app.use('/order', orderRouter);
 
 // Verificación de variables de entorno
 app.get('/env', (req, res) => {
