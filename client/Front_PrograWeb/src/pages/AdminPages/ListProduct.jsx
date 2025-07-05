@@ -13,16 +13,17 @@ import { useProductosApi } from '../../hooks/useProductApi.jsx';
 export const ListProduct = () => {
     const ITEMS_PER_PAGE = 5;
     const [currentPage, setCurrentPage] = useState(1);
-    const { productos, updateProduct } = useProductosApi();
+    const { productos, updateProduct, toggleActivo } = useProductosApi();
     const navigate = useNavigate();
 
     const [busqueda, setBusqueda] = useState('');
     const [filteredProducts, setFilteredProducts] = useState(productos);
     
-    const handleBusqueda = (valorBusqueda, productosContext) => {
+    const handleBusqueda = (valorBusqueda, productos) => {
         setBusqueda(valorBusqueda);
         const searchTerm = valorBusqueda.toLowerCase();
-        const filtrados = productosContext.filter(product =>
+        const productosArray = Array.isArray(productos) ? productos : [];
+        const filtrados = productosArray.filter(product =>
             product.nombre.toLowerCase().includes(searchTerm) ||
             String(product.id).includes(searchTerm)
         );
@@ -47,10 +48,7 @@ export const ListProduct = () => {
     };
 
     const handleToggleActivo = (id) => {
-        const producto = productos.find(p => p.id === id);
-        if (producto) {
-            updateProduct(id, { ...producto, activo: !producto.activo });
-        }
+        toggleActivo(id);
     };
 
     return (
@@ -59,7 +57,7 @@ export const ListProduct = () => {
             <div className={styles['home-content']} >
                 <TopBarAdmin />
                 <main className={styles['main-content']}>
-                    <SearchProducto onBusqueda={handleBusqueda} />
+                    <SearchProducto onBusqueda={handleBusqueda} productos={productos}/>
                     <h1>Lista de productos</h1>
                     <div>
                         <TablaProductos 

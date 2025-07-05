@@ -40,7 +40,7 @@ const TablaProductos = ({ productos, onDetalle, onToggleActivo, styles }) => (
                 Ver Detalle
                 </button>
                 <button onClick={() => onToggleActivo(product.id)}>
-                {product.activo ? 'Activar' : 'Desactivar'}
+                {product.activo ? 'Desactivar' : 'Activar'}
                 </button>
             </div>
             </td>
