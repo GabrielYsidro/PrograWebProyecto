@@ -9,6 +9,8 @@ const cors = require('cors');
 
 const app = express();
 
+app.set('trust proxy', 1);
+
 const allowedOrigins = [
   'http://127.0.0.1:3500',
   'https://gray-field-0a753370f.1.azurestaticapps.net'
