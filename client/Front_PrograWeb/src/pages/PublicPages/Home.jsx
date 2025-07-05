@@ -21,10 +21,21 @@ export const Home = () => {
     // Si no hay activos, usar todos los productos
     const productosParaMostrar = productosActivos.length > 0 ? productosActivos : productos;
     
-    // NUEVO: Los 12 pokémones con mayor precio para el Banner
-    const pokemonesMasCaros = [...productosParaMostrar]
-        .sort((a, b) => (b.precio || 0) - (a.precio || 0)) // Ordenar por precio descendente
-        .slice(0, 12); // Tomar los primeros 12
+    const pokemonesMasVendidos = [...productosParaMostrar]
+    .filter(p => p.stock !== null && p.stock !== undefined) // Solo con stock válido
+    .sort((a, b) => {
+        const stockA = parseInt(a.stock) || 0;
+        const stockB = parseInt(b.stock) || 0;
+        
+        if (stockA !== stockB) {
+            return stockA - stockB; // Ordenar por stock ascendente
+        }
+        
+        // Si tienen el mismo stock, ordenar por ID para consistencia
+        return parseInt(a.id) - parseInt(b.id);
+    })
+    .slice(0, 12);
+
 
     // Agrupar productos por categoría
     const categoriasUnicos = [...new Set(productosParaMostrar.map(p => p.categoria))];
@@ -82,7 +93,7 @@ export const Home = () => {
                     <TopBar handleInicio={handleInicio}/>
                 }
                 
-                <Banner productos={pokemonesMasCaros} />
+                <Banner productos={pokemonesMasVendidos} />
                 <NewPokemons />
                 
                 <main style={{ flex: 1, padding: '2rem' }}>

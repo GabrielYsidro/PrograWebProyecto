@@ -8,8 +8,8 @@ const NewPokemons = () => {
   // Filtrar activos y tomar los últimos 6
   const nuevos = productos
     .filter(p => p.activo === true)  // Solo activos
-    .slice(-6)  // Últimos 6
-    .reverse(); // Más recientes primero
+    .sort((a, b) => parseInt(b.id) - parseInt(a.id)) // Ordenar por ID descendente (mayor a menor)
+    .slice(0, 6); // Tomar los primeros 6 (los de mayor ID)
 
   console.log(' NewPokemons usando API:', nuevos.length, 'pokémones');
 
