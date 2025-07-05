@@ -5,15 +5,15 @@ import Footer from '../../components/Footer/Footer.jsx'
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
 import styles from '../../styles/ListProduct.module.css';
-import { useProductos } from '../../hooks/ProductosContext.jsx';
 import TablaProductos from '../../components/TableAdmin/TableAdmin.jsx';
 import Pagination from '../../components/Pagination/Pagination.jsx';
 import SearchProducto from '../../components/SearchProduct/SearchProduct.jsx';
+import { useProductosApi } from '../../hooks/useProductApi.jsx';
 
 export const ListProduct = () => {
     const ITEMS_PER_PAGE = 5;
     const [currentPage, setCurrentPage] = useState(1);
-    const { productos, updateProduct } = useProductos();
+    const { productos, updateProduct } = useProductosApi();
     const navigate = useNavigate();
 
     const [busqueda, setBusqueda] = useState('');
