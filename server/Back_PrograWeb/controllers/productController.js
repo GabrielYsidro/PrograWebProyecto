@@ -172,23 +172,35 @@ const updatePoke = async (req, res) => {
 };
 
 //cambiar estado(actualizar estado) de un pokemon por ID
-/*
 const toggleActivo = async (req, res) => {
   try {
     const { id } = req.params;
-    //primero con el id buscar pokemon
-    //mirar su estado actual "active"
-    //despues invertir el estado
-    const {activo}= req.body;
-    const [updated] = await db.Pokemon.update({ activo }, { where: { id } });
-    if (!updated) return res.status(404).json({ error: 'Pokemon no encontrado' });
     const pokemon = await db.Pokemon.findByPk(id);
-    res.status(200).json({ pokemon });
+    if (!pokemon) {
+      return res.status(404).json({ error: 'Pokemon no encontrado' });
+    }
+    // Cambia aquí: usa 'active' en vez de 'activo'
+    const nuevoEstado = !pokemon.active;
+    await pokemon.update({ active: nuevoEstado });
+    // Mapea la respuesta para el frontend
+    const pokemonMapeado = {
+      id: pokemon.id,
+      nombre: pokemon.name,
+      precio: parseFloat(pokemon.price) || 0,
+      imagen: pokemon.img,
+      descripcion: pokemon.description,
+      stock: pokemon.stock,
+      categoria: pokemon.categoryRef?.name || 'Sin categoría',
+      region: pokemon.regionRef?.name || 'Sin región',
+      rareza: pokemon.rarityRef?.name || 'Común',
+      activo: nuevoEstado, // Devuelve el nuevo estado como 'activo'
+      quantity: pokemon.quantity
+    };
+    res.status(200).json({ pokemon: pokemonMapeado });
   } catch (error) {
     console.error('Error al cambiar el estado del pokemon:', error);
     res.status(500).json({ error: 'Error interno del servidor' });
   }
 };
-*/
 
-module.exports = {getPokes,getPokeById,createPoke,updatePoke};
+module.exports = {getPokes,getPokeById,createPoke,updatePoke,toggleActivo};

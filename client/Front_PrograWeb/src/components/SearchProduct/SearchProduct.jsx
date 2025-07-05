@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
-import { useProductos } from '../../hooks/ProductosContext.jsx';
+import { useProductosApi } from '../../hooks/useProductApi.jsx'; // Asegúrate de que este hook esté correctamente implementado
 
-const BusquedaProducto = ({ onBusqueda }) => {
-  const { productos } = useProductos();
+const BusquedaProducto = ({ onBusqueda, productos }) => {
   const [busqueda, setBusqueda] = useState('');
 
   const handleChange = (e) => {

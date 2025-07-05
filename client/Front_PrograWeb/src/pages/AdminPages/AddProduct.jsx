@@ -1,14 +1,13 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { useProductos } from '../../hooks/ProductosContext.jsx';
 import TopBarAdmin from '../../components/TopBarAdmin/TopBarAdmin.jsx';
 import Footer from '../../components/Footer/Footer.jsx'
 import FormProducto from '../../components/FormProducto/FormProducto.jsx';
 import styles from '../../styles/AddProduct.module.css';
+import { useProductosApi } from '../../hooks/useProductApi.jsx';
 
 export const AddProduct = () => {
-    const [busqueda, setBusqueda] = useState('');
-    const { agregarProducto } = useProductos();
+    const { agregarProducto } = useProductosApi();
 
     return (
     <>
