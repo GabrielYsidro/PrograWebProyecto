@@ -6,18 +6,18 @@ const OrdenContext = createContext();
 export const useOrdenContext = () => useContext(OrdenContext);
 
 export function OrdenProvider({ children }) {
-  const [ordenItems, setOrdenItems] = useState(mockData);
+  const [ordenes, setOrdenes] = useState(mockData);
 
   const addItem = (item) => {
-    setOrdenItems((prev) => [...prev, item]);
+    setOrdenes((prev) => [...prev, item]);
   };
 
   const removeItem = (id) => {
-    setOrdenItems((prev) => prev.filter((item) => item.id !== id));
+    setOrdenes((prev) => prev.filter((item) => item.id !== id));
   };
 
   return (
-    <OrdenContext.Provider value={{ ordenItems, addItem, removeItem}}>
+    <OrdenContext.Provider value={{ ordenes, addItem, removeItem}}>
       {children}
     </OrdenContext.Provider>
   );

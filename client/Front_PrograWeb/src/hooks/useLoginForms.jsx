@@ -37,7 +37,7 @@ export function useLoginForm(initialValues = { email: "", password: "" }) {
     }
 
     setError("");
-    navigate("/homeuser");
+    navigate("/");
   };
 
   const handleRegister = () => {
