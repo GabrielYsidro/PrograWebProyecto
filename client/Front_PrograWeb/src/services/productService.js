@@ -43,8 +43,8 @@ export async function fetchProductoById(id) {
 
 //activar/desactivar producto
 export async function toggleActivoProducto(id) {
-  const res = await fetch(`${api}/pokes/${id}/toggle`, {
-    method: 'PATCH'
+  const res = await fetch(`${api}/pokes/${id}/activo`, {
+    method: 'PUT'
   });
   if (!res.ok) throw new Error('Error al cambiar estado');
   return res.json();

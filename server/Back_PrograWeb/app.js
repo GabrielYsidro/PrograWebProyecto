@@ -9,70 +9,91 @@ const cors = require('cors');
 
 const app = express();
 
+app.set('trust proxy', 1);
+
+app.use(function(req, res, next) {
+  if (req.headers['x-arr-ssl'] && !req.headers['x-forwarded-proto']) {
+    req.headers['x-forwarded-proto'] = 'https';
+  }
+  return next();
+});
+
 const allowedOrigins = [
   'http://127.0.0.1:3500',
-  'https://gray-field-0a753370f.1.azurestaticapps.net' // reemplaza si cambia
+  'https://gray-field-0a753370f.1.azurestaticapps.net'
 ];
 
-app.use(cors({
+
+const corsOptions = {
   origin: function (origin, callback) {
-    // permitir requests sin origin (como desde Postman) o de orígenes permitidos
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
       callback(new Error('No permitido por CORS'));
     }
   },
-  credentials: true
-}));
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+};
 
+app.options('*', cors(corsOptions))
+
+app.use(cors(corsOptions))
+
+const isProd = true;
+
+// Middlewares en orden correcto
+app.use(logger('dev'));
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 app.use(session({
   secret: process.env.SESSION_SECRET || 'ultra-secreto',
   resave: false,
   saveUninitialized: false,
   cookie: {
-    maxAge: 1000 * 60 * 60 * 24, 
-    sameSite: 'lax',
-    secure: false, 
+    maxAge: 1000 * 60 * 60 * 24,
+    sameSite: isProd ? 'None' : 'lax',
+    secure: isProd
   }
 }));
 
-//Prueba de deploy de pokemones
+
+// Rutas
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const cartRouter = require('./routes/cart');
-const pokeRouter = require('./routes/products')
+const pokeRouter = require('./routes/products');
 const dashboardRouter = require('./routes/dashboard');
 
-// view engine setup
-
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/cart', cartRouter);
 app.use('/pokes', pokeRouter);
 app.use('/dashboard', dashboardRouter);
 
-// catch 404 and forward to
+// Verificación de variables de entorno
+app.get('/env', (req, res) => {
+  res.json({
+    NODE_ENV: process.env.NODE_ENV,
+    ENV_SECRET: process.env.SESSION_SECRET,
+  });
+});
+
+// 404 handler
 app.use(function(req, res, next) {
   next(createError(404));
 });
 
-// error handler
-app.use(function(err, req, res) {
-  // set locals, only providing error in development
+// Error handler con 4 parámetros
+app.use(function(err, req, res, next) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  res.json({ error: err.message });
 });
 
 module.exports = app;

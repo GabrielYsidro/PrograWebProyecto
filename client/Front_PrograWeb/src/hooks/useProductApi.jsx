@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchProductos, createProducto, updateProducto } from '../services/productService';
+import { fetchProductos, createProducto, updateProducto, toggleActivoProducto } from '../services/productService';
 
 export function useProductosApi() {
   const [productos, setProductos] = useState([]);
@@ -25,8 +25,12 @@ export function useProductosApi() {
 
   const toggleActivo = async (id) => {
     const { pokemon } = await toggleActivoProducto(id);
+    const productoNormalizado = {
+      ...pokemon,
+      nombre: pokemon.nombre || pokemon.name
+    };
     setProductos(prev =>
-      prev.map(p => p.id === id ? pokemon : p)
+      prev.map(p => p.id === id ? productoNormalizado : p)
     );
   };
 

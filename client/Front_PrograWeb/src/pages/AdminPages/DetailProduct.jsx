@@ -5,14 +5,14 @@ import Footer from '../../components/Footer/Footer.jsx';
 import FormProducto from '../../components/FormProducto/FormProducto.jsx';
 import styles from '../../styles/DetailProduct.module.css';
 import DetalleProducto from '../../components/DetalleProducto/DetalleProducto.jsx';
-import { useProductosApi } from '../../hooks/useProductApi.jsx';
+import { useProductoDetalle } from '../../hooks/useProductoDetalle.jsx';
 
 export const DetailProduct = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const [isEditing, setIsEditing] = useState(false);
 
-    const {producto, actualizarProducto,loading, error} = useProductosApi(id); // Hook personalizado para obtener el producto por ID
+    const {producto, actualizarProducto,loading, error} = useProductoDetalle (id); // Hook personalizado para obtener el producto por ID
     
     const handleEdit = () => {
         setIsEditing(true);

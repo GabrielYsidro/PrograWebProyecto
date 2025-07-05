@@ -19,6 +19,8 @@ jobs:
     permissions:
        id-token: write
        contents: read
+    env:
+      VITE_API_URL: https://backend-prograweb-akhbddfmetazfjbm.canadacentral-01.azurewebsites.net
     steps:
       - uses: actions/checkout@v3
         with:
@@ -66,4 +68,6 @@ jobs:
         with:
           action: "close"
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_GRAY_FIELD_0A753370F }}
-          app_location: "client/Front_PrograWeb"
+          app_location: "client/Front_PrograWeb"  
+          api_location: ""                        
+          output_location: "dist"  
