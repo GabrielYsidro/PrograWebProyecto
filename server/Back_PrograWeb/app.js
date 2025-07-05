@@ -11,7 +11,7 @@ const app = express();
 
 const allowedOrigins = [
   'http://127.0.0.1:3500',
-  'https://gray-field-0a753370f.1.azurestaticapps.net' // reemplaza si cambia
+  'https://gray-field-0a753370f.1.azurestaticapps.net'
 ];
 
 app.use(cors({
@@ -26,15 +26,16 @@ app.use(cors({
   credentials: true
 }));
 
+const isProd = true;
 
 app.use(session({
   secret: process.env.SESSION_SECRET || 'ultra-secreto',
   resave: false,
   saveUninitialized: false,
   cookie: {
-    maxAge: 1000 * 60 * 60 * 24, 
-    sameSite: 'lax',
-    secure: false, 
+    maxAge: 1000 * 60 * 60 * 24,
+    sameSite: isProd ? 'None' : 'lax',
+    secure: isProd
   }
 }));
 
@@ -60,6 +61,14 @@ app.use('/cart', cartRouter);
 app.use('/pokes', pokeRouter);
 app.use('/dashboard', dashboardRouter);
 app.use('/categories', categoriesRouter);
+
+
+app.get('/env', (req, res) => {
+  res.json({
+    NODE_ENV: process.env.NODE_ENV,
+    ENV_SECRET: process.env.SESSION_SECRET,
+  });
+});
 
 // catch 404 and forward to
 app.use(function(req, res, next) {
