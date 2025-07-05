@@ -55,19 +55,25 @@ const TopBarUser = ({ handleInicio }) => {
         </Link>
         <Link to="/change-password" className={styles.link}>
           <img
-            src="https://play.pokemonshowdown.com/sprites/ani/haunter.gif"
+            src="https://play.pokemonshowdown.com/sprites/ani/sprigatito.gif"
             alt="Cambiar Contraseña"
             className={styles.linkGif}
           />
           Cambiar Contraseña
         </Link>
-        <span className={styles.link} style={{ marginLeft: '1.5rem', fontWeight: 'bold' }}>
-          {currentUser?.nombre ? `Hola, ${currentUser.nombre}` : 'Usuario'}
-        </span>
+        <Link to="/homeuser" className={styles.link}>
+          <img
+            src="https://play.pokemonshowdown.com/sprites/ani/totodile.gif"
+            alt="Cambiar Contraseña"
+            className={styles.linkGif}
+          />
+          {currentUser?.nombre ? `Tu cuenta ${currentUser.nombre}` : 'Usuario'}
+        </Link>
+
         <button
           onClick={handleLogout}
           className={styles.searchButton}
-          style={{ marginLeft: '1.5rem', background: '#e74c3c', color: '#fff', border: 'none' }}
+          style={{ marginTop: '1.3rem', background: '#e74c3c', color: '#fff', border: 'none' }}
         >
           Cerrar sesión
         </button>
