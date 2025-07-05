@@ -26,7 +26,7 @@ app.use(cors({
   credentials: true
 }));
 
-const isProd = process.env.NODE_ENV === 'production';
+const isProd = true;
 
 app.use(session({
   secret: process.env.SESSION_SECRET || 'ultra-secreto',
@@ -59,6 +59,14 @@ app.use('/users', usersRouter);
 app.use('/cart', cartRouter);
 app.use('/pokes', pokeRouter);
 app.use('/dashboard', dashboardRouter);
+
+
+app.get('/env', (req, res) => {
+  res.json({
+    NODE_ENV: process.env.NODE_ENV,
+    ENV_SECRET: process.env.SESSION_SECRET,
+  });
+});
 
 // catch 404 and forward to
 app.use(function(req, res, next) {
