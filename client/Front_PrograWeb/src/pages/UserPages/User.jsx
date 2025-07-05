@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styles from './User.module.css';
+import styles from '../../components/ChangeTable/ChangeTable.module.css';
 import { useNavigate } from 'react-router-dom';
 import { useUserContext } from '../../contexts/userContext.jsx';
 import { useOrdenContext } from '../../hooks/OrdenContext.jsx';

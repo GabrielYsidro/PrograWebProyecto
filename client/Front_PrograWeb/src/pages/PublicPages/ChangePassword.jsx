@@ -8,14 +8,17 @@ function ChangePassword() {
 
   return (
     <div className={styles["change-wrapper"]}>
-      <CambiarContra />
-      <button
-        className={styles["back-button"]}
-        style={{ marginTop: "2rem", marginLeft: "auto", marginRight: "auto", display: "block" }}
-        onClick={() => navigate("/")}
-      >
-        Regresar a inicio
-      </button>
+      <div className={styles["change-background"]}></div>
+      <div className={styles["change-content"]}>
+        <CambiarContra />
+        <button
+          className={styles["back-button"]}
+          style={{ marginTop: "2rem", marginLeft: "auto", marginRight: "auto", display: "block" }}
+          onClick={() => navigate("/")}
+        >
+          Regresar a inicio
+        </button>
+      </div>
     </div>
   );
 }

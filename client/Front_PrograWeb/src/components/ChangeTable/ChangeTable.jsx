@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./ChangeTable.module.css";
 
-export function ChangeTable({ values, handleChange, handleSubmit, error }) {
+export function ChangeTable({ values, handleChange, handleSubmit, error, onBack }) {
   return (
     <div className={styles.changeContainer}>
       <div className={styles.changeForm}>
@@ -43,6 +43,14 @@ export function ChangeTable({ values, handleChange, handleSubmit, error }) {
           {error && <p className={styles.error}>{error}</p>}
           <button type="submit" className={styles.submitButton}>
             Cambiar contraseña
+          </button>
+          <button
+            type="button"
+            className={styles.submitButton}
+            onClick={onBack}
+            style={{ marginTop: "0.5rem" }}
+          >
+            Regresar al login
           </button>
         </form>
       </div>

@@ -19,6 +19,7 @@ import { Login } from '../pages/PublicPages/Login.jsx';
 import DetalleProducto from '../components/DetalleProducto/DetalleProducto.jsx';
 import Register from '../pages/PublicPages/Register.jsx';
 import ChangePassword from '../pages/PublicPages/ChangePassword.jsx';
+import RecoverPassword from '../pages/PublicPages/RecoverPassword.jsx';
 import HomeUser from '../pages/UserPages/HomeUser.jsx';
 import User from "../pages/UserPages/User.jsx";
 import { Navigate } from "react-router-dom";
@@ -53,6 +54,7 @@ export const AppRouter = () => (
         <Route path = '/register' element = { <Register />} />
         <Route path = '/homeuser' element = { <HomeUser />} />
         <Route path = '/change-password' element = { <ChangePassword />} />
+        <Route path = '/recover-password' element = { <RecoverPassword />} />
     </Routes>
   </>
 );
