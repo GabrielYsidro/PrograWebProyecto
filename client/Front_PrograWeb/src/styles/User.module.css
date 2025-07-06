@@ -1,0 +1,130 @@
+.userContainer {
+  min-height: 100vh;
+  padding: 2rem;
+  background: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)),
+    url("/styles/fondoPoke.jpg") center center / cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.profileSection {
+  background: white;
+  border: 2px solid #000;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+}
+
+.profilePicture {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #cc0000;
+  margin-bottom: 1rem;
+}
+
+.username {
+  font-size: 1.8rem;
+  color: #cc0000;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.backButton {
+  background-color: #cc0000;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.backButton:hover {
+  background-color: #a00000;
+}
+
+.ordersSection {
+  background: white;
+  border: 2px solid #000;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  max-width: 800px;
+  width: 100%;
+}
+
+.ordersTitle {
+  font-size: 1.6rem;
+  color: #cc0000;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  font-weight: bold;
+}
+
+.ordersTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.ordersTable th,
+.ordersTable td {
+  padding: 0.8rem;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.ordersTable th {
+  background-color: #cc0000;
+  color: white;
+  font-weight: bold;
+}
+
+.ordersTable tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.ordersTable tr:hover {
+  background-color: #f1f1f1;
+}
+
+.noOrders {
+  font-size: 1rem;
+  color: #cc0000;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .userContainer {
+    padding: 1rem;
+  }
+
+  .profileSection,
+  .ordersSection {
+    padding: 1.5rem;
+  }
+
+  .profilePicture {
+    width: 100px;
+    height: 100px;
+  }
+
+  .username {
+    font-size: 1.5rem;
+  }
+
+  .ordersTable th,
+  .ordersTable td {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+  }
+}

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../contexts/userContext.jsx";
+import { usuarios } from "../constants/Consts.jsx";
 
 export function useLoginForm(initialValues = { email: "", password: "" }) {
   const [values, setValues] = useState(initialValues);
@@ -21,7 +22,6 @@ export function useLoginForm(initialValues = { email: "", password: "" }) {
       setError("Todos los campos son obligatorios.");
       return false;
     }
-    setError("");
     return true;
   };
 
@@ -37,7 +37,16 @@ export function useLoginForm(initialValues = { email: "", password: "" }) {
     }
 
     setError("");
-    navigate("/");
+    
+    // Obtener el usuario actual después del login
+    const currentUser = usuarios.find(u => u.email === values.email.toLowerCase());
+    
+    // Redirigir según el rol del usuario
+    if (currentUser && currentUser.rol === "admin") {
+      navigate("/homeadmin");
+    } else {
+      navigate("/");
+    }
   };
 
   const handleRegister = () => {

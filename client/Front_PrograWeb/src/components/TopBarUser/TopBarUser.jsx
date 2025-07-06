@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useUserContext } from '../../contexts/userContext';
 import styles from '../TopBar/TopBar.module.css';
 
-const TopBarUser = ({ handleInicio}) => {
+const TopBarUser = ({ handleInicio }) => {
   const { logout, currentUser } = useUserContext();
   const navigate = useNavigate();
   const [busqueda, setBusqueda] = useState('');
@@ -82,7 +82,7 @@ const TopBarUser = ({ handleInicio}) => {
             type="text"
             placeholder="Buscar productos..."
             value={busqueda}
-            onChange={e => setBusqueda(e.target.value)}
+            onChange={(e) => setBusqueda(e.target.value)}
             className={styles.searchInput}
           />
           <button type="submit" className={styles.searchButton}>
