@@ -70,3 +70,69 @@ body, #root {
   object-fit: cover;
   margin-top: 1rem;
 }
+
+.userCard {
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 2px 16px #00000018;
+  padding: 2.5rem 2rem 2rem 2rem;
+  margin-bottom: 2rem;
+  color: #222;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+.userCard h2, .userCard h3 {
+  color: #3B4CCA;
+  font-weight: bold;
+}
+
+.userCard p {
+  color: #222;
+  font-size: 1.08rem;
+  margin: 0.2rem 0;
+}
+
+.ordersTable {
+  width: 100%;
+  margin-top: 1rem;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px #00000010;
+  overflow: hidden;
+}
+.ordersTable th, .ordersTable td {
+  padding: 0.7rem 1.2rem;
+  text-align: left;
+}
+.ordersTable th {
+  background: #3B4CCA;
+  color: #fff;
+  font-weight: bold;
+}
+.ordersTable tr:nth-child(even) {
+  background: #f6f8fc;
+}
+.ordersTable tr:nth-child(odd) {
+  background: #fff;
+}
+.ordersTable td {
+  color: #222;
+  font-size: 1rem;
+}
+
+.detailButton {
+  background: #3B4CCA;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.4rem 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 0.98rem;
+  transition: background 0.2s;
+}
+.detailButton:hover {
+  background: #FFCC00;
+  color: #3B4CCA;
+}

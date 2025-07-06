@@ -4,6 +4,7 @@ const UsersController = require('../controllers/userController.js')
 /* GET users listing. */
 
 router.get('/', UsersController.getUsers);
+router.put('/recoverpassword', UsersController.recoverPassword);
 router.get('/:id', UsersController.getUserId);
 router.post('/', UsersController.postUser);
 router.put('/:id', UsersController.cambiarEstado); //es solo "activo" o "inactivo"

@@ -131,4 +131,32 @@ const changePassword = async (req, res) => {
     }
 };
 
-module.exports = {getUsers, getUserId, postUser, cambiarEstado, changePassword};
+const recoverPassword = async (req, res) => {
+    const { email, newPassword } = req.body;
+
+    try {
+        // Buscar usuario por email
+        const user = await db.User.findOne({ where: { email } });
+
+        if (!user) {
+            return res.status(404).json({ error: 'No existe un usuario con este correo electrónico' });
+        }
+
+        // Actualizar contraseña
+        const [updated] = await db.User.update(
+            { password: newPassword },
+            { where: { email } }
+        );
+
+        if (updated) {
+            res.status(200).json({ message: 'Contraseña recuperada exitosamente' });
+        } else {
+            res.status(500).json({ error: 'Error al actualizar la contraseña' });
+        }
+    } catch (error) {
+        console.error('Error al recuperar la contraseña:', error);
+        res.status(500).json({ error: 'Error interno del servidor al recuperar contraseña' });
+    }
+};
+
+module.exports = {getUsers, getUserId, postUser, cambiarEstado, changePassword, recoverPassword};

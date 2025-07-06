@@ -48,3 +48,15 @@ export async function changePass(id, contra) {
   if (!res.ok) throw new Error('Error al cambiar contraseña en servicio');
   return res.json();
 }
+
+export async function recoverPassword(email, newPassword) {
+  const res = await fetch(`${api}/users/recoverpassword`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ email, newPassword })
+  });
+  if (!res.ok) throw new Error('Error al recuperar contraseña en servicio');
+  return res.json();
+}

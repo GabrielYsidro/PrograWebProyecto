@@ -33,14 +33,7 @@ const TopBarUser = ({ handleInicio }) => {
           />
           Inicio
         </Link>
-        <Link to="/results" className={styles.link}>
-          <img
-            src="https://play.pokemonshowdown.com/sprites/ani/alakazam.gif"
-            alt="Resultados"
-            className={styles.linkGif}
-          />
-          Resultados
-        </Link>
+        
         <Link to="/carrito" className={styles.link}>
           <span role="img" aria-label="Carrito" style={{ fontSize: 22, marginRight: 6 }}>🛒</span>
           Carrito
