@@ -6,20 +6,22 @@ import FormProducto from '../../components/FormProducto/FormProducto.jsx';
 import styles from '../../styles/DetailProduct.module.css';
 import DetalleProducto from '../../components/DetalleProducto/DetalleProducto.jsx';
 import { useProductoDetalle } from '../../hooks/useProductoDetalle.jsx';
+import { useProductosApi } from '../../hooks/useProductApi.jsx';
 
 export const DetailProduct = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const [isEditing, setIsEditing] = useState(false);
 
-    const {producto, actualizarProducto,loading, error} = useProductoDetalle (id); // Hook personalizado para obtener el producto por ID
+    const {producto, loading, error} = useProductoDetalle (id); // Hook personalizado para obtener el producto por ID
+    const { actualizarProducto } = useProductosApi(); // Hook para actualizar el producto
     
     const handleEdit = () => {
         setIsEditing(true);
     }
 
     const handleUpdateProduct = async (updatedData) => {
-        await actualizarProducto(updatedData);
+        await actualizarProducto(producto.id,updatedData);
         // Obtén el producto actualizado del contexto
         alert('Producto actualizado con éxito!');
         setIsEditing(false);

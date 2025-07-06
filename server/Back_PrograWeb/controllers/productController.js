@@ -81,7 +81,6 @@ const createPoke = async (req, res) => {
   try {
     // 🔥 MAPEAR campos del frontend a la BD
     const datosParaBD = {
-      id: req.body.id,                      // id → id
       name: req.body.nombre,                // nombre → name
       price: req.body.precio,               // precio → price
       img: req.body.imagen,                 // imagen → img
@@ -94,13 +93,32 @@ const createPoke = async (req, res) => {
       quantity: req.body.quantity || 1
     };
 
+     // Si viene nombre de categoría, región o rareza, busca el ID correspondiente
+    if (req.body.categoria && !req.body.categoria_id) {
+      const categoria = await db.Category.findOne({ where: { name: req.body.categoria } });
+      if (categoria) datosParaBD.category_id = categoria.id;
+    }
+    if (req.body.region && !req.body.region_id) {
+      const region = await db.Region.findOne({ where: { name: req.body.region } });
+      if (region) datosParaBD.region_id = region.id;
+    }
+    if (req.body.rareza && !req.body.rareza_id) {
+      const rareza = await db.Rarity.findOne({ where: { name: req.body.rareza } });
+      if (rareza) datosParaBD.rarity_id = rareza.id;
+    }
+
+    // Elimina los campos por nombre para evitar conflictos
+    delete datosParaBD.categoria;
+    delete datosParaBD.region;
+    delete datosParaBD.rareza;
+    delete datosParaBD.id; // Elimina cualquier campo id que venga del frontend
+
     console.log('📦 Datos para crear:', datosParaBD);
     
     const nuevo = await db.Pokemon.create(datosParaBD);
     
     // 🔥 MAPEAR respuesta de BD a frontend
     const pokemonMapeado = {
-      id: nuevo.id,
       nombre: nuevo.name,                    // name → nombre
       precio: parseFloat(nuevo.price) || 0,  // price → precio
       imagen: nuevo.img,                     // img → imagen
@@ -134,6 +152,26 @@ const updatePoke = async (req, res) => {
     if (req.body.categoria_id) datosParaBD.category_id = req.body.categoria_id;
     if (req.body.region_id) datosParaBD.region_id = req.body.region_id;
     if (req.body.rareza_id) datosParaBD.rarity_id = req.body.rareza_id;
+
+
+    // Si viene nombre de categoría, región o rareza, busca el ID correspondiente
+    if (req.body.categoria && !req.body.categoria_id) {
+      const categoria = await db.Category.findOne({ where: { name: req.body.categoria } });
+      if (categoria) datosParaBD.category_id = categoria.id;
+    }
+    if (req.body.region && !req.body.region_id) {
+      const region = await db.Region.findOne({ where: { name: req.body.region } });
+      if (region) datosParaBD.region_id = region.id;
+    }
+    if (req.body.rareza && !req.body.rareza_id) {
+      const rareza = await db.Rarity.findOne({ where: { name: req.body.rareza } });
+      if (rareza) datosParaBD.rarity_id = rareza.id;
+    }
+
+    // Elimina los campos por nombre para evitar conflictos
+    delete datosParaBD.categoria;
+    delete datosParaBD.region;
+    delete datosParaBD.rareza;
 
     const [updated] = await db.Pokemon.update(datosParaBD, { where: { id } });
     
