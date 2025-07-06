@@ -38,18 +38,48 @@ const HomeUser = () => {
         <TopBarUser handleInicio={() => {}} />
         <main className={styles.main}>
           <div className={styles.infoSection}>
-            <h2 className={styles.elige}>Hola {currentUser?.nombre || 'Usuario'} !</h2>
-            <div className={styles.dataRow}>
-              <section>
-                <h3>Datos personales</h3>
-                <p>Nombre: {currentUser?.name}</p>
-                <p>Correo: {currentUser?.email}</p>
-              </section>
-              <section>
-                <h3>Dirección de envío</h3>
-                <p>{currentUser?.address || 'Av. Sin Indicar 1234'}</p>
-                <p>Celular de contacto: {currentUser?.phone_number || '999999999'}</p>
-              </section>
+            <div className={styles.userCard}>
+              <h2 className={styles.elige}>Hola {currentUser?.nombre || 'Usuario'} !</h2>
+              <div className={styles.dataRow}>
+                <section>
+                  <h3>Datos personales</h3>
+                  <p>Nombre: {currentUser?.nombre}</p>
+                  <p>Correo: {currentUser?.email}</p>
+                </section>
+                <section>
+                  <h3>Dirección de envío</h3>
+                  <p>{currentUser?.direccion || 'Av. Sin Indicar 1234'}</p>
+                  <p>Celular de contacto: {currentUser?.telefono || '999999999'}</p>
+                </section>
+              </div>
+              {/* Tabla de órdenes del usuario */}
+              <h3 style={{marginTop: '2rem', color: '#3B4CCA'}}>Órdenes recientes</h3>
+              <table className={styles.ordersTable}>
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Fecha</th>
+                    <th>Total</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {(ordenes?.filter(ord => ord.customer === currentUser?.email) || []).map(ord => (
+                    <tr key={ord.id}>
+                      <td>{ord.id}</td>
+                      <td>{ord.date}</td>
+                      <td>${ord.total.toFixed(2)}</td>
+                      <td>{ord.status}</td>
+                      <td>
+                        <button className={styles.detailButton} onClick={() => alert(`Detalle de la orden #${ord.id}`)}>
+                          Ver detalle
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
           <div className={styles.statsSection}>
