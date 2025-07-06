@@ -41,7 +41,7 @@ app.options('*', cors(corsOptions))
 
 app.use(cors(corsOptions))
 
-const isProd = true;
+const isProd = false;
 
 // Middlewares en orden correcto
 app.use(logger('dev'));
@@ -78,6 +78,8 @@ app.use('/pokes', pokeRouter);
 app.use('/dashboard', dashboardRouter);
 app.use('/categories', categoriesRouter);
 app.use('/order', orderRouter);
+
+
 // Verificación de variables de entorno
 app.get('/env', (req, res) => {
   res.json({
