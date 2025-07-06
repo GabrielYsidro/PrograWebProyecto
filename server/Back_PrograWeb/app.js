@@ -90,6 +90,7 @@ const pokeRouter = require('./routes/products');
 const dashboardRouter = require('./routes/dashboard');
 const categoriesRouter = require('./routes/categories');
 const orderRouter = require('./routes/orders');
+const authRouter = require('./routes/auth');
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
