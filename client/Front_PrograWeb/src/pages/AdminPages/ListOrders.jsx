@@ -13,13 +13,11 @@ export const ListOrders = () =>{
 
     const { ordenItems } = useOrdenContext();
     // Combina las órdenes de todos los usuarios en un solo array  
-
     const ordenesTotales = ordenItems;
     const [filtro, setFiltro] = useState("");
     
     const [paginaActual, setPaginaActual] = useState(1);
     const porPagina = 6;
-
     const filtradas = ordenesTotales.filter(o =>
         o.customer.toLowerCase().includes(filtro.toLowerCase()) ||
         o.id.toString().includes(filtro)
