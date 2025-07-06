@@ -1,25 +1,50 @@
-import React, { createContext, useContext, useState } from 'react';
-import { categorias } from '../constants/Consts.jsx';
+import React, { createContext, useContext, useState, useEffect } from 'react';
+import { getCategorias, postCategoria, deleteCategoria } from '../services/categoriaService';
 
 const CategoriaContext = createContext();
 
 export const useCategoriaContext = () => useContext(CategoriaContext);
 
 export function CategoriaProvider({ children }) {
-  const [categoriasItems, setCategoriasItems] = useState(categorias);
+  const [categoriasItems, setCategoriasItems] = useState([]);
 
-  const addItem = (item) => {
-    setCategoriasItems((prev) => [...prev, item]);
+  const fetchCategorias = async () => {
+    try {
+      const data = await getCategorias();
+      setCategoriasItems(Array.isArray(data.categorias) ? data.categorias : []);
+    } catch (err) {
+      setCategoriasItems([]);
+    }
   };
 
-  const removeItem = (id) => {
-    setCategoriasItems((prev) => prev.filter((item) => item.id !== id));
+  useEffect(() => {
+    fetchCategorias();
+  }, []);
+
+  const addItem = async (item) => {
+    try {
+      await postCategoria(item);
+      await fetchCategorias();
+    } catch (error) {
+      console.error('Error al añadir categoria:', error);
+    }
   };
 
-  const clearCategoria = () => setCategoriasItems([]);
+  const removeItem = async (id) => {
+    try {
+      await deleteCategoria(id);
+      await fetchCategorias(); // <-- recarga la lista desde el backend
+    } catch (error) {
+      console.error('Error al eliminar categoria:', error);
+    }
+  };
 
   return (
-    <CategoriaContext.Provider value={{ categoriasItems, addItem, removeItem, clearCategoria }}>
+    <CategoriaContext.Provider value={{
+      categoriasItems,
+      addItem,
+      removeItem,
+    }}>
       {children}
     </CategoriaContext.Provider>
   );
