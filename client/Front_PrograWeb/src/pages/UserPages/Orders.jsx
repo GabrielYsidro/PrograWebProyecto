@@ -7,11 +7,10 @@ import OrderStatusTracker from "../../components/OrderTracker/OrderTracker.jsx";
 import { useOrdenContext } from "../../hooks/OrdenContext.jsx";
 
 const DetailsOrders = () => {
-  const { ordenes } = useOrdenContext(); // <-- cambio aquí
+  const { ordenes } = useOrdenContext();
   const { id } = useParams();
-  const orden = ordenes.find((o) => o.id === parseInt(id)); // <-- cambio aquí
+  const orden = ordenes.find((o) => o.id === parseInt(id));
   const navigate = useNavigate();
-
 
   if (!orden) return <p>Orden no encontrada.</p>;
 
