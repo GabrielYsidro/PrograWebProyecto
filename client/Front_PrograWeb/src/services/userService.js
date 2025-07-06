@@ -35,3 +35,15 @@ export async function cambiarEstado(id, active) {
   if (!res.ok) throw new Error('Error al actualizar user en servicio');
   return res.json();
 }
+
+export async function changePass(id, contra) {
+  const res = await fetch(`${api}/users/changepassword/${id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ newPassword:contra }) // Solo envía el campo password
+  });
+  if (!res.ok) throw new Error('Error al cambiar contraseña en servicio');
+  return res.json();
+}
