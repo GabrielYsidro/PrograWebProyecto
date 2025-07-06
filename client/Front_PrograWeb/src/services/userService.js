@@ -13,6 +13,7 @@ export async function getUserId(id) {
 }
 
 export async function addUser(user) {
+  console.log(user);
   const res = await fetch(`${api}/users`, {
     method: 'POST',
     headers: {
