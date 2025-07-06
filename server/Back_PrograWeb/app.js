@@ -91,6 +91,7 @@ const dashboardRouter = require('./routes/dashboard');
 const categoriesRouter = require('./routes/categories');
 const orderRouter = require('./routes/orders');
 const authRouter = require('./routes/auth');
+const wishlistRouter = require('./routes/wishlist')
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
@@ -100,6 +101,7 @@ app.use('/pokes', pokeRouter);
 app.use('/dashboard', dashboardRouter);
 app.use('/categories', categoriesRouter);
 app.use('/order', orderRouter);
+app.use('/wishlist', wishlistRouter)
 
 
 // 404 handler

@@ -1,10 +1,11 @@
+// components/WishlistItem.jsx
 import { useDrag } from 'react-dnd';
 import styles from '../WishListItem/WishListItem.module.css';
 
 export const WishlistItem = ({ item }) => {
   const [{ isDragging }, drag] = useDrag(() => ({
     type: 'PRODUCT',
-    item,
+    item, // <-- estás enviando el objeto completo (correcto)
     collect: monitor => ({
       isDragging: monitor.isDragging(),
     }),
@@ -16,11 +17,11 @@ export const WishlistItem = ({ item }) => {
       className={styles.wishlistItem}
       style={{ opacity: isDragging ? 0.5 : 1 }}
     >
-    <img src={item.imagen}></img>
-    <strong>{item.nombre}</strong>
-    <p>S/. {item.precio}</p>
+      <img src={item.imagen} alt={item.nombre} />
+      <strong>{item.nombre}</strong>
+      <p>S/. {parseFloat(item.precio).toFixed(2)}</p>
     </div>
   );
-}
+};
 
 export default WishlistItem;
