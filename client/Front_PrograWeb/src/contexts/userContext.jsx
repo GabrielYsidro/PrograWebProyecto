@@ -1,6 +1,6 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { getUser, getUserId, addUser as addUserService, cambiarEstado } from '../services/userService';
+import { getUser, getUserId, addUser as addUserService, cambiarEstado, changePass } from '../services/userService';
 
 const UserContext = createContext();
 
@@ -32,7 +32,8 @@ export function UserProvider({ children }) {
       const userExists = users.some((u) => u.email === user.email);
       if (!userExists) {
         const newUser = await addUserService(user);
-        await fetchUsers(); 
+        await fetchUsers();
+        setUsers((prevUsers) => [...prevUsers, newUser]);
         return newUser;
       } else {
         throw new Error("El correo ya está registrado.");
@@ -59,7 +60,6 @@ export function UserProvider({ children }) {
   const activarUsuario = async (id) => {
     try {
       await cambiarEstado(id, true);
-      await fetchUsers();
       if (currentUser && currentUser.id === id) {
         setCurrentUser((prev) => ({ ...prev, activo: true }));
       }
@@ -71,13 +71,30 @@ export function UserProvider({ children }) {
   const desactivarUsuario = async (id) => {
     try {
       await cambiarEstado(id, false);
-      await fetchUsers();
       if (currentUser && currentUser.id === id) {
         setCurrentUser((prev) => ({ ...prev, activo: false }));
         logout();
       }
     } catch (error) {
       console.error('Error al desactivar usuario:', error);
+    }
+  };
+
+  const changePassword = async (id, newPassword) => { //esta te hace el cambio en el back y el front
+
+    try {
+      await changePass(id, newPassword);
+      
+      setUsers((prevUsers) =>
+        prevUsers.map((user) =>
+          user.id === id ? { ...user, password: newPassword } : user
+        )
+      );
+      if (currentUser && currentUser.id === id) { //buen manejo si la sesion esta abierta
+        setCurrentUser((prev) => ({ ...prev, password: newPassword }));
+      }
+    } catch (error) {
+      console.error('Error al cambiar la contraseña:', error);
     }
   };
 
@@ -91,7 +108,8 @@ export function UserProvider({ children }) {
       logout,
       activarUsuario,
       desactivarUsuario,
-      fetchUsers
+      fetchUsers,
+      changePassword
     }}>
       {children}
     </UserContext.Provider>
