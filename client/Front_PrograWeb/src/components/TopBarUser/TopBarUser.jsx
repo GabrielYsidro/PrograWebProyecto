@@ -67,7 +67,7 @@ const TopBarUser = ({ handleInicio }) => {
             alt="Cambiar Contraseña"
             className={styles.linkGif}
           />
-          {currentUser?.nombre ? `Tu cuenta ${currentUser.nombre}` : 'Usuario'}
+          {currentUser?.name ? `Tu cuenta ${currentUser.name}` : 'Usuario'}
         </Link>
 
         <button

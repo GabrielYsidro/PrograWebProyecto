@@ -19,7 +19,7 @@ const getUsers = async (req, res) => {
             password: user.password,
             address: user.address,
             phone_number: user.phone_number,
-            role: user.role?.role_name || 'Sin rol',
+            role: user.role?.role_name || 'User',
             fotoperfil: user.fotoperfil
         }));
         res.status(200).json({ usuarios: usuariosMapeados });
@@ -43,15 +43,14 @@ const getUserId = async (req, res) => {
         }
 
         const usuario = {
-            id: user.id,
             name: user.name,
             email: user.email,
             active: user.active,
             password: user.password,
             address: user.address,
             phone_number: user.phone_number,
-            role: user.role?.role_name || 'Sin rol',
-            fotoperfil: user.fotoperfil
+            role: user.role?.role_name || 2,
+            fotoperfil: user.fotoperfil || 'https://res.cloudinary.com/dzqj1x3qk/image/upload/v1735686262/DefaultProfilePicture.png'
         };
 
         res.status(200).json(usuario);
@@ -69,8 +68,8 @@ const createUser = (data) => {
         password: data.password,
         address: data.address,
         phone_number: data.phone_number,
-        roleId: data.roleId,
-        fotoperfil: data.fotoperfil
+        roleId: data.roleId || 2,
+        fotoperfil: data.fotoperfil || 'https://res.cloudinary.com/dzqj1x3qk/image/upload/v1735686262/DefaultProfilePicture.png'
     };
 };
 

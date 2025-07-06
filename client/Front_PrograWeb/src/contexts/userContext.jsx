@@ -32,7 +32,8 @@ export function UserProvider({ children }) {
       const userExists = users.some((u) => u.email === user.email);
       if (!userExists) {
         const newUser = await addUserService(user);
-        await fetchUsers(); 
+        await fetchUsers();
+        setUsers((prevUsers) => [...prevUsers, newUser]);
         return newUser;
       } else {
         throw new Error("El correo ya está registrado.");
@@ -59,7 +60,6 @@ export function UserProvider({ children }) {
   const activarUsuario = async (id) => {
     try {
       await cambiarEstado(id, true);
-      await fetchUsers();
       if (currentUser && currentUser.id === id) {
         setCurrentUser((prev) => ({ ...prev, activo: true }));
       }
@@ -71,7 +71,6 @@ export function UserProvider({ children }) {
   const desactivarUsuario = async (id) => {
     try {
       await cambiarEstado(id, false);
-      await fetchUsers();
       if (currentUser && currentUser.id === id) {
         setCurrentUser((prev) => ({ ...prev, activo: false }));
         logout();
