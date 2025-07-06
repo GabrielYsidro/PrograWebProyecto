@@ -24,6 +24,7 @@ import HomeUser from '../pages/UserPages/HomeUser.jsx';
 import User from "../pages/UserPages/User.jsx";
 import { Navigate } from "react-router-dom";
 import { useUserContext } from "../contexts/userContext.jsx";
+import Orders from "../pages/UserPages/Orders.jsx";
 
 function PrivateRoute({ children }) {
   const { currentUser } = useUserContext();
@@ -55,6 +56,7 @@ export const AppRouter = () => (
         <Route path = '/homeuser' element = { <HomeUser />} />
         <Route path = '/change-password' element = { <ChangePassword />} />
         <Route path = '/recover-password' element = { <RecoverPassword />} />
+        <Route path = '/orders/:id' element = {<Orders/>} />
     </Routes>
   </>
 );
