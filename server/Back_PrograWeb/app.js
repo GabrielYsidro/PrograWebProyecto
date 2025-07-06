@@ -24,8 +24,11 @@ const allowedOrigins = [
 ];
 
 // Detectar correctamente el entorno de producción
-const isProd = process.env.NODE_ENV === 'production' || 
-               !!process.env.WEBSITE_SITE_NAME; // Variable específica de Azure
+const isAzure = !!process.env.WEBSITE_SITE_NAME;
+const isExplicitProd = process.env.NODE_ENV === 'production';
+
+const isProd = isExplicitProd && isAzure;
+
 
 const corsOptions = {
   origin: function (origin, callback) {
@@ -64,6 +67,8 @@ app.use(session({
   }
 }));
 
+console.log(isProd)
+
 // Middleware adicional para debugging en producción
 app.use((req, res, next) => {
   if (process.env.NODE_ENV === 'production') {
@@ -95,17 +100,6 @@ app.use('/dashboard', dashboardRouter);
 app.use('/categories', categoriesRouter);
 app.use('/order', orderRouter);
 
-// Verificación de variables de entorno
-app.get('/env', (req, res) => {
-  res.json({
-    NODE_ENV: process.env.NODE_ENV,
-    ENV_SECRET: process.env.SESSION_SECRET,
-    isProd: isProd,
-    protocol: req.protocol,
-    secure: req.secure,
-    headers: req.headers
-  });
-});
 
 // 404 handler
 app.use(function(req, res, next) {
