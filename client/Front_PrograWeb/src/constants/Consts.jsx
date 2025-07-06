@@ -231,7 +231,7 @@ export const mockData = [
     { id: 13, customer: 'paula.mendez@email.com', date: '2025-05-20', total: 12.5, status: 'Shipped', isNewUser: true, registrationDate: '2025-05-20' },
     { id: 14, customer: 'andres.silva@email.com', date: '2025-05-20', total: 12.5, status: 'Delivered', isNewUser: true, registrationDate: '2025-05-20' },
     { id: 15, customer: 'elena.castro@email.com', date: '2025-05-20', total: 12.5, status: 'Pending', isNewUser: true, registrationDate: '2025-05-20' },
-    { id: 16, customer: 't  omas.pena@email.com', date: '2025-05-20', total: 12.5, status: 'Shipped', isNewUser: true, registrationDate: '2025-05-20' },
+    { id: 16, customer: 'tomas.pena@email.com', date: '2025-05-20', total: 12.5, status: 'Shipped', isNewUser: true, registrationDate: '2025-05-20' },
     { id: 17, customer: 'gabriela.flores@email.com', date: '2025-05-20', total: 12.5, status: 'Delivered', isNewUser: true, registrationDate: '2025-05-20' },
     { id: 18, customer: 'ricardo.molina@email.com', date: '2025-05-20', total: 12.5, status: 'Pending', isNewUser: true, registrationDate: '2025-05-20' },
     { id: 19, customer: 'natalia.rios@email.com', date: '2025-05-20', total: 12.5, status: 'Shipped', isNewUser: true, registrationDate: '2025-05-20' },

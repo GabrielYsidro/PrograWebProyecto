@@ -3,18 +3,18 @@ import styles from "./OrderTracker.module.css";
 import { CheckCircle, Clock, XCircle } from "lucide-react";
 
 const steps = [
-  { label: "Shipped", value: "ordered" },
-  { label: "Pending", value: "in_transit" },
-  { label: "Delivered", value: "delivered" },
+  { label: "Pendiente", value: "ordered" },
+  { label: "Confirmado", value: "in_transit" },
+  { label: "Entregado", value: "delivered" },
 ];
 
 const getStatusIndex = (estado) => {
   switch (estado.toLowerCase()) {
-    case 'shipped':
+    case 'pendiente':
       return 0;
-    case "pending":
+    case "confirmado":
       return 1;
-    case "delivered":
+    case "entregado":
       return 2;
     default:
       return -1;

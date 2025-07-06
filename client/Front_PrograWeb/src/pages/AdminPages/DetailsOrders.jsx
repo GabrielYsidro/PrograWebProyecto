@@ -11,11 +11,12 @@ import { useNavigate } from "react-router-dom";
 const DetailsOrders = () => {
 
   const { ordenItems, removeItem } = useOrdenContext();
-
+  console.log(ordenItems);
   
   const { id } = useParams();
-  const orden = ordenItems.find((o) => o.id === parseInt(id));
-  
+  console.log(id);
+  const orden = ordenItems.find((o) => o.id === id);
+  console.log(orden);
   const navigate = useNavigate();
 
 
@@ -37,12 +38,13 @@ const DetailsOrders = () => {
           <div className={styles["order-info"]}>
             <div>
               <p><strong>ID:</strong> #{orden.id}</p>
-              <p><strong>Fecha de registro:</strong> {orden.registrationDate}</p>
-              <p><strong>Fecha de cambio de estado:</strong> {orden.date}</p>
+              <p><strong>Fecha de registro:</strong> {orden.date}</p>
+              <p><strong>Dirección:</strong> {orden.direccionEnvio}</p>
             </div>
             <div>
               <p><strong>Estado:</strong> {orden.status}</p>
               <p><strong>Usuario:</strong> {orden.customer}</p>
+              <p><strong>Método de pago:</strong> {orden.metodoPago}</p>
             </div>
           </div>
 
