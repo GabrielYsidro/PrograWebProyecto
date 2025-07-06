@@ -2,6 +2,7 @@ import { useParams, Link } from 'react-router-dom';
 import styles from './DetalleProducto.module.css';
 import ScrollToTop from '../ScrollTop/ScrollTop.jsx';
 import { useCartContext } from '../../contexts/CartContext.jsx';
+import { useWishlistContext } from '../../hooks/WishlistContext.jsx'; // ← AGREGAR IMPORT
 import { useState } from 'react';
 import { useProductoDetalle } from '../../hooks/useProductoDetalle.jsx';
 
@@ -9,11 +10,12 @@ function DetalleProducto({ modoAdmin = false, onModificar }) {
   const { id } = useParams();
   const { producto, loading, error } = useProductoDetalle(id); 
   const { addItem } = useCartContext ? useCartContext() : { addItem: () => {} };
+  const { addToWishlist, removeFromWishlist, isInWishlist } = useWishlistContext(); // ← AGREGAR HOOK
   const [showMsg, setShowMsg] = useState(false);
+  const [showWishlistMsg, setShowWishlistMsg] = useState(false); // ← AGREGAR STATE
 
-  if (loading) return <div>Cargando detalle del producto...</div>;
-  if (error || !producto) return <div>Producto no encontrado.</div>;
-
+  if (loading) return <div className={styles.loading}>Cargando detalle del producto...</div>;
+  if (error || !producto) return <div className={styles.error}>Producto no encontrado.</div>;
 
   const handleAdd = () => {
     addItem(producto);
@@ -22,6 +24,27 @@ function DetalleProducto({ modoAdmin = false, onModificar }) {
       setShowMsg(false);
     }, 1000);
   };
+
+  // ← AGREGAR FUNCIÓN handleWishlist
+  const handleWishlist = async () => {
+    if (isInWishlist(producto.id)) {
+      const success = await removeFromWishlist(producto.id);
+      if (success) {
+        setShowWishlistMsg('removed');
+      }
+    } else {
+      const success = await addToWishlist(producto);
+      if (success) {
+        setShowWishlistMsg('added');
+      }
+    }
+    
+    setTimeout(() => {
+      setShowWishlistMsg(false);
+    }, 1500);
+  };
+
+  const inWishlist = isInWishlist(producto.id); // ← AGREGAR VARIABLE
 
   return (
     <>
@@ -50,8 +73,9 @@ function DetalleProducto({ modoAdmin = false, onModificar }) {
               {producto.descripcion && (
                 <p className={styles.descripcion}><strong>Descripción:</strong> {producto.descripcion}</p>
               )}
+              
               {modoAdmin ? (
-                <div>
+                <div className={styles.adminButtons}>
                   <button
                     className={styles.botonDetalle}
                     type="button"
@@ -62,7 +86,7 @@ function DetalleProducto({ modoAdmin = false, onModificar }) {
                   <Link to="/homeadmin" className={styles.volverBtn}>Volver al inicio</Link>
                 </div>
               ) : (
-                <div>
+                <div className={styles.botonesContainer}>
                   <button
                     className={`${styles.botonDetalle} ${showMsg ? styles.botonAgregado : ''}`}
                     type="button"
@@ -70,11 +94,30 @@ function DetalleProducto({ modoAdmin = false, onModificar }) {
                     disabled={showMsg}
                   >
                     {showMsg ? (
-                      <span className={styles.checkAnimado}>✔ Agregado</span>
+                      <span className={styles.checkAnimado}>✔ Agregado al carrito</span>
                     ) : (
                       'Agregar al carrito'
                     )}
                   </button>
+                  
+                  {/* ← AGREGAR BOTÓN WISHLIST */}
+                  <button
+                    className={`${styles.botonWishlist} ${inWishlist ? styles.botonEnWishlist : ''} ${showWishlistMsg ? styles.botonWishlistAnimado : ''}`}
+                    type="button"
+                    onClick={handleWishlist}
+                    disabled={showWishlistMsg}
+                  >
+                    {showWishlistMsg === 'added' ? (
+                      <span className={styles.checkAnimado}>💖 Agregado a favoritos</span>
+                    ) : showWishlistMsg === 'removed' ? (
+                      <span className={styles.checkAnimado}>💔 Eliminado de favoritos</span>
+                    ) : inWishlist ? (
+                      '💖 En favoritos'
+                    ) : (
+                      '🤍 Agregar a favoritos'
+                    )}
+                  </button>
+                  
                   <Link to="/" className={styles.volverBtn}>Volver al inicio</Link>
                 </div>
               )}
