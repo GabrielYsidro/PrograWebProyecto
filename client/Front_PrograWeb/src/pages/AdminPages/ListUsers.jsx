@@ -17,7 +17,7 @@ export const ListUsers = () => {
     
 
     const filtrados = users.filter(u =>
-        u.nombre.toLowerCase().includes(filtro.toLowerCase()) ||
+        u.name.toLowerCase().includes(filtro.toLowerCase()) ||
         u.id.toString().includes(filtro)
     );
     const totalPaginas = Math.ceil(filtrados.length / porPagina);
