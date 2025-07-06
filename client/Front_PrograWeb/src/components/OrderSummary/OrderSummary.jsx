@@ -5,10 +5,12 @@ import { useNavigate } from 'react-router-dom';
 import { usePaymentForm } from '../../hooks/usePaymentForm.jsx';
 import { useUserContext } from '../../contexts/userContext.jsx';
 import {postOrden} from '../../services/cartService.js'
+import { useCartContext } from '../../contexts/CartContext.jsx';
 
 export const OrderSummary = ({ items }) => {
 
   const {shippingOption, paymentMethod, address} = usePaymentForm();
+  const {clearCart} = useCartContext();
   const {users} = useUserContext();
   const navigate = useNavigate();
   const userId = users[0].id
@@ -24,6 +26,11 @@ export const OrderSummary = ({ items }) => {
       return;
     }
 
+    if (shippingOption === 'delivery' && (!address || address.trim() === '')) {
+      alert('Por favor ingresa una dirección válida para el envío.');
+      return;
+    }
+
     try {
       await postOrden({
         userId,
@@ -33,7 +40,7 @@ export const OrderSummary = ({ items }) => {
         payment: paymentMethod,
         items
       });
-
+      clearCart();
       navigate('/greeting');
     } catch (err) {
       console.error('Error al enviar la orden:', err);
