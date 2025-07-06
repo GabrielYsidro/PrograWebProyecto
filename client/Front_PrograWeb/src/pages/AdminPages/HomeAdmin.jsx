@@ -21,12 +21,13 @@ export const HomeAdmin = () => {
   if (error) return <div>Error al cargar estadísticas: {error.message}</div>;
   if (!stats) return <div>No hay estadísticas disponibles</div>;
 
+  // Desestructura aquí:
+  const { statsActual, statsAnalizado } = stats;
   return (
     <>
       <div className={styles['home-background']}></div>
       <div className={styles['home-content']}>
         <TopBarAdmin/>
-
         <main className={styles['main-content']}>
           <h1>Resumen del día {diaAnalizado || getTodayDateString()}</h1>
           <FormDate
@@ -36,7 +37,6 @@ export const HomeAdmin = () => {
             onFechaFinChange={setFechaFin}
             onAnalizar={()=> setDiaAnalizado(fechaInicio)}
           />
-
           <div className={styles['resumen']}>
             <ResumenGrafico
               chartData={[
