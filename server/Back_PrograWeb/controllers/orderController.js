@@ -43,6 +43,7 @@ const createOrder = async (req, res) => {
   }
 };
 
+
 const getOrders = async (req, res) => {
     try {
         const orders = await db.Order.findAll({
