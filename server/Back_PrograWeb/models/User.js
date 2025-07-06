@@ -27,9 +27,7 @@ module.exports = (sequelize, DataTypes) => {
     phone_number: {
       type: DataTypes.CHAR(9),
       allowNull: true,
-      validate: {
-        is: /^[0-9]{9}$/,
-      },
+      
     },
     address: {
       type: DataTypes.TEXT,

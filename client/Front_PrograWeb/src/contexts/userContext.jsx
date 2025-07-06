@@ -1,6 +1,6 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { usuarios } from "../constants/Consts";
+import { getUser, getUserId, addUser as addUserService, cambiarEstado } from '../services/userService';
 
 const UserContext = createContext();
 
@@ -10,28 +10,35 @@ export function useUserContext() {
 
 export function UserProvider({ children }) {
   const navigate = useNavigate();
-  const [users, setUsers] = useState(usuarios);
+  const [users, setUsers] = useState([]);
   const [currentUser, setCurrentUser] = useState(null);
 
-  const addUser = (user) => {
-    if (user && user.email && user.password && user.rol && user.nombre) {
+  const fetchUsers = async () => {
+    try {
+      const data = await getUser();
+      setUsers(Array.isArray(data.usuarios) ? data.usuarios : []);
+    } catch (err) {
+      setUsers([]);
+    }
+    console.log("Usuarios cargados:", users);
+  };
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
+  const addUser = async (user) => {
+    if (user && user.email && user.password && user.roleId && user.name) {
       const userExists = users.some((u) => u.email === user.email);
       if (!userExists) {
-        const newUser = {
-          ...user,
-          id: users.length + 1,
-          activo: true,
-          direccion: user.direccion || "",
-          telefono: user.telefono || "",
-          fotoPerfil: user.fotoPerfil || "/src/assets/icon-park-solid--people.png",
-        };
-        setUsers((prev) => [...prev, newUser]);
+        const newUser = await addUserService(user);
+        await fetchUsers(); 
         return newUser;
       } else {
         throw new Error("El correo ya está registrado.");
       }
     } else {
-      throw new Error("Faltan datos obligatorios (email, password, rol, nombre).");
+      throw new Error("Faltan datos obligatorios (email, password, roleId, name).");
     }
   };
 
@@ -49,31 +56,43 @@ export function UserProvider({ children }) {
     navigate("/");
   };
 
-  const activarUsuario = (id) => {
-    setUsers((prevUsers) =>
-      prevUsers.map((user) =>
-        user.id === id ? { ...user, activo: true } : user
-      )
-    );
-    if (currentUser && currentUser.id === id) {
-      setCurrentUser((prev) => ({ ...prev, activo: true }));
+  const activarUsuario = async (id) => {
+    try {
+      await cambiarEstado(id, true);
+      await fetchUsers();
+      if (currentUser && currentUser.id === id) {
+        setCurrentUser((prev) => ({ ...prev, activo: true }));
+      }
+    } catch (error) {
+      console.error('Error al activar usuario:', error);
     }
   };
 
-  const desactivarUsuario = (id) => {
-    setUsers((prevUsers) =>
-      prevUsers.map((user) =>
-        user.id === id ? { ...user, activo: false } : user
-      )
-    );
-    if (currentUser && currentUser.id === id) {
-      setCurrentUser((prev) => ({ ...prev, activo: false }));
-      logout();
+  const desactivarUsuario = async (id) => {
+    try {
+      await cambiarEstado(id, false);
+      await fetchUsers();
+      if (currentUser && currentUser.id === id) {
+        setCurrentUser((prev) => ({ ...prev, activo: false }));
+        logout();
+      }
+    } catch (error) {
+      console.error('Error al desactivar usuario:', error);
     }
   };
 
   return (
-    <UserContext.Provider value={{ users, setUsers, currentUser, addUser, login, logout, activarUsuario, desactivarUsuario }}>
+    <UserContext.Provider value={{
+      users,
+      setUsers,
+      currentUser,
+      addUser,
+      login,
+      logout,
+      activarUsuario,
+      desactivarUsuario,
+      fetchUsers
+    }}>
       {children}
     </UserContext.Provider>
   );
