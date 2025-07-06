@@ -39,17 +39,17 @@ const HomeUser = () => {
         <main className={styles.main}>
           <div className={styles.infoSection}>
             <div className={styles.userCard}>
-              <h2 className={styles.elige}>Hola {currentUser?.nombre || 'Usuario'} !</h2>
+              <h2 className={styles.elige}>Hola {currentUser?.name || 'Usuario'} !</h2>
               <div className={styles.dataRow}>
                 <section>
                   <h3>Datos personales</h3>
-                  <p>Nombre: {currentUser?.nombre}</p>
+                  <p>Nombre: {currentUser?.name}</p>
                   <p>Correo: {currentUser?.email}</p>
                 </section>
                 <section>
                   <h3>Dirección de envío</h3>
-                  <p>{currentUser?.direccion || 'Av. Sin Indicar 1234'}</p>
-                  <p>Celular de contacto: {currentUser?.telefono || '999999999'}</p>
+                  <p>{currentUser?.address || 'Av. Sin Indicar 1234'}</p>
+                  <p>Celular de contacto: {currentUser?.phone_number || '999999999'}</p>
                 </section>
               </div>
               {/* Tabla de órdenes del usuario */}
@@ -88,7 +88,7 @@ const HomeUser = () => {
               <div className={styles.statValue}>{ordersCount}</div>
             </div>
             <img
-              src={currentUser?.fotoPerfil || "https://randomuser.me/api/portraits/men/1.jpg"}
+              src={currentUser?.fotoperfil || "https://randomuser.me/api/portraits/men/1.jpg"}
               alt="Foto de perfil"
               className={styles.profileImg}
             />
