@@ -31,6 +31,20 @@ module.exports = (sequelize, DataTypes) => {
         is: /^[0-9]{9}$/,
       },
     },
+    address: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+    },
+    active: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true,
+    },
+    fotoperfil: {
+      type: DataTypes.TEXT,
+      allowNull: true,
+      defaultValue: 'https://res.cloudinary.com/dzqj1x3bq/image/upload/v1735686262/DefaultProfilePicture.png',
+    },
     role_id: {
       type: DataTypes.BIGINT,
       allowNull: true,

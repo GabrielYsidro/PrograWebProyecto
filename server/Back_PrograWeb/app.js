@@ -78,7 +78,6 @@ app.use('/pokes', pokeRouter);
 app.use('/dashboard', dashboardRouter);
 app.use('/categories', categoriesRouter);
 app.use('/order', orderRouter);
-
 // Verificación de variables de entorno
 app.get('/env', (req, res) => {
   res.json({

@@ -20,7 +20,7 @@ export const DetailsUser = () => {
     const { ordenItems } = useOrdenContext();
     // Filtra las órdenes cuyo nombreCliente coincide con el usuario actual
     const ordenesUsuario = ordenItems.filter(
-        (orden) => orden.customer === usuario.nombre
+        (orden) => orden.customer === usuario.email
     );
 
     return (
