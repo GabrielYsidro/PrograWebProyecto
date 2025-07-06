@@ -11,9 +11,9 @@ export const OrderSummary = ({ items }) => {
 
   const {shippingOption, paymentMethod, address} = usePaymentForm();
   const {clearCart} = useCartContext();
-  const {users} = useUserContext();
+  const {currentUser} = useUserContext();
   const navigate = useNavigate();
-  const userId = users[0].id
+  const userId = currentUser.id
 
   const subtotal = items.reduce((acc, item) => acc + item.precio * item.quantity, 0);
   const deliveryFee = shippingOption === 'delivery' ? 15 : 0;

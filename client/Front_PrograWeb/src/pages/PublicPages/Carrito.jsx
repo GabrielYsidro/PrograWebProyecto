@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import DropCart from '../../components/DropCart/DropCart.jsx';
@@ -11,14 +11,31 @@ import { useCartContext } from '../../contexts/CartContext.jsx';
 import { useUserContext } from '../../contexts/userContext.jsx';
 import TopBarUser from '../../components/TopBarUser/TopBarUser.jsx';
 import { useNavigate } from 'react-router-dom';
+import { fetchWishlistByUserId } from '../../services/wishlistService';
 //Cambio de prueba
 
 export const Carrito = () => {
 
-    const [wishlist, setWishlist] = useState(initialWishlist);
+    const [wishlist, setWishlist] = useState([]);
     const {cartItems, setCartItems} = useCartContext();
     const { currentUser } = useUserContext();
     const navigate = useNavigate();
+
+    useEffect(() => {
+    const fetchWishlist = async () => {
+        try {
+        if (!currentUser?.id) return;
+
+      const data = await fetchWishlistByUserId(currentUser.id);
+        setWishlist(data);
+        console.log('Wishlist recibida:', data);
+        } catch (err) {
+        console.error('Error al cargar wishlist:', err);
+        }
+        };
+
+        fetchWishlist();
+        }, [currentUser]);
 
     const handleInicio = () => {};
     
@@ -45,6 +62,12 @@ export const Carrito = () => {
             alert('Tu carrito está vacío 🛒');
             return;
         }
+
+        if (!currentUser) {
+        alert('Por favor, inicia sesión para continuar con el pago 🔒');
+        navigate('/login');
+        return;
+    }
 
         navigate('/checkout');
         };
