@@ -17,9 +17,9 @@ export const WishlistItem = ({ item }) => {
       className={styles.wishlistItem}
       style={{ opacity: isDragging ? 0.5 : 1 }}
     >
-      <img src={item.img} alt={item.name} />
-      <strong>{item.name}</strong>
-      <p>S/. {parseFloat(item.price).toFixed(2)}</p>
+      <img src={item.imagen} alt={item.nombre} />
+      <strong>{item.nombre}</strong>
+      <p>S/. {parseFloat(item.precio).toFixed(2)}</p>
     </div>
   );
 };

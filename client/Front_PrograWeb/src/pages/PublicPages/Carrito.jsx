@@ -19,6 +19,7 @@ export const Carrito = () => {
     const [wishlist, setWishlist] = useState([]);
     const {cartItems, setCartItems} = useCartContext();
     const { currentUser } = useUserContext();
+    const [loadingWishlist, setLoadingWishlist] = useState(true);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -27,10 +28,18 @@ export const Carrito = () => {
         if (!currentUser?.id) return;
 
       const data = await fetchWishlistByUserId(currentUser.id);
-        setWishlist(data);
-        console.log('Wishlist recibida:', data);
+      const translated = data.map(poke => ({
+        id: poke.id,
+        nombre: poke.name,
+        precio: poke.price,
+        imagen: poke.img,
+        }));
+        setWishlist(translated);
+        console.log('Wishlist recibida:', translated);
         } catch (err) {
         console.error('Error al cargar wishlist:', err);
+        } finally {
+        setLoadingWishlist(false); // <-- se apaga cuando termina
         }
         };
 
@@ -92,9 +101,17 @@ export const Carrito = () => {
                         <div className={styles.titDeseo}>
                             Entre tus favoritos...
                         </div>
-                        {wishlist.map(item => (
-                            <WishlistItem key={item.id} item={item} />
-                        ))}
+                        {loadingWishlist ? (
+                            <p className={styles.mensajePoke}>Cargando tus favoritos... 🕐</p>
+                        ) : (
+                            wishlist.length > 0 ? (
+                            wishlist.map(item => (
+                                <WishlistItem key={item.id} item={item} />
+                            ))
+                            ) : (
+                            <p className={styles.mensajePoke}>No tienes favoritos por ahora 😢</p>
+                            )
+                        )}
                     </div>
                 </div>
                 <button onClick={handleCheckout} className={styles.botonComprar}>
