@@ -59,16 +59,16 @@ export const Categorias = () => {
             {categoriasItems.map(cat => (
               <li
                 key={cat.id}
-                onClick={() => setCategoriaSeleccionada(cat.nombre)}
-                className={`${styles.categoriaBtn} ${categoriaSeleccionada === cat.nombre ? styles.categoriaSeleccionada : ''}`}
+                onClick={() => setCategoriaSeleccionada(cat.name)}
+                className={`${styles.categoriaBtn} ${categoriaSeleccionada === cat.name ? styles.categoriaSeleccionada : ''}`}
                 style={{
                   cursor: "pointer",
                   background: cat.color || "#eee",
                   color: "#222"
                 }}
               >
-                <span className={styles.categoriaIcon} role="img" aria-label={cat.nombre}>{cat.emoji || "❓"}</span>
-                {cat.nombre}
+                <span className={styles.categoriaIcon} role="img" aria-label={cat.name}>{cat.emoji || "❓"}</span>
+                {cat.name}
               </li>
             ))}
           </ul>

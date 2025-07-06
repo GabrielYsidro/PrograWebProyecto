@@ -32,13 +32,13 @@ async function getStatsForDate(date) {
   end.setDate(end.getDate() + 1);
 
   const totalOrders = await Order.count({
-    where: { createdAt: { [Op.gte]: start, [Op.lt]: end } }
+    where: { order_date: { [Op.gte]: start, [Op.lt]: end } }
   });
-  const totalRevenue = await Order.sum('total', {
-    where: { createdAt: { [Op.gte]: start, [Op.lt]: end } }
+  const totalRevenue = await Order.sum('total_amount', {
+    where: { order_date: { [Op.gte]: start, [Op.lt]: end } }
   });
   const newUsers = await User.count({
-    where: { createdAt: { [Op.gte]: start, [Op.lt]: end } }
+    where: { created_at: { [Op.gte]: start, [Op.lt]: end } }
   });
   return {
     totalOrders,
@@ -53,13 +53,13 @@ async function getStatsForRange(startDate, endDate) {
   end.setDate(end.getDate() + 1);
 
   const totalOrders = await Order.count({
-    where: { createdAt: { [Op.gte]: start, [Op.lt]: end } }
+    where: { order_date: { [Op.gte]: start, [Op.lt]: end } }
   });
-  const totalRevenue = await Order.sum('total', {
-    where: { createdAt: { [Op.gte]: start, [Op.lt]: end } }
+  const totalRevenue = await Order.sum('total_amount', {
+    where: { order_date: { [Op.gte]: start, [Op.lt]: end } }
   });
   const newUsers = await User.count({
-    where: { createdAt: { [Op.gte]: start, [Op.lt]: end } }
+    where: { created_at: { [Op.gte]: start, [Op.lt]: end } }
   });
   return {
     totalOrders,

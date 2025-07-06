@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import DropCart from '../../components/DropCart/DropCart.jsx';
@@ -11,13 +11,40 @@ import { useCartContext } from '../../contexts/CartContext.jsx';
 import { useUserContext } from '../../contexts/userContext.jsx';
 import TopBarUser from '../../components/TopBarUser/TopBarUser.jsx';
 import { useNavigate } from 'react-router-dom';
+import { fetchWishlistByUserId } from '../../services/wishlistService';
+//Cambio de prueba
 
 export const Carrito = () => {
 
-    const [wishlist, setWishlist] = useState(initialWishlist);
+    const [wishlist, setWishlist] = useState([]);
     const {cartItems, setCartItems} = useCartContext();
     const { currentUser } = useUserContext();
+    const [loadingWishlist, setLoadingWishlist] = useState(true);
     const navigate = useNavigate();
+
+    useEffect(() => {
+    const fetchWishlist = async () => {
+        try {
+        if (!currentUser?.id) return;
+
+      const data = await fetchWishlistByUserId(currentUser.id);
+      const translated = data.map(poke => ({
+        id: poke.id,
+        nombre: poke.name,
+        precio: poke.price,
+        imagen: poke.img,
+        }));
+        setWishlist(translated);
+        console.log('Wishlist recibida:', translated);
+        } catch (err) {
+        console.error('Error al cargar wishlist:', err);
+        } finally {
+        setLoadingWishlist(false); // <-- se apaga cuando termina
+        }
+        };
+
+        fetchWishlist();
+        }, [currentUser]);
 
     const handleInicio = () => {};
     
@@ -45,6 +72,12 @@ export const Carrito = () => {
             return;
         }
 
+        if (!currentUser) {
+        alert('Por favor, inicia sesión para continuar con el pago 🔒');
+        navigate('/login');
+        return;
+    }
+
         navigate('/checkout');
         };
 
@@ -68,9 +101,17 @@ export const Carrito = () => {
                         <div className={styles.titDeseo}>
                             Entre tus favoritos...
                         </div>
-                        {wishlist.map(item => (
-                            <WishlistItem key={item.id} item={item} />
-                        ))}
+                        {loadingWishlist ? (
+                            <p className={styles.mensajePoke}>Cargando tus favoritos... 🕐</p>
+                        ) : (
+                            wishlist.length > 0 ? (
+                            wishlist.map(item => (
+                                <WishlistItem key={item.id} item={item} />
+                            ))
+                            ) : (
+                            <p className={styles.mensajePoke}>No tienes favoritos por ahora 😢</p>
+                            )
+                        )}
                     </div>
                 </div>
                 <button onClick={handleCheckout} className={styles.botonComprar}>

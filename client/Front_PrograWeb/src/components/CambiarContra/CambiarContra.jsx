@@ -3,7 +3,16 @@ import { useUserContext } from '../../contexts/userContext';
 import styles from "./CambiarContra.module.css";
 
 function CambiarContra() {
-    const { currentUser, users, setUsers } = useUserContext();
+    const { users,
+      setUsers,
+      currentUser,
+      addUser,
+      login,
+      logout,
+      activarUsuario,
+      desactivarUsuario,
+      fetchUsers,
+      changePassword } = useUserContext();
     const [mensaje, setMensaje] = useState("");
     const [error, setError] = useState("");
 
@@ -30,18 +39,19 @@ function CambiarContra() {
             return;
         }
 
-        // Actualiza la contraseña en el array de usuarios
-        const updatedUsers = users.map(u =>
-            u.email === currentUser.email ? { ...u, password: newPassword } : u
-        );
-        setUsers(updatedUsers);
+        changePassword(currentUser.id, newPassword)
+            .then(() => {
+                setMensaje("¡Contraseña cambiada exitosamente!");
+                setError("");
+            }
+            )
+            .catch((err) => {
+                console.error("Error al cambiar la contraseña:", err);
+                setError("Error al cambiar la contraseña. Inténtalo de nuevo.");
+                setMensaje("");
+            }
+        );  
 
-        // Opcional: actualiza el currentUser también
-        currentUser.password = newPassword;
-
-        setMensaje("¡Contraseña cambiada exitosamente!");
-        setError("");
-        event.target.reset();
     };
 
 

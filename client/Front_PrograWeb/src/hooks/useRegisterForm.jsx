@@ -3,14 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../contexts/userContext.jsx";
 
 export function useRegisterForm(initialValues = {
-  nombre: "",
+  name: "",
   email: "",
   password: "",
   confirmPassword: "",
-  direccion: "",
-  telefono: "",
+  address: "",
+  phone_number: "",
 }) {
-  const { addUser } = useUserContext();
+  const { users,setUsers,currentUser,addUser } = useUserContext();
   const [values, setValues] = useState(initialValues);
   const [error, setError] = useState("");
   const navigate = useNavigate();
@@ -25,12 +25,12 @@ export function useRegisterForm(initialValues = {
 
   const validate = () => {
     if (
-      !values.nombre.trim() ||
+      !values.name.trim() ||
       !values.email.trim() ||
       !values.password.trim() ||
       !values.confirmPassword.trim() ||
-      !values.direccion.trim() ||
-      !values.telefono.trim()
+      !values.address.trim() ||
+      !values.phone_number.trim()
     ) {
       setError("Todos los campos son obligatorios.");
       return false;
@@ -43,19 +43,19 @@ export function useRegisterForm(initialValues = {
     return true;
   };
 
-  const handleRegisterSubmit = (e) => {
+  const handleRegisterSubmit = async (e) => {
     e.preventDefault();
     if (!validate()) return;
 
-    addUser({
-      nombre: values.nombre,
+    await addUser({ 
+      name: values.name,
       email: values.email.toLowerCase(),
+      active: true,
       password: values.password,
-      direccion: values.direccion,
-      telefono: values.telefono,
-      rol: "cliente", // Por defecto
-      activo: true,   // Por defecto
-      fotoPerfil: "/src/assets/icon-park-solid--people.png", // Por defecto
+      address: values.address,
+      phone_number: values.phone_number,
+      roleId: 2, // o el valor que corresponda a "cliente"
+      fotoperfil: "/src/assets/icon-park-solid--people.png",
     });
     navigate("/login");
   };

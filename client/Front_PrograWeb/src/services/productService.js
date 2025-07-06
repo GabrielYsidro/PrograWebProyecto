@@ -18,7 +18,10 @@ export async function createProducto(data) {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data)
   });
-  if (!res.ok) throw new Error('Error al crear producto');
+  if (!res.ok) {
+    const errorData = await res.json().catch(() => ({}));
+    throw new Error(errorData.error || 'Error al crear producto');
+  }
   return res.json();
 }
 

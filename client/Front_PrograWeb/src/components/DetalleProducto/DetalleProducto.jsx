@@ -3,16 +3,17 @@ import styles from './DetalleProducto.module.css';
 import ScrollToTop from '../ScrollTop/ScrollTop.jsx';
 import { useCartContext } from '../../contexts/CartContext.jsx';
 import { useState } from 'react';
-import { useProductos } from '../../hooks/ProductosContext.jsx'; // <-- Importa el contexto
+import { useProductoDetalle } from '../../hooks/useProductoDetalle.jsx';
 
-function DetalleProducto({ producto: productoProp, modoAdmin = false, onModificar }) {
+function DetalleProducto({ modoAdmin = false, onModificar }) {
   const { id } = useParams();
-  const { productos } = useProductos(); // <-- Obtén productos del contexto
+  const { producto, loading, error } = useProductoDetalle(id); 
   const { addItem } = useCartContext ? useCartContext() : { addItem: () => {} };
   const [showMsg, setShowMsg] = useState(false);
 
-  // Busca primero por prop, luego en el contexto
-  const producto = productoProp ?? productos.find(p => String(p.id) === String(id));
+  if (loading) return <div>Cargando detalle del producto...</div>;
+  if (error || !producto) return <div>Producto no encontrado.</div>;
+
 
   const handleAdd = () => {
     addItem(producto);
@@ -48,27 +49,6 @@ function DetalleProducto({ producto: productoProp, modoAdmin = false, onModifica
               )}
               {producto.descripcion && (
                 <p className={styles.descripcion}><strong>Descripción:</strong> {producto.descripcion}</p>
-              )}
-              {producto.evoluciones && (
-                <div className={styles.evoluciones}>
-                  <strong>Evoluciones:</strong>
-                  {producto.evoluciones.length > 0 ? (
-                    <ul>
-                      {producto.evoluciones.map((evo, idx) => (
-                        <li key={idx} className={styles.evolucionItem}>
-                          {evo.imagen && (
-                            <img src={evo.imagen} alt={evo.nombre} className={styles.evoImagen} />
-                          )}
-                          <span className={styles.evoNombre}>{evo.nombre}</span>
-                          {evo.nivel && <span className={styles.evoNivel}> (Nivel {evo.nivel})</span>}
-                          {evo.metodo && <span className={styles.evoMetodo}> ({evo.metodo})</span>}
-                        </li>
-                      ))}
-                    </ul>
-                  ) : (
-                    <span>Este Pokémon no tiene evoluciones.</span>
-                  )}
-                </div>
               )}
               {modoAdmin ? (
                 <div>

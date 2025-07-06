@@ -16,7 +16,7 @@ export function CategoriaProvider({ children }) {
       setCategoriasItems([]);
     }
   };
-
+ 
   useEffect(() => {
     fetchCategorias();
   }, []);

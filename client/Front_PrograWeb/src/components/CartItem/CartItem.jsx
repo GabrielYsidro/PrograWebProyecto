@@ -5,6 +5,10 @@ import  {useCartContext} from '../../contexts/CartContext.jsx'
 export const CartItem = ({ item }) => {
   const { updateCartItemQuantity, removeItem } = useCartContext();
 
+  const nombre = item.nombre || item.name;
+  const precio = item.precio || item.price;
+  const imagen = item.imagen || item.img;
+
   const handleChange = (e) => {
     const newQuantity = parseInt(e.target.value);
     if (newQuantity > 0) {
@@ -16,19 +20,19 @@ export const CartItem = ({ item }) => {
     removeItem(item.id);
   };
 
-  const total = (item.quantity || 1)  * item.precio;
+  const total = (item.quantity || 1)  * precio;
 
    return (
     <div className={styles.cartItem}>
       <div className={styles.header}>
-        <strong>{item.nombre}</strong>
+        <strong>{nombre}</strong>
         <button onClick={handleRemove} className={styles.removeButton}>
           ❌
         </button>
       </div>
 
-      <p>Precio: S/. {item.precio}</p>
-      <img src={item.imagen} alt={item.nombre} />
+      <p>Precio: S/. {precio}</p>
+      <img src={imagen} alt={nombre} />
 
       <label>
         Cantidad:

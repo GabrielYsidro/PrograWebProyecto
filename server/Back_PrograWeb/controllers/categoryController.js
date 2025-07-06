@@ -11,9 +11,7 @@ function createCategoria(data) {
 
 const getCategorias = async (req, res) => {
   try {
-    const categorias = await db.Category.findAll({
-    });
-
+    const categorias = await db.Category.findAll();
     res.status(200).json({ categorias });
   } catch (error) {
     console.error('Error al obtener categorias:', error);

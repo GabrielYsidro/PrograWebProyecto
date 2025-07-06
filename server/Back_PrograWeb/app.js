@@ -23,6 +23,12 @@ const allowedOrigins = [
   'https://gray-field-0a753370f.1.azurestaticapps.net'
 ];
 
+// Detectar correctamente el entorno de producción
+const isAzure = !!process.env.WEBSITE_SITE_NAME;
+const isExplicitProd = process.env.NODE_ENV === 'production';
+
+const isProd = isExplicitProd && isAzure;
+
 
 const corsOptions = {
   origin: function (origin, callback) {
@@ -34,14 +40,13 @@ const corsOptions = {
   },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  // Asegurar que el header se envíe correctamente
+  optionsSuccessStatus: 200
 };
 
-app.options('*', cors(corsOptions))
-
-app.use(cors(corsOptions))
-
-const isProd = false;
+app.options('*', cors(corsOptions));
+app.use(cors(corsOptions));
 
 // Middlewares en orden correcto
 app.use(logger('dev'));
@@ -55,11 +60,27 @@ app.use(session({
   saveUninitialized: false,
   cookie: {
     maxAge: 1000 * 60 * 60 * 24,
+    // En producción necesitas sameSite: 'None' y secure: true para cross-origin cookies
     sameSite: isProd ? 'None' : 'lax',
-    secure: false
+    secure: isProd, // true en producción, false en desarrollo
+    httpOnly: true // Añadido por seguridad
   }
 }));
 
+console.log(isProd)
+
+// Middleware adicional para debugging en producción
+app.use((req, res, next) => {
+  if (process.env.NODE_ENV === 'production') {
+    console.log('Headers:', req.headers);
+    console.log('Protocol:', req.protocol);
+    console.log('Secure:', req.secure);
+    console.log('X-Forwarded-Proto:', req.get('x-forwarded-proto'));
+  }
+  next();
+});
+
+//pruebaFix
 
 // Rutas
 const indexRouter = require('./routes/index');
@@ -69,6 +90,8 @@ const pokeRouter = require('./routes/products');
 const dashboardRouter = require('./routes/dashboard');
 const categoriesRouter = require('./routes/categories');
 const orderRouter = require('./routes/orders');
+const authRouter = require('./routes/auth');
+const wishlistRouter = require('./routes/wishlist')
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
@@ -78,15 +101,8 @@ app.use('/pokes', pokeRouter);
 app.use('/dashboard', dashboardRouter);
 app.use('/categories', categoriesRouter);
 app.use('/order', orderRouter);
+app.use('/wishlist', wishlistRouter)
 
-
-// Verificación de variables de entorno
-app.get('/env', (req, res) => {
-  res.json({
-    NODE_ENV: process.env.NODE_ENV,
-    ENV_SECRET: process.env.SESSION_SECRET,
-  });
-});
 
 // 404 handler
 app.use(function(req, res, next) {
