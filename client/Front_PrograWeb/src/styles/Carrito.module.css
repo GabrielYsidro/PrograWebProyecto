@@ -80,4 +80,28 @@
   50% {
     background-color: #2a32a0;
   }
+
+  
+}
+
+.mensajePoke {
+  font-family: 'Pokemon Solid', sans-serif;
+  font-size: 1.8rem;
+  margin-top: 2rem;
+  color: #FFCC00;
+  -webkit-text-stroke: 1px #3B4CCA;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.4);
+  animation: pulseText 1.8s ease-in-out infinite;
+  text-align: center;
+}
+
+@keyframes pulseText {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.85;
+  }
 }
