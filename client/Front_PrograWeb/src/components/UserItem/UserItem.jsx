@@ -8,9 +8,9 @@ export const UserItem = ({ u , desactivarUsuario , activarUsuario }) => {
     return (
         <tr className={styles["userRow"]}>
             <td>{u.id}</td>
-            <td>{u.nombre}</td>
+            <td>{u.name}</td>
             <td>{u.email}</td>
-            <td>{u.activo ? "Activo" : "Inactivo"}</td>
+            <td>{u.active ? "Activo" : "Inactivo"}</td>
             <td>
                 <div className={styles["buttons"]}>
                     <Link to={`/usuarios/${u.id}`}>

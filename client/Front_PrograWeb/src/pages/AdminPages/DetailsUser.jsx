@@ -10,7 +10,7 @@ export const DetailsUser = () => {
     const { id } = useParams();
     const { users } = useUserContext();
 
-    const usuario = users.find(u => u.id === parseInt(id));
+    const usuario = users.find(u => u.id === id);
 
     if (!usuario) return <div>Usuario no encontrado</div>;
 
@@ -20,9 +20,9 @@ export const DetailsUser = () => {
     const { ordenItems } = useOrdenContext();
     // Filtra las órdenes cuyo nombreCliente coincide con el usuario actual
     const ordenesUsuario = ordenItems.filter(
-        (orden) => orden.customer === usuario.email
+        (orden) => orden.customer === usuario.name
     );
-
+    console.log(ordenesUsuario);
     return (
         <>
             <div className={styles['home-background']}></div>
@@ -36,12 +36,12 @@ export const DetailsUser = () => {
                     className={styles['profile-pic']}
                 />
                 <div className={styles['user-info']}>
-                    <div><strong>Nombre:</strong> {usuario.nombre}</div>
+                    <div><strong>Nombre:</strong> {usuario.name}</div>
                     <div><strong>Email:</strong> {usuario.email}</div>
-                    <div><strong>Dirección:</strong> {usuario.direccion}</div>
-                    <div><strong>Teléfono:</strong> {usuario.telefono}</div>
-                    <div><strong>Rol:</strong> {usuario.rol}</div>
-                    <div><strong>Estado:</strong> {usuario.activo ? "Activo" : "Inactivo"}</div>
+                    <div><strong>Dirección:</strong> {usuario.address}</div>
+                    <div><strong>Teléfono:</strong> {usuario.phone_number}</div>
+                    <div><strong>Rol:</strong> {usuario.role}</div>
+                    <div><strong>Estado:</strong> {usuario.active ? "Activo" : "Inactivo"}</div>
                 </div>
 
                 <h2 className={styles['ordenes-title']}>Órdenes del Usuario</h2>
