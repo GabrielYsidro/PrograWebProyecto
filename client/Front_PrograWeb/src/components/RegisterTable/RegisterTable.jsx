@@ -6,12 +6,12 @@ function RegisterTable({ values, handleChange, handleSubmit, error }) {
     <form className={styles.registerForm} onSubmit={handleSubmit}>
       <h2>Registro</h2>
       <div className={styles.inputGroup}>
-        <label htmlFor="nombre">Nombre</label>
+        <label htmlFor="name">Nombre</label>
         <input
           type="text"
-          id="nombre"
-          name="nombre"
-          value={values.nombre}
+          id="name"
+          name="name"
+          value={values.name}
           onChange={handleChange}
           required
           aria-label="Nombre"
@@ -54,24 +54,24 @@ function RegisterTable({ values, handleChange, handleSubmit, error }) {
         />
       </div>
       <div className={styles.inputGroup}>
-        <label htmlFor="direccion">Dirección</label>
+        <label htmlFor="address">Dirección</label>
         <input
           type="text"
-          id="direccion"
-          name="direccion"
-          value={values.direccion}
+          id="address"
+          name="address"
+          value={values.address}
           onChange={handleChange}
           required
           aria-label="Dirección"
         />
       </div>
       <div className={styles.inputGroup}>
-        <label htmlFor="telefono">Teléfono</label>
+        <label htmlFor="phone_number">Teléfono</label>
         <input
           type="tel"
-          id="telefono"
-          name="telefono"
-          value={values.telefono}
+          id="phone_number"
+          name="phone_number"
+          value={values.phone_number}
           onChange={handleChange}
           required
           aria-label="Teléfono"
