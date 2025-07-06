@@ -11,6 +11,7 @@ import { useCartContext } from '../../contexts/CartContext.jsx';
 import { useUserContext } from '../../contexts/userContext.jsx';
 import TopBarUser from '../../components/TopBarUser/TopBarUser.jsx';
 import { useNavigate } from 'react-router-dom';
+//Cambio de prueba
 
 export const Carrito = () => {
 
