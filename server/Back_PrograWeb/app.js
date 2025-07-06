@@ -75,6 +75,8 @@ app.use((req, res, next) => {
   next();
 });
 
+//pruebaFix
+
 // Rutas
 const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
