@@ -15,7 +15,6 @@ export const ListOrders = () =>{
     // Combina las órdenes de todos los usuarios en un solo array  
     const ordenesTotales = ordenItems;
     const [filtro, setFiltro] = useState("");
-    
     const [paginaActual, setPaginaActual] = useState(1);
     const porPagina = 6;
     const filtradas = ordenesTotales.filter(o =>

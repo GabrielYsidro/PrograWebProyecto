@@ -1,6 +1,6 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState , useEffect} from 'react';
 import { mockData } from '../constants/Consts.jsx';
-import { getOrders } from '../services/orderService.js';
+import { getOrders, cancelOrder } from '../services/orderService.js';
 
 const OrdenContext = createContext();
 
@@ -12,10 +12,10 @@ export function OrdenProvider({ children }) {
   const getOrdersData = async () => {
       try {
         const OrderArray = await getOrders();
-        setProductos(OrderArray);
+        setOrdenes(OrderArray);
       } catch (err) {
         console.error('Error al obtener productos:', err);
-        setProductos([]);
+        setOrdenes([]);
       } 
   };
   
@@ -27,9 +27,26 @@ export function OrdenProvider({ children }) {
     setOrdenes((prev) => [...prev, item]);
   };
 
-  const removeItem = (id) => {
-    setOrdenes((prev) => prev.filter((item) => item.id !== id));
+  const removeItem = async (id) => {
+    try {
+      const res = await cancelOrder(id);
+      if (!res) {
+        console.error('Error al cancelar la orden');
+        return;
+      }
+      setOrdenes((prev) =>
+        prev.map((item) =>
+          item.id === id ? { ...item, status: 'cancelado' } : item
+        )
+      );
+    } catch (err) {
+      console.error('Error al cancelar la orden:', err);
+    }
   };
+
+  
+
+
 
   return (
     <OrdenContext.Provider value={{ ordenItems, addItem, removeItem}}>
