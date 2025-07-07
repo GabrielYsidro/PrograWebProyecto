@@ -101,10 +101,9 @@ export function UserProvider({ children }) {
     }
   };
 
-  const changePassword = async (id, newPassword) => { //esta te hace el cambio en el back y el front
-
+  const changePassword = async (id, currentPassword, newPassword) => {
     try {
-      await changePass(id, newPassword);
+      await changePass(id, currentPassword, newPassword);
       
       setUsers((prevUsers) =>
         prevUsers.map((user) =>
@@ -116,6 +115,7 @@ export function UserProvider({ children }) {
       }
     } catch (error) {
       console.error('Error al cambiar la contraseña:', error);
+      throw error;
     }
   };
 

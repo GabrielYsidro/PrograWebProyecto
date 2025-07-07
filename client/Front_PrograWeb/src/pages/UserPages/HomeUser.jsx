@@ -16,8 +16,6 @@ const HomeUser = () => {
   const { productos } = useProductos();
   const navigate = useNavigate();
   console.log("currentUser:", currentUser);
-  console.log("ordenes:", ordenes);
-  console.log("ordenes filtradas:", ordenes?.filter(ord => ord.customer === currentUser?.email));
   
   // Obtener órdenes específicas del usuario actual
   useEffect(() => {

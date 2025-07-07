@@ -3,9 +3,11 @@ import { useUserContext } from '../../contexts/userContext';
 import styles from "./CambiarContra.module.css";
 
 function CambiarContra() {
+    console.log("CambiarContra renderizado"); // <-- Agrega esto
     const { users,
       setUsers,
       currentUser,
+      setCurrentUser,
       addUser,
       login,
       logout,
@@ -17,6 +19,7 @@ function CambiarContra() {
     const [error, setError] = useState("");
 
     const handleSubmit = (event) => {
+        console.log("handleSubmit ejecutado"); // <-- Agrega esto
         event.preventDefault();
         const currentPassword = event.target.currentPassword.value;
         const newPassword = event.target.newPassword.value;
@@ -27,11 +30,6 @@ function CambiarContra() {
             return;
         }
 
-        if (currentPassword !== currentUser.password) {
-            setError("La contraseña actual es incorrecta.");
-            setMensaje("");
-            return;
-        }
 
         if (newPassword.length < 4) {
             setError("La nueva contraseña debe tener al menos 4 caracteres.");
@@ -39,7 +37,11 @@ function CambiarContra() {
             return;
         }
 
-        changePassword(currentUser.id, newPassword)
+        console.log("ID:", currentUser.id);
+        console.log("CurrentPassword:", currentPassword);
+        console.log("NewPassword:", newPassword);
+
+        changePassword(currentUser.id, currentPassword, newPassword)
             .then(() => {
                 setMensaje("¡Contraseña cambiada exitosamente!");
                 setError("");

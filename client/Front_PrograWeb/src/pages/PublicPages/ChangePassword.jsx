@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "../../styles/ChangePassword.module.css";
 import ChangeTable from "../../components/ChangeTable/ChangeTable.jsx";  
+import CambiarContra from "../../components/CambiarContra/CambiarContra.jsx";
 import { useNavigate } from "react-router-dom";
 
 function ChangePassword() {
@@ -10,7 +11,7 @@ function ChangePassword() {
     <div className={styles["change-wrapper"]}>
       <div className={styles["change-background"]}></div>
       <div className={styles["change-content"]}>
-        <ChangeTable mode="change" onBack={() => navigate("/")} />
+        <CambiarContra />
         <button
           className={styles["back-button"]}
           style={{ marginTop: "2rem", marginLeft: "auto", marginRight: "auto", display: "block" }}
