@@ -35,3 +35,10 @@ export async function getProductsByOrder(orderId) {
   const data = await res.json();
   return data.productos; // 👈 retorna directamente el array de productos
 }
+
+export async function getUserOrders(userId) {
+  const res = await fetch(`${api}/order/UserOrders/${userId}`);
+  if (!res.ok) throw new Error('Error al obtener órdenes del usuario');
+  const data = await res.json();
+  return data.ordenes;
+}

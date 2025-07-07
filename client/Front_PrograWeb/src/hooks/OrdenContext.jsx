@@ -1,6 +1,6 @@
 import { createContext, useContext, useState , useEffect} from 'react';
 import { mockData } from '../constants/Consts.jsx';
-import { getOrders, cancelOrder } from '../services/orderService.js';
+import { getOrders, cancelOrder, getUserOrders } from '../services/orderService.js';
 
 const OrdenContext = createContext();
 
@@ -17,6 +17,16 @@ export function OrdenProvider({ children }) {
         console.error('Error al obtener productos:', err);
         setOrdenes([]);
       } 
+  };
+
+  const getOrdersByUserId = async (userId) => {
+    try {
+      const userOrders = await getUserOrders(userId);
+      return userOrders;
+    } catch (err) {
+      console.error('Error al obtener órdenes del usuario:', err);
+      return [];
+    }
   };
   
     useEffect(() => {
@@ -49,7 +59,7 @@ export function OrdenProvider({ children }) {
 
 
   return (
-    <OrdenContext.Provider value={{ ordenItems, addItem, removeItem}}>
+    <OrdenContext.Provider value={{ ordenes: ordenItems, addItem, removeItem, getOrdersByUserId}}>
       {children}
     </OrdenContext.Provider>
   );

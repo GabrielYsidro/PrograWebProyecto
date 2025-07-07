@@ -1,5 +1,5 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // Agrega este import
+import { useState, useEffect } from 'react';
 import TopBarUser from '../../components/TopBarUser/TopBarUser.jsx';
 import Footer from '../../components/Footer/Footer.jsx';
 import styles from '../../styles/HomeUser.module.css';
@@ -10,17 +10,36 @@ import { useProductos } from '../../hooks/ProductosContext.jsx';
 const HomeUser = () => {
   const [busqueda, setBusqueda] = useState('');
   const [busquedaActiva, setBusquedaActiva] = useState('');
+  const [userOrders, setUserOrders] = useState([]);
   const { users, setUsers, currentUser } = useUserContext(); //Solo quiero el currentUser
-  const { ordenes } = useOrdenContext();
+  const { ordenes, getOrdersByUserId } = useOrdenContext();
   const { productos } = useProductos();
-  const navigate = useNavigate(); // Agrega este hook
+  const navigate = useNavigate();
   console.log("currentUser:", currentUser);
   console.log("ordenes:", ordenes);
   console.log("ordenes filtradas:", ordenes?.filter(ord => ord.customer === currentUser?.email));
   
-  const ordersCount = (ordenes && currentUser)
-    ? ordenes.filter(ord => ord.customer === currentUser.email).length
-    : 0;
+  // Obtener órdenes específicas del usuario actual
+  useEffect(() => {
+    const fetchUserOrders = async () => {
+      if (currentUser?.id) {
+        try {
+          const orders = await getOrdersByUserId(currentUser.id);
+          setUserOrders(orders);
+        } catch (error) {
+          console.error('Error al obtener órdenes del usuario:', error);
+          setUserOrders([]);
+        }
+      }
+    };
+
+    fetchUserOrders();
+  }, [currentUser?.id, getOrdersByUserId]);
+
+  console.log("currentUser:", currentUser);
+  console.log("userOrders:", userOrders);
+  
+  const ordersCount = userOrders.length;
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -71,11 +90,11 @@ const HomeUser = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {(ordenes?.filter(ord => ord.customer === currentUser?.email) || []).map(ord => (
+                  {userOrders.map(ord => (
                     <tr key={ord.id}>
                       <td>{ord.id}</td>
                       <td>{ord.date}</td>
-                      <td>${ord.total.toFixed(2)}</td>
+                      <td>${Number(ord.total).toFixed(2)}</td>
                       <td>{ord.status}</td>
                       <td>
                         <button

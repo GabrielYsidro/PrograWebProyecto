@@ -68,7 +68,7 @@ const createUser = (data) => {
         password: data.password,
         address: data.address,
         phone_number: data.phone_number,
-        roleId: data.roleId || 2,
+        role_id: 2,
         fotoperfil: data.fotoperfil || 'https://res.cloudinary.com/dzqj1x3qk/image/upload/v1735686262/DefaultProfilePicture.png'
     };
 };
