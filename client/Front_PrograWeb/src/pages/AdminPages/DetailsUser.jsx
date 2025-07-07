@@ -31,7 +31,7 @@ export const DetailsUser = () => {
                 
                 <div className={styles['user-detail-container']}>
                 <img
-                    src={usuario.fotoPerfil}
+                    src={usuario.fotoperfil}
                     alt="Foto de perfil"
                     className={styles['profile-pic']}
                 />

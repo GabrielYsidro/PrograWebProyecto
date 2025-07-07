@@ -16,7 +16,7 @@ export const UserItem = ({ u , desactivarUsuario , activarUsuario }) => {
                     <Link to={`/usuarios/${u.id}`}>
                         <button className={styles["btnDetalle"]}>Ver Detalle</button>
                     </Link>
-                    {u.activo ? (
+                    {u.active ? (
                         <button
                             onClick={() => desactivarUsuario(u.id)}
                             className={styles["btnDesactivar"]}
