@@ -49,7 +49,7 @@ export function useLoginForm(initialValues = { email: "", password: "" }) {
       if (data && data.user) {
         setCurrentUser && setCurrentUser(data.user);
         setError("");
-        if (data.user.role === "admin" || data.user.rol === "admin") {
+        if (Number(data.user.role_id) === 1) {
           navigate("/homeadmin");
         } else {
           navigate("/");
