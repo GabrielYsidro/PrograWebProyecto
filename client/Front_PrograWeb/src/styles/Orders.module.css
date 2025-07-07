@@ -54,3 +54,23 @@
   justify-content: center;
   text-align: left;
 }
+
+.tabla-ordenes {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2rem;
+  background: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(59, 76, 202, 0.08);
+}
+.tabla-ordenes th, .tabla-ordenes td {
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid #e3e9ff;
+  text-align: center;
+}
+.tabla-ordenes th {
+  background: #3B4CCA;
+  color: #fff;
+  font-weight: 600;
+}
