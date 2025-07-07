@@ -101,17 +101,20 @@ export const Carrito = () => {
                         <div className={styles.titDeseo}>
                             Entre tus favoritos...
                         </div>
-                        {loadingWishlist ? (
+
+                        <div className={styles.scrollContainer}>
+                            {loadingWishlist ? (
                             <p className={styles.mensajePoke}>Cargando tus favoritos... 🕐</p>
-                        ) : (
-                            wishlist.length > 0 ? (
-                            wishlist.map(item => (
-                                <WishlistItem key={item.id} item={item} />
-                            ))
                             ) : (
-                            <p className={styles.mensajePoke}>No tienes favoritos por ahora 😢</p>
+                            wishlist.length > 0 ? (
+                                wishlist.map(item => (
+                                <WishlistItem key={item.id} item={item} />
+                                ))
+                            ) : (
+                                <p className={styles.mensajePoke}>No tienes favoritos por ahora 😢</p>
                             )
-                        )}
+                            )}
+                        </div>
                     </div>
                 </div>
                 <button onClick={handleCheckout} className={styles.botonComprar}>

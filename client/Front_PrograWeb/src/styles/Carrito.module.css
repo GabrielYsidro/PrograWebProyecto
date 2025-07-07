@@ -26,7 +26,6 @@
 .listas {
   text-align: center;
   display:flex;
-  overflow: hidden;
   height: 50%;
   justify-content: space-between;
 }
@@ -40,6 +39,23 @@
   width:34%;
   margin-right: 3%;
 }
+
+.scrollContainer {
+  max-height: 415px; /* Ajusta este valor a lo que necesites */
+  overflow-y: auto;
+  padding-right: 0.5rem; /* Opcional, espacio para scroll */
+}
+
+/* Para personalizar la barra de scroll (opcional) */
+.scrollContainer::-webkit-scrollbar {
+  width: 6px;
+}
+
+.scrollContainer::-webkit-scrollbar-thumb {
+  background-color: rgba(100, 100, 100, 0.4);
+  border-radius: 3px;
+}
+
 
 .titDeseo{
   font-family: 'Pokemon Solid', sans-serif;
@@ -105,3 +121,5 @@
     opacity: 0.85;
   }
 }
+
+
