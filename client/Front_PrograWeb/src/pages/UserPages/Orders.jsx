@@ -1,4 +1,4 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import TopBar from "../../components/TopBarUser/TopBarUser.jsx";
 import Footer from "../../components/Footer/Footer.jsx";
@@ -7,16 +7,17 @@ import OrderStatusTracker from "../../components/OrderTracker/OrderTracker.jsx";
 import { useOrdenContext } from "../../hooks/OrdenContext.jsx";
 import { getProductsByOrder } from '../../services/orderService.js';
 
-const DetailsOrders = () => {
-  const { ordenes } = useOrdenContext();
+const DetailsOrders = () => { 
+  const { ordenItems } = useOrdenContext();
   const { id } = useParams();
-  const orden = ordenes.find((o) => o.id === parseInt(id));
   const navigate = useNavigate();
+  const [orderProducts, setOrderProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  
+  const orden = ordenItems.find((o) => o.id === id);
+  console.log("Orden:", orden);
 
-  const [orderProducts, setOrderProducts] = React.useState([]);
-  const [loading, setLoading] = React.useState(true);
-
-  React.useEffect(() => {
+  useEffect(() => {
     if (!orden) return;
     const fetchOrderItems = async () => {
       try {
@@ -40,17 +41,21 @@ const DetailsOrders = () => {
         <TopBar />
         <div className={styles["order-details-container"]}>
           <h1>Detalle de la Orden</h1>
+
           <div className={styles["order-info"]}>
             <div>
               <p><strong>ID:</strong> #{orden.id}</p>
-              <p><strong>Fecha de registro:</strong> {orden.registrationDate}</p>
-              <p><strong>Fecha de cambio de estado:</strong> {orden.date}</p>
+              <p><strong>Fecha de registro:</strong> {orden.date}</p>
+              <p><strong>Dirección:</strong> {orden.direccionEnvio}</p>
             </div>
             <div>
               <p><strong>Estado:</strong> {orden.status}</p>
               <p><strong>Usuario:</strong> {orden.customer}</p>
+              <p><strong>Método de pago:</strong> {orden.metodoPago}</p>
+              <p><strong>Total:</strong> ${orden.total}</p>
             </div>
           </div>
+
           <OrderStatusTracker estado={orden.status} />
 
           {loading ? (
@@ -93,6 +98,7 @@ const DetailsOrders = () => {
         <button className={styles['back-button']} onClick={() => navigate('/homeuser')}>
           Regresar a la lista de órdenes
         </button>
+        <br />
         <Footer />
       </div>
     </>
