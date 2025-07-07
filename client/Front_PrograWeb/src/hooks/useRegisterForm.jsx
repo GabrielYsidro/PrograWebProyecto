@@ -39,6 +39,10 @@ export function useRegisterForm(initialValues = {
       setError("Las contraseñas no coinciden.");
       return false;
     }
+    if (!/^\d{9}$/.test(values.phone_number)) {
+      setError("El número de teléfono debe tener exactamente 9 dígitos.");
+      return false;
+    }
     setError("");
     return true;
   };

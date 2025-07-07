@@ -25,7 +25,22 @@ export function UserProvider({ children }) {
 
   useEffect(() => {
     fetchUsers();
-  }, []);
+    // Solo intenta restaurar usuario si currentUser no está definido
+    if (currentUser !== null) return;
+    const fetchMe = async () => {
+      try {
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/auth/me`, {
+          credentials: 'include',
+        });
+        if (!res.ok) return;
+        const data = await res.json();
+        if (data && data.user) setCurrentUser(data.user);
+      } catch (err) {
+        // No mostrar nada en consola JS
+      }
+    };
+    fetchMe();
+  }, [currentUser]);
 
   const addUser = async (user) => {
     if (user && user.email && user.password && user.roleId && user.name) {
@@ -52,7 +67,11 @@ export function UserProvider({ children }) {
     return false;
   };
 
-  const logout = () => {
+  const logout = async () => {
+    await fetch(`${import.meta.env.VITE_API_URL}/auth/logout`, {
+      method: 'POST',
+      credentials: 'include'
+    });
     setCurrentUser(null);
     navigate("/");
   };
@@ -103,6 +122,7 @@ export function UserProvider({ children }) {
       users,
       setUsers,
       currentUser,
+      setCurrentUser,
       addUser,
       login,
       logout,

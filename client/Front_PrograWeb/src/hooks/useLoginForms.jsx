@@ -7,7 +7,7 @@ export function useLoginForm(initialValues = { email: "", password: "" }) {
   const [values, setValues] = useState(initialValues);
   const [error, setError] = useState("");
   const navigate = useNavigate();
-  const { login } = useUserContext();
+  const { login, setCurrentUser } = useUserContext();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,27 +25,40 @@ export function useLoginForm(initialValues = { email: "", password: "" }) {
     return true;
   };
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
     if (!validate()) return;
 
-    // Usa el método login del contexto
-    const ok = login(values.email.toLowerCase(), values.password);
-    if (!ok) {
-      setError("Correo o contraseña incorrectos.");
-      return;
-    }
+    try {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/auth/login`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+        body: JSON.stringify({
+          email: values.email.toLowerCase(),
+          password: values.password
+        })
+      });
 
-    setError("");
-    
-    // Obtener el usuario actual después del login
-    const currentUser = usuarios.find(u => u.email === values.email.toLowerCase());
-    
-    // Redirigir según el rol del usuario
-    if (currentUser && currentUser.rol === "admin") {
-      navigate("/homeadmin");
-    } else {
-      navigate("/");
+      if (!res.ok) {
+        setError("Correo o contraseña incorrectos.");
+        return;
+      }
+
+      const data = await res.json();
+      if (data && data.user) {
+        setCurrentUser && setCurrentUser(data.user);
+        setError("");
+        if (data.user.role === "admin" || data.user.rol === "admin") {
+          navigate("/homeadmin");
+        } else {
+          navigate("/");
+        }
+      } else {
+        setError("No se pudo obtener el usuario del backend.");
+      }
+    } catch (err) {
+      setError("Error de red o del servidor.");
     }
   };
 
