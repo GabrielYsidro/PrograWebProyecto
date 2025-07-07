@@ -18,9 +18,9 @@ export const ListOrders = () =>{
     const [paginaActual, setPaginaActual] = useState(1);
     const porPagina = 6;
     const filtradas = ordenesTotales.filter(o =>
-        o.customer.toLowerCase().includes(filtro.toLowerCase()) ||
-        o.id.toString().includes(filtro)
-    );
+    o.customer.toLowerCase().includes(filtro.toLowerCase()) ||
+    o.id.toString().includes(filtro)
+    ).sort((a, b) => a.id - b.id);
     const totalPaginas = Math.ceil(filtradas.length / porPagina);
     const desde = (paginaActual - 1) * porPagina;
     const hasta = desde + porPagina;

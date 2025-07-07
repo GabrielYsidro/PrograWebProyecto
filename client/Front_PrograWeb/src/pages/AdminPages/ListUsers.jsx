@@ -19,7 +19,7 @@ export const ListUsers = () => {
     const filtrados = users.filter(u =>
         u.name.toLowerCase().includes(filtro.toLowerCase()) ||
         u.id.toString().includes(filtro)
-    );
+    ).sort((a, b) => a.id - b.id);
     const totalPaginas = Math.ceil(filtrados.length / porPagina);
     const desde = (paginaActual - 1) * porPagina;
     const hasta = desde + porPagina;
