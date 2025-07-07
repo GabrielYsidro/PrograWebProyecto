@@ -79,6 +79,7 @@ export function UserProvider({ children }) {
   const activarUsuario = async (id) => {
     try {
       await cambiarEstado(id, true);
+      await fetchUsers();
       if (currentUser && currentUser.id === id) {
         setCurrentUser((prev) => ({ ...prev, activo: true }));
       }
@@ -90,6 +91,7 @@ export function UserProvider({ children }) {
   const desactivarUsuario = async (id) => {
     try {
       await cambiarEstado(id, false);
+      await fetchUsers();
       if (currentUser && currentUser.id === id) {
         setCurrentUser((prev) => ({ ...prev, activo: false }));
         logout();

@@ -29,10 +29,9 @@ export async function getOrdersByUser(userId) {
   return data.ordenes;
 }
 
-export async function getUserOrders(userId) {
-  const res = await fetch(`${api}/order/UserOrders/${userId}`);
-  if (!res.ok) throw new Error('Error al obtener órdenes del usuario');
+export async function getProductsByOrder(orderId) {
+  const res = await fetch(`${api}/order/OrderDetails/${orderId}`);
+  if (!res.ok) throw new Error('Error al obtener productos de la orden');
   const data = await res.json();
-  return data.ordenes;
+  return data.productos; // 👈 retorna directamente el array de productos
 }
-
