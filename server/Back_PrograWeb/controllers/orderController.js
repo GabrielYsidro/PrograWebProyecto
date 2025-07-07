@@ -129,9 +129,81 @@ const getOrdersByUser = async (req, res) => {
     }
 };
 
+const getOrderDetails = async (req, res) => {
+  try {
+    const { orderId } = req.params;
+
+    const order = await db.Order.findByPk(orderId, {
+      include: [
+        {
+          model: db.User,
+          as: 'user',
+          attributes: ['name']
+        },
+        {
+          model: db.OrderPokemon,
+          as: 'detalles',
+          include: [
+            {
+              model: db.Pokemon,
+              as: 'pokemon',
+              attributes: ['id', 'name', 'price'],
+              include: [
+                {
+                  model: db.Category,
+                  as: 'categoryRef',
+                  attributes: ['name']
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    });
+
+    if (!order) {
+      return res.status(404).json({ error: 'Orden no encontrada' });
+    }
+
+    const productos = order.detalles.map(item => {
+      const { pokemon } = item;
+      const categoria = pokemon.categoryRef?.name || 'Sin categoría';
+      const precio = parseFloat(pokemon.price);
+      const cantidad = item.quantity;
+      const subtotal = precio * cantidad;
+
+      return {
+        id: pokemon.id,
+        nombre: pokemon.name,
+        categoria,
+        precioUnitario: precio,
+        cantidad,
+        precioTotal: subtotal
+      };
+    });
+
+    const response = {
+      id: order.id,
+      cliente: order.user?.name || 'Sin nombre',
+      estado: order.status,
+      total: parseFloat(order.total_amount),
+      direccion: order.shipping_address,
+      metodoPago: order.payment_method,
+      fecha: order.order_date,
+      productos
+    };
+
+    res.status(200).json(response);
+  } catch (error) {
+    console.error('Error al obtener detalles de la orden:', error.message, error.stack);
+    res.status(500).json({ error: 'Error interno del servidor' });
+  }
+};
+
 module.exports = {
     createOrder,
     getOrders,
     cancelOrder,
-    getOrdersByUser
+    getOrdersByUser,
+    getOrderDetails
 }
