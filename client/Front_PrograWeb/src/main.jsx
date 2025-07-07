@@ -7,21 +7,26 @@ import { OrdenProvider } from './hooks/OrdenContext.jsx';
 import { ProductosProvider } from './hooks/ProductosContext.jsx';
 import { UserProvider } from './contexts/userContext.jsx';
 import { BrowserRouter } from 'react-router-dom';
+import { WishlistProvider } from './hooks/WishlistContext.jsx';
+
+
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>
-      <CartProvider>
-        <ProductosProvider>
-          <OrdenProvider>
-            <CategoriaProvider>
-              <UserProvider>
-                <AppRouter />
-              </UserProvider>
-            </CategoriaProvider> 
-          </OrdenProvider>
-        </ProductosProvider>
-      </CartProvider>
+      <UserProvider>
+        <CartProvider>
+          <WishlistProvider>
+            <ProductosProvider>
+              <OrdenProvider>
+                <CategoriaProvider>           
+                    <AppRouter />
+                </CategoriaProvider> 
+              </OrdenProvider>
+            </ProductosProvider>
+          </WishlistProvider>
+        </CartProvider>
+       </UserProvider>
     </BrowserRouter>
   </StrictMode>
 )

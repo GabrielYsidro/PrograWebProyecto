@@ -17,6 +17,12 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     tableName: 'wishlist_pokemon',
     timestamps: false,
+     indexes: [
+      {
+        unique: true,
+        fields: ['user_id', 'pokemon_id']
+      }
+    ]
   });
 
   return WishlistPokemon;

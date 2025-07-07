@@ -54,7 +54,7 @@ export const PaymentSection = () => {
       ) : (
         <div className={styles.formGroup}>
           <p>Escanea este código QR para pagar</p>
-          <img className={styles.yape} src='/src/assets/QR.png' alt="Código QR" />
+          <img className={styles.yape} src='/QR.png' alt="Código QR" />
         </div>
       )}
 

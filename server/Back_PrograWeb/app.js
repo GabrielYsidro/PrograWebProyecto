@@ -102,7 +102,7 @@ app.use('/dashboard', dashboardRouter);
 app.use('/categories', categoriesRouter);
 app.use('/order', orderRouter);
 app.use('/wishlist', wishlistRouter)
-
+app.use('/auth', authRouter)
 
 // 404 handler
 app.use(function(req, res, next) {
@@ -118,3 +118,5 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+

@@ -57,7 +57,7 @@ export const Greeting = () => {
                     Volver a Home
                 </button>
             </div>
-        <img className={styles.pokebola} src='/src/assets/pokebola.gif' alt='Pokebola' onClick={handleClick}></img>
+        <img className={styles.pokebola} src='/pokebola.gif' alt='Pokebola' onClick={handleClick}></img>
         
         </div>
     )
