@@ -206,11 +206,12 @@ export const initialWishlist = [
   { id: 3, nombre: 'Growlithe', precio: 15, imagen: 'https://play.pokemonshowdown.com/sprites/ani/growlithe.gif' , quantity: 1  }
 ];
 
-export const productosGreeting = [
-    {id: 1, src : '/src/assets/eter.png', alt : 'Eter'},
-    {id: 2, src : '/src/assets/MT.png', alt : 'MT'},
-    {id: 3, src : '/src/assets/master-ball.png', alt: 'MasterBall'}
+export const productosGreeting = [ 
+  { id: 1, src: '/eter.png', alt: 'Eter' },
+  { id: 2, src: '/MT.png', alt: 'MT' },
+  { id: 3, src: '/master-ball.png', alt: 'MasterBall' }
 ];
+
 
 // Datos mockeados para el 20 y 23 de mayo de 2025 según lo solicitado
 // customer ahora usa emails de los usuarios existentes
