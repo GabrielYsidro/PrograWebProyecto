@@ -109,22 +109,28 @@ const cambiarEstado = async (req, res) => {
 
 const changePassword = async (req, res) => {
     const { id } = req.params;
-    const { newPassword } = req.body;
+    const { currentPassword, newPassword } = req.body;
 
     try {
         const userId = Number(id);
-        const [updated] = await db.User.update(
+        const user = await db.User.findByPk(userId);
+        console.log('ID del usuario:', userId);
+        console.log("newPassword:", newPassword);
+
+        if (!user) {
+            return res.status(404).json({ error: 'Usuario no encontrado(al cambiar contraseña)' });
+        }
+
+        if (user.password !== currentPassword) {
+            return res.status(400).json({ error: 'La contraseña actual es incorrecta.' });
+        }
+
+        await db.User.update(
             { password: newPassword },
             { where: { id: userId } }
         );
-        console.log('Cambio de contraseña para el usuario con ID:', userId);
-        console.log(updated);
 
-        if (updated) {
-            res.status(200).json({ message: 'Contraseña actualizada exitosamente' });
-        } else {
-            res.status(404).json({ error: 'Usuario no encontrado(al cambiar contraseña)' });
-        }
+        res.status(200).json({ message: 'Contraseña actualizada exitosamente' });
     } catch (error) {
         console.error('Error al cambiar la contraseña del usuario:', error);
         res.status(500).json({ error: 'Error interno del servidor al cambiar contraseña' });

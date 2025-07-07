@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom'; // Agrega este import
 import { useState, useEffect } from 'react';
 import TopBarUser from '../../components/TopBarUser/TopBarUser.jsx';
 import Footer from '../../components/Footer/Footer.jsx';
@@ -13,6 +14,8 @@ const HomeUser = () => {
   const { users, setUsers, currentUser } = useUserContext(); //Solo quiero el currentUser
   const { ordenes, getOrdersByUserId } = useOrdenContext();
   const { productos } = useProductos();
+  const navigate = useNavigate();
+  console.log("currentUser:", currentUser);
   
   // Obtener órdenes específicas del usuario actual
   useEffect(() => {
@@ -39,6 +42,10 @@ const HomeUser = () => {
   const handleSearch = (e) => {
     e.preventDefault();
     setBusquedaActiva(busqueda.trim().toLowerCase());
+  };
+
+  const handleDetail = (id) => {
+    navigate(`/orders/${id}`);
   };
 
   const productosFiltrados = productos
@@ -88,7 +95,10 @@ const HomeUser = () => {
                       <td>${Number(ord.total).toFixed(2)}</td>
                       <td>{ord.status}</td>
                       <td>
-                        <button className={styles.detailButton} onClick={() => alert(`Detalle de la orden #${ord.id}`)}>
+                        <button
+                          className={styles.detailButton}
+                          onClick={() => handleDetail(ord.id)} // <-- pasa el id aquí
+                        >
                           Ver detalle
                         </button>
                       </td>

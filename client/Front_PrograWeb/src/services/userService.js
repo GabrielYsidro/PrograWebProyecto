@@ -37,13 +37,13 @@ export async function cambiarEstado(id, active) {
   return res.json();
 }
 
-export async function changePass(id, contra) {
+export async function changePass(id, currentPassword, newPassword) {
   const res = await fetch(`${api}/users/changepassword/${id}`, {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify({ newPassword:contra }) // Solo envía el campo password
+    body: JSON.stringify({ currentPassword, newPassword })
   });
   if (!res.ok) throw new Error('Error al cambiar contraseña en servicio');
   return res.json();
