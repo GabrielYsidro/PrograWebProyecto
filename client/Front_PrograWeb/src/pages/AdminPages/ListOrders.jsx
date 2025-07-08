@@ -11,9 +11,9 @@ import { TablaAdmin } from "../../components/Tabla/TablaAdmin.jsx";
 
 export const ListOrders = () =>{
 
-    const { ordenItems } = useOrdenContext();
+    const { ordenes } = useOrdenContext();
     // Combina las órdenes de todos los usuarios en un solo array  
-    const ordenesTotales = ordenItems;
+    const ordenesTotales = ordenes;
     const [filtro, setFiltro] = useState("");
     const [paginaActual, setPaginaActual] = useState(1);
     const porPagina = 6;

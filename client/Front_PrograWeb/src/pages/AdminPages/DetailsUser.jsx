@@ -17,9 +17,9 @@ export const DetailsUser = () => {
     // Importa el contexto de órdenes
 
     // Dentro del componente
-    const { ordenItems } = useOrdenContext();
+    const { ordenes } = useOrdenContext();
     // Filtra las órdenes cuyo nombreCliente coincide con el usuario actual
-    const ordenesUsuario = ordenItems.filter(
+    const ordenesUsuario = ordenes.filter(
         (orden) => orden.customer === usuario.name
     );
     console.log(ordenesUsuario);
