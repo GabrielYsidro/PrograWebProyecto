@@ -9,13 +9,13 @@ import { useOrdenContext } from "../../hooks/OrdenContext.jsx";
 import { getProductsByOrder } from '../../services/orderService.js';
 
 const DetailsOrders = () => {
-  const { ordenItems, removeItem } = useOrdenContext();
+  const { ordenes, removeItem } = useOrdenContext();
   const { id } = useParams();
   const navigate = useNavigate();
   const [orderProducts, setOrderProducts] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const orden = ordenItems.find((o) => o.id === id);
+  const orden = ordenes.find((o) => o.id === id);
 
   useEffect(() => {
     if (!orden) return;
