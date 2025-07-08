@@ -6,12 +6,14 @@ import { usePaymentForm } from '../../hooks/usePaymentForm.jsx';
 import { useUserContext } from '../../contexts/userContext.jsx';
 import {postOrden} from '../../services/cartService.js'
 import { useCartContext } from '../../contexts/CartContext.jsx';
+import { useOrdenContext } from '../../hooks/OrdenContext.jsx';
 
 export const OrderSummary = ({ items }) => {
 
   const {shippingOption, paymentMethod, address} = usePaymentForm();
   const {clearCart} = useCartContext();
   const {currentUser} = useUserContext();
+  const { getOrdersData } = useOrdenContext();
   const navigate = useNavigate();
   const userId = currentUser.id
 
@@ -40,6 +42,7 @@ export const OrderSummary = ({ items }) => {
         payment: paymentMethod,
         items
       });
+      await getOrdersData(); // <-- recarga las órdenes globales
       clearCart();
       navigate('/greeting');
     } catch (err) {

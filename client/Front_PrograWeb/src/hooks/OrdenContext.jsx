@@ -1,5 +1,4 @@
 import { createContext, useContext, useState , useEffect} from 'react';
-import { mockData } from '../constants/Consts.jsx';
 import { getOrders, cancelOrder, getUserOrders } from '../services/orderService.js';
 
 const OrdenContext = createContext();
@@ -29,9 +28,9 @@ export function OrdenProvider({ children }) {
     }
   };
   
-    useEffect(() => {
-      getOrdersData();
-    }, []);
+  useEffect(() => {
+    getOrdersData();
+  }, []);
 
   const addItem = (item) => {
     setOrdenes((prev) => [...prev, item]);
@@ -54,12 +53,14 @@ export function OrdenProvider({ children }) {
     }
   };
 
-  
-
-
-
   return (
-    <OrdenContext.Provider value={{ ordenes: ordenItems, addItem, removeItem, getOrdersByUserId}}>
+    <OrdenContext.Provider value={{
+      ordenes: ordenItems,
+      addItem,
+      removeItem,
+      getOrdersByUserId,
+      getOrdersData
+    }}>
       {children}
     </OrdenContext.Provider>
   );
