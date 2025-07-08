@@ -12,6 +12,9 @@ const login = async (req, res) => {
     if (user.password !== password) {
       return res.status(401).json({ error: 'Usuario o contraseña incorrectos' });
     }
+    if(!user.active){
+      return res.status(401).json({ error: 'Usuario desactivado' });
+    }
     // No envíes la contraseña al frontend
     const { password: _, ...userData } = user.toJSON();
     req.session.user = userData; // Guarda el usuario en la sesión

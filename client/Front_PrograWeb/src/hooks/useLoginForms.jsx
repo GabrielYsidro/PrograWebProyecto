@@ -39,13 +39,15 @@ export function useLoginForm(initialValues = { email: "", password: "" }) {
           password: values.password
         })
       });
-
+      const data = await res.json(); 
+      
       if (!res.ok) {
-        setError("Correo o contraseña incorrectos.");
+        // Usa el mensaje específico que viene del backend
+        setError(data.error || "Error desconocido.");
         return;
       }
 
-      const data = await res.json();
+      
       if (data && data.user) {
         setCurrentUser && setCurrentUser(data.user);
         setError("");
